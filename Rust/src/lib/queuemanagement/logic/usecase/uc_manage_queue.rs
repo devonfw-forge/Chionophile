@@ -35,7 +35,7 @@ pub async fn delete_queue(
 pub async fn decrease_queue_customer(
     pool: web::Data<DbPool>,
     queue_id: Uuid
-) -> Result<bool, Error> {
+) -> Result<(), Error> {
     web::block (move || {
         let conn = pool.get()?;
         let queue_option = queue_repository::find_by_id(queue_id, &conn)?;
@@ -45,12 +45,12 @@ pub async fn decrease_queue_customer(
         queue_repository::update_customers(&queue, &conn)
     }).await?;
 
-    Ok(true)
+    Ok(())
 }
 pub async fn increase_queue_customer(
     pool: web::Data<DbPool>,
     queue_id: Uuid
-) -> Result<bool, Error> {
+) -> Result<(), Error> {
     web::block (move || {
         let conn = pool.get()?;
         let queue_option = queue_repository::find_by_id(queue_id, &conn)?;
@@ -60,6 +60,6 @@ pub async fn increase_queue_customer(
         queue_repository::update_customers(&queue, &conn)
     }).await?;
     
-    Ok(true)
+    Ok(())
 }
 

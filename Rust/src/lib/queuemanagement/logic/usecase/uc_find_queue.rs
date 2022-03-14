@@ -1,5 +1,4 @@
 use actix_web::{Error, web};
-use chrono::{Utc};
 use uuid::Uuid;
 use crate::lib::general::config::db_config::DbPool;
 use crate::lib::general::search_result::SearchResult;

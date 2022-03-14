@@ -1,6 +1,4 @@
 use std::env;
-use actix_web::App;
-use serde_json;
 use serde::{Deserialize};
 
 #[derive(Deserialize)]

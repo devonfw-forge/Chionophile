@@ -1,5 +1,6 @@
 use actix_web::{Error, web};
 use chrono::Utc;
+use futures::executor::block_on;
 use uuid::Uuid;
 use crate::lib::accesscodemanagement::dataaccess::api::access_code::AccessCode;
 use crate::lib::accesscodemanagement::dataaccess::api::repo::accesscode_repository;
@@ -66,7 +67,7 @@ pub async fn save_accesscode(
 pub async fn delete_accesscode(
     pool: web::Data<DbPool>,
     id: Uuid
-) -> Result<bool, Error> {
+) -> Result<(), Error> {
 
     web::block(move || {
         let conn = pool.clone().get()?;
@@ -74,11 +75,11 @@ pub async fn delete_accesscode(
         let accesscode = accesscode_option.unwrap();
 
         let queue_uuid = Uuid::parse_str(&accesscode.queue_id.unwrap()[..]).unwrap();
-        queue_management::decrease_queue_customer(pool, queue_uuid);
+        block_on(queue_management::decrease_queue_customer(pool, queue_uuid));
         accesscode_repository::delete(id, &conn)
     }).await?;
 
-    Ok(true)
+    Ok(())
 }
 
 fn generate_ticket_code(last_access_code: &AccessCodeEto) -> String {

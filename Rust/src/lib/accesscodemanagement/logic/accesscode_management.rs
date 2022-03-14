@@ -34,7 +34,7 @@ pub async fn save_accesscode(
 pub async fn delete_accesscode(
     pool: web::Data<DbPool>,
     id: Uuid
-) -> Result<bool, Error> {
+) -> Result<(), Error> {
     uc_manage_accesscode::delete_accesscode(pool, id).await
 }
 

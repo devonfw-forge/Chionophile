@@ -27,18 +27,19 @@ pub async fn save_queue(
     uc_manage_queue::save_queue(pool, queue).await
 }
 
-pub fn decrease_queue_customer(
+pub async fn decrease_queue_customer(
     pool: web::Data<DbPool>,
     queue_id: Uuid
-) {
-    uc_manage_queue::decrease_queue_customer(pool, queue_id);
+) -> Result<(), Error> {
+    uc_manage_queue::decrease_queue_customer(pool, queue_id).await
+
 }
 
-pub fn increase_queue_customer(
+pub async fn increase_queue_customer(
     pool: web::Data<DbPool>,
     queue_id: Uuid
-) {
-    uc_manage_queue::increase_queue_customer(pool, queue_id);
+) -> Result<(), Error> {
+    uc_manage_queue::increase_queue_customer(pool, queue_id).await
 }
 
 pub async fn delete_queue(
