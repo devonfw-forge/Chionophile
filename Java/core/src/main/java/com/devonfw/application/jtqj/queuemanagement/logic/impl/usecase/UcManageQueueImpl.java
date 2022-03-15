@@ -49,7 +49,6 @@ public class UcManageQueueImpl extends AbstractQueueUc implements UcManageQueue 
 
   @Override
   public void decreaseQueueCustomer(long queueId) {
-
     // the queue is found by using the repository find method and queueId parameter
     QueueEntity queueEntity = getQueueRepository().find(queueId);
 
@@ -63,7 +62,6 @@ public class UcManageQueueImpl extends AbstractQueueUc implements UcManageQueue 
 
   @Override
   public void increaseQueueCustomer(long queueId) {
-
     // the queue is found by using the repository find method and queueId paremeter
     QueueEntity queueEntity = getQueueRepository().find(queueId);
 

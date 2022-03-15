@@ -13,6 +13,9 @@ import com.devonfw.module.logging.common.impl.DiagnosticContextFilter;
 import com.devonfw.module.logging.common.impl.PerformanceLogFilter;
 import com.devonfw.module.service.common.api.constants.ServiceConstants;
 import org.springframework.security.config.core.GrantedAuthorityDefaults;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * Registers a number of filters for web requests.
@@ -87,4 +90,5 @@ public class WebConfig {
 
     return new GrantedAuthorityDefaults(""); // Remove the ROLE_ prefix
   }
+
 }

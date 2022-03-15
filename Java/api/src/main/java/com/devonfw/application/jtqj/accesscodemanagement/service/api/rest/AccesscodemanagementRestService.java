@@ -1,19 +1,13 @@
 package com.devonfw.application.jtqj.accesscodemanagement.service.api.rest;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
+import com.devonfw.application.jtqj.accesscodemanagement.logic.api.to.AccessCodeEto;
 import org.springframework.data.domain.Page;
 
 import com.devonfw.application.jtqj.accesscodemanagement.logic.api.Accesscodemanagement;
 import com.devonfw.application.jtqj.accesscodemanagement.logic.api.to.AccessCodeCto;
-import com.devonfw.application.jtqj.accesscodemanagement.logic.api.to.AccessCodeEto;
 import com.devonfw.application.jtqj.accesscodemanagement.logic.api.to.AccessCodeSearchCriteriaTo;
 
 /**
@@ -72,4 +66,5 @@ public interface AccesscodemanagementRestService {
   @DELETE
   @Path("/accesscode/{id}/")
   public void deleteAccessCode(@PathParam("id") long id);
+
 }

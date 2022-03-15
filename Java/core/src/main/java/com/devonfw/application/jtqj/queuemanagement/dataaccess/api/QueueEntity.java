@@ -10,9 +10,6 @@ import javax.persistence.TemporalType;
 import com.devonfw.application.jtqj.general.dataaccess.api.ApplicationPersistenceEntity;
 import com.devonfw.application.jtqj.queuemanagement.common.api.Queue;
 
-/**
- * TODO fscherle This type ...
- */
 @Entity
 @Table(name = "DailyQueue")
 public class QueueEntity extends ApplicationPersistenceEntity implements Queue {
@@ -40,7 +37,7 @@ public class QueueEntity extends ApplicationPersistenceEntity implements Queue {
    */
   public String getName() {
 
-    return this.name;
+    return name;
   }
 
   /**
@@ -56,7 +53,7 @@ public class QueueEntity extends ApplicationPersistenceEntity implements Queue {
    */
   public String getLogo() {
 
-    return this.logo;
+    return logo;
   }
 
   /**
@@ -72,7 +69,7 @@ public class QueueEntity extends ApplicationPersistenceEntity implements Queue {
    */
   public String getCurrentNumber() {
 
-    return this.currentNumber;
+    return currentNumber;
   }
 
   /**
@@ -88,7 +85,7 @@ public class QueueEntity extends ApplicationPersistenceEntity implements Queue {
    */
   public Timestamp getAttentionTime() {
 
-    return this.attentionTime;
+    return attentionTime;
   }
 
   /**
@@ -104,7 +101,7 @@ public class QueueEntity extends ApplicationPersistenceEntity implements Queue {
    */
   public Timestamp getMinAttentionTime() {
 
-    return this.minAttentionTime;
+    return minAttentionTime;
   }
 
   /**
@@ -120,7 +117,7 @@ public class QueueEntity extends ApplicationPersistenceEntity implements Queue {
    */
   public Boolean getActive() {
 
-    return this.active;
+    return active;
   }
 
   /**
@@ -136,7 +133,7 @@ public class QueueEntity extends ApplicationPersistenceEntity implements Queue {
    */
   public int getCustomers() {
 
-    return this.customers;
+    return customers;
   }
 
   /**

@@ -12,11 +12,13 @@ import com.devonfw.application.jtqj.visitormanagement.logic.api.to.VisitorSearch
 import com.devonfw.application.jtqj.visitormanagement.logic.api.usecase.UcFindVisitor;
 import com.devonfw.application.jtqj.visitormanagement.logic.api.usecase.UcManageVisitor;
 
+
 /**
  * Implementation of component interface of visitormanagement
  */
 @Named
 public class VisitormanagementImpl extends AbstractComponentFacade implements Visitormanagement {
+
 
   @Inject
   private UcFindVisitor ucFindVisitor;

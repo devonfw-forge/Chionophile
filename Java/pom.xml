@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>jtqj</artifactId>
+  <artifactId>.0.1</artifactId>
   <groupId>com.devonfw.java.jtqj</groupId>
   <version>${revision}</version>
   <packaging>pom</packaging>
@@ -68,15 +68,14 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
-
-      <dependency>
-          <groupId>org.hibernate</groupId>
-          <artifactId>hibernate-validator</artifactId>
-      </dependency>
     </dependencies>
   </dependencyManagement>
 
   <dependencies>
+    <dependency>
+      <groupId>com.devonfw.java.starters</groupId>
+      <artifactId>devon4j-starter-security-cors</artifactId>
+    </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
@@ -101,6 +100,18 @@
         <configuration>
           <excludedGroups>${devonfw.test.excluded.groups}</excludedGroups>
         </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-surefire-provider</artifactId>
+            <version>1.2.0-M1</version>
+          </dependency>
+          <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.2.0-M1</version>
+          </dependency>
+        </dependencies>
       </plugin>
 
       <!-- JaCoCo for test coverage -->

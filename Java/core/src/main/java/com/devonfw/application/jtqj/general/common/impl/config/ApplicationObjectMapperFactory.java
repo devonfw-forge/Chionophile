@@ -13,7 +13,7 @@ import com.devonfw.module.json.common.base.ObjectMapperFactory;
 
 
 /**
- * The MappingFactory class to resolve polymorphic conflicts within the jtqj application.
+ * The MappingFactory class to resolve polymorphic conflicts within the .0.1 application.
  */
 @Named("ApplicationObjectMapperFactory")
 public class ApplicationObjectMapperFactory extends ObjectMapperFactory {

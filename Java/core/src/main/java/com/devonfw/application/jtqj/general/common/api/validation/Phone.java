@@ -16,9 +16,9 @@ import javax.validation.constraints.Pattern;
 @Constraint(validatedBy = {})
 @Documented
 public @interface Phone {
-  String message() default "Phone must be well formed";
+    String message() default "Phone must be well formed";
 
-  Class<?>[] groups() default {};
+    Class<?>[] groups() default {};
 
-  Class<? extends Payload>[] payload() default {};
+    Class<? extends Payload>[] payload() default {};
 }

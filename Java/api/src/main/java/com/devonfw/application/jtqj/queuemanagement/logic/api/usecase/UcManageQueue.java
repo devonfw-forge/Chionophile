@@ -36,5 +36,4 @@ public interface UcManageQueue {
    * @param queueId id of the queue to increase customer.
    */
   void increaseQueueCustomer(long queueId);
-
 }

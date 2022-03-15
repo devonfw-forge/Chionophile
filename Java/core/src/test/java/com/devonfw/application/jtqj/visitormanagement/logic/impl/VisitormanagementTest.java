@@ -2,51 +2,58 @@ package com.devonfw.application.jtqj.visitormanagement.logic.impl;
 
 import javax.inject.Inject;
 
+import com.devonfw.application.jtqj.visitormanagement.logic.api.to.VisitorSearchCriteriaTo;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 
 import com.devonfw.application.jtqj.SpringBootApp;
 import com.devonfw.application.jtqj.visitormanagement.logic.api.Visitormanagement;
 import com.devonfw.application.jtqj.visitormanagement.logic.api.to.VisitorEto;
-import com.devonfw.application.jtqj.visitormanagement.logic.api.to.VisitorSearchCriteriaTo;
 import com.devonfw.module.test.common.base.ComponentTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 @SpringBootTest(classes = SpringBootApp.class)
 public class VisitormanagementTest extends ComponentTest {
 
-  @Inject
-  private Visitormanagement visitormanagement;
+    private VisitorEto visitorEto = new VisitorEto();
 
-  @Test
-  public void saveVisitorTest() {
+    @Inject
+    private Visitormanagement visitormanagement;
 
-    VisitorEto visitorEto = new VisitorEto();
-    visitorEto.setName("Mary");
-    visitorEto.setUsername("mary@mary.com");
-    visitorEto.setPhoneNumber("123456789");
-    visitorEto.setPassword("test");
-    visitorEto.setUserType(false);
-    visitorEto.setAcceptedTerms(true);
-    visitorEto.setAcceptedCommercial(true);
-    VisitorEto visitorEtoResult = this.visitormanagement.saveVisitor(visitorEto);
+    @Override
+    protected void doSetUp() {
+        visitorEto.setName("Mary");
+        visitorEto.setUsername("mary@mary.com");
+        visitorEto.setPhoneNumber("123456789");
+        visitorEto.setPassword("test");
+        visitorEto.setUserType(false);
+        visitorEto.setAcceptedTerms(true);
+        visitorEto.setAcceptedCommercial(true);
+    }
 
-    assertThat(visitorEtoResult.getId()).isNotNull();
-    assertThat(visitorEtoResult.getName()).isEqualTo("Mary");
+    @Test
+    public void saveVisitorTest() {
 
-    this.visitormanagement.deleteVisitor(visitorEtoResult.getId());
-  }
+        VisitorEto visitorEtoResult = this.visitormanagement.saveVisitor(visitorEto);
 
-  @Test
-  public void findVisitorsTest() {
+        assertThat(visitorEtoResult.getId()).isNotNull();
+        assertThat(visitorEtoResult.getName()).isEqualTo("Mary");
 
-    VisitorSearchCriteriaTo criteria = new VisitorSearchCriteriaTo();
-    Pageable pageable = PageRequest.of(0, 100);
-    criteria.setPageable(pageable);
-    Page<VisitorEto> result = this.visitormanagement.findVisitors(criteria);
+        this.visitormanagement.deleteVisitor(visitorEtoResult.getId());
+    }
 
-    assertThat(result).isNotNull();
-  }
+    @Test
+    public void findVisitorsTest() {
+
+        VisitorSearchCriteriaTo criteria = new VisitorSearchCriteriaTo();
+        Pageable pageable = PageRequest.of(0, 100);
+        criteria.setPageable(pageable);
+        Page<VisitorEto> result = this.visitormanagement.findVisitors(criteria);
+
+        assertThat(result).isNotNull();
+    }
+
+
 }

@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import com.devonfw.application.jtqj.visitormanagement.logic.api.Visitormanagement;
 import com.devonfw.application.jtqj.visitormanagement.logic.api.to.VisitorEto;
 import com.devonfw.application.jtqj.visitormanagement.logic.api.to.VisitorSearchCriteriaTo;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 /**
  * The service interface for REST calls in order to execute the logic of component {@link Visitormanagement}.

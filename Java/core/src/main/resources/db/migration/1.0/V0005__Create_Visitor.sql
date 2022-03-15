@@ -1,5 +1,5 @@
 create table Visitor(
-  id BIGINT NOT NULL,
+  id BIGSERIAL NOT NULL,
   modificationCounter INTEGER NOT NULL,
   username VARCHAR(255),
   name VARCHAR(255),

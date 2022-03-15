@@ -1,7 +1,5 @@
 package com.devonfw.application.jtqj.general.service.impl.config;
 
-import java.util.Arrays;
-
 import javax.inject.Inject;
 import javax.servlet.Filter;
 
@@ -11,18 +9,22 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.logout.LogoutFilter;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
 
 import com.devonfw.module.security.common.api.config.WebSecurityConfigurer;
 import com.devonfw.module.security.common.impl.rest.AuthenticationSuccessHandlerSendingOkHttpStatusCode;
 import com.devonfw.module.security.common.impl.rest.JsonUsernamePasswordAuthenticationFilter;
 import com.devonfw.module.security.common.impl.rest.LogoutSuccessHandlerReturningOkHttpStatusCode;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
+
+import java.util.Arrays;
 
 /**
  * This type serves as a base class for extensions of the {@code WebSecurityConfigurerAdapter} and provides a default
@@ -41,16 +43,35 @@ public abstract class BaseWebSecurityConfig extends WebSecurityConfigurerAdapter
   @Inject
   private WebSecurityConfigurer webSecurityConfigurer;
 
+
+
   /**
    * Configure spring security to enable a simple webform-login + a simple rest login.
    */
   @Override
   public void configure(HttpSecurity http) throws Exception {
+      http.authorizeRequests().anyRequest().permitAll().and().csrf().disable();
+      http.addFilterBefore(getCorsFilter(), CsrfFilter.class);
 
-    http.authorizeRequests().anyRequest().permitAll().and().csrf().disable();
+  }
 
-    http.addFilterBefore(getCorsFilter(), CsrfFilter.class);
+  private CorsFilter getCorsFilter() {
 
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    CorsConfiguration config = new CorsConfiguration();
+    // config.setAllowCredentials(true);
+    config.setAllowedOriginPatterns(Arrays.asList("*"));
+    config.addAllowedOrigin("*");
+    config.addAllowedHeader("*");
+    config.addAllowedMethod("OPTIONS");
+    config.addAllowedMethod("HEAD");
+    config.addAllowedMethod("GET");
+    config.addAllowedMethod("PUT");
+    config.addAllowedMethod("POST");
+    config.addAllowedMethod("DELETE");
+    config.addAllowedMethod("PATCH");
+    source.registerCorsConfiguration("/**", config);
+    return new CorsFilter(source);
   }
 
   /**
@@ -95,33 +116,7 @@ public abstract class BaseWebSecurityConfig extends WebSecurityConfigurerAdapter
   @SuppressWarnings("javadoc")
   @Inject
   public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-
     auth.inMemoryAuthentication().withUser("admin").password(this.passwordEncoder.encode("admin")).authorities("Admin");
   }
 
-  /*
-   * Si realizando el frontEnd, la consola del navegador, muestra al registrar un usuario lo siguiente: Response to
-   * preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the
-   * requested se puede solucionar (apartentemente) cambiando la linea config.setAllowCredentials(true); a
-   * config.setAllowedOriginPatterns(Arrays.asList("*")); en la funcion private CorsFilter getCorsFilter() de
-   * application\jtqj\general\service\impl\config\BaseWebSecurityConfig.java
-   */
-  private CorsFilter getCorsFilter() {
-
-    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-    CorsConfiguration config = new CorsConfiguration();
-    // config.setAllowCredentials(true);
-    config.setAllowedOriginPatterns(Arrays.asList("*"));
-    config.addAllowedOrigin("*");
-    config.addAllowedHeader("*");
-    config.addAllowedMethod("OPTIONS");
-    config.addAllowedMethod("HEAD");
-    config.addAllowedMethod("GET");
-    config.addAllowedMethod("PUT");
-    config.addAllowedMethod("POST");
-    config.addAllowedMethod("DELETE");
-    config.addAllowedMethod("PATCH");
-    source.registerCorsConfiguration("/**", config);
-    return new CorsFilter(source);
-  }
 }

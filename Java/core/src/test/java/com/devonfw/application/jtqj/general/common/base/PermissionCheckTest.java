@@ -1,5 +1,7 @@
 package com.devonfw.application.jtqj.general.common.base;
 
+import com.devonfw.module.test.common.base.ModuleTest;
+
 import java.lang.reflect.Method;
 import java.util.Set;
 
@@ -15,8 +17,6 @@ import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import com.devonfw.module.test.common.base.ModuleTest;
-
 /**
  * Tests the permission check in logic layer.
  */
@@ -28,7 +28,7 @@ public class PermissionCheckTest extends ModuleTest {
    * the corresponding interface and thus have the {@link Override} annotations applied.
    */
   @Test
-  @Disabled // Permission Checks are currently not implemented, so ignore this test
+  @Disabled
   public void permissionCheckAnnotationPresent() {
 
     String packageName = "com.devonfw.application.jtqj";

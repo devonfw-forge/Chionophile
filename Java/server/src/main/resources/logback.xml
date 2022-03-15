@@ -10,7 +10,7 @@
         <version>[ignore]</version>
         <levelValue>[ignore]</levelValue>
       </fieldNames>
-      <customFields>{"appname":"jtqj"}</customFields>
+      <customFields>{"appname":".0.1"}</customFields>
       <timeZone>UTC</timeZone>
     </encoder>
   </appender>

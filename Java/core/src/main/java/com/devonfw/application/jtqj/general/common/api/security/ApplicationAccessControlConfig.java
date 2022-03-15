@@ -11,7 +11,7 @@ import com.devonfw.module.security.common.base.accesscontrol.AccessControlConfig
 @Named
 public class ApplicationAccessControlConfig extends AccessControlConfig {
 
-  public static final String APP_ID = "jtqj";
+  public static final String APP_ID = ".0.1";
 
   private static final String PREFIX = APP_ID + ".";
 

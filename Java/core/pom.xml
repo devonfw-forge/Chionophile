@@ -4,25 +4,19 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.devonfw.java.jtqj</groupId>
-    <artifactId>jtqj</artifactId>
+    <artifactId>.0.1</artifactId>
     <version>${revision}</version>
   </parent>
-  <artifactId>jtqj-core</artifactId>
+  <artifactId>.0.1-core</artifactId>
   <packaging>jar</packaging>
   <name>${project.artifactId}</name>
-  <description>Core of the server for the jtqj application - a simple example based on devon4j.</description>
+  <description>Core of the server for the .0.1 application - a simple example based on devon4j.</description>
 
   <dependencies>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>jtqj-api</artifactId>
+      <artifactId>.0.1-api</artifactId>
       <version>${project.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.postgresql</groupId>
-      <artifactId>postgresql</artifactId>
-      <scope>runtime</scope>
     </dependency>
 
     <!-- Bean-Mapping for conversion from TO to Entity and vice versa -->
@@ -140,7 +134,12 @@
       <artifactId>spring-webmvc</artifactId>
     </dependency>
 
-
+    <!-- Database -->
+    <dependency>
+            <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+          </dependency>
+    
     <!-- Flyway for DB Schema version management and migration -->
     <dependency>
       <groupId>org.flywaydb</groupId>
@@ -171,6 +170,11 @@
       <artifactId>cglib</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+    </dependency>
+
     <!-- Enable JSON logging for easy integration with xPaaS and ELK/Graylog/Splunk/etc. -->
     <dependency>
       <groupId>net.logstash.logback</groupId>
@@ -198,6 +202,12 @@
         </exclusion>
       </exclusions>
     </dependency>
+      <dependency>
+          <groupId>org.testng</groupId>
+          <artifactId>testng</artifactId>
+          <version>RELEASE</version>
+          <scope>test</scope>
+      </dependency>
   </dependencies>
 
   <profiles>
@@ -228,6 +238,14 @@
           </excludes>
         </configuration>
       </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+                <source>10</source>
+                <target>10</target>
+            </configuration>
+        </plugin>
     </plugins>
   </build>
 

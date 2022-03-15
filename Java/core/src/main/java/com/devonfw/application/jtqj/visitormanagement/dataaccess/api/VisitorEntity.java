@@ -4,17 +4,20 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.devonfw.application.jtqj.general.common.api.validation.EmailExtended;
 import com.devonfw.application.jtqj.general.common.api.validation.Phone;
 import com.devonfw.application.jtqj.general.dataaccess.api.ApplicationPersistenceEntity;
 import com.devonfw.application.jtqj.visitormanagement.common.api.Visitor;
 
 /**
- * TODO fscherle This type ...
+ * The type Visitor entity.
  */
 @Entity
 @Table(name = "Visitor")
 public class VisitorEntity extends ApplicationPersistenceEntity implements Visitor {
 
+  @NotNull
+  @EmailExtended
   private String username;
 
   @NotNull
@@ -35,126 +38,140 @@ public class VisitorEntity extends ApplicationPersistenceEntity implements Visit
   private static final long serialVersionUID = 1L;
 
   /**
+   * Gets username.
+   *
    * @return the username
    */
-  @Override
   public String getUsername() {
 
-    return this.username;
+    return username;
   }
 
   /**
-   * @param username the username to set
+   * Sets username.
+   *
+   * @param username the username
    */
-  @Override
   public void setUsername(String username) {
 
     this.username = username;
   }
 
   /**
+   * Gets name.
+   *
    * @return the name
    */
-  @Override
   public String getName() {
 
-    return this.name;
+    return name;
   }
 
   /**
-   * @param name the name to set
+   * Sets name.
+   *
+   * @param name the name
    */
-  @Override
   public void setName(String name) {
 
     this.name = name;
   }
 
   /**
-   * @return the phoneNumber
+   * Gets phone number.
+   *
+   * @return the phone number
    */
-  @Override
   public String getPhoneNumber() {
 
-    return this.phoneNumber;
+    return phoneNumber;
   }
 
   /**
-   * @param phoneNumber the phoneNumber to set
+   * Sets phone number.
+   *
+   * @param phoneNumber the phone number
    */
-  @Override
   public void setPhoneNumber(String phoneNumber) {
 
     this.phoneNumber = phoneNumber;
   }
 
   /**
+   * Gets password.
+   *
    * @return the password
    */
-  @Override
   public String getPassword() {
 
-    return this.password;
+    return password;
   }
 
   /**
-   * @param password the password to set
+   * Sets password.
+   *
+   * @param password the password
    */
-  @Override
   public void setPassword(String password) {
 
     this.password = password;
   }
 
   /**
-   * @return the acceptedCommercial
+   * Gets accepted commercial.
+   *
+   * @return the accepted commercial
    */
-  @Override
   public Boolean getAcceptedCommercial() {
 
-    return this.acceptedCommercial;
+    return acceptedCommercial;
   }
 
   /**
-   * @param acceptedCommercial the acceptedCommercial to set
+   * Sets accepted commercial.
+   *
+   * @param acceptedCommercial the accepted commercial
    */
-  @Override
   public void setAcceptedCommercial(Boolean acceptedCommercial) {
 
     this.acceptedCommercial = acceptedCommercial;
   }
 
   /**
-   * @return the acceptedTerms
+   * Gets accepted terms.
+   *
+   * @return the accepted terms
    */
-  @Override
   public Boolean getAcceptedTerms() {
 
-    return this.acceptedTerms;
+    return acceptedTerms;
   }
 
   /**
-   * @param acceptedTerms the acceptedTerms to set
+   * Sets accepted terms.
+   *
+   * @param acceptedTerms the accepted terms
    */
-  @Override
   public void setAcceptedTerms(Boolean acceptedTerms) {
 
     this.acceptedTerms = acceptedTerms;
   }
 
   /**
-   * @return the userType
+   * Gets user type.
+   *
+   * @return the user type
    */
-  @Override
   public Boolean getUserType() {
 
-    return this.userType;
+    return userType;
   }
 
   /**
-   * @param userType the userType to set
+   * Sets user type.
+   *
+   * @param userType the user type
    */
-  @Override
   public void setUserType(Boolean userType) {
 
     this.userType = userType;

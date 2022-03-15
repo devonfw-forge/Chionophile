@@ -2,10 +2,10 @@ package com.devonfw.application.jtqj.accesscodemanagement.logic.api.usecase;
 
 import java.util.List;
 
+import com.devonfw.application.jtqj.accesscodemanagement.logic.api.to.AccessCodeEto;
 import org.springframework.data.domain.Page;
 
 import com.devonfw.application.jtqj.accesscodemanagement.logic.api.to.AccessCodeCto;
-import com.devonfw.application.jtqj.accesscodemanagement.logic.api.to.AccessCodeEto;
 import com.devonfw.application.jtqj.accesscodemanagement.logic.api.to.AccessCodeSearchCriteriaTo;
 
 public interface UcFindAccessCode {
@@ -33,4 +33,5 @@ public interface UcFindAccessCode {
    * @return the {@link List} of matching {@link AccessCodeEto}s.
    */
   Page<AccessCodeEto> findAccessCodeEtos(AccessCodeSearchCriteriaTo criteria);
+
 }

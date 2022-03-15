@@ -71,4 +71,5 @@ public class UcFindAccessCodeImpl extends AbstractAccessCodeUc implements UcFind
 
     return mapPaginatedEntityList(accessCodes, AccessCodeEto.class);
   }
+
 }

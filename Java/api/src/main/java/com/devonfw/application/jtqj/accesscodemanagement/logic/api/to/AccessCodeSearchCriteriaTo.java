@@ -131,7 +131,7 @@ public class AccessCodeSearchCriteriaTo extends AbstractSearchCriteriaTo {
   }
 
   /**
-   * @param queue setter for queue attribute
+   * @param queueId setter for queue attribute
    */
 
   public void setQueueId(Long queueId) {

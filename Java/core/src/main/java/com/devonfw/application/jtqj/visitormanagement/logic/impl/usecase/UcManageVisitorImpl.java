@@ -41,6 +41,7 @@ public class UcManageVisitorImpl extends AbstractVisitorUc implements UcManageVi
 
     VisitorEntity visitorEntity = getBeanMapper().map(visitor, VisitorEntity.class);
 
+
     // initialize, validate visitorEntity here if necessary
     VisitorEntity resultEntity = getVisitorRepository().save(visitorEntity);
     LOG.debug("Visitor with id '{}' has been created.", resultEntity.getId());

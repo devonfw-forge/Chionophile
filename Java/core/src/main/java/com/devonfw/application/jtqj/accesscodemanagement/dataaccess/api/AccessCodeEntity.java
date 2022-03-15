@@ -19,9 +19,6 @@ import com.devonfw.application.jtqj.general.dataaccess.api.ApplicationPersistenc
 import com.devonfw.application.jtqj.queuemanagement.dataaccess.api.QueueEntity;
 import com.devonfw.application.jtqj.visitormanagement.dataaccess.api.VisitorEntity;
 
-/**
- * TODO fscherle This type ...
- */
 @Entity
 @Table(name = "AccessCode")
 public class AccessCodeEntity extends ApplicationPersistenceEntity implements AccessCode {
@@ -49,7 +46,7 @@ public class AccessCodeEntity extends ApplicationPersistenceEntity implements Ac
    */
   public String getTicketNumber() {
 
-    return this.ticketNumber;
+    return ticketNumber;
   }
 
   /**
@@ -65,7 +62,7 @@ public class AccessCodeEntity extends ApplicationPersistenceEntity implements Ac
    */
   public Timestamp getCreationTime() {
 
-    return this.creationTime;
+    return creationTime;
   }
 
   /**
@@ -81,7 +78,7 @@ public class AccessCodeEntity extends ApplicationPersistenceEntity implements Ac
    */
   public Timestamp getStartTime() {
 
-    return this.startTime;
+    return startTime;
   }
 
   /**
@@ -97,7 +94,7 @@ public class AccessCodeEntity extends ApplicationPersistenceEntity implements Ac
    */
   public Timestamp getEndTime() {
 
-    return this.endTime;
+    return endTime;
   }
 
   /**
@@ -115,7 +112,7 @@ public class AccessCodeEntity extends ApplicationPersistenceEntity implements Ac
   @JoinColumn(name = "idVisitor")
   public VisitorEntity getVisitor() {
 
-    return this.visitor;
+    return visitor;
   }
 
   /**
@@ -133,7 +130,7 @@ public class AccessCodeEntity extends ApplicationPersistenceEntity implements Ac
   @JoinColumn(name = "idQueue")
   public QueueEntity getQueue() {
 
-    return this.queue;
+    return queue;
   }
 
   /**

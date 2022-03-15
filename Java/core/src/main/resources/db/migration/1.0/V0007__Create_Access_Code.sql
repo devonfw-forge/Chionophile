@@ -1,5 +1,5 @@
 CREATE TABLE AccessCode(
-  id BIGINT NOT NULL,
+  id BIGSERIAL NOT NULL,
   modificationCounter INTEGER NOT NULL,
   ticketNumber VARCHAR(5),
   creationTime TIMESTAMP,
