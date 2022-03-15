@@ -1,3 +1,4 @@
+\connect rust_jtq_db;
 
 CREATE TABLE IF NOT EXISTS visitors (
 	id TEXT PRIMARY KEY NOT NULL,
@@ -53,3 +54,7 @@ INSERT INTO access_codes (id,  ticket_number, creation_time, start_time, end_tim
 INSERT INTO access_codes (id,  ticket_number, creation_time, start_time, end_time, visitor_id, queue_id) VALUES ('6209dbec-8404-4a45-8a16-3b0a7b0bbc4e',  'Q006', CURRENT_TIMESTAMP, '2008-01-01 00:00:01', NULL, '3ec96ba8-efa7-4cbc-9ac1-41fd36c83ff5', '3bf8544b-67fd-47e9-8bf3-a2a868805f59') ON CONFLICT DO NOTHING;
 INSERT INTO access_codes (id,  ticket_number, creation_time, start_time, end_time, visitor_id, queue_id) VALUES ('f97f1208-b313-4f6a-a15d-f2a4997169ac',  'Q007', CURRENT_TIMESTAMP, '2008-01-01 00:00:01', NULL,'871db513-8ab5-4d3c-a30a-97f5796835cb', '3bf8544b-67fd-47e9-8bf3-a2a868805f59') ON CONFLICT DO NOTHING;
 INSERT INTO access_codes (id,  ticket_number, creation_time, start_time, end_time, visitor_id, queue_id) VALUES ('9954e3cb-5c2a-4ebe-a9da-c25a8b41212c',  'Q008', CURRENT_TIMESTAMP, '2008-01-01 00:00:01', NULL, 'c8eded73-5193-4032-80f5-ba76ff2f8ddf', '3bf8544b-67fd-47e9-8bf3-a2a868805f59') ON CONFLICT DO NOTHING;
+
+ALTER TABLE visitors OWNER TO rust_jtq_user;
+ALTER TABLE queues OWNER TO rust_jtq_user;
+ALTER TABLE access_codes OWNER TO rust_jtq_user;

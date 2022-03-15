@@ -1,4 +1,4 @@
 [env]
-DATABASE_URL = "postgres://postgres:123@localhost/jtq"
+DATABASE_URL = "postgres://rust_jtq_user:admin@localhost/rust_jtq_db"
 BIND_URL = "127.0.0.1:8081"
 BASE_REST_URL = "jumpthequeue/services/rest/"
