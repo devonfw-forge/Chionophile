@@ -1,5 +1,4 @@
 use actix_web::{web, Error, HttpResponse};
-use uuid::Uuid;
 use crate::lib::general::config::db_config::DbPool;
 use crate::lib::queuemanagement::logic::api::queue_eto::QueueEto;
 use crate::lib::queuemanagement::logic::queue_management;
@@ -20,21 +19,21 @@ pub async fn find_queues(
 
 pub async fn get_queue(
     pool: web::Data<DbPool>,
-    queue_uid: web::Path<Uuid>
+    queue_id: web::Path<i64>
 ) -> Result<HttpResponse, Error> {
 
-    let uid = queue_uid.into_inner();
-    let queue_uid = uid.clone();
+    let id = queue_id.into_inner();
+    let queue_uid = id.clone();
     let queue =
         queue_management
-        ::find_queue(pool, queue_uid)
+        ::find_queue(pool, id)
             .await.map_err(actix_web::error::ErrorInternalServerError)?;
 
     if let Some(queue) = queue {
         Ok(HttpResponse::Ok().json(queue))
     } else {
         let res = HttpResponse::NotFound()
-            .body(format!("No queue found with uid: {}", uid));
+            .body(format!("No queue found with uid: {}", queue_uid));
         Ok(res)
     }
 
@@ -54,10 +53,10 @@ pub async fn save_queue(
 
 pub async fn delete_queue(
     pool: web::Data<DbPool>,
-    queue_uid: web::Path<Uuid>
+    queue_id: web::Path<i64>
 ) -> Result<HttpResponse, Error> {
 
-    queue_management::delete_queue(pool, queue_uid.into_inner())
+    queue_management::delete_queue(pool, queue_id.into_inner())
         .await
         .map_err(actix_web::error::ErrorInternalServerError)?;
 

@@ -1,13 +1,15 @@
 use chrono::NaiveDateTime;
-use crate::schema::queues;
+use crate::schema::dailyqueue;
 use serde::{Deserialize, Serialize};
+use crate::lib::queuemanagement::dataacess::api::new_queue::NewQueue;
 use crate::lib::queuemanagement::logic::api::queue_eto::QueueEto;
 
 #[derive(Debug, Clone, Serialize, Deserialize, Queryable, Insertable, Identifiable, QueryableByName)]
 #[serde(rename_all = "camelCase")]
-#[table_name="queues"]
+#[table_name="dailyqueue"]
 pub struct Queue {
-    pub id: String,
+    pub id: i64,
+    pub modification_counter: i32,
     pub name: Option<String>,
     pub logo: Option<String>,
     pub current_number: Option<String>,
@@ -22,7 +24,8 @@ impl Queue {
         queue_eto: QueueEto
     ) -> Queue {
         let mut queue = Queue {
-            id: "".to_string(),
+            id: -1,
+            modification_counter: 1,
             name: queue_eto.name,
             logo: queue_eto.logo,
             current_number: queue_eto.current_number,
@@ -36,5 +39,21 @@ impl Queue {
             queue.id = id;
         }
         queue
+    }
+    pub fn from_insert(
+        id: i64,
+        new_queue: NewQueue
+    ) -> Queue {
+        Queue {
+            id,
+            modification_counter: 1,
+            name: new_queue.name,
+            logo: new_queue.logo,
+            current_number: new_queue.current_number,
+            attention_time: new_queue.attention_time,
+            min_attention_time: new_queue.min_attention_time,
+            active: new_queue.active,
+            customers: new_queue.customers
+        }
     }
 }

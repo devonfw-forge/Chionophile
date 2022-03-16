@@ -1,5 +1,5 @@
 use diesel::prelude::*;
-use uuid::Uuid;
+use crate::lib::accesscodemanagement::dataaccess::api::new_access_code::NewAccessCode;
 use crate::lib::accesscodemanagement::dataaccess::api::access_code::AccessCode;
 use crate::lib::accesscodemanagement::logic::api::accesscode_cto::AccessCodeCto;
 use crate::lib::accesscodemanagement::logic::api::accesscode_eto::AccessCodeEto;
@@ -7,21 +7,22 @@ use crate::lib::accesscodemanagement::logic::api::accesscode_search_criteria::Ac
 use crate::lib::general::config::db_config::{DbError, DbType, DbConn};
 use crate::lib::queuemanagement::dataacess::api::queue::Queue;
 use crate::lib::visitormanagement::dataacess::api::visitor::Visitor;
-use crate::schema::access_codes;
+use crate::schema::accesscode;
 
 pub fn find_by_id_cto(
-    id: Uuid, conn: &DbConn
+    access_code_id: i64,
+    conn: &DbConn
 ) -> Result<Option<AccessCodeCto>, DbError>
 {
-    use crate::schema::visitors;
-    use crate::schema::queues;
+    use crate::schema::visitor;
+    use crate::schema::dailyqueue;
 
-    let mut query = access_codes::table
-        .inner_join(visitors::table.on(visitors::id.nullable().like(access_codes::visitor_id)))
-        .inner_join(queues::table.on(queues::id.nullable().like(access_codes::queue_id)))
+    let mut query = accesscode::table
+        .inner_join(visitor::table.on(visitor::id.eq(accesscode::visitor_id)))
+        .inner_join(dailyqueue::table.on(dailyqueue::id.eq(accesscode::queue_id)))
         .into_boxed::<DbType>();
 
-    query = query.filter(access_codes::id.eq(id.to_string()));
+    query = query.filter(accesscode::id.eq(access_code_id));
 
     let access_code_cto_vector: Vec<(AccessCode, Visitor, Queue)> = query.load(conn)?;
     let tuple = access_code_cto_vector.first().cloned();
@@ -35,13 +36,13 @@ pub fn find_by_id_cto(
 }
 
 pub fn find_by_id(
-    uuid: Uuid,
+    access_code_id: i64,
     conn: &DbConn
 ) -> Result<Option<AccessCode>, DbError> {
-    use crate::schema::access_codes::dsl::*;
+    use crate::schema::accesscode::dsl::*;
 
-    let access_code: Option<AccessCode> = access_codes
-        .filter(id.eq(uuid.to_string()))
+    let access_code: Option<AccessCode> = accesscode
+        .filter(id.eq(access_code_id))
         .first::<AccessCode>(conn).optional()?;
 
     Ok(access_code)
@@ -52,10 +53,10 @@ pub fn find_etos(
     conn: &DbConn
 ) -> Result<Vec<AccessCodeEto>, DbError> {
     let params = filters.clone();
-    let mut query = access_codes::table.into_boxed::<DbType>();
+    let mut query = accesscode::table.into_boxed::<DbType>();
 
     if let Some(queue_id) = params.queue_id {
-        query = query.filter(access_codes::queue_id.eq(queue_id));
+        query = query.filter(accesscode::queue_id.eq(queue_id));
     }
 
     let query_result: Vec<AccessCode> = query.load(conn)?;
@@ -71,31 +72,31 @@ pub fn find_ctos(
     criteria: AccessCodeSearchCriteria,
     conn: &DbConn
 ) -> Result<Vec<AccessCodeCto>, DbError> {
-    use crate::schema::visitors;
-    use crate::schema::queues;
+    use crate::schema::visitor;
+    use crate::schema::dailyqueue;
 
-    let mut query = access_codes::table
-        .inner_join(visitors::table.on(visitors::id.nullable().like(access_codes::visitor_id)))
-        .inner_join(queues::table.on(queues::id.nullable().like(access_codes::queue_id)))
+    let mut query = accesscode::table
+        .inner_join(visitor::table.on(visitor::id.eq(accesscode::visitor_id)))
+        .inner_join(dailyqueue::table.on(dailyqueue::id.eq(accesscode::queue_id)))
         .into_boxed::<DbType>();
 
     if let Some(ticket_number) = criteria.ticket_number {
-        query = query.filter(access_codes::ticket_number.eq(ticket_number));
+        query = query.filter(accesscode::ticket_number.eq(ticket_number));
     }
     if let Some(creation_time) = criteria.creation_time {
-        query = query.filter(access_codes::creation_time.eq(creation_time));
+        query = query.filter(accesscode::creation_time.eq(creation_time));
     }
     if let Some(start_time) = criteria.start_time {
-        query = query.filter(access_codes::start_time.eq(start_time));
+        query = query.filter(accesscode::start_time.eq(start_time));
     }
     if let Some(end_time) = criteria.end_time {
-        query = query.filter(access_codes::end_time.eq(end_time));
+        query = query.filter(accesscode::end_time.eq(end_time));
     }
     if let Some(visitor_id) = criteria.visitor_id {
-        query = query.filter(access_codes::visitor_id.eq(visitor_id));
+        query = query.filter(accesscode::visitor_id.eq(visitor_id));
     }
     if let Some(queue_id) = criteria.queue_id {
-        query = query.filter(access_codes::queue_id.eq(queue_id));
+        query = query.filter(accesscode::queue_id.eq(queue_id));
     }
 
     let query_results : Vec<(AccessCode, Visitor, Queue)> = query.load(conn)?;
@@ -110,25 +111,24 @@ pub fn find_ctos(
 }
 
 pub fn save(
-    access_code: &AccessCode,
+    access_code: &NewAccessCode,
     conn: &DbConn
 ) -> Result<AccessCodeEto, DbError> {
 
-    use crate::schema::access_codes::dsl::*;
+    use crate::schema::accesscode::dsl::*;
 
-    let mut new_access_code = access_code.clone();
+    let access_code_id = diesel::insert_into(accesscode)
+        .values(access_code)
+        .returning(id)
+        .get_result(conn)?;
 
-    new_access_code.id = Uuid::new_v4().to_string();
-
-    diesel::insert_into(access_codes).values(&new_access_code).execute(conn)?;
-
-    Ok(AccessCodeEto::from(new_access_code))
+    Ok(AccessCodeEto::from_insert(access_code_id, access_code.clone()))
 }
 
-pub fn delete(uuid: Uuid, conn: &DbConn) -> Result<Uuid, DbError> {
-    use crate::schema::access_codes::dsl::*;
+pub fn delete(access_code_id: i64, conn: &DbConn) -> Result<i64, DbError> {
+    use crate::schema::accesscode::dsl::*;
 
-    diesel::delete(access_codes).filter(id.eq(uuid.to_string())).execute(conn)?;
+    diesel::delete(accesscode).filter(id.eq(access_code_id)).execute(conn)?;
 
-    Ok(uuid)
+    Ok(access_code_id)
 }

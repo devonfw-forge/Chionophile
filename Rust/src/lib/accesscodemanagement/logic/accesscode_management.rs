@@ -1,6 +1,4 @@
-
 use actix_web::{Error, web};
-use uuid::Uuid;
 use crate::lib::accesscodemanagement::logic::api::accesscode_cto::AccessCodeCto;
 use crate::lib::accesscodemanagement::logic::api::accesscode_eto::AccessCodeEto;
 use crate::lib::accesscodemanagement::logic::api::accesscode_search_criteria::AccessCodeSearchCriteria;
@@ -11,7 +9,7 @@ use crate::lib::general::search_result::SearchResult;
 
 pub async fn find_accesscode_cto(
     pool: web::Data<DbPool>,
-    id: Uuid,
+    id: i64,
 ) -> Result<Option<AccessCodeCto>, Error> {
     uc_find_accesscode::find_accesscode_cto(pool, id).await
 }
@@ -33,7 +31,7 @@ pub async fn save_accesscode(
 
 pub async fn delete_accesscode(
     pool: web::Data<DbPool>,
-    id: Uuid
+    id: i64
 ) -> Result<(), Error> {
     uc_manage_accesscode::delete_accesscode(pool, id).await
 }

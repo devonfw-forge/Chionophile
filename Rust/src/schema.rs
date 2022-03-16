@@ -1,22 +1,35 @@
 table! {
-    access_codes (id) {
-        id -> Text,
+    accesscode (id) {
+        id -> Int8,
+        #[sql_name="modificationcounter"]
+        modification_counter -> Int4,
+        #[sql_name="ticketnumber"]
         ticket_number -> Nullable<Varchar>,
+        #[sql_name="creationtime"]
         creation_time -> Nullable<Timestamp>,
+        #[sql_name="starttime"]
         start_time -> Nullable<Timestamp>,
+        #[sql_name="endtime"]
         end_time -> Nullable<Timestamp>,
-        queue_id -> Nullable<Text>,
-        visitor_id -> Nullable<Text>,
+        #[sql_name="idvisitor"]
+        visitor_id -> Int8,
+        #[sql_name="idqueue"]
+        queue_id -> Int8,
     }
 }
 
 table! {
-    queues (id) {
-        id -> Text,
+    dailyqueue (id) {
+        id -> Int8,
+        #[sql_name="modificationcounter"]
+        modification_counter -> Int4,
         name -> Nullable<Varchar>,
         logo -> Nullable<Varchar>,
+        #[sql_name="currentnumber"]
         current_number -> Nullable<Varchar>,
+        #[sql_name="attentiontime"]
         attention_time -> Nullable<Timestamp>,
+        #[sql_name="minattentiontime"]
         min_attention_time -> Timestamp,
         active -> Bool,
         customers -> Int4,
@@ -24,23 +37,29 @@ table! {
 }
 
 table! {
-    visitors (id) {
-        id -> Text,
-        username -> Varchar,
-        name -> Varchar,
-        phone_number -> Varchar,
+    visitor (id) {
+        id -> Int8,
+        #[sql_name="modificationcounter"]
+        modification_counter -> Int4,
+        username -> Nullable<Varchar>,
+        name -> Nullable<Varchar>,
         password -> Nullable<Varchar>,
+        #[sql_name="phonenumber"]
+        phone_number -> Nullable<Varchar>,
+        #[sql_name="acceptedcommercial"]
         accepted_commercial -> Nullable<Bool>,
-        accepted_terms -> Nullable<Bool>,
+        #[sql_name="acceptedterms"]
+        accepted_terms -> Bool,
+        #[sql_name="usertype"]
         user_type -> Nullable<Bool>,
     }
 }
 
-joinable!(access_codes -> queues (queue_id));
-joinable!(access_codes -> visitors (visitor_id));
+joinable!(accesscode -> dailyqueue (queue_id));
+joinable!(accesscode -> visitor (visitor_id));
 
 allow_tables_to_appear_in_same_query!(
-    access_codes,
-    queues,
-    visitors,
+    accesscode,
+    dailyqueue,
+    visitor,
 );

@@ -3,13 +3,13 @@ use crate::lib::visitormanagement::dataacess::api::visitor::Visitor;
 
 #[derive(Deserialize, Serialize)]
 pub struct VisitorEto {
-    pub id: Option<String>,
-    pub username: String,
-    pub name: String,
-    pub phoneNumber: String,
+    pub id: Option<i64>,
+    pub username: Option<String>,
+    pub name: Option<String>,
+    pub phoneNumber: Option<String>,
     pub password: Option<String>,
     pub acceptedCommercial: Option<bool>,
-    pub acceptedTerms: Option<bool>,
+    pub acceptedTerms: bool,
     pub userType: Option<bool>,
 }
 

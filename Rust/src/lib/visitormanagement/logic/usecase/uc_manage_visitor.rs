@@ -1,7 +1,6 @@
 use actix_web::{Error, web};
-use uuid::Uuid;
 use crate::lib::general::config::db_config::DbPool;
-use crate::lib::visitormanagement::dataacess::api::visitor::Visitor;
+use crate::lib::visitormanagement::dataacess::api::new_visitor::NewVisitor;
 use crate::lib::visitormanagement::dataacess::api::repo::visitor_repository;
 use crate::lib::visitormanagement::logic::api::visitor_eto::VisitorEto;
 
@@ -11,7 +10,7 @@ pub async fn save_visitor(
 ) -> Result<VisitorEto, Error> {
     let result = web::block(move || {
         let conn = pool.get()?;
-        let new_visitor: Visitor = Visitor::from(visitor);
+        let new_visitor: NewVisitor = NewVisitor::from(visitor);
 
         visitor_repository::save(&new_visitor, &conn)
     }).await?;
@@ -21,12 +20,11 @@ pub async fn save_visitor(
 
 pub async fn delete_visitor(
     pool: web::Data<DbPool>,
-    visitor_uid: Uuid
+    visitor_id: i64
 ) -> Result<bool, Error> {
     web::block(move || {
         let conn = pool.get()?;
-        let uuid = visitor_uid;
-        visitor_repository::delete_by_id(uuid, &conn)
+        visitor_repository::delete_by_id(visitor_id, &conn)
     }).await?;
 
     Ok(true)

@@ -5,7 +5,7 @@ use serde::{Serialize, Deserialize};
 #[derive(Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct QueueEto {
-    pub id: Option<String>,
+    pub id: Option<i64>,
     pub name: Option<String>,
     pub logo: Option<String>,
     pub current_number: Option<String>,

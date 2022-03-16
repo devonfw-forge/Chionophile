@@ -1,5 +1,4 @@
 use actix_web::{Error, web};
-use uuid::Uuid;
 use crate::lib::general::config::db_config::DbPool;
 use crate::lib::general::search_result::SearchResult;
 use crate::lib::visitormanagement::logic::api::visitor_eto::VisitorEto;
@@ -8,7 +7,7 @@ use crate::lib::visitormanagement::dataacess::api::repo::visitor_repository;
 
 pub async fn find_visitor(
     pool: web::Data<DbPool>,
-    id: Uuid
+    id: i64
 ) -> Result<Option<VisitorEto>, Error> {
     let visitor = web::block(move || {
         let conn = pool.get()?;

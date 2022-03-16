@@ -1,5 +1,4 @@
 use actix_web::{web, Error, HttpResponse};
-use uuid::Uuid;
 use crate::lib::general::config::db_config::DbPool;
 use crate::lib::visitormanagement::logic::api::visitor_eto::VisitorEto;
 use crate::lib::visitormanagement::logic::visitor_management;
@@ -20,7 +19,7 @@ pub async fn find_visitors(
 
 pub async fn get_visitor(
     pool: web::Data<DbPool>,
-    visitor_uid: web::Path<Uuid>
+    visitor_uid: web::Path<i64>
 ) -> Result<HttpResponse, Error> {
 
     let uid = visitor_uid.into_inner();
@@ -54,10 +53,10 @@ pub async fn save_visitor(
 
 pub async fn delete_visitor(
     pool: web::Data<DbPool>,
-    visitor_uid: web::Path<Uuid>
+    visitor_id: web::Path<i64>
 ) -> Result<HttpResponse, Error> {
 
-    visitor_management::delete_visitor(pool, visitor_uid.into_inner())
+    visitor_management::delete_visitor(pool, visitor_id.into_inner())
         .await
         .map_err(actix_web::error::ErrorInternalServerError)?;
 

@@ -1,8 +1,7 @@
 use actix_web::{Error, web};
 use chrono::Utc;
 use futures::executor::block_on;
-use uuid::Uuid;
-use crate::lib::accesscodemanagement::dataaccess::api::access_code::AccessCode;
+use crate::lib::accesscodemanagement::dataaccess::api::new_access_code::NewAccessCode;
 use crate::lib::accesscodemanagement::dataaccess::api::repo::accesscode_repository;
 use crate::lib::accesscodemanagement::logic::api::accesscode_eto::AccessCodeEto;
 use crate::lib::accesscodemanagement::logic::api::accesscode_search_criteria::AccessCodeSearchCriteria;
@@ -19,14 +18,14 @@ pub async fn save_accesscode(
  let access_code: AccessCodeEto = web::block(move || {
         let conn = pool.get()?;
 
-        let mut access_code_entity = AccessCode {
-            id: "".to_string(),
+        let mut access_code_entity = NewAccessCode {
+            modification_counter: 1,
             ticket_number: None,
             creation_time: None,
             start_time: None,
             end_time: None,
-            queue_id: Some(accesscode_post_data.queue_id.clone()),
-            visitor_id: Some(accesscode_post_data.visitor_id.clone())
+            queue_id: accesscode_post_data.queue_id.clone(),
+            visitor_id: accesscode_post_data.visitor_id.clone()
         };
 
         let search_criteria = AccessCodeSearchCriteria {
@@ -54,8 +53,8 @@ pub async fn save_accesscode(
         }
 
         access_code_entity.creation_time = Some(Utc::now().naive_utc());
-        let queue_uuid = Uuid::parse_str(&access_code_entity.queue_id.clone().unwrap()[..]).unwrap();
-        queue_management::increase_queue_customer(pool, queue_uuid);
+        let queue_id = access_code_entity.queue_id.clone();
+        block_on(queue_management::increase_queue_customer(pool, queue_id));
         accesscode_repository::save(&access_code_entity, &conn)
 
     }).await?;
@@ -66,7 +65,7 @@ pub async fn save_accesscode(
 
 pub async fn delete_accesscode(
     pool: web::Data<DbPool>,
-    id: Uuid
+    id: i64
 ) -> Result<(), Error> {
 
     web::block(move || {
@@ -74,8 +73,8 @@ pub async fn delete_accesscode(
         let accesscode_option = accesscode_repository::find_by_id(id.clone(), &conn)?;
         let accesscode = accesscode_option.unwrap();
 
-        let queue_uuid = Uuid::parse_str(&accesscode.queue_id.unwrap()[..]).unwrap();
-        block_on(queue_management::decrease_queue_customer(pool, queue_uuid));
+        let queue_id = accesscode.queue_id;
+        block_on(queue_management::decrease_queue_customer(pool, queue_id));
         accesscode_repository::delete(id, &conn)
     }).await?;
 

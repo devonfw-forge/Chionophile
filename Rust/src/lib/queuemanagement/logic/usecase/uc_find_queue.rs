@@ -1,5 +1,4 @@
 use actix_web::{Error, web};
-use uuid::Uuid;
 use crate::lib::general::config::db_config::DbPool;
 use crate::lib::general::search_result::SearchResult;
 use crate::lib::queuemanagement::logic::api::queue_eto::QueueEto;
@@ -8,7 +7,7 @@ use crate::lib::queuemanagement::dataacess::api::repo::queue_repository;
 
 pub async fn find_queue(
     pool: web::Data<DbPool>,
-    id: Uuid
+    id: i64
 ) -> Result<Option<QueueEto>, Error> {
     let queue = web::block(move || {
         let conn = pool.get()?;

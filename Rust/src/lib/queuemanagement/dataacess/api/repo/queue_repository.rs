@@ -1,19 +1,18 @@
 use diesel::prelude::*;
-use uuid::Uuid;
-
 use crate::lib::queuemanagement::logic::api::queue_search_criteria::QueueSearchCriteria;
 use crate::lib::queuemanagement::dataacess::api::queue::Queue;
 use crate::lib::general::config::db_config::{DbError, DbType, DbConn};
+use crate::lib::queuemanagement::dataacess::api::new_queue::NewQueue;
 
 
 pub fn find_by_id(
-    uuid: Uuid,
+    queue_id: i64,
     conn: &DbConn
 ) -> Result<Option<Queue>, DbError> {
-    use crate::schema::queues::dsl::*;
+    use crate::schema::dailyqueue::dsl::*;
 
-    let queue: Option<Queue> = queues
-        .filter(id.eq(uuid.to_string()))
+    let queue: Option<Queue> = dailyqueue
+        .filter(id.eq(queue_id))
         .first::<Queue>(conn).optional()?;
 
     Ok(queue)
@@ -23,11 +22,11 @@ pub fn update_customers(
     queue: &Queue,
     conn: &DbConn
 ) -> Result<usize, DbError> {
-    use crate::schema::queues::dsl::*;
+    use crate::schema::dailyqueue::dsl::*;
 
     let new_queue = queue.clone();
 
-    let res = diesel::update(queues.filter(id.eq(&new_queue.id)))
+    let res = diesel::update(dailyqueue.filter(id.eq(&new_queue.id)))
         .set(customers.eq(&new_queue.customers))
         .execute(conn)?;
 
@@ -35,62 +34,60 @@ pub fn update_customers(
 }
 
 pub fn save(
-    queue: &Queue,
+    queue: &NewQueue,
     conn: &DbConn
 ) -> Result<Queue, DbError> {
-    use crate::schema::queues::dsl::*;
+    use crate::schema::dailyqueue::dsl::*;
 
-    let mut new_queue = queue.clone();
-    new_queue.id = Uuid::new_v4().to_string();
+    let new_queue_id = diesel::insert_into(dailyqueue)
+        .values(queue)
+        .returning(id)
+        .get_result(conn)?;
 
-    diesel::insert_into(queues)
-        .values(&new_queue)
-        .execute(conn)?;
-
-    Ok(new_queue)
+    Ok(Queue::from_insert(new_queue_id, queue.clone()))
 }
 
 pub fn delete_by_id(
-    uuid: Uuid,
+    queue_id: i64,
     conn: &DbConn
-) -> Result<Uuid, DbError> {
-    use crate::schema::queues::dsl::*;
+) -> Result<i64, DbError> {
+    use crate::schema::dailyqueue::dsl::*;
 
-    diesel::delete(queues)
-        .filter(id.eq(uuid.to_string()))
+    diesel::delete(dailyqueue)
+        .filter(id.eq(queue_id))
         .execute(conn)?;
 
-    Ok(uuid)
+    Ok(queue_id)
 }
 
 pub fn find_by_criteria(
     criteria: QueueSearchCriteria,
     conn: &DbConn
 ) -> Result<Vec<Queue>, DbError> {
-    use crate::schema::queues;
+    use crate::schema::dailyqueue;
 
-    let mut query = queues::table.into_boxed::<DbType>();
+    let mut query = dailyqueue::table.into_boxed::<DbType>();
 
     if let Some(name) = criteria.name {
-        query = query.filter(queues::name.eq(name));
+        query = query.filter(dailyqueue::name.eq(name));
     }
     if let Some(logo) = criteria.logo {
-        query = query.filter(queues::logo.eq(logo));
+        query = query.filter(dailyqueue::logo.eq(logo));
     }
     if let Some(current_number) = criteria.current_number {
-        query = query.filter(queues::current_number.eq(current_number));
+        query = query.filter(dailyqueue::current_number.eq(current_number));
     }
     if let Some(attention_time) = criteria.attention_time {
-        query = query.filter(queues::attention_time.eq(attention_time));
+        query = query.filter(dailyqueue::attention_time.eq(attention_time));
     }
     if let Some(min_attention_time) = criteria.min_attention_time {
-        query = query.filter(queues::min_attention_time.eq(min_attention_time));
+        query = query.filter(dailyqueue::min_attention_time.eq(min_attention_time));
     }
     if let Some(active) = criteria.active {
-        query = query.filter(queues::active.eq(active));
+        query = query.filter(dailyqueue::active.eq(active));
     }
     if let Some(customers) = criteria.customers {
-        query = query.filter(queues::customers.eq(customers));
+        query = query.filter(dailyqueue::customers.eq(customers));
     }
 
     let results = query.load::<Queue>(conn)?;

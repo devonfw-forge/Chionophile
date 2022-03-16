@@ -1,5 +1,4 @@
 use actix_web::{web, Error, HttpResponse};
-use uuid::Uuid;
 use crate::lib::accesscodemanagement::logic::accesscode_management;
 use crate::lib::accesscodemanagement::logic::api::accesscode_search_criteria::AccessCodeSearchCriteria;
 use crate::lib::accesscodemanagement::rest::api::accesscode_post_data::AccessCodePostData;
@@ -7,12 +6,12 @@ use crate::lib::general::config::db_config::DbPool;
 
 pub async fn get_accesscode_cto(
     pool: web::Data<DbPool>,
-    accesscode_uid: web::Path<Uuid>
+    accesscode_id: web::Path<i64>
 ) -> Result<HttpResponse, Error> {
 
-    let uid = accesscode_uid.into_inner();
-    let accesscode_uid = uid.clone();
-    let access_code = accesscode_management::find_accesscode_cto(pool, uid)
+    let id = accesscode_id.into_inner();
+    let accesscode_id = id.clone();
+    let access_code = accesscode_management::find_accesscode_cto(pool, id)
         .await
         .map_err(actix_web::error::ErrorInternalServerError)?;
 
@@ -20,7 +19,7 @@ pub async fn get_accesscode_cto(
         Ok(HttpResponse::Ok().json(access_code))
     } else {
         let res = HttpResponse::NotFound()
-            .body(format!("No access_code found with uid: {}", accesscode_uid));
+            .body(format!("No access_code found with uid: {}", accesscode_id));
         Ok(res)
     }
 }
@@ -52,7 +51,7 @@ pub async fn save_accesscode(
 
 pub async fn delete_accesscode(
     pool: web::Data<DbPool>,
-    access_code_uid: web::Path<Uuid>
+    access_code_uid: web::Path<i64>
 ) -> Result<HttpResponse, Error> {
 
     accesscode_management::delete_accesscode(pool, access_code_uid.into_inner())

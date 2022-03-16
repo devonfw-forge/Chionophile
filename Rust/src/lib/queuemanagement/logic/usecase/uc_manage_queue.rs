@@ -1,7 +1,6 @@
 use actix_web::{Error, web};
-use uuid::Uuid;
 use crate::lib::general::config::db_config::DbPool;
-use crate::lib::queuemanagement::dataacess::api::queue::Queue;
+use crate::lib::queuemanagement::dataacess::api::new_queue::NewQueue;
 use crate::lib::queuemanagement::dataacess::api::repo::queue_repository;
 use crate::lib::queuemanagement::logic::api::queue_eto::QueueEto;
 
@@ -11,8 +10,8 @@ pub async fn save_queue(
 ) -> Result<QueueEto, Error> {
     let result = web::block(move || {
         let conn = pool.get()?;
-        let new_queue: Queue = Queue::from(queue);
-
+        let new_queue: NewQueue = NewQueue::from(queue);
+        
         queue_repository::save(&new_queue, &conn)
     }).await?;
 
@@ -21,12 +20,11 @@ pub async fn save_queue(
 
 pub async fn delete_queue(
     pool: web::Data<DbPool>,
-    queue_uid: Uuid
+    queue_id: i64
 ) -> Result<bool, Error> {
     web::block(move || {
         let conn = pool.get()?;
-        let uuid = queue_uid;
-        queue_repository::delete_by_id(uuid, &conn)
+        queue_repository::delete_by_id(queue_id, &conn)
     }).await?;
 
     Ok(true)
@@ -34,7 +32,7 @@ pub async fn delete_queue(
 
 pub async fn decrease_queue_customer(
     pool: web::Data<DbPool>,
-    queue_id: Uuid
+    queue_id: i64
 ) -> Result<(), Error> {
     web::block (move || {
         let conn = pool.get()?;
@@ -49,7 +47,7 @@ pub async fn decrease_queue_customer(
 }
 pub async fn increase_queue_customer(
     pool: web::Data<DbPool>,
-    queue_id: Uuid
+    queue_id: i64
 ) -> Result<(), Error> {
     web::block (move || {
         let conn = pool.get()?;

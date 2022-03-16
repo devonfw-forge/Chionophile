@@ -1,13 +1,9 @@
 use chrono::NaiveDateTime;
-use serde::{Serialize, Deserialize};
 use crate::schema::accesscode;
 
-#[derive(Debug, Clone, Serialize, Deserialize, Queryable, Associations, Identifiable, QueryableByName)]
-#[belongs_to((Queue, foreign_key="queueId"), (Visitor, foreign_key="visitorId"))]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug, Clone, Insertable)]
 #[table_name="accesscode"]
-pub struct AccessCode {
-    pub id: i64,
+pub struct NewAccessCode {
     pub modification_counter: i32,
     pub ticket_number: Option<String>,
     pub creation_time: Option<NaiveDateTime>,
@@ -16,4 +12,3 @@ pub struct AccessCode {
     pub queue_id: i64,
     pub visitor_id: i64,
 }
-

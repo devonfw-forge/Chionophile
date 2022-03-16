@@ -1,5 +1,4 @@
 use actix_web::{Error, web};
-use uuid::Uuid;
 use crate::lib::visitormanagement::logic::api::visitor_eto::VisitorEto;
 use crate::lib::visitormanagement::logic::api::visitor_search_criteria::VisitorSearchCriteria;
 use crate::lib::visitormanagement::logic::usecase::{uc_find_visitor, uc_manage_visitor};
@@ -8,7 +7,7 @@ use crate::lib::general::search_result::SearchResult;
 
 pub async fn find_visitor(
     pool: web::Data<DbPool>,
-    id: Uuid,
+    id: i64,
 ) -> Result<Option<VisitorEto>, Error> {
     uc_find_visitor::find_visitor(pool, id).await
 }
@@ -29,7 +28,7 @@ pub async fn save_visitor(
 
 pub async fn delete_visitor(
     pool: web::Data<DbPool>,
-    visitor_id: Uuid
+    visitor_id: i64
 ) -> Result<bool, Error> {
     uc_manage_visitor::delete_visitor(pool, visitor_id).await
 }

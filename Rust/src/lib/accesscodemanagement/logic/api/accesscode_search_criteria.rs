@@ -9,7 +9,7 @@ pub struct AccessCodeSearchCriteria {
     pub creation_time: Option<NaiveDateTime>,
     pub start_time: Option<NaiveDateTime>,
     pub end_time: Option<NaiveDateTime>,
-    pub visitor_id: Option<String>,
-    pub queue_id: Option<String>,
+    pub visitor_id: Option<i64>,
+    pub queue_id: Option<i64>,
     pub pageable: Pageable,
 }

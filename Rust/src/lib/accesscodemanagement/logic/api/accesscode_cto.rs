@@ -21,8 +21,8 @@ impl AccessCodeCto {
         mut query_result: (AccessCode, Visitor, Queue),
     ) -> AccessCodeCto {
         let access_code = query_result.0.clone();
-        query_result.1.id = access_code.visitor_id.unwrap();
-        query_result.2.id = access_code.queue_id.unwrap();
+        query_result.1.id = access_code.visitor_id;
+        query_result.2.id = access_code.queue_id;
         AccessCodeCto {
             access_code: AccessCodeEto::from(query_result.0),
             visitor: VisitorEto::from(query_result.1),

@@ -1,39 +1,37 @@
 use diesel::prelude::*;
-use uuid::Uuid;
 use crate::lib::general::config::db_config::{DbError, DbConn, DbType};
+use crate::lib::visitormanagement::dataacess::api::new_visitor::NewVisitor;
 use crate::lib::visitormanagement::dataacess::api::visitor::Visitor;
 use crate::lib::visitormanagement::logic::api::visitor_search_criteria::VisitorSearchCriteria;
-use crate::schema::visitors;
+use crate::schema::visitor;
 
 pub fn find_by_id(
-    uuid: Uuid,
+    visitor_id: i64,
     conn: &DbConn
 ) -> Result<Option<Visitor>, DbError> {
-    use crate::schema::visitors::dsl::*;
+    use crate::schema::visitor::dsl::*;
 
-    let visitor: Option<Visitor> = visitors
-        .filter(id.eq(uuid.to_string()))
+    let found_visitor: Option<Visitor> = visitor
+        .filter(id.eq(visitor_id))
         .first::<Visitor>(conn)
         .optional()?;
 
-    Ok(visitor)
+    Ok(found_visitor)
 }
 
 pub fn save(
-    visitor: &Visitor,
+    new_visitor: &NewVisitor,
     conn: &DbConn
 ) -> Result<Visitor, DbError> {
-    use crate::schema::visitors::dsl::*;
+    use crate::schema::visitor::dsl::*;
 
-    let mut new_visitor = visitor.clone();
+    let visitor_id = diesel::insert_into(visitor)
+        .values(new_visitor)
+        .returning(id)
+        .get_result(conn)?;
 
-    new_visitor.id = Uuid::new_v4().to_string();
 
-    diesel::insert_into(visitors)
-        .values(&new_visitor)
-        .execute(conn)?;
-
-    Ok(new_visitor)
+    Ok(Visitor::from_insert(visitor_id, new_visitor.clone()))
 }
 
 pub fn find_by_criteria(
@@ -41,13 +39,13 @@ pub fn find_by_criteria(
     conn: &DbConn
 ) -> Result<Vec<Visitor>, DbError>{
 
-    let mut query = visitors::table.into_boxed::<DbType>();
+    let mut query = visitor::table.into_boxed::<DbType>();
 
     if let Some(username) = criteria.username {
-        query = query.filter(visitors::username.eq(username));
+        query = query.filter(visitor::username.eq(username));
     }
     if let Some(password) = criteria.password {
-        query = query.filter(visitors::password.eq(password));
+        query = query.filter(visitor::password.eq(password));
     }
 
     let results: Vec<Visitor> = query.load(conn)?;
@@ -58,14 +56,14 @@ pub fn find_by_criteria(
 }
 
 pub fn delete_by_id(
-    uuid: Uuid,
+    visitor_id: i64,
     conn: &DbConn
-) -> Result<Uuid, DbError> {
-    use crate::schema::visitors::dsl::*;
+) -> Result<i64, DbError> {
+    use crate::schema::visitor::dsl::*;
 
-    diesel::delete(visitors)
-        .filter(id.eq(uuid.to_string()))
+    diesel::delete(visitor)
+        .filter(id.eq(visitor_id))
         .execute(conn)?;
 
-    Ok(uuid)
+    Ok(visitor_id)
 }
