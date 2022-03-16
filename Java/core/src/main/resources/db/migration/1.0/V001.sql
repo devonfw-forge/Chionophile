@@ -1,4 +1,4 @@
-\connect java_jtq_db;
+CREATE SEQUENCE HIBERNATE_SEQUENCE START WITH 1000000;
 
 CREATE TABLE IF NOT EXISTS Visitor(
   id BIGSERIAL NOT NULL,
@@ -62,7 +62,3 @@ INSERT INTO AccessCode (id, modificationCounter, ticketNumber, creationTime, sta
 INSERT INTO AccessCode (id, modificationCounter, ticketNumber, creationTime, startTime, endTime, idVisitor, idQueue) VALUES (7, 1, 'Q007', CURRENT_TIMESTAMP, '2008-01-01 00:00:01', NULL, 7, 1) ON CONFLICT DO NOTHING;
 INSERT INTO AccessCode (id, modificationCounter, ticketNumber, creationTime, startTime, endTime, idVisitor, idQueue) VALUES (8, 1, 'Q008', CURRENT_TIMESTAMP, '2008-01-01 00:00:01', NULL, 8, 1) ON CONFLICT DO NOTHING;
 INSERT INTO AccessCode (id, modificationCounter, ticketNumber, creationTime, startTime, endTime, idVisitor, idQueue) VALUES (9, 1, 'Q009', CURRENT_TIMESTAMP, '2008-01-01 00:00:01', NULL, 9, 1) ON CONFLICT DO NOTHING;
-
-ALTER TABLE Visitor OWNER TO java_jtq_user;
-ALTER TABLE DailyQueue OWNER TO java_jtq_user;
-ALTER TABLE AccessCode OWNER TO java_jtq_user;

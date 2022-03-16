@@ -36,6 +36,7 @@
       <artifactId>devon4j-web</artifactId>
     </dependency>
 
+
     <!-- Starter for asynchronous consuming REST services via Jaca HTTP Client (Java11+) -->
     <!--
     <dependency>
@@ -139,7 +140,7 @@
             <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
           </dependency>
-    
+
     <!-- Flyway for DB Schema version management and migration -->
     <dependency>
       <groupId>org.flywaydb</groupId>
