@@ -5,9 +5,9 @@ Postgres has been chosen as the database manager for this project due to its rep
 --------------
 ## Structure:
 
-To use this database manager, it was chosen to virtualize it using the **docker-compose** tool, so it is based on a **docker-compose.yml** file which uses the official image of postgres version 14.2 to create the container named **jtq_postgres**, it also reads from the *postgres/init* directory to execute sql scripts at launch, and creates the admin user contained in the **config.env** file.
+To use this database manager, it was decided to virtualize it using the **docker-compose** tool, using a **docker-compose.yml** file which downloads the official image of PostgreSQL version 14.2 to create the container named **jtq_postgres**, it also reads from the *postgres/init* directory to execute sql scripts at launch, and creates the admin user contained in the **config.env** file.
 
-When launched for the first time, it creates the database **jtq_db** and the user **jtq_user** privileged in that database. This user will be used by the JTQ backend processes, Aditionally, *Visitor*, *DailyQueue* and *AccessCode* tables are created with initial data.
+When launched for the first time, it creates the database **jtq_db** and the user **jtq_user** privileged in that database. This user will be used by the JTQ backend processes. Aditionally, *Visitor*, *DailyQueue* and *AccessCode* tables are created with initial data.
 
 --------------
 ## Windows Installation:
@@ -16,7 +16,7 @@ In order to get it up and running, follow these steps:
 
 ### 1. Install WSL, WSL2 and Rancher Desktop:
 
-You must open a terminak with administrator privileges and run the following commands:
+You must open a terminal with administrator privileges and run the following commands:
 
 ~~~
 wsl --install
@@ -33,7 +33,7 @@ Then proceed to install [Rancher Desktop](https://rancherdesktop.io/).
 
 ### 4. Launch the Docker Container
 
-Once Rancher is started and ready, open a terminal, go to the ***PostgreSQL*** directory and run the command:
+Once Rancher is started and ready, open a terminal, go to the ***PostgreSQL*** directory in the cloned repo and run the command:
 
 ~~~
 docker-compose up
@@ -45,7 +45,7 @@ docker-compose up
 docker-compose down
 ~~~
 
-### 5. Install and access pgAdmin:
+### 5. (Optional) Install and access pgAdmin:
 
 Install [pgAdmin](https://www.pgadmin.org/download/pgadmin-4-windows/) from the official website.
 
