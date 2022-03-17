@@ -53,23 +53,18 @@ Once opened it will ask you to set a master password to access pgAdmin, then pro
 
 <div>
     <p style = 'text-align:center;'>
-        <img src="../documentation/images/postgres/pg1.png" alt="" width="500px">
+        <img src="documentation/images/pg1.png" alt="" width="500px">
     </p>
 </div>
-<br/>
-<div>
-    <p style = 'text-align:center; float: left;'>
-        <img src="../documentation/images/postgres/pg2.png" alt="" width="400px">
-    </p>
-</div>
+
 <div>
     <p style = 'text-align:center;'>
-       <img src="../documentation/images/postgres/pg3.png" alt="" width="400px">
+       <img src="documentation/images/pg2.png" alt="" width="800px">
     </p>
 </div>
-<br/>
+
 <div>
     <p style = 'text-align:center;'>
-       <img src="../documentation/images/postgres/pg4.png" alt="" width="400px">
+       <img src="documentation/images/pg3.png" alt="" width="400px">
     </p>
 </div>
