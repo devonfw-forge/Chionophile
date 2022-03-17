@@ -1,10 +1,10 @@
 version: '3.8'
 services:
   postgres:
-    container_name: postgres
+    container_name: jtq_postgres
     image: postgres:14.2
     env_file:
-      - extras1.env
+      - config.env
     volumes:
       - ./postgres/init:/docker-entrypoint-initdb.d:ro
     ports:
