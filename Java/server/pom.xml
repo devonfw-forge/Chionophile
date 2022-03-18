@@ -4,18 +4,18 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.devonfw.java.jtqj</groupId>
-    <artifactId>.0.1</artifactId>
-     <version>${revision}</version>
+    <artifactId>jtqj</artifactId>
+     <version>v4</version>
   </parent>
-  <artifactId>.0.1-server</artifactId>
+  <artifactId>jtqj-server</artifactId>
   <packaging>war</packaging>
   <name>${project.artifactId}</name>
-  <description>Server for the .0.1 application - a simple example based on devon4j.</description>
+  <description>Server for the jtqj application - a simple example based on devon4j.</description>
 
   <dependencies>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>.0.1-core</artifactId>
+      <artifactId>jtqj-core</artifactId>
       <version>${project.version}</version>
     </dependency>
     <!-- Tests -->

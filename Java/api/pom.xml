@@ -4,13 +4,13 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.devonfw.java.jtqj</groupId>
-    <artifactId>.0.1</artifactId>
-   <version>${revision}</version>
+    <artifactId>jtqj</artifactId>
+   <version>v4</version>
   </parent>
-  <artifactId>.0.1-api</artifactId>
+  <artifactId>jtqj-api</artifactId>
   <packaging>jar</packaging>
   <name>${project.artifactId}</name>
-  <description>API of the server for the .0.1 application (containing datatypes, transfer-objects, and service interfaces).</description>
+  <description>API of the server for the jtqj application (containing datatypes, transfer-objects, and service interfaces).</description>
 
   <dependencies>
     <dependency>
