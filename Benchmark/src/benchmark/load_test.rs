@@ -23,7 +23,7 @@ fn set_defaults(attack: GooseAttack) -> Result<GooseAttack, GooseError> {
         .set_default(GooseDefault::Users, 20)?
         .set_default(GooseDefault::HatchRate, "4")?
         .set_default(GooseDefault::RequestBody, true)?
-        .set_default(GooseDefault::RunTime, 20)?
+        .set_default(GooseDefault::RunTime, 600)?
         .set_default(GooseDefault::NoResetMetrics, true)?
         .set_default(GooseDefault::StatusCodes, true)?
         .set_default(GooseDefault::ReportFile, "report.html")?;
