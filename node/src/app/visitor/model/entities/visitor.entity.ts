@@ -1,11 +1,9 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 import { MaxLength, IsEmail } from 'class-validator';
-import { Transform } from 'class-transformer';
 
 @Entity({ name: 'visitor' })
 export class Visitor {
   @PrimaryGeneratedColumn('increment')
-  @Transform(id => parseInt(id))
   id: number;
 
   @Column('int', { name: 'modificationcounter' })

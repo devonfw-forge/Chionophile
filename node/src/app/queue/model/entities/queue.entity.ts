@@ -1,12 +1,10 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 import { CrudValidationGroups } from '@nestjsx/crud';
 import { IsDefined, IsOptional, MaxLength } from 'class-validator';
-import { Transform } from 'class-transformer';
 
 @Entity({ name: 'dailyqueue' })
 export class Queue {
   @PrimaryGeneratedColumn()
-  @Transform(id => parseInt(id))
   id: number;
 
   @IsDefined({ groups: [CrudValidationGroups.CREATE] })
