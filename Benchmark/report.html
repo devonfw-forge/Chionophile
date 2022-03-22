@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Goose Attack Report</title>
+    <style>
+        .container {
+            width: 1000px;
+            margin: 0 auto;
+            padding: 10px;
+            background: #173529;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .info span{
+            color: #b3c3bc;
+        }
+
+        table {
+            border-collapse: collapse;
+            text-align: center;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #cad9ea;
+            color: #666;
+            height: 30px;
+        }
+
+        thead th {
+            background-color: #cce8eb;
+            width: 100px;
+        }
+
+        tr:nth-child(odd) {
+            background: #fff;
+        }
+
+        tr:nth-child(even) {
+            background: #f5fafa;
+        }
+
+        .charts-container .chart {
+            width: 100%;
+            height: 350px;
+            margin-bottom: 30px;
+        }
+
+        .download {
+            float: right;
+        }
+
+        .download a {
+            color: #00ca5a;
+        }
+
+        .graph {
+            margin-bottom: 1em;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Goose Attack Report</h1>
+
+        <div class="info">
+            <p>Users: <span>20</span> </p>
+            <p>Target Host: <span>http://localhost:8081/jumpthequeue/services/rest/</span></p>
+            <p>Starting: <span>2022-03-18 14:18:41 - 2022-03-18 14:18:46 (Duration: 00:00:05)</span></p><p>Running: <span>2022-03-18 14:18:46 - 2022-03-18 14:19:06 (Duration: 00:00:20)</span></p><p>Stopping: <span>2022-03-18 14:19:06 - 2022-03-18 14:19:07 (Duration: 00:00:01)</span></p>
+            <p><span><small><em>goose v0.15.2</em></small></span></pr>
+        </div>
+
+        <div class="requests">
+            <h2>Request Metrics</h2>
+
+            <div class="graph">
+                <div id="graph-rps" style="width: 1000px; height:500px; background: white;"></div>
+
+                <script type="text/javascript">
+                    var chartDom = document.getElementById('graph-rps');
+                    var myChart = echarts.init(chartDom);
+
+                    myChart.setOption({
+                        color: ['#2c664f'],
+                        tooltip: { trigger: 'axis' },
+                        toolbox: {
+                            feature: {
+                                dataZoom: { yAxisIndex: 'none' },
+                                restore: {},
+                                saveAsImage: {}
+                            }
+                        },
+                        dataZoom: [
+                            {
+                                type: 'inside',
+                                start: 0,
+                                end: 100,
+                                fillerColor: 'rgba(34, 80, 61, 0.25)',
+                                selectedDataBackground: {
+                                    lineStyle: { color: '#2c664f' },
+                                    areaStyle: { color: '#378063' }
+                                }
+                            },
+                            {
+                                start: 0,
+                                end: 100,
+                                fillerColor: 'rgba(34, 80, 61, 0.25)',
+                                selectedDataBackground: {
+                                    lineStyle: { color: '#2c664f' },
+                                    areaStyle: { color: '#378063' }
+                                }
+                            },
+                        ],
+                        xAxis: { type: 'time' },
+                        yAxis: {
+                            name: 'Requests #',
+                            nameLocation: 'center',
+                            nameRotate: 90,
+                            nameGap: 45,
+                            type: 'value'
+                        },
+                        series: [
+                            {
+                                type: 'line',
+                                symbol: 'none',
+                                sampling: 'lttb',
+                                lineStyle: { color: '#2c664f' },
+                                areaStyle: { color: '#378063' },
+                                markArea: {
+                                    itemStyle: { color: 'rgba(6, 6, 6, 0.10)' },
+                                    data: [
+                                        [
+                    {
+                        name: 'Starting',
+                        xAxis: '2022-03-18 14:18:41'
+                    },
+                    {
+                        xAxis: '2022-03-18 14:18:46'
+                    }
+                ],
+                                        
+                                    ]
+                                },
+                                data: [["2022-03-18 14:18:41",8],["2022-03-18 14:18:42",49],["2022-03-18 14:18:43",65],["2022-03-18 14:18:44",52],["2022-03-18 14:18:45",49],["2022-03-18 14:18:46",54],["2022-03-18 14:18:47",70],["2022-03-18 14:18:48",69],["2022-03-18 14:18:49",66],["2022-03-18 14:18:50",67],["2022-03-18 14:18:51",40],["2022-03-18 14:18:52",80],["2022-03-18 14:18:53",79],["2022-03-18 14:18:54",70],["2022-03-18 14:18:55",43],["2022-03-18 14:18:56",70],["2022-03-18 14:18:57",62],["2022-03-18 14:18:58",43],["2022-03-18 14:18:59",64],["2022-03-18 14:19:00",68],["2022-03-18 14:19:01",61],["2022-03-18 14:19:02",75],["2022-03-18 14:19:03",73],["2022-03-18 14:19:04",52],["2022-03-18 14:19:05",50],["2022-03-18 14:19:06",56],["2022-03-18 14:19:07",1]],
+                            }
+                        ]
+                    });
+                </script>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Name</th>
+                        <th># Requests</th>
+                        <th># Fails</th>
+                        <th>Average (ms)</th>
+                        <th>Min (ms)</th>
+                        <th>Max (ms)</th>
+                        <th>RPS</th>
+                        <th>Failures/s</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+        <td>POST</td>
+        <td></td>
+        <td>1536</td>
+        <td>670</td>
+        <td>304.56</td>
+        <td>14</td>
+        <td>1379</td>
+        <td>76.80</td>
+        <td>33.50</td>
+    </tr>
+<tr>
+        <td></td>
+        <td>Aggregated</td>
+        <td>1536</td>
+        <td>670</td>
+        <td>304.56</td>
+        <td>14</td>
+        <td>1379</td>
+        <td>76.80</td>
+        <td>33.50</td>
+    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        
+
+        <div class="responses">
+            <h2>Response Time Metrics</h2>
+
+            <div class="graph">
+                <div id="graph-avg-response-time" style="width: 1000px; height:500px; background: white;"></div>
+
+                <script type="text/javascript">
+                    var chartDom = document.getElementById('graph-avg-response-time');
+                    var myChart = echarts.init(chartDom);
+
+                    myChart.setOption({
+                        color: ['#2c664f'],
+                        tooltip: { trigger: 'axis' },
+                        toolbox: {
+                            feature: {
+                                dataZoom: { yAxisIndex: 'none' },
+                                restore: {},
+                                saveAsImage: {}
+                            }
+                        },
+                        dataZoom: [
+                            {
+                                type: 'inside',
+                                start: 0,
+                                end: 100,
+                                fillerColor: 'rgba(34, 80, 61, 0.25)',
+                                selectedDataBackground: {
+                                    lineStyle: { color: '#2c664f' },
+                                    areaStyle: { color: '#378063' }
+                                }
+                            },
+                            {
+                                start: 0,
+                                end: 100,
+                                fillerColor: 'rgba(34, 80, 61, 0.25)',
+                                selectedDataBackground: {
+                                    lineStyle: { color: '#2c664f' },
+                                    areaStyle: { color: '#378063' }
+                                }
+                            },
+                        ],
+                        xAxis: { type: 'time' },
+                        yAxis: {
+                            name: 'Response time [ms]',
+                            nameLocation: 'center',
+                            nameRotate: 90,
+                            nameGap: 45,
+                            type: 'value'
+                        },
+                        series: [
+                            {
+                                type: 'line',
+                                symbol: 'none',
+                                sampling: 'lttb',
+                                lineStyle: { color: '#2c664f' },
+                                areaStyle: { color: '#378063' },
+                                markArea: {
+                                    itemStyle: { color: 'rgba(6, 6, 6, 0.10)' },
+                                    data: [
+                                        [
+                    {
+                        name: 'Starting',
+                        xAxis: '2022-03-18 14:18:41'
+                    },
+                    {
+                        xAxis: '2022-03-18 14:18:46'
+                    }
+                ],
+                                        
+                                    ]
+                                },
+                                data: [["2022-03-18 14:18:41",593],["2022-03-18 14:18:42",95],["2022-03-18 14:18:43",158],["2022-03-18 14:18:44",271],["2022-03-18 14:18:45",350],["2022-03-18 14:18:46",387],["2022-03-18 14:18:47",270],["2022-03-18 14:18:48",287],["2022-03-18 14:18:49",286],["2022-03-18 14:18:50",370],["2022-03-18 14:18:51",396],["2022-03-18 14:18:52",240],["2022-03-18 14:18:53",261],["2022-03-18 14:18:54",321],["2022-03-18 14:18:55",421],["2022-03-18 14:18:56",254],["2022-03-18 14:18:57",355],["2022-03-18 14:18:58",426],["2022-03-18 14:18:59",324],["2022-03-18 14:19:00",291],["2022-03-18 14:19:01",328],["2022-03-18 14:19:02",268],["2022-03-18 14:19:03",265],["2022-03-18 14:19:04",420],["2022-03-18 14:19:05",364],["2022-03-18 14:19:06",325],["2022-03-18 14:19:07",299]],
+                            }
+                        ]
+                    });
+                </script>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Name</th>
+                        <th>50%ile (ms)</th>
+                        <th>60%ile (ms)</th>
+                        <th>70%ile (ms)</th>
+                        <th>80%ile (ms)</th>
+                        <th>90%ile (ms)</th>
+                        <th>95%ile (ms)</th>
+                        <th>99%ile (ms)</th>
+                        <th>100%ile (ms)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+            <td>POST</td>
+            <td></td>
+            <td>270</td>
+            <td>320</td>
+            <td>390</td>
+            <td>450</td>
+            <td>500</td>
+            <td>600</td>
+            <td>800</td>
+            <td>1,000</td>
+        </tr>
+<tr>
+            <td></td>
+            <td>Aggregated</td>
+            <td>270</td>
+            <td>320</td>
+            <td>390</td>
+            <td>450</td>
+            <td>500</td>
+            <td>600</td>
+            <td>800</td>
+            <td>1,000</td>
+        </tr>
+                </tbody>
+            </table>
+        </div>
+
+        
+
+        <div class="status_codes">
+        <h2>Status Code Metrics</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Method</th>
+                    <th colspan="2">Name</th>
+                    <th colspan="3">Status Codes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+        <td>POST</td>
+        <td colspan="2"></td>
+        <td colspan="3">866 [200], 670 [500]</td>
+    </tr>
+<tr>
+        <td></td>
+        <td colspan="2">Aggregated</td>
+        <td colspan="3">670 [500], 866 [200]</td>
+    </tr>
+            </tbody>
+        </table>
+    </div>
+
+        <div class="tasks">
+        <h2>Task Metrics</h2>
+
+        <div class="graph">
+                <div id="graph-tps" style="width: 1000px; height:500px; background: white;"></div>
+
+                <script type="text/javascript">
+                    var chartDom = document.getElementById('graph-tps');
+                    var myChart = echarts.init(chartDom);
+
+                    myChart.setOption({
+                        color: ['#2c664f'],
+                        tooltip: { trigger: 'axis' },
+                        toolbox: {
+                            feature: {
+                                dataZoom: { yAxisIndex: 'none' },
+                                restore: {},
+                                saveAsImage: {}
+                            }
+                        },
+                        dataZoom: [
+                            {
+                                type: 'inside',
+                                start: 0,
+                                end: 100,
+                                fillerColor: 'rgba(34, 80, 61, 0.25)',
+                                selectedDataBackground: {
+                                    lineStyle: { color: '#2c664f' },
+                                    areaStyle: { color: '#378063' }
+                                }
+                            },
+                            {
+                                start: 0,
+                                end: 100,
+                                fillerColor: 'rgba(34, 80, 61, 0.25)',
+                                selectedDataBackground: {
+                                    lineStyle: { color: '#2c664f' },
+                                    areaStyle: { color: '#378063' }
+                                }
+                            },
+                        ],
+                        xAxis: { type: 'time' },
+                        yAxis: {
+                            name: 'Tasks #',
+                            nameLocation: 'center',
+                            nameRotate: 90,
+                            nameGap: 45,
+                            type: 'value'
+                        },
+                        series: [
+                            {
+                                type: 'line',
+                                symbol: 'none',
+                                sampling: 'lttb',
+                                lineStyle: { color: '#2c664f' },
+                                areaStyle: { color: '#378063' },
+                                markArea: {
+                                    itemStyle: { color: 'rgba(6, 6, 6, 0.10)' },
+                                    data: [
+                                        [
+                    {
+                        name: 'Starting',
+                        xAxis: '2022-03-18 14:18:41'
+                    },
+                    {
+                        xAxis: '2022-03-18 14:18:46'
+                    }
+                ],
+                                        
+                                    ]
+                                },
+                                data: [["2022-03-18 14:18:41",4],["2022-03-18 14:18:42",26],["2022-03-18 14:18:43",32],["2022-03-18 14:18:44",27],["2022-03-18 14:18:45",26],["2022-03-18 14:18:46",28],["2022-03-18 14:18:47",34],["2022-03-18 14:18:48",36],["2022-03-18 14:18:49",35],["2022-03-18 14:18:50",30],["2022-03-18 14:18:51",19],["2022-03-18 14:18:52",41],["2022-03-18 14:18:53",42],["2022-03-18 14:18:54",34],["2022-03-18 14:18:55",19],["2022-03-18 14:18:56",36],["2022-03-18 14:18:57",31],["2022-03-18 14:18:58",23],["2022-03-18 14:18:59",29],["2022-03-18 14:19:00",36],["2022-03-18 14:19:01",30],["2022-03-18 14:19:02",37],["2022-03-18 14:19:03",38],["2022-03-18 14:19:04",23],["2022-03-18 14:19:05",26],["2022-03-18 14:19:06",26],["2022-03-18 14:19:07",0]],
+                            }
+                        ]
+                    });
+                </script>
+            </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2">Task</th>
+                    <th># Times Run</th>
+                    <th># Fails</th>
+                    <th>Average (ms)</th>
+                    <th>Min (ms)</th>
+                    <th>Max (ms)</th>
+                    <th>RPS</th>
+                    <th>Failures/s</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+            <td colspan="10" align="left"><strong>Logic load test</strong></td>
+        </tr>
+<tr>
+            <td colspan="2">0.0 </strong></td>
+            <td>768</td>
+            <td>768</td>
+            <td>610.14</td>
+            <td>116</td>
+            <td>1719</td>
+            <td>38.40</td>
+            <td>38.40</td>
+        </tr>
+<tr>
+            <td colspan="2"> Aggregated</strong></td>
+            <td>768</td>
+            <td>768</td>
+            <td>609.11</td>
+            <td>116</td>
+            <td>1719</td>
+            <td>38.40</td>
+            <td>38.40</td>
+        </tr>
+            </tbody>
+        </table>
+    </div>
+
+        <div class="users">
+        <h2>User Metrics</h2>
+            <div class="graph">
+                <div id="graph-active-users" style="width: 1000px; height:500px; background: white;"></div>
+
+                <script type="text/javascript">
+                    var chartDom = document.getElementById('graph-active-users');
+                    var myChart = echarts.init(chartDom);
+
+                    myChart.setOption({
+                        color: ['#2c664f'],
+                        tooltip: { trigger: 'axis' },
+                        toolbox: {
+                            feature: {
+                                dataZoom: { yAxisIndex: 'none' },
+                                restore: {},
+                                saveAsImage: {}
+                            }
+                        },
+                        dataZoom: [
+                            {
+                                type: 'inside',
+                                start: 0,
+                                end: 100,
+                                fillerColor: 'rgba(34, 80, 61, 0.25)',
+                                selectedDataBackground: {
+                                    lineStyle: { color: '#2c664f' },
+                                    areaStyle: { color: '#378063' }
+                                }
+                            },
+                            {
+                                start: 0,
+                                end: 100,
+                                fillerColor: 'rgba(34, 80, 61, 0.25)',
+                                selectedDataBackground: {
+                                    lineStyle: { color: '#2c664f' },
+                                    areaStyle: { color: '#378063' }
+                                }
+                            },
+                        ],
+                        xAxis: { type: 'time' },
+                        yAxis: {
+                            name: 'Active users #',
+                            nameLocation: 'center',
+                            nameRotate: 90,
+                            nameGap: 45,
+                            type: 'value'
+                        },
+                        series: [
+                            {
+                                type: 'line',
+                                symbol: 'none',
+                                sampling: 'lttb',
+                                lineStyle: { color: '#2c664f' },
+                                areaStyle: { color: '#378063' },
+                                markArea: {
+                                    itemStyle: { color: 'rgba(6, 6, 6, 0.10)' },
+                                    data: [
+                                        [
+                    {
+                        name: 'Starting',
+                        xAxis: '2022-03-18 14:18:41'
+                    },
+                    {
+                        xAxis: '2022-03-18 14:18:46'
+                    }
+                ],
+                                        
+                                    ]
+                                },
+                                data: [["2022-03-18 14:18:41",3],["2022-03-18 14:18:42",7],["2022-03-18 14:18:43",10],["2022-03-18 14:18:44",14],["2022-03-18 14:18:45",18],["2022-03-18 14:18:46",20],["2022-03-18 14:18:47",20],["2022-03-18 14:18:48",20],["2022-03-18 14:18:49",20],["2022-03-18 14:18:50",20],["2022-03-18 14:18:51",20],["2022-03-18 14:18:52",20],["2022-03-18 14:18:53",20],["2022-03-18 14:18:54",20],["2022-03-18 14:18:55",20],["2022-03-18 14:18:56",20],["2022-03-18 14:18:57",20],["2022-03-18 14:18:58",20],["2022-03-18 14:18:59",20],["2022-03-18 14:19:00",20],["2022-03-18 14:19:01",20],["2022-03-18 14:19:02",20],["2022-03-18 14:19:03",20],["2022-03-18 14:19:04",20],["2022-03-18 14:19:05",20],["2022-03-18 14:19:06",20],["2022-03-18 14:19:07",20]],
+                            }
+                        ]
+                    });
+                </script>
+            </div>
+        </div>
+
+        <div class="errors">
+        <h2>Errors</h2>
+
+        <div class="graph">
+                <div id="graph-eps" style="width: 1000px; height:500px; background: white;"></div>
+
+                <script type="text/javascript">
+                    var chartDom = document.getElementById('graph-eps');
+                    var myChart = echarts.init(chartDom);
+
+                    myChart.setOption({
+                        color: ['#2c664f'],
+                        tooltip: { trigger: 'axis' },
+                        toolbox: {
+                            feature: {
+                                dataZoom: { yAxisIndex: 'none' },
+                                restore: {},
+                                saveAsImage: {}
+                            }
+                        },
+                        dataZoom: [
+                            {
+                                type: 'inside',
+                                start: 0,
+                                end: 100,
+                                fillerColor: 'rgba(34, 80, 61, 0.25)',
+                                selectedDataBackground: {
+                                    lineStyle: { color: '#2c664f' },
+                                    areaStyle: { color: '#378063' }
+                                }
+                            },
+                            {
+                                start: 0,
+                                end: 100,
+                                fillerColor: 'rgba(34, 80, 61, 0.25)',
+                                selectedDataBackground: {
+                                    lineStyle: { color: '#2c664f' },
+                                    areaStyle: { color: '#378063' }
+                                }
+                            },
+                        ],
+                        xAxis: { type: 'time' },
+                        yAxis: {
+                            name: 'Errors #',
+                            nameLocation: 'center',
+                            nameRotate: 90,
+                            nameGap: 45,
+                            type: 'value'
+                        },
+                        series: [
+                            {
+                                type: 'line',
+                                symbol: 'none',
+                                sampling: 'lttb',
+                                lineStyle: { color: '#2c664f' },
+                                areaStyle: { color: '#378063' },
+                                markArea: {
+                                    itemStyle: { color: 'rgba(6, 6, 6, 0.10)' },
+                                    data: [
+                                        [
+                    {
+                        name: 'Starting',
+                        xAxis: '2022-03-18 14:18:41'
+                    },
+                    {
+                        xAxis: '2022-03-18 14:18:46'
+                    }
+                ],
+                                        
+                                    ]
+                                },
+                                data: [["2022-03-18 14:18:41",3],["2022-03-18 14:18:42",18],["2022-03-18 14:18:43",27],["2022-03-18 14:18:44",21],["2022-03-18 14:18:45",19],["2022-03-18 14:18:46",22],["2022-03-18 14:18:47",31],["2022-03-18 14:18:48",29],["2022-03-18 14:18:49",27],["2022-03-18 14:18:50",32],["2022-03-18 14:18:51",17],["2022-03-18 14:18:52",33],["2022-03-18 14:18:53",34],["2022-03-18 14:18:54",32],["2022-03-18 14:18:55",21],["2022-03-18 14:18:56",30],["2022-03-18 14:18:57",28],["2022-03-18 14:18:58",18],["2022-03-18 14:18:59",31],["2022-03-18 14:19:00",28],["2022-03-18 14:19:01",28],["2022-03-18 14:19:02",34],["2022-03-18 14:19:03",32],["2022-03-18 14:19:04",26],["2022-03-18 14:19:05",21],["2022-03-18 14:19:06",27],["2022-03-18 14:19:07",1]],
+                            }
+                        ]
+                    });
+                </script>
+            </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th colspan="3">Error</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+        <td>670</td>
+        <td colspan="4">500 Internal Server Error: </strong></td>
+    </tr>
+            </tbody>
+        </table>
+    </div>
+
+    </div>
+</body>
+</html>
