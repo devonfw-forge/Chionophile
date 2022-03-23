@@ -1,14 +1,12 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToOne, JoinColumn } from 'typeorm';
 import { CrudValidationGroups } from '@nestjsx/crud';
 import { IsDefined, IsOptional, MaxLength } from 'class-validator';
-import { Transform } from 'class-transformer';
 import { Visitor } from '../../../visitor/model/entities/visitor.entity';
 import { Queue } from '../../../queue/model/entities/queue.entity';
 
 @Entity({ name: 'accesscode' })
 export class AccessCode {
   @PrimaryGeneratedColumn()
-  @Transform(id => parseInt(id))
   id: number;
 
   @IsDefined({ groups: [CrudValidationGroups.CREATE] })
