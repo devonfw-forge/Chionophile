@@ -13,3 +13,4 @@ rust_template/target
 rust_template/.idea
 benchmark/goose-error.log
 benchmark/report.html
+node/yarn.lock

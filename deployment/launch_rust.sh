@@ -20,9 +20,9 @@ err_display(){
 }
 
 
-# Check if Rust directory exists
-if [ ! -d "Rust" ] && cd .. && [ ! -d "Rust" ] ; then
-    err_msg="[ERROR] Rust directory does not exists."
+# Check if rust directory exists
+if [ ! -d "rust" ] && cd .. && [ ! -d "rust" ] ; then
+    err_msg="[ERROR] rust directory does not exists."
     err_display
 fi
 
@@ -33,15 +33,14 @@ if  ! ( cargo --version &> /dev/null ) ; then
 fi
 
 # Move to the project directory
-cd RUST
+cd rust
 
-echo "Executing..."
-if ! ( cargo run --release ) ; then
-    cargo clean 2> /dev/null
-    mkdir target ; mkdir target/release
-    echo "Copying dlls"
-    cp -r ../error_fixes/PostgresClientLibraries/* target/release/ || ( err_msg="[ERROR] Missing dlls"; err_display )
-    echo
-    echo "Executing with dlls"
-    cargo run --release || ( err_msg="[ERROR] Cargo release exited"; err_display )
-fi
+cargo build --release
+
+echo "Copying dlls"
+mkdir target ; mkdir target/release
+cp -r ../error_fixes/PostgresClientLibraries/* target/release/ || ( err_msg="[ERROR] Missing dlls"; err_display )
+
+echo
+echo "Executing with dlls"
+cargo run --release || ( err_msg="[ERROR] Cargo release exited" )

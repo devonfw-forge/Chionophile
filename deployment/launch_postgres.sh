@@ -20,9 +20,9 @@ err_display(){
 }
 
 
-# Check if PostgreSQL directory exists
-if [ ! -d "PostgreSQL" ] && cd .. && [ ! -d "PostgreSQL" ] ; then
-    err_msg="[ERROR] PostgreSQL directory does not exists."
+# Check if postgresql directory exists
+if [ ! -d "postgresql" ] && cd .. && [ ! -d "postgresql" ] ; then
+    err_msg="[ERROR] postgresql directory does not exists."
     err_display
 fi
 
@@ -33,7 +33,7 @@ if  ! ( docker-compose --version &> /dev/null ) ; then
 fi
 
 # Move to the project directory
-cd PostgreSQL
+cd postgresql
 
 docker-compose down 2> /dev/null
 docker-compose up || ( err_msg="[ERROR] Could not launch postgres."; err_display )
