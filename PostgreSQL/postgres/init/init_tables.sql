@@ -22,7 +22,6 @@ CREATE TABLE IF NOT EXISTS DailyQueue(
   attentionTime TIMESTAMP,
   minAttentionTime TIMESTAMP NOT NULL DEFAULT '2025-1-1 00:00:00',
   active BOOL NOT NULL DEFAULT '1',
-  customers INTEGER NOT NULL DEFAULT '0',
   CONSTRAINT PK_DailyQueue PRIMARY KEY(id)
 );
 
@@ -51,7 +50,7 @@ INSERT INTO Visitor (modificationCounter, username, name, password, phoneNumber,
 INSERT INTO Visitor (modificationCounter, username, name, password, phoneNumber, acceptedCommercial, acceptedTerms, userType) VALUES ( 1, 'test6@mail.com', 'test', '1', '123456789', '0', '1', '0') ON CONFLICT DO NOTHING;
 INSERT INTO Visitor (modificationCounter, username, name, password, phoneNumber, acceptedCommercial, acceptedTerms, userType) VALUES ( 1, 'test7@mail.com', 'test', '1', '123456789', '0', '1', '0') ON CONFLICT DO NOTHING;
 
-INSERT INTO DailyQueue (modificationCounter, name, logo, currentNumber, attentionTime, minAttentionTime, active, customers) VALUES ( 1, 'Day2', 'C:/logos/Day1Logo.png', 'Q001', NULL, '1970-01-01 00:01:00', TRUE, 9) ON CONFLICT DO NOTHING;
+INSERT INTO DailyQueue (modificationCounter, name, logo, currentNumber, attentionTime, minAttentionTime, active) VALUES ( 1, 'Day2', 'C:/logos/Day1Logo.png', 'Q001', NULL, '1970-01-01 00:01:00', TRUE) ON CONFLICT DO NOTHING;
 
 INSERT INTO AccessCode (modificationCounter, ticketNumber, creationTime, startTime, endTime, idVisitor, idQueue) VALUES ( 1, 'Q001', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, NULL, 1, 1) ON CONFLICT DO NOTHING;
 INSERT INTO AccessCode (modificationCounter, ticketNumber, creationTime, startTime, endTime, idVisitor, idQueue) VALUES ( 1, 'Q002', CURRENT_TIMESTAMP, '2008-01-01 00:00:01', NULL, 2, 1) ON CONFLICT DO NOTHING;
