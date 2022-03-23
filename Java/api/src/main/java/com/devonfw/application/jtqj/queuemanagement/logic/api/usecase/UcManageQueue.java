@@ -22,18 +22,4 @@ public interface UcManageQueue {
    * @return the new {@link QueueEto} that has been saved with ID and version.
    */
   QueueEto saveQueue(QueueEto queue);
-
-  /**
-   * Decrease number of customers of the queue and update the queue.
-   *
-   * @param queueId id of the queue to decrease customer.
-   */
-  void decreaseQueueCustomer(long queueId);
-
-  /**
-   * Increase number of customers of the queue and update the queue.
-   *
-   * @param queueId id of the queue to increase customer.
-   */
-  void increaseQueueCustomer(long queueId);
 }

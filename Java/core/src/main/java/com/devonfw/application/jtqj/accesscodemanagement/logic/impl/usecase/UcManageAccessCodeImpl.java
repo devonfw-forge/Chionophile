@@ -45,17 +45,6 @@ public class UcManageAccessCodeImpl extends AbstractAccessCodeUc implements UcMa
     @Override
     public void deleteAccessCode(long accessCodeId) {
 
-        // we get the queueId using the AccessCodeRepository
-        long queueId = getAccessCodeRepository().find(accessCodeId).getQueueId();
-
-        /**
-         * Using the method getQueuemanagement() gives access to the methods that were created earlier in the usecasemanage
-         * (inside the queue component). This is done so each component takes care of its own modifications.
-         */
-        this.queuemanagement.decreaseQueueCustomer(queueId);
-
-        LOG.debug("The queue with id '{}' has decreased its customers.", queueId);
-
         // then we delete the accesscode
         getAccessCodeRepository().deleteById(accessCodeId);
         LOG.debug("The accesscode with id '{}' has been deleted.", accessCodeId);
@@ -103,14 +92,6 @@ public class UcManageAccessCodeImpl extends AbstractAccessCodeUc implements UcMa
         // save the AccessCode
         AccessCodeEntity accessCodeEntitySaved = getAccessCodeRepository().save(accessCodeEntity);
         LOG.debug("The accesscode with id '{}' has been saved.", accessCodeEntitySaved.getId());
-
-        /**
-         * Using the method getQueuemanagement() gives access to the methods that were created earlier in the usecasemanage
-         * (inside the queue component). This is done so each component takes care of its own modifications.
-         */
-        getQueuemanagement().increaseQueueCustomer(accessCodeEntitySaved.getQueueId());
-
-        LOG.debug("The queue with id '{}' has increased its customers.", accessCodeEntitySaved.getQueueId());
 
         return getBeanMapper().map(accessCodeEntitySaved, AccessCodeEto.class);
     }

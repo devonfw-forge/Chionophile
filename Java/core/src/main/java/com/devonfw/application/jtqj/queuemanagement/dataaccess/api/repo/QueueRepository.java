@@ -55,10 +55,6 @@ public interface QueueRepository extends DefaultRepository<QueueEntity> {
     if (active != null) {
       query.where($(alias.getActive()).eq(active));
     }
-    Integer customers = criteria.getCustomers();
-    if (customers != null) {
-      query.where($(alias.getCustomers()).eq(customers));
-    }
     if (criteria.getPageable() == null) {
       criteria.setPageable(PageRequest.of(0, Integer.MAX_VALUE));
     } else {
@@ -122,13 +118,6 @@ public interface QueueRepository extends DefaultRepository<QueueEntity> {
               query.orderBy($(alias.getActive()).asc());
             } else {
               query.orderBy($(alias.getActive()).desc());
-            }
-            break;
-          case "customers":
-            if (next.isAscending()) {
-              query.orderBy($(alias.getCustomers()).asc());
-            } else {
-              query.orderBy($(alias.getCustomers()).desc());
             }
             break;
           default:

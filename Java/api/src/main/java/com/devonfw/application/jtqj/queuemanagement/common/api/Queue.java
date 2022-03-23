@@ -78,16 +78,4 @@ public interface Queue extends ApplicationEntity {
 
   public void setActive(Boolean active);
 
-  /**
-   * @return customersId
-   */
-
-  public int getCustomers();
-
-  /**
-   * @param customers setter for customers attribute
-   */
-
-  public void setCustomers(int customers);
-
 }

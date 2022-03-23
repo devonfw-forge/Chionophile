@@ -28,8 +28,6 @@ public class QueueEntity extends ApplicationPersistenceEntity implements Queue {
 
   private Boolean active;
 
-  private int customers;
-
   private static final long serialVersionUID = 1L;
 
   /**
@@ -126,22 +124,6 @@ public class QueueEntity extends ApplicationPersistenceEntity implements Queue {
   public void setActive(Boolean active) {
 
     this.active = active;
-  }
-
-  /**
-   * @return the customers
-   */
-  public int getCustomers() {
-
-    return customers;
-  }
-
-  /**
-   * @param customers the customers to set
-   */
-  public void setCustomers(int customers) {
-
-    this.customers = customers;
   }
 
 }

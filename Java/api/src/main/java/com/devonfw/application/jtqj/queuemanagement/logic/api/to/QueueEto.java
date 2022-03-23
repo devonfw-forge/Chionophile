@@ -24,8 +24,6 @@ public class QueueEto extends AbstractEto implements Queue {
 
   private Boolean active;
 
-  private int customers;
-
   @Override
   public String getName() {
 
@@ -99,18 +97,6 @@ public class QueueEto extends AbstractEto implements Queue {
   }
 
   @Override
-  public int getCustomers() {
-
-    return this.customers;
-  }
-
-  @Override
-  public void setCustomers(int customers) {
-
-    this.customers = customers;
-  }
-
-  @Override
   public int hashCode() {
 
     final int prime = 31;
@@ -121,7 +107,6 @@ public class QueueEto extends AbstractEto implements Queue {
     result = prime * result + ((this.attentionTime == null) ? 0 : this.attentionTime.hashCode());
     result = prime * result + ((this.minAttentionTime == null) ? 0 : this.minAttentionTime.hashCode());
     result = prime * result + ((this.active == null) ? 0 : this.active.hashCode());
-    result = prime * result + ((Integer) this.customers).hashCode();
     return result;
   }
 
@@ -179,9 +164,6 @@ public class QueueEto extends AbstractEto implements Queue {
         return false;
       }
     } else if (!this.active.equals(other.active)) {
-      return false;
-    }
-    if (this.customers != other.customers) {
       return false;
     }
     return true;

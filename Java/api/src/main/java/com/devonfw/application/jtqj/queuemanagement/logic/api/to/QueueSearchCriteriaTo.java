@@ -24,8 +24,6 @@ public class QueueSearchCriteriaTo extends AbstractSearchCriteriaTo {
 
   private Boolean active;
 
-  private Integer customers;
-
   private StringSearchConfigTo nameOption;
 
   private StringSearchConfigTo logoOption;
@@ -138,24 +136,6 @@ public class QueueSearchCriteriaTo extends AbstractSearchCriteriaTo {
   public void setActive(Boolean active) {
 
     this.active = active;
-  }
-
-  /**
-   * @return customersId
-   */
-
-  public Integer getCustomers() {
-
-    return this.customers;
-  }
-
-  /**
-   * @param customers setter for customers attribute
-   */
-
-  public void setCustomers(Integer customers) {
-
-    this.customers = customers;
   }
 
   /**

@@ -43,16 +43,6 @@ public class QueuemanagementImpl extends AbstractComponentFacade implements Queu
   }
 
   @Override
-  public void decreaseQueueCustomer(long queueId) {
-    this.ucManageQueue.decreaseQueueCustomer(queueId);
-  }
-
-  @Override
-  public void increaseQueueCustomer(long queueId) {
-    this.ucManageQueue.increaseQueueCustomer(queueId);
-  }
-
-  @Override
   public boolean deleteQueue(long id) {
 
     return this.ucManageQueue.deleteQueue(id);
