@@ -18,21 +18,6 @@ pub fn find_by_id(
     Ok(queue)
 }
 
-pub fn update_customers(
-    queue: &Queue,
-    conn: &DbConn
-) -> Result<usize, DbError> {
-    use crate::schema::dailyqueue::dsl::*;
-
-    let new_queue = queue.clone();
-
-    let res = diesel::update(dailyqueue.filter(id.eq(&new_queue.id)))
-        .set(customers.eq(&new_queue.customers))
-        .execute(conn)?;
-
-    Ok(res)
-}
-
 pub fn save(
     queue: &NewQueue,
     conn: &DbConn
@@ -85,9 +70,6 @@ pub fn find_by_criteria(
     }
     if let Some(active) = criteria.active {
         query = query.filter(dailyqueue::active.eq(active));
-    }
-    if let Some(customers) = criteria.customers {
-        query = query.filter(dailyqueue::customers.eq(customers));
     }
 
     let results = query.load::<Queue>(conn)?;

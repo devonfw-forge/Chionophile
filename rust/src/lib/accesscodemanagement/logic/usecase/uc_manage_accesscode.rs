@@ -1,6 +1,6 @@
 use actix_web::{Error, web};
 use chrono::Utc;
-use futures::executor::block_on;
+use crate::{DbError};
 use crate::lib::accesscodemanagement::dataaccess::api::new_access_code::NewAccessCode;
 use crate::lib::accesscodemanagement::dataaccess::api::repo::accesscode_repository;
 use crate::lib::accesscodemanagement::logic::api::accesscode_eto::AccessCodeEto;
@@ -8,7 +8,6 @@ use crate::lib::accesscodemanagement::logic::api::accesscode_search_criteria::Ac
 use crate::lib::accesscodemanagement::rest::api::accesscode_post_data::AccessCodePostData;
 use crate::lib::general::config::db_config::DbPool;
 use crate::lib::general::pageable::Pageable;
-use crate::lib::queuemanagement::logic::queue_management;
 
 pub async fn save_accesscode(
     pool: web::Data<DbPool>,
@@ -53,8 +52,6 @@ pub async fn save_accesscode(
         }
 
         access_code_entity.creation_time = Some(Utc::now().naive_utc());
-        let queue_id = access_code_entity.queue_id.clone();
-        block_on(queue_management::increase_queue_customer(pool, queue_id));
         accesscode_repository::save(&access_code_entity, &conn)
 
     }).await?;
@@ -70,11 +67,6 @@ pub async fn delete_accesscode(
 
     web::block(move || {
         let conn = pool.clone().get()?;
-        let accesscode_option = accesscode_repository::find_by_id(id.clone(), &conn)?;
-        let accesscode = accesscode_option.unwrap();
-
-        let queue_id = accesscode.queue_id;
-        block_on(queue_management::decrease_queue_customer(pool, queue_id));
         accesscode_repository::delete(id, &conn)
     }).await?;
 

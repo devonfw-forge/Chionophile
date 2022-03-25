@@ -12,7 +12,6 @@ pub struct NewQueue {
     pub attention_time: Option<NaiveDateTime>,
     pub min_attention_time: NaiveDateTime,
     pub active: bool,
-    pub customers: i32,
 }
 
 impl NewQueue {
@@ -27,7 +26,6 @@ impl NewQueue {
             attention_time: queue_eto.attention_time,
             min_attention_time: queue_eto.min_attention_time,
             active: queue_eto.active,
-            customers: queue_eto.customers
         }
     }
 }

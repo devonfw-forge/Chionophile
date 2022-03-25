@@ -11,6 +11,5 @@ pub struct QueueSearchCriteria {
     pub attention_time: Option<NaiveDateTime>,
     pub min_attention_time: Option<NaiveDateTime>,
     pub active: Option<bool>,
-    pub customers: Option<i32>,
     pub pageable: Pageable,
 }

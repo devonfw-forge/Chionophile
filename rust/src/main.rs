@@ -2,13 +2,14 @@ use actix_web::{middleware, web, App, HttpServer};
 use diesel::{r2d2::{self, ConnectionManager}};
 use actix_cors::Cors;
 use crate::lib::general::config::config::read_config;
-use crate::lib::general::config::db_config::DbConn;
+use crate::lib::general::config::db_config::{DbConn, DbError};
 use crate::lib::queuemanagement::rest::queue_management_controller::queue_scope;
 use crate::lib::visitormanagement::rest::visitor_management_controller::visitor_scope;
 use crate::lib::accesscodemanagement::rest::accesscode_management_controller::access_code_scope;
 
 #[macro_use]
 extern crate diesel;
+extern crate core;
 
 mod schema;
 mod lib;

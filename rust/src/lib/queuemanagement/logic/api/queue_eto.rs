@@ -12,7 +12,6 @@ pub struct QueueEto {
     pub attention_time: Option<NaiveDateTime>,
     pub min_attention_time: NaiveDateTime,
     pub active: bool,
-    pub customers: i32,
 }
 
 impl QueueEto {
@@ -25,7 +24,6 @@ impl QueueEto {
             attention_time: queue.attention_time,
             min_attention_time: queue.min_attention_time,
             active: queue.active,
-            customers: queue.customers
         }
     }
 }

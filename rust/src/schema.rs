@@ -32,7 +32,6 @@ table! {
         #[sql_name="minattentiontime"]
         min_attention_time -> Timestamp,
         active -> Bool,
-        customers -> Int4,
     }
 }
 

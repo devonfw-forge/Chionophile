@@ -13,7 +13,7 @@ pub struct AccessCode {
     pub creation_time: Option<NaiveDateTime>,
     pub start_time: Option<NaiveDateTime>,
     pub end_time: Option<NaiveDateTime>,
-    pub queue_id: i64,
     pub visitor_id: i64,
+    pub queue_id: i64,
 }
 

@@ -16,7 +16,6 @@ pub struct Queue {
     pub attention_time: Option<NaiveDateTime>,
     pub min_attention_time: NaiveDateTime,
     pub active: bool,
-    pub customers: i32,
 }
 
 impl Queue {
@@ -32,7 +31,6 @@ impl Queue {
             attention_time: queue_eto.attention_time,
             min_attention_time: queue_eto.min_attention_time,
             active: queue_eto.active,
-            customers: queue_eto.customers
         };
 
         if let Some(id) = queue_eto.id {
@@ -53,7 +51,6 @@ impl Queue {
             attention_time: new_queue.attention_time,
             min_attention_time: new_queue.min_attention_time,
             active: new_queue.active,
-            customers: new_queue.customers
         }
     }
 }

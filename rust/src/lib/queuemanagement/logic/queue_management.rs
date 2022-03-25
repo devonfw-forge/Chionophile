@@ -1,4 +1,5 @@
 use actix_web::{Error, web};
+use crate::DbError;
 use crate::lib::queuemanagement::logic::api::queue_eto::QueueEto;
 use crate::lib::queuemanagement::logic::api::queue_search_criteria::QueueSearchCriteria;
 use crate::lib::queuemanagement::logic::usecase::{uc_find_queue, uc_manage_queue};
@@ -24,21 +25,6 @@ pub async fn save_queue(
     queue: QueueEto
 ) -> Result<QueueEto, Error> {
     uc_manage_queue::save_queue(pool, queue).await
-}
-
-pub async fn decrease_queue_customer(
-    pool: web::Data<DbPool>,
-    queue_id: i64
-) -> Result<(), Error> {
-    uc_manage_queue::decrease_queue_customer(pool, queue_id).await
-
-}
-
-pub async fn increase_queue_customer(
-    pool: web::Data<DbPool>,
-    queue_id: i64
-) -> Result<(), Error> {
-    uc_manage_queue::increase_queue_customer(pool, queue_id).await
 }
 
 pub async fn delete_queue(
