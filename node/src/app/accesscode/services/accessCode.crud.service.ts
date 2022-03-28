@@ -6,13 +6,11 @@ import { AccessCodeDTO } from '../dto/accessCode';
 import { AccessCodeResponse } from '../dto/accessCodeResponse';
 import { AccessCode } from '../model/entities/accessCode.entity';
 import { plainToClass } from 'class-transformer';
-import { Queue } from '../../queue/model/entities/queue.entity';
 
 @Injectable()
 export class AccessCodeCrudService extends TypeOrmCrudService<AccessCode> {
   constructor(
     @InjectRepository(AccessCode) private repoCode: Repository<AccessCode>,
-    @InjectRepository(Queue) private repoQueue: Repository<Queue>,
   ) {
     super(repoCode);
   }
@@ -35,8 +33,6 @@ export class AccessCodeCrudService extends TypeOrmCrudService<AccessCode> {
     accessCode.ticketNumber = ticketCode;
     const insertAccessCode = plainToClass(AccessCodeResponse, await this.repoCode.save(accessCode));
 
-    await this.repoQueue.increment({ id: dto.queueId }, 'customers', 1);
-
     return insertAccessCode;
   }
 
@@ -55,10 +51,6 @@ export class AccessCodeCrudService extends TypeOrmCrudService<AccessCode> {
   }
 
   async deleteOneMod(id: number): Promise<void> {
-    const idQueue = (await this.repoCode.findOne(id))?.queueId;
-
-    await this.repoQueue.decrement({ id: idQueue }, 'customers', 1);
-
     await this.repoCode.delete(id);
   }
 }

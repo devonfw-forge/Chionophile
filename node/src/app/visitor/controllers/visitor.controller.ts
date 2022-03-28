@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, HttpCode, Post } from '@nestjs/common';
 import { VisitorService } from '../services/visitor.service';
 import { ApiTags } from '@nestjs/swagger';
 import { Criteria } from '../dto/criteria';
@@ -10,6 +10,7 @@ export class VisitorController {
   constructor(public readonly visitor: VisitorService) {}
 
   @Post()
+  @HttpCode(200)
   getVisitorByUsername(@Body() crit: Criteria): Promise<VisitorResponseDTO> {
     return this.visitor.searchCriteria(crit);
   }

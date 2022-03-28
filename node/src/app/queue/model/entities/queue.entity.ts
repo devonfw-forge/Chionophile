@@ -45,9 +45,5 @@ export class Queue {
   @Column('bool', { nullable: true })
   active?: boolean;
 
-  @IsDefined({ groups: [CrudValidationGroups.CREATE] })
-  @IsOptional({ groups: [CrudValidationGroups.UPDATE] })
-  @Column('bool', { nullable: true })
-  customers?: bigint;
   accesscode: any;
 }
