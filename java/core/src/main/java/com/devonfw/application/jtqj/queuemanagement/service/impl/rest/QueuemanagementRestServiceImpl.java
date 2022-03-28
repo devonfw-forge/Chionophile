@@ -32,9 +32,10 @@ public class QueuemanagementRestServiceImpl implements QueuemanagementRestServic
   }
 
   @Override
-  public void deleteQueue(long id) {
+  public long deleteQueue(long id) {
 
     this.queuemanagement.deleteQueue(id);
+    return id;
   }
 
   @Override

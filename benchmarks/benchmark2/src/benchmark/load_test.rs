@@ -20,10 +20,10 @@ fn set_defaults(attack: GooseAttack) -> Result<GooseAttack, GooseError> {
         .set_default(GooseDefault::Host, "http://localhost:8081/jumpthequeue/services/rest/")?
         .set_default(GooseDefault::RequestLog, "goose-requests.log")?
         .set_default(GooseDefault::ErrorLog, "goose-error.log")?
-        .set_default(GooseDefault::Users, 20)?
-        .set_default(GooseDefault::HatchRate, "4")?
+        .set_default(GooseDefault::Users, 10)?
+        .set_default(GooseDefault::HatchRate, ".016666666")?
         .set_default(GooseDefault::RequestBody, true)?
-        .set_default(GooseDefault::RunTime, 600)?
+        .set_default(GooseDefault::RunTime, 300)?
         .set_default(GooseDefault::NoResetMetrics, true)?
         .set_default(GooseDefault::StatusCodes, true)?
         .set_default(GooseDefault::ReportFile, "report.html")?;

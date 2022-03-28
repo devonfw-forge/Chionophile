@@ -20,9 +20,9 @@ err_display(){
 }
 
 
-# Check if benchmark directory exists
-if [ ! -d "benchmark" ] && cd .. && [ ! -d "benchmark" ] ; then
-    err_msg="[ERROR] benchmark directory does not exists."
+# Check if benchmarks directory exists
+if [ ! -d "benchmarks" ] && cd .. && [ ! -d "benchmarks" ] ; then
+    err_msg="[ERROR] benchmarks directory does not exists."
     err_display
 fi
 
@@ -32,15 +32,24 @@ if  ! ( cargo --version &> /dev/null ) ; then
     err_display
 fi
 
-# Move to the project directory
-cd benchmark
+# Move to the benchmarks directory
+cd benchmarks
 
-echo "Executing..."
+# Check if benchmark2 directory exists
+if [ ! -d "benchmark2" ] && cd .. && [ ! -d "benchmark2" ] ; then
+    err_msg="[ERROR] benchmark2 directory does not exists."
+    err_display
+fi
+
+# Move to the second benchmark directory
+cd benchmark2
+
+echo "Executing First Beanchmark..."
 "C:\Program Files\Intel\Power Gadget 3.6\PowerLog3.0.exe" \
     -cmd "cargo run --release" || ( err_msg="[ERROR] Test or PowerLog went wrong"; err_display )
 
-cd ../results
-file=PowerLog
+cd ../../results
+file=PowerLogB2
 count=0
 save_file=$file"_"$count".csv"
 while [ -f $save_file ] ; do
@@ -50,10 +59,10 @@ while [ -f $save_file ] ; do
 done
 echo "Saving as "$save_file
 
-report_file="report_"$count".html"
+report_file="reportB2_"$count".html"
 
-cp ../benchmark/PowerLog.csv $save_file
-rm ../benchmark/PowerLog.csv
+cp ../benchmarks/benchmark2/PowerLog.csv $save_file
+rm ../benchmarks/benchmark2/PowerLog.csv
 
-cp ../benchmark/report.html $report_file
-rm ../benchmark/report.html
+cp ../benchmarks/benchmark2/report.html $report_file
+rm ../benchmarks/benchmark2/report.html

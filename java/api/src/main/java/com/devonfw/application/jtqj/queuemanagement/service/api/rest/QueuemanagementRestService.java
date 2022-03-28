@@ -47,10 +47,11 @@ public interface QueuemanagementRestService {
    * Delegates to {@link Queuemanagement#deleteQueue}.
    *
    * @param id ID of the {@link QueueEto} to be deleted
+   * @return id
    */
   @DELETE
   @Path("/queue/{id}/")
-  public void deleteQueue(@PathParam("id") long id);
+  public long deleteQueue(@PathParam("id") long id);
 
   /**
    * Delegates to {@link Queuemanagement#findQueueEtos}.

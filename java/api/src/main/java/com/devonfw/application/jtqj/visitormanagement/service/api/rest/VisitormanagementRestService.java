@@ -14,7 +14,6 @@ import org.springframework.data.domain.Page;
 import com.devonfw.application.jtqj.visitormanagement.logic.api.Visitormanagement;
 import com.devonfw.application.jtqj.visitormanagement.logic.api.to.VisitorEto;
 import com.devonfw.application.jtqj.visitormanagement.logic.api.to.VisitorSearchCriteriaTo;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 /**
  * The service interface for REST calls in order to execute the logic of component {@link Visitormanagement}.
@@ -48,10 +47,11 @@ public interface VisitormanagementRestService {
    * Delegates to {@link Visitormanagement#deleteVisitor}.
    *
    * @param id ID of the {@link VisitorEto} to be deleted
+   * @return id
    */
   @DELETE
   @Path("/visitor/{id}/")
-  public void deleteVisitor(@PathParam("id") long id);
+  public long deleteVisitor(@PathParam("id") long id);
 
   /**
    * Delegates to {@link Visitormanagement#findVisitorEtos}.

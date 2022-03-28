@@ -32,9 +32,10 @@ public class VisitormanagementRestServiceImpl implements VisitormanagementRestSe
   }
 
   @Override
-  public void deleteVisitor(long id) {
+  public long deleteVisitor(long id) {
 
     this.visitormanagement.deleteVisitor(id);
+    return id;
   }
 
   @Override

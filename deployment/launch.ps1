@@ -18,10 +18,15 @@ function Wait-MyProcess {
     } while ($Failed)
 }
 
-function Start-Testing {
-    Write-Host ("Launching Test... ")
-    Start-Process -Wait launch_benchmark.sh
-    Write-Host ("Test finished")
+function Start-Benchmark {
+    Write-Host ("Launching Benchmarks... ")
+    Write-Host ("This will take 10 minutes!")
+    Write-Host ("Launching First Benchmark... ")
+    Start-Process -Wait launch_benchmark1.sh
+    Write-Host ("First Benchmark finished")
+    Write-Host ("Launching Second Benchmark... ")
+    Start-Process -Wait launch_benchmark2.sh
+    Write-Host ("Second Benchmark finished")
 }
 
 function Start-Postgres {
@@ -45,32 +50,45 @@ function Start-Backend() {
     Write-Host ($name+" running with PID: "+$process.Id+"`r`n")
     Write-Host ("Waiting 2 minutes before testing...`r`n")
     Start-Sleep -s (2*60)
-    Start-Testing
+    Start-Benchmark
     Write-Host ("`r`nKilling "+$name+" and Postgres...")
     Taskkill /PID $process.Id /F *> $null
     Start-Process -Wait close_postgres.sh
 }
 
-# Checking benchmark before execution:
-Set-Location ../benchmark; cargo build --release *> $null
-Set-Location ../deployment
+function Start-Processes{
+    try{
+        Write-Host "`r`nChecking and building benchmarks before execution...`r`n"
+        # Checking benchmark before execution:
+        Set-Location ../benchmarks/benchmark1; cargo build --release
+        Set-Location ../benchmark2; cargo build --release 
+        Set-Location ../../deployment
 
-Write-Host "`r`nChecking Idle"
-Start-Process -Wait test_idle.sh
+        Write-Host "`r`nChecking idle"
+        Start-Process -Wait test_idle.sh
 
-Write-Host ("Waiting 1 minute before launching benchmark...`r`n")
-Start-Sleep -s (60);
+        Write-Host ("Waiting 1 minute before launching benchmark...`r`n")
+        Start-Sleep -s (60);
 
-Start-Backend -p_bash "launch_rust.sh" -name "JTQ Rust"
+        Start-Backend -p_bash "launch_rust.sh" -name "JTQ Rust"
 
-Write-Host ("Waiting 5 minutes...`r`n")
-Start-Sleep -s (5*60);
+        Write-Host ("Waiting 5 minutes...`r`n")
+        Start-Sleep -s (5*60);
 
-Start-Backend -p_bash "launch_java.sh" -name "JTQ Java"
+        Start-Backend -p_bash "launch_java.sh" -name "JTQ Java"
 
-Write-Host ("Waiting 5 minutes...`r`n")
-Start-Sleep -s (5*60);
+        Write-Host ("Waiting 5 minutes...`r`n")
+        Start-Sleep -s (5*60);
 
-Start-Backend -p_bash "launch_node.sh" -name "JTQ Node"
+        Start-Backend -p_bash "launch_node.sh" -name "JTQ Node"
+    } 
+    catch { 
+        Write-Host ("`r`nProcess terminated"); Pause; Exit 
+    }
+}
+
+Start-Processes
+
+# py ./cleaner.py
 
 Pause

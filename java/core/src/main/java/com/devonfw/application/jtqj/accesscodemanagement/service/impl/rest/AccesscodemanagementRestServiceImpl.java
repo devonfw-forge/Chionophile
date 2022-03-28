@@ -3,11 +3,11 @@ package com.devonfw.application.jtqj.accesscodemanagement.service.impl.rest;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import com.devonfw.application.jtqj.accesscodemanagement.logic.api.to.AccessCodeEto;
 import org.springframework.data.domain.Page;
 
 import com.devonfw.application.jtqj.accesscodemanagement.logic.api.Accesscodemanagement;
 import com.devonfw.application.jtqj.accesscodemanagement.logic.api.to.AccessCodeCto;
+import com.devonfw.application.jtqj.accesscodemanagement.logic.api.to.AccessCodeEto;
 import com.devonfw.application.jtqj.accesscodemanagement.logic.api.to.AccessCodeSearchCriteriaTo;
 import com.devonfw.application.jtqj.accesscodemanagement.service.api.rest.AccesscodemanagementRestService;
 
@@ -39,9 +39,10 @@ public class AccesscodemanagementRestServiceImpl implements Accesscodemanagement
   }
 
   @Override
-  public void deleteAccessCode(long id) {
+  public long deleteAccessCode(long id) {
 
     this.accesscodemanagement.deleteAccessCode(id);
+    return id;
   }
 
   @Override
