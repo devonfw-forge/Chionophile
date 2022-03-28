@@ -1,6 +1,5 @@
 use std::sync::Arc;
 use actix_web::{web, Error, HttpResponse};
-use parking_lot::{Mutex, RawMutex};
 use crate::{DbConn, DbError};
 use crate::lib::accesscodemanagement::logic::accesscode_management;
 use crate::lib::accesscodemanagement::logic::api::accesscode_search_criteria::AccessCodeSearchCriteria;
