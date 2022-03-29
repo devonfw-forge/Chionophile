@@ -1,4 +1,5 @@
 import os
+import shutil
 
 def give_name_by_number(id):
     if id == 0: return 'rust'
@@ -8,24 +9,15 @@ def give_name_by_number(id):
     else: return 'undefined'
 
 def gen_cons_report(lines_l):
-    consumption_table = "<style>\n.container2 {\nwidth: 1000px;\n"
-    consumption_table += "margin: 0 auto;\npadding: 10px;\nbackground: #173529;\n"
-    consumption_table += "font-family: Arial, Helvetica, sans-serif;\n"
-    consumption_table += "font-size: 14px;\ncolor: #fff;\n}\n.info span{\n"
-    consumption_table += "color: #b3c3bc;\n}\ntable {\nborder-collapse: collapse;\n"
-    consumption_table += "text-align: center;\nwidth: 100%;\n}\ntd, th {\n"
-    consumption_table += "border: 1px solid #cad9ea;\ncolor: #666;\n"
-    consumption_table += "height: 30px;\n}\nthead th {\n"
-    consumption_table += "background-color: #cce8eb;\nwidth: 100px;\n}\n"
-    consumption_table += "tr:nth-child(odd) {\nbackground: #fff;\n}\n"
-    consumption_table += "tr:nth-child(even) {\nbackground: #f5fafa;\n}\n"
-    consumption_table += ".charts-container .chart {\nwidth: 100%;\n"
-    consumption_table += "height: 350px;\nmargin-bottom: 30px;\n}\n"
-    consumption_table += ".download {\nfloat: right;\n}\n.download a {\n"
-    consumption_table += "color: #00ca5a;\n}\n.graph {\nmargin-bottom: 1em;\n}\n"
-    consumption_table += "</style>\n<div class=\"container2\">\n"
-    consumption_table += "<h2>Power Consumption Metrics</h2>\n"
-    consumption_table += "<table class=\"default\">\n"
+    consumption_table = "<style>\n.container2 {\nwidth: 1000px;\nmargin: 0 auto;\npadding: 10px;\nbackground: #173529;\n"
+    consumption_table += "font-family: Arial, Helvetica, sans-serif;\nfont-size: 14px;\ncolor: #fff;\n}\n.info span{\n"
+    consumption_table += "color: #b3c3bc;\n}\ntable {\nborder-collapse: collapse;\ntext-align: center;\nwidth: 100%;\n}\ntd, th {\n"
+    consumption_table += "border: 1px solid #cad9ea;\ncolor: #666;\nheight: 30px;\n}\nthead th {\n"
+    consumption_table += "background-color: #cce8eb;\nwidth: 100px;\n}\ntr:nth-child(odd) {\nbackground: #fff;\n}\n"
+    consumption_table += "tr:nth-child(even) {\nbackground: #f5fafa;\n}\n.charts-container .chart {\nwidth: 100%;\n"
+    consumption_table += "height: 350px;\nmargin-bottom: 30px;\n}\n.download {\nfloat: right;\n}\n.download a {\n"
+    consumption_table += "color: #00ca5a;\n}\n.graph {\nmargin-bottom: 1em;\n}\n</style>\n<div class=\"container2\">\n"
+    consumption_table += "<h2>Power Consumption Metrics</h2>\n<table class=\"default\">\n"
     for l in lines_l:
         consumption_table += "<tr>\n"
         consumption_table += "<td>"+l[0]+"</td>\n"
@@ -33,6 +25,11 @@ def gen_cons_report(lines_l):
         consumption_table += "</tr>\n"
     consumption_table += "</table>\n"
     return consumption_table
+
+"""
+    Copy all generated files into temp directory 
+"""
+shutil.copytree('.', os.path.join('..','results','temp'))
 
 """
     Processing power_idle.csv file
@@ -44,7 +41,9 @@ if os.path.exists(os.path.join('..','results','power_idle.csv')):
         for line in f:
             if 'Total Elapsed Time' in line: 
                 is_metrics = True
-            if is_metrics and len(line.split(' = ')) > 1: 
+            if is_metrics and len(line.split(' = ')) > 1\
+                and ('Time' in line or 'Frequency' in line\
+                or 'Processor' in line): 
                 lines_list.append( (line.split(' = ')[0], line.split(' = ')[1]) )
         try: os.remove(os.path.join('..','results','power_idle.csv'))
         except: print("Error removing idle file")
@@ -70,7 +69,9 @@ for csvf in csv_files:
         for line in f:
             if 'Total Elapsed Time' in line: 
                 is_metrics = True
-            if is_metrics and len(line.split(' = ')) > 1: 
+            if is_metrics and len(line.split(' = ')) > 1\
+                and ('Time' in line or 'Frequency' in line\
+                or 'Processor' in line): 
                 lines_list.append( (line.split(' = ')[0], line.split(' = ')[1]) )
         # RUST
         if '_0' in csvf and 'B1' in csvf:          
@@ -102,12 +103,17 @@ report_files = [f for f in os.listdir(os.path.join('..','results')) if '.html' i
 
 # Cleaning html report files:
 for report in report_files:
+    num = int(report.split('.')[0].split('_')[1])
+    version = report.split('.')[0].split('_')[0].replace('report','')
+
     with open(os.path.join('..','results',report), "r", encoding='utf-8') as f:
-        is_table = False; is_head_table = False; is_end_table = False
+        is_table = False; is_head_table = False; is_end_table = False; is_div_tasks = False
         html_list = []
         for line in f:
-            if '</body>' in line : 
-                first_div = False
+            if 'Goose Attack Report' in line:
+                new_tittle = give_name_by_number(num).upper() + ' ' + version
+                line = line.replace('Goose Attack Report', new_tittle)
+            if '</body>' in line :
                 # RUST
                 if '_0' in report and 'B1' in report:          
                     html_list.append(cons_reports['rust']['B1'])
@@ -128,10 +134,11 @@ for report in report_files:
                     html_list.append(cons_reports['python']['B1'])
                 elif '_3' in report and 'B2' in report:          
                     html_list.append(cons_reports['python']['B2'])
-            
+            if '<div class=\"tasks\">' in line: is_div_tasks = True
+            if '<div class=\"users\">' in line: is_div_tasks = False
             if '<table>\n' in line: 
                 is_table = True; html_list.append(line)
-            if not is_table: html_list.append(line)
+            if not is_table and not is_div_tasks: html_list.append(line)
             if is_table and '<thead>' in line: is_head_table = True
             if is_table and is_head_table and 'Task' not in line: 
                 html_list.append(
@@ -155,11 +162,7 @@ for report in report_files:
             
         clean_html = ''.join(html_list) 
 
-    num = int(report.split('.')[0].split('_')[1])
-    version = report.split('.')[0].split('_')[0].replace('report','')
-
     new_report = 'res_' + give_name_by_number(num)
-
     count = 0
     while os.path.exists(os.path.join('..','results',new_report+version+'_'+str(count)+'.html')):
         count += 1

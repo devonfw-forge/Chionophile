@@ -89,6 +89,6 @@ function Start-Processes{
 
 Start-Processes
 
-# py ./cleaner.py
+py ./cleaner.py
 
 Pause

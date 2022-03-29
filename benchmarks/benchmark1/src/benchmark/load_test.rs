@@ -22,8 +22,8 @@ fn set_defaults(attack: GooseAttack) -> Result<GooseAttack, GooseError> {
         .set_default(GooseDefault::ErrorLog, "goose-error.log")?
         .set_default(GooseDefault::Users, 5)?
         .set_default(GooseDefault::ThrottleRequests, 14)?
-        .set_default(GooseDefault::HatchRate, ".016666666")?
         .set_default(GooseDefault::RequestBody, true)?
+        .set_default(GooseDefault::HatchRate, ".05")?
         .set_default(GooseDefault::RunTime, 300)?
         .set_default(GooseDefault::NoResetMetrics, true)?
         .set_default(GooseDefault::StatusCodes, true)?
