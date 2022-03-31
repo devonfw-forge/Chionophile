@@ -1,4 +1,4 @@
-# JTQ en Rust
+# Rust JTQ
 
 ## Windows Installation
 
