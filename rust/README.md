@@ -24,23 +24,7 @@ cargo install diesel_cli --no-default-features --features postgres
 
 ### 5. Create the Database
 
-**If you have followed the steps to create the database in the [Postgres folder's README.md](https://github.com/devonfw-forge/Chionophile/tree/Develop/postgres), you should already have a completely ready database and you can skip this step.**
-
------
-
-Create a PostgreSQL Database called "jtq" with the user "postgres" and password "123". Of course, this can be changed to your liking by adjusting the command below and the .cargo/config file.
-
-Then run this command. Make sure the you have the necessary binaries in your PATH. If not, return to step 3.
-
-```
-diesel migration run --database-url postgres://postgres:123@localhost/jtq
-```
-
-To revert the database to its default state run 
-
-```
-diesel migration redo --database-url postgres://postgres:123@localhost/jtq
-```
+**Follow the steps to create the database in the [Postgres folder's README.md](https://github.com/devonfw-forge/Chionophile/tree/Develop/postgres).**
 
 ### 6. Run the application
 
