@@ -13,8 +13,24 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import path, include
+
+from django.urls import path
+import visitor_management.views as visitor_views
+import queue_management
+import access_code_management
 
 urlpatterns = [
-    path('jumpthequeue/services/rest/', include('jtq_rest.urls')),
+    #path('jumpthequeue/services/rest/', include('jtq_rest.urls')),
+    path(
+        'jumpthequeue/services/rest/visitormanagement/v1/visitor', 
+        visitor_views.VisitorDetailView.as_view()
+    ),
+    path(
+        'jumpthequeue/services/rest/visitormanagement/v1/visitor/<int:pk>', 
+        visitor_views.VisitorDetailView.as_view()
+    ),
+    path(
+        'jumpthequeue/services/rest/visitormanagement/v1/visitor/search', 
+        visitor_views.VisitorListView.as_view()
+    ),
 ]

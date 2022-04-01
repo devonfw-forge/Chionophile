@@ -1,7 +1,5 @@
-from telnetlib import LOGOUT
-from unicodedata import name
 from django.db import models
-
+from visitor_management.models import Visitor
 class Queue(models.Model):
     class Meta():
         db_table = "dailyqueue"
@@ -14,7 +12,7 @@ class Queue(models.Model):
     attentiontime = models.DateField()
     minattentiontime = models.DateField()
     active = models.BooleanField()
-
+"""
 class Visitor(models.Model):
     class Meta():
         db_table = "visitor"
@@ -28,7 +26,7 @@ class Visitor(models.Model):
     acceptedcommercial = models.BooleanField()
     acceptedterms = models.BooleanField()
     usertype = models.BooleanField()
-
+"""
 class AccessCode(models.Model):
     class Meta():
         db_table = "accesscode"
