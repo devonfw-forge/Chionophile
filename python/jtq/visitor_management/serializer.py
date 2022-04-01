@@ -5,4 +5,3 @@ class VisitorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Visitor
         fields = '__all__'
-        format = 'json'
