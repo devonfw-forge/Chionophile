@@ -20,4 +20,4 @@ The Core, along with the previously mentioned implementations, also includes con
 ## Current functionality
 
 The template as given only contains CRUD functionality for a basic User entity. It is meant to be built upon and as such, more robust security features and
-complex authentication and logic are meant to be implemented by the development team.
+complex authentication or logic are meant to be implemented by the development team.
