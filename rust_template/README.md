@@ -5,6 +5,10 @@
 This folder contains an API Template that will serve as a base for all Rust based projects across Capgemini. It uses the Actix framework and is 
 by default configured to use a PostgreSQL database with the Diesel ORM/Query Builder.
 
+## Documentation
+
+This README contains only a basic overview but the template itself contains explanations for design choices and implementations.
+
 ## Structure
 
 The config file inside the .cargo folder stores the environment variables.
