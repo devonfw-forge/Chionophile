@@ -7,7 +7,7 @@ urlpatterns = [
     ,
     path(
         'jumpthequeue/services/rest/visitormanagement/v1/visitor/', 
-        include("queue_management.urls"))
+        include("visitor_management.urls"))
     ,
     path(
         'jumpthequeue/services/rest/accesscodemanagement/v1/accesscode/', 

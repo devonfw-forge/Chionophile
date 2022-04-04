@@ -11,6 +11,10 @@ urlpatterns = [
         visitor_views.VisitorDetailView.as_view()
     ),
     path(
+        '<int:pk>/', 
+        visitor_views.VisitorDetailView.as_view()
+    ),
+    path(
         'search', 
         visitor_views.VisitorListView.as_view()
     ),
