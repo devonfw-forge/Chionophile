@@ -14,3 +14,11 @@ rust_template/.idea
 benchmark/goose-error.log
 benchmark/report.html
 node/yarn.lock
+benchmarks/benchmark1/target
+benchmarks/benchmark2/target
+benchmarks/benchmark2/.idea
+benchmarks/benchmark2/.idea
+benchmarks/net/benchmark1/target
+benchmarks/net/benchmark2/target
+benchmarks/net/benchmark2/.idea
+benchmarks/net/benchmark2/.idea
