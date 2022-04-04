@@ -1,0 +1,5 @@
+C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Grpc\obj\Debug\net5.0\Devon4Net.Infrastructure.Grpc.csproj.AssemblyReference.cache
+C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Grpc\obj\Debug\net5.0\Devon4Net.Infrastructure.Grpc.GeneratedMSBuildEditorConfig.editorconfig
+C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Grpc\obj\Debug\net5.0\Devon4Net.Infrastructure.Grpc.AssemblyInfoInputs.cache
+C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Grpc\obj\Debug\net5.0\Devon4Net.Infrastructure.Grpc.AssemblyInfo.cs
+C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Grpc\obj\Debug\net5.0\Devon4Net.Infrastructure.Grpc.csproj.CoreCompileInputs.cache

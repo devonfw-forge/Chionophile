@@ -1,0 +1,176 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Cors\\Devon4Net.Infrastructure.Cors.csproj": {}
+  },
+  "projects": {
+    "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Common\\Devon4Net.Infrastructure.Common.csproj": {
+      "version": "3.1.5",
+      "restore": {
+        "projectUniqueName": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Common\\Devon4Net.Infrastructure.Common.csproj",
+        "projectName": "Devon4Net.Infrastructure.Common",
+        "projectPath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Common\\Devon4Net.Infrastructure.Common.csproj",
+        "packagesPath": "C:\\Users\\dhernan7\\.nuget\\packages\\",
+        "outputPath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Common\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\dhernan7\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "dependencies": {
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[3.1.10, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[3.1.10, )"
+            },
+            "Microsoft.Extensions.Options": {
+              "target": "Package",
+              "version": "[3.1.10, )"
+            },
+            "Microsoft.Extensions.Options.ConfigurationExtensions": {
+              "target": "Package",
+              "version": "[3.1.10, )"
+            },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[6.8.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.8.0, )"
+            },
+            "System.Text.Json": {
+              "target": "Package",
+              "version": "[4.7.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Cors\\Devon4Net.Infrastructure.Cors.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Cors\\Devon4Net.Infrastructure.Cors.csproj",
+        "projectName": "Devon4Net.Infrastructure.Cors",
+        "projectPath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Cors\\Devon4Net.Infrastructure.Cors.csproj",
+        "packagesPath": "C:\\Users\\dhernan7\\.nuget\\packages\\",
+        "outputPath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Cors\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\dhernan7\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Common\\Devon4Net.Infrastructure.Common.csproj": {
+                "projectPath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Common\\Devon4Net.Infrastructure.Common.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "dependencies": {
+            "Microsoft.AspNetCore.Authorization": {
+              "target": "Package",
+              "version": "[3.1.10, )"
+            },
+            "Microsoft.AspNetCore.Cors": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[3.1.10, )"
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[3.1.10, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

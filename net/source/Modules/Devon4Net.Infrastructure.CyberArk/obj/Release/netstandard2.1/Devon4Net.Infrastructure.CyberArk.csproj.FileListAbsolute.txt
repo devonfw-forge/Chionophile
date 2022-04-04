@@ -1,0 +1,17 @@
+C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.CyberArk\bin\Release\netstandard2.1\Devon4Net.Infrastructure.CyberArk.deps.json
+C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.CyberArk\bin\Release\netstandard2.1\Devon4Net.Infrastructure.CyberArk.dll
+C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.CyberArk\bin\Release\netstandard2.1\Devon4Net.Infrastructure.CyberArk.pdb
+C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.CyberArk\bin\Release\netstandard2.1\Devon4Net.Infrastructure.CircuitBreaker.dll
+C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.CyberArk\bin\Release\netstandard2.1\Devon4Net.Infrastructure.Common.dll
+C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.CyberArk\bin\Release\netstandard2.1\Devon4Net.Infrastructure.Log.dll
+C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.CyberArk\bin\Release\netstandard2.1\Devon4Net.Infrastructure.CircuitBreaker.pdb
+C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.CyberArk\bin\Release\netstandard2.1\Devon4Net.Infrastructure.Common.pdb
+C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.CyberArk\bin\Release\netstandard2.1\Devon4Net.Infrastructure.Log.pdb
+C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.CyberArk\obj\Release\netstandard2.1\Devon4Net.Infrastructure.CyberArk.csproj.AssemblyReference.cache
+C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.CyberArk\obj\Release\netstandard2.1\Devon4Net.Infrastructure.CyberArk.GeneratedMSBuildEditorConfig.editorconfig
+C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.CyberArk\obj\Release\netstandard2.1\Devon4Net.Infrastructure.CyberArk.AssemblyInfoInputs.cache
+C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.CyberArk\obj\Release\netstandard2.1\Devon4Net.Infrastructure.CyberArk.AssemblyInfo.cs
+C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.CyberArk\obj\Release\netstandard2.1\Devon4Net.Infrastructure.CyberArk.csproj.CoreCompileInputs.cache
+C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.CyberArk\obj\Release\netstandard2.1\Devon4Net.Infrastructure.CyberArk.csproj.CopyComplete
+C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.CyberArk\obj\Release\netstandard2.1\Devon4Net.Infrastructure.CyberArk.dll
+C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.CyberArk\obj\Release\netstandard2.1\Devon4Net.Infrastructure.CyberArk.pdb
