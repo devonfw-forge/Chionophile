@@ -1,6 +1,6 @@
 use serde::{Serialize, Deserialize};
 
-#[derive(Deserialize, Serialize)]
+#[derive(Clone, Deserialize, Serialize)]
 pub struct Sort {
     property: String,
     direction: String

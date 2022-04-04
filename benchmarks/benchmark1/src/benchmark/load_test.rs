@@ -1,6 +1,6 @@
 use goose::{GooseAttack, GooseError, GooseScheduler};
 use goose::config::{GooseDefault, GooseDefaultType};
-use crate::benchmark::tasksets::{logic, visitor};
+use crate::benchmark::tasksets::{critical, logic, visitor};
 
 pub async fn launch()  -> Result<(), GooseError> {
     let mut attack = GooseAttack::initialize()?;
@@ -34,6 +34,7 @@ fn set_defaults(attack: GooseAttack) -> Result<GooseAttack, GooseError> {
 
 fn register_tasksets(attack: GooseAttack) -> GooseAttack {
      attack
-         .register_taskset(logic::taskset())
+         .register_taskset(critical::taskset())
          .register_taskset(visitor::taskset())
+         .register_taskset(logic::taskset())
 }

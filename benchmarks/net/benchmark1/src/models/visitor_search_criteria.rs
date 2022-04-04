@@ -1,12 +1,19 @@
 use serde::{Serialize, Deserialize};
 use crate::models::pageable::Pageable;
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Clone, Serialize)]
+#[serde(rename_all="camelCase")]
 pub struct VisitorSearchCriteria {
-    pub pageable: Pageable,
     pub username: Option<String>,
-    pub password: Option<String>
+    pub name: Option<String>,
+    pub phone_number: Option<String>,
+    pub password: Option<String>,
+    pub accepted_commercial: Option<bool>,
+    pub accepted_terms: Option<bool>,
+    pub user_type: Option<bool>,
+    pub pageable: Pageable,
 }
+
 
 impl VisitorSearchCriteria {
     pub fn generate_test_search_criteria(
@@ -16,12 +23,17 @@ impl VisitorSearchCriteria {
     ) -> VisitorSearchCriteria {
         VisitorSearchCriteria {
             pageable: Pageable {
-                pageSize: page_size,
-                pageNumber: 0,
+                page_size,
+                page_number: 0,
                 sort: Some(vec![])
             },
             username,
-            password
+            name: None,
+            phone_number: None,
+            password,
+            accepted_commercial: None,
+            accepted_terms: None,
+            user_type: None
         }
     }
 }

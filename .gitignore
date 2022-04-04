@@ -89,3 +89,7 @@ target/
 python/venv/
 *.pyc
 *.pyo
+benchmarks/benchmark2/.idea/vcs.xml
+benchmarks/benchmark2/.idea/vcs.xml
+benchmarks/benchmark2/.idea/vcs.xml
+benchmarks/benchmark1/.idea/vcs.xml
