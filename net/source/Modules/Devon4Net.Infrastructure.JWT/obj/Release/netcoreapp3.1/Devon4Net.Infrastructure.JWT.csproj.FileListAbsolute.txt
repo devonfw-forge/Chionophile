@@ -1,0 +1,13 @@
+C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.JWT\bin\Release\netcoreapp3.1\Devon4Net.Infrastructure.JWT.deps.json
+C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.JWT\bin\Release\netcoreapp3.1\Devon4Net.Infrastructure.JWT.dll
+C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.JWT\bin\Release\netcoreapp3.1\Devon4Net.Infrastructure.JWT.pdb
+C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.JWT\bin\Release\netcoreapp3.1\Devon4Net.Infrastructure.Common.dll
+C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.JWT\bin\Release\netcoreapp3.1\Devon4Net.Infrastructure.Common.pdb
+C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.JWT\obj\Release\netcoreapp3.1\Devon4Net.Infrastructure.JWT.csproj.AssemblyReference.cache
+C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.JWT\obj\Release\netcoreapp3.1\Devon4Net.Infrastructure.JWT.GeneratedMSBuildEditorConfig.editorconfig
+C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.JWT\obj\Release\netcoreapp3.1\Devon4Net.Infrastructure.JWT.AssemblyInfoInputs.cache
+C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.JWT\obj\Release\netcoreapp3.1\Devon4Net.Infrastructure.JWT.AssemblyInfo.cs
+C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.JWT\obj\Release\netcoreapp3.1\Devon4Net.Infrastructure.JWT.csproj.CoreCompileInputs.cache
+C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.JWT\obj\Release\netcoreapp3.1\Devon4Net.Infrastructure.JWT.csproj.CopyComplete
+C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.JWT\obj\Release\netcoreapp3.1\Devon4Net.Infrastructure.JWT.dll
+C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.JWT\obj\Release\netcoreapp3.1\Devon4Net.Infrastructure.JWT.pdb

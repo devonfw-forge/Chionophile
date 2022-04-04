@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Devon4Net.WebAPI.Implementation</name>
+    </assembly>
+    <members>
+        <member name="T:Devon4Net.WebAPI.Implementation.Configure.DevonConfiguration">
+            <summary>
+            DevonConfiguration
+            </summary>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Configure.DevonConfiguration.SetupDevonDependencyInjection(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Sets up the service dependency injection
+            For example:
+            services.AddTransient"ITodoService, TodoService"();
+            services.AddTransient"ITodoRepository, TodoRepository"();
+            Put your DI declarations here
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Configure.DevonConfiguration.SetupDatabase(Microsoft.Extensions.DependencyInjection.IServiceCollection@,Microsoft.Extensions.Configuration.IConfiguration@)">
+            <summary>
+            Setup here your database connections.
+            To use RabbitMq message backup declare the 'RabbitMqBackupContext' database setup
+            PE: services.SetupDatabase&lt;RabbitMqBackupContext&gt;($"Data Source={FileOperations.GetFileFullPath("RabbitMqBackupSqLite.db")}", DatabaseType.Sqlite);
+            Please add the connection strings to enable the backup messaging for MediatR abd RabbitMq using MediatRBackupContext and RabbitMqBackupContext
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+        </member>
+    </members>
+</doc>
