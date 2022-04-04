@@ -11,11 +11,17 @@ Cargo.lock
 
 rust_template/target
 rust_template/.idea
-benchmarks/benchmark1/goose-error.log
-benchmarks/benchmark2/goose-error.log
-benchmarks/benchmark1/report.html
-benchmarks/benchmark2/report.html
+benchmark/goose-error.log
+benchmark/report.html
 node/yarn.lock
+benchmarks/benchmark1/target
+benchmarks/benchmark2/target
+benchmarks/benchmark2/.idea
+benchmarks/benchmark2/.idea
+benchmarks/net/benchmark1/target
+benchmarks/net/benchmark2/target
+benchmarks/net/benchmark2/.idea
+benchmarks/net/benchmark2/.idea
 
 
 # PYTHON:
