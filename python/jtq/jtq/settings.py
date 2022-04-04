@@ -32,7 +32,6 @@ ALLOWED_HOSTS = [ '*' ]
 
 INSTALLED_APPS = [
     'jtq',
-    'jtq_rest',
     'rest_framework',
     'django.contrib.auth',
     'django.contrib.contenttypes',

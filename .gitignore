@@ -80,3 +80,6 @@ db.sqlite3-journal
 # PyBuilder
 .pybuilder/
 target/
+python/venv/
+*.pyc
+*.pyo
