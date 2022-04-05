@@ -1,10 +1,4 @@
-from copy import error
-from django.http import request
-from django.http.response import HttpResponseNotAllowed
-from django.views.decorators.csrf import csrf_exempt
-from rest_framework import serializers, views, generics
-from rest_framework.response import Response
-from http import HTTPStatus
+from rest_framework import generics
 import json
 
 from visitor_management.models import Visitor
@@ -34,8 +28,6 @@ class VisitorListView(generics.ListAPIView):
             visitors = visitors.order_by(**pageable['sort'])
         pgN = int(pageable['pageNumber'])
         pgS = int(pageable['pageSize'])
-        print(pgN*pgS)
-        print((1+pgN)*pgS)
         visitors = visitors[pgN*pgS : (1+pgN)*pgS]
         return visitors
 
