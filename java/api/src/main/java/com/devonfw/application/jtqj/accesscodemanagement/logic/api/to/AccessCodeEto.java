@@ -12,8 +12,6 @@ public class AccessCodeEto extends AbstractEto implements AccessCode {
 
   private static final long serialVersionUID = 1L;
 
-  private String ticketNumber;
-
   private Timestamp creationTime;
 
   private Timestamp startTime;
@@ -23,18 +21,6 @@ public class AccessCodeEto extends AbstractEto implements AccessCode {
   private Long visitorId;
 
   private Long queueId;
-
-  @Override
-  public String getTicketNumber() {
-
-    return this.ticketNumber;
-  }
-
-  @Override
-  public void setTicketNumber(String ticketNumber) {
-
-    this.ticketNumber = ticketNumber;
-  }
 
   @Override
   public Timestamp getCreationTime() {
@@ -101,7 +87,6 @@ public class AccessCodeEto extends AbstractEto implements AccessCode {
 
     final int prime = 31;
     int result = super.hashCode();
-    result = prime * result + ((this.ticketNumber == null) ? 0 : this.ticketNumber.hashCode());
     result = prime * result + ((this.creationTime == null) ? 0 : this.creationTime.hashCode());
     result = prime * result + ((this.startTime == null) ? 0 : this.startTime.hashCode());
     result = prime * result + ((this.endTime == null) ? 0 : this.endTime.hashCode());
@@ -126,13 +111,6 @@ public class AccessCodeEto extends AbstractEto implements AccessCode {
       return false;
     }
     AccessCodeEto other = (AccessCodeEto) obj;
-    if (this.ticketNumber == null) {
-      if (other.ticketNumber != null) {
-        return false;
-      }
-    } else if (!this.ticketNumber.equals(other.ticketNumber)) {
-      return false;
-    }
     if (this.creationTime == null) {
       if (other.creationTime != null) {
         return false;

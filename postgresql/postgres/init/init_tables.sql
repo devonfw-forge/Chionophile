@@ -28,7 +28,6 @@ CREATE TABLE IF NOT EXISTS DailyQueue(
 CREATE TABLE IF NOT EXISTS AccessCode(
   id BIGSERIAL NOT NULL,
   modificationCounter INTEGER NOT NULL,
-  ticketNumber VARCHAR(5),
   creationTime TIMESTAMP,
   startTime TIMESTAMP,
   endTime TIMESTAMP,
@@ -52,15 +51,15 @@ INSERT INTO Visitor (modificationCounter, username, name, password, phoneNumber,
 
 INSERT INTO DailyQueue (modificationCounter, name, logo, currentNumber, attentionTime, minAttentionTime, active) VALUES ( 1, 'Day2', 'C:/logos/Day1Logo.png', 'Q001', NULL, '1970-01-01 00:01:00', TRUE) ON CONFLICT DO NOTHING;
 
-INSERT INTO AccessCode (modificationCounter, ticketNumber, creationTime, startTime, endTime, idVisitor, idQueue) VALUES ( 1, 'Q001', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, NULL, 1, 1) ON CONFLICT DO NOTHING;
-INSERT INTO AccessCode (modificationCounter, ticketNumber, creationTime, startTime, endTime, idVisitor, idQueue) VALUES ( 1, 'Q002', CURRENT_TIMESTAMP, '2008-01-01 00:00:01', NULL, 2, 1) ON CONFLICT DO NOTHING;
-INSERT INTO AccessCode (modificationCounter, ticketNumber, creationTime, startTime, endTime, idVisitor, idQueue) VALUES ( 1, 'Q003', CURRENT_TIMESTAMP, '2008-01-01 00:00:01', NULL, 3, 1) ON CONFLICT DO NOTHING;
-INSERT INTO AccessCode (modificationCounter, ticketNumber, creationTime, startTime, endTime, idVisitor, idQueue) VALUES ( 1, 'Q004', CURRENT_TIMESTAMP, '2008-01-01 00:00:01', NULL, 4, 1) ON CONFLICT DO NOTHING;
-INSERT INTO AccessCode (modificationCounter, ticketNumber, creationTime, startTime, endTime, idVisitor, idQueue) VALUES ( 1, 'Q005', CURRENT_TIMESTAMP, '2008-01-01 00:00:01', NULL, 5, 1) ON CONFLICT DO NOTHING;
-INSERT INTO AccessCode (modificationCounter, ticketNumber, creationTime, startTime, endTime, idVisitor, idQueue) VALUES ( 1, 'Q006', CURRENT_TIMESTAMP, '2008-01-01 00:00:01', NULL, 6, 1) ON CONFLICT DO NOTHING;
-INSERT INTO AccessCode (modificationCounter, ticketNumber, creationTime, startTime, endTime, idVisitor, idQueue) VALUES ( 1, 'Q007', CURRENT_TIMESTAMP, '2008-01-01 00:00:01', NULL, 7, 1) ON CONFLICT DO NOTHING;
-INSERT INTO AccessCode (modificationCounter, ticketNumber, creationTime, startTime, endTime, idVisitor, idQueue) VALUES ( 1, 'Q008', CURRENT_TIMESTAMP, '2008-01-01 00:00:01', NULL, 8, 1) ON CONFLICT DO NOTHING;
-INSERT INTO AccessCode (modificationCounter, ticketNumber, creationTime, startTime, endTime, idVisitor, idQueue) VALUES ( 1, 'Q009', CURRENT_TIMESTAMP, '2008-01-01 00:00:01', NULL, 9, 1) ON CONFLICT DO NOTHING;
+INSERT INTO AccessCode (modificationCounter, creationTime, startTime, endTime, idVisitor, idQueue) VALUES ( 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, NULL, 1, 1) ON CONFLICT DO NOTHING;
+INSERT INTO AccessCode (modificationCounter, creationTime, startTime, endTime, idVisitor, idQueue) VALUES ( 1, CURRENT_TIMESTAMP, '2008-01-01 00:00:01', NULL, 2, 1) ON CONFLICT DO NOTHING;
+INSERT INTO AccessCode (modificationCounter, creationTime, startTime, endTime, idVisitor, idQueue) VALUES ( 1, CURRENT_TIMESTAMP, '2008-01-01 00:00:01', NULL, 3, 1) ON CONFLICT DO NOTHING;
+INSERT INTO AccessCode (modificationCounter, creationTime, startTime, endTime, idVisitor, idQueue) VALUES ( 1, CURRENT_TIMESTAMP, '2008-01-01 00:00:01', NULL, 4, 1) ON CONFLICT DO NOTHING;
+INSERT INTO AccessCode (modificationCounter, creationTime, startTime, endTime, idVisitor, idQueue) VALUES ( 1, CURRENT_TIMESTAMP, '2008-01-01 00:00:01', NULL, 5, 1) ON CONFLICT DO NOTHING;
+INSERT INTO AccessCode (modificationCounter, creationTime, startTime, endTime, idVisitor, idQueue) VALUES ( 1, CURRENT_TIMESTAMP, '2008-01-01 00:00:01', NULL, 6, 1) ON CONFLICT DO NOTHING;
+INSERT INTO AccessCode (modificationCounter, creationTime, startTime, endTime, idVisitor, idQueue) VALUES ( 1, CURRENT_TIMESTAMP, '2008-01-01 00:00:01', NULL, 7, 1) ON CONFLICT DO NOTHING;
+INSERT INTO AccessCode (modificationCounter, creationTime, startTime, endTime, idVisitor, idQueue) VALUES ( 1, CURRENT_TIMESTAMP, '2008-01-01 00:00:01', NULL, 8, 1) ON CONFLICT DO NOTHING;
+INSERT INTO AccessCode (modificationCounter, creationTime, startTime, endTime, idVisitor, idQueue) VALUES ( 1, CURRENT_TIMESTAMP, '2008-01-01 00:00:01', NULL, 9, 1) ON CONFLICT DO NOTHING;
 
 ALTER TABLE Visitor OWNER TO jtq_user;
 ALTER TABLE DailyQueue OWNER TO jtq_user;

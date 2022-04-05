@@ -7,18 +7,6 @@ import com.devonfw.application.jtqj.general.common.api.ApplicationEntity;
 public interface AccessCode extends ApplicationEntity {
 
   /**
-   * @return ticketNumberId
-   */
-
-  public String getTicketNumber();
-
-  /**
-   * @param ticketNumber setter for ticketNumber attribute
-   */
-
-  public void setTicketNumber(String ticketNumber);
-
-  /**
    * @return creationTimeId
    */
 

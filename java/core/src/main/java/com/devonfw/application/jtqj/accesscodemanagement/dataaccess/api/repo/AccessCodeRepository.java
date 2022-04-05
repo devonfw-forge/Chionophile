@@ -31,10 +31,6 @@ public interface AccessCodeRepository extends DefaultRepository<AccessCodeEntity
     AccessCodeEntity alias = newDslAlias();
     JPAQuery<AccessCodeEntity> query = newDslQuery(alias);
 
-    String ticketNumber = criteria.getTicketNumber();
-    if (ticketNumber != null && !ticketNumber.isEmpty()) {
-      QueryUtil.get().whereString(query, $(alias.getTicketNumber()), ticketNumber, criteria.getTicketNumberOption());
-    }
     Timestamp creationTime = criteria.getCreationTime();
     if (creationTime != null) {
       query.where($(alias.getCreationTime()).eq(creationTime));
@@ -78,13 +74,6 @@ public interface AccessCodeRepository extends DefaultRepository<AccessCodeEntity
       while (it.hasNext()) {
         Order next = it.next();
         switch (next.getProperty()) {
-          case "ticketNumber":
-            if (next.isAscending()) {
-              query.orderBy($(alias.getTicketNumber()).asc());
-            } else {
-              query.orderBy($(alias.getTicketNumber()).desc());
-            }
-            break;
           case "creationTime":
             if (next.isAscending()) {
               query.orderBy($(alias.getCreationTime()).asc());
