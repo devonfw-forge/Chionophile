@@ -20,12 +20,23 @@ function Wait-MyProcess {
 
 function Start-Benchmark {
     Write-Host ("Launching Benchmarks... ")
-    Write-Host ("This will take 10 minutes!")
+    Write-Host ("This will take more than 10 minutes!")
     Write-Host ("Launching First Benchmark... ")
     Start-Process -Wait launch_benchmark1.sh
     Write-Host ("First Benchmark finished")
     Write-Host ("Launching Second Benchmark... ")
     Start-Process -Wait launch_benchmark2.sh
+    Write-Host ("Second Benchmark finished")
+}
+
+function Start-NETBenchmark {
+    Write-Host ("Launching .NET Benchmarks... ")
+    Write-Host ("This will take more than 10 minutes!")
+    Write-Host ("Launching First Benchmark... ")
+    Start-Process -Wait launch_net_benchmark1.sh
+    Write-Host ("First Benchmark finished")
+    Write-Host ("Launching Second Benchmark... ")
+    Start-Process -Wait launch_net_benchmark2.sh
     Write-Host ("Second Benchmark finished")
 }
 
@@ -50,7 +61,12 @@ function Start-Backend() {
     Write-Host ($name+" running with PID: "+$process.Id+"`r`n")
     Write-Host ("Waiting 2 minutes before testing...`r`n")
     Start-Sleep -s (2*60)
-    Start-Benchmark
+    if ( $name.Contains("NET") ) {
+        Start-NETBenchmark
+    }
+    else {
+        Start-Benchmark
+    }
     Write-Host ("`r`nKilling "+$name+" and Postgres...")
     Taskkill /PID $process.Id /F *> $null
     Start-Process -Wait close_postgres.sh
@@ -62,6 +78,8 @@ function Start-Processes{
         # Checking benchmark before execution:
         Set-Location ../benchmarks/benchmark1; cargo build --release
         Set-Location ../benchmark2; cargo build --release 
+        Set-Location ../net_benchmark1; cargo build --release 
+        Set-Location ../net_benchmark2; cargo build --release 
         Set-Location ../../deployment
 
         Write-Host "`r`nChecking idle"
@@ -81,6 +99,16 @@ function Start-Processes{
         Start-Sleep -s (5*60);
 
         Start-Backend -p_bash "launch_node.sh" -name "JTQ Node"
+
+        Write-Host ("Waiting 5 minutes...`r`n")
+        Start-Sleep -s (5*60);
+        
+        Start-Backend -p_bash "launch_net.sh" -name "JTQ .NET"
+        
+        Write-Host ("Waiting 5 minutes...`r`n")
+        Start-Sleep -s (5*60);
+        
+        Start-Backend -p_bash "launch_python.sh" -name "JTQ Python"
     } 
     catch { 
         Write-Host ("`r`nProcess terminated"); Pause; Exit 
