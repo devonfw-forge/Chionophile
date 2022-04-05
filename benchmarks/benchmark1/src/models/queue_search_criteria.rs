@@ -26,7 +26,7 @@ impl QueueSearchCriteria {
            pageable: Pageable {
                page_size,
                page_number: 0,
-               sort: None
+               sort: Some(vec![])
            }
        }
    } 
