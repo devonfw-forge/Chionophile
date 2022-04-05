@@ -1,17 +1,17 @@
 from django.urls import path
-import visitor_management.views as visitor_views
+import access_code_management.views as access_code_views
 
 urlpatterns = [
     path(
         '', 
-        visitor_views.VisitorDetailView.as_view()
+        access_code_views.getAccessCodeByVisitorQueue
     ),
     path(
         '<int:pk>', 
-        visitor_views.VisitorDetailView.as_view()
+        access_code_views.AccessCodeDetailView.as_view()
     ),
     path(
-        'search', 
-        visitor_views.VisitorListView.as_view()
+        'cto/search', 
+        access_code_views.searchAccessCode
     ),
 ]
