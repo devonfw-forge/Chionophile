@@ -40,10 +40,11 @@ public class UcFindAccessCodeImpl extends AbstractAccessCodeUc implements UcFind
     LOG.debug("Get AccessCodeCto with id {} from database.", id);
     AccessCodeEntity entity = getAccessCodeRepository().find(id);
     AccessCodeCto cto = new AccessCodeCto();
-    cto.setAccessCode(getBeanMapper().map(entity, AccessCodeEto.class));
+    AccessCodeEto acEto = getBeanMapper().map(entity, AccessCodeEto.class);
+    acEto.setTicketNumber(generateTicketCode(acEto.getId().intValue()));
+    cto.setAccessCode(acEto);
     cto.setVisitor(getBeanMapper().map(entity.getVisitor(), VisitorEto.class));
     cto.setQueue(getBeanMapper().map(entity.getQueue(), QueueEto.class));
-
     return cto;
   }
 
@@ -54,7 +55,9 @@ public class UcFindAccessCodeImpl extends AbstractAccessCodeUc implements UcFind
     List<AccessCodeCto> ctos = new ArrayList<>();
     for (AccessCodeEntity entity : accesscodes.getContent()) {
       AccessCodeCto cto = new AccessCodeCto();
-      cto.setAccessCode(getBeanMapper().map(entity, AccessCodeEto.class));
+      AccessCodeEto acEto = getBeanMapper().map(entity, AccessCodeEto.class);
+      acEto.setTicketNumber(generateTicketCode(acEto.getId().intValue()));
+      cto.setAccessCode(acEto);
       cto.setVisitor(getBeanMapper().map(entity.getVisitor(), VisitorEto.class));
       cto.setQueue(getBeanMapper().map(entity.getQueue(), QueueEto.class));
       ctos.add(cto);
@@ -70,6 +73,30 @@ public class UcFindAccessCodeImpl extends AbstractAccessCodeUc implements UcFind
     Page<AccessCodeEntity> accessCodes = getAccessCodeRepository().findByCriteria(criteria);
 
     return mapPaginatedEntityList(accessCodes, AccessCodeEto.class);
+  }
+
+  /**
+   * Generates a new ticked code using the ticket digit of the last codeaccess created.
+   *
+   * @param lastTicketDigit the int of the last codeaccess created.
+   * @return the String with the new ticket code (example: 'Q005').
+   */
+  public static String generateTicketCode(int lastTicketDigit) {
+
+    int newTicketDigit = lastTicketDigit;
+    String newTicketCode = "";
+    if (newTicketDigit == 1000) {
+      newTicketCode = "Q000";
+    } else {
+      StringBuilder stringBuilder = new StringBuilder();
+      stringBuilder.append(newTicketDigit);
+      while (stringBuilder.length() < 3) {
+        stringBuilder.insert(0, "0");
+      }
+      stringBuilder.insert(0, "Q");
+      newTicketCode = stringBuilder.toString();
+    }
+    return newTicketCode;
   }
 
 }

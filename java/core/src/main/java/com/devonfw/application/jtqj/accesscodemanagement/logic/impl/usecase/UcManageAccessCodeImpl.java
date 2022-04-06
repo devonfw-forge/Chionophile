@@ -81,30 +81,6 @@ public class UcManageAccessCodeImpl extends AbstractAccessCodeUc implements UcMa
     return getBeanMapper().map(accessCodeEntitySaved, AccessCodeEto.class);
   }
 
-  /**
-   * Generates a new ticked code using the ticket digit of the last codeaccess created.
-   *
-   * @param lastTicketDigit the int of the last codeaccess created.
-   * @return the String with the new ticket code (example: 'Q005').
-   */
-  public String generateTicketCode(int lastTicketDigit) {
-
-    int newTicketDigit = lastTicketDigit;
-    String newTicketCode = "";
-    if (newTicketDigit == 1000) {
-      newTicketCode = "Q000";
-    } else {
-      StringBuilder stringBuilder = new StringBuilder();
-      stringBuilder.append(newTicketDigit);
-      while (stringBuilder.length() < 3) {
-        stringBuilder.insert(0, "0");
-      }
-      stringBuilder.insert(0, "Q");
-      newTicketCode = stringBuilder.toString();
-    }
-    return newTicketCode;
-  }
-
   public Queuemanagement getQueuemanagement() {
 
     return this.queuemanagement;
