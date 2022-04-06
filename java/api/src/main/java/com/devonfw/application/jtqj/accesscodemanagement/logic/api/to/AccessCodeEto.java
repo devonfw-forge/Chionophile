@@ -12,6 +12,8 @@ public class AccessCodeEto extends AbstractEto implements AccessCode {
 
   private static final long serialVersionUID = 1L;
 
+  private String ticketNumber;
+
   private Timestamp creationTime;
 
   private Timestamp startTime;
@@ -21,6 +23,16 @@ public class AccessCodeEto extends AbstractEto implements AccessCode {
   private Long visitorId;
 
   private Long queueId;
+
+  public String getTicketNumber() {
+
+    return this.ticketNumber;
+  }
+
+  public void setTicketNumber(String tN) {
+
+    this.ticketNumber = tN;
+  }
 
   @Override
   public Timestamp getCreationTime() {
