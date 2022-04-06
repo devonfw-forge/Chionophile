@@ -95,3 +95,10 @@ benchmarks/benchmark2/.idea/vcs.xml
 benchmarks/benchmark1/.idea/vcs.xml
 benchmarks/net/benchmark1/.idea/workspace.xml
 benchmarks/benchmark1/.idea/workspace.xml
+/python/jtq/access_code_management/__pycache__
+/python/jtq/jtq/__pycache__
+/python/jtq/access_code_management/migrations
+/python/jtq/queue_management/__pycache__
+/python/jtq/queue_management/migrations
+/python/jtq/visitor_management/__pycache__
+/python/jtq/visitor_management/migrations
