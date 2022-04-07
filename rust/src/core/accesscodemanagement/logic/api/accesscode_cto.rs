@@ -6,7 +6,7 @@ use crate::core::queuemanagement::logic::api::queue_eto::QueueEto;
 use crate::core::visitormanagement::dataaccess::api::visitor::Visitor;
 use crate::core::visitormanagement::logic::api::visitor_eto::VisitorEto;
 
-#[derive(Serialize)]
+#[derive(Serialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct AccessCodeCto {
     pub access_code: AccessCodeEto,

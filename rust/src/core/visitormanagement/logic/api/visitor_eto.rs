@@ -3,7 +3,7 @@ use validator::Validate;
 use crate::api::common::logic::api::eto::EntityETO;
 use crate::api::common::rest::api::saveable::Saveable;
 
-#[derive(Deserialize, Serialize, Validate)]
+#[derive(Deserialize, Serialize, Validate, Clone)]
 #[serde(rename_all="camelCase")]
 pub struct VisitorEto {
     pub id: Option<i64>,

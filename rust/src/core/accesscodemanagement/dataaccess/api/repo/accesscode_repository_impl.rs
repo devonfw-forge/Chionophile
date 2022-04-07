@@ -46,9 +46,6 @@ impl AccessCodeRepository<i64, AccessCode, NewAccessCode, AccessCodeSearchCriter
             .inner_join(dailyqueue::table.on(dailyqueue::id.eq(accesscode::queue_id)))
             .into_boxed::<DbType>();
 
-        if let Some(ticket_number) = criteria.ticket_number {
-            query = query.filter(accesscode::ticket_number.eq(ticket_number));
-        }
         if let Some(creation_time) = criteria.creation_time {
             query = query.filter(accesscode::creation_time.eq(creation_time));
         }
@@ -99,9 +96,6 @@ impl Repository<i64, AccessCode, NewAccessCode, AccessCodeSearchCriteria, access
 
         let mut query = accesscode::table.into_boxed::<DbType>();
 
-        if let Some(ticket_number) = criteria.ticket_number {
-            query = query.filter(accesscode::ticket_number.eq(ticket_number));
-        }
         if let Some(creation_time) = criteria.creation_time {
             query = query.filter(accesscode::creation_time.eq(creation_time));
         }
