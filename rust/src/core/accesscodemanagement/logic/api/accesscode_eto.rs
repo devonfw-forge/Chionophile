@@ -2,7 +2,7 @@ use chrono::NaiveDateTime;
 use serde::{Serialize, Deserialize};
 use crate::api::common::logic::api::eto::EntityETO;
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 #[serde(rename_all="camelCase")]
 pub struct AccessCodeEto {
     pub id: Option<i64>,

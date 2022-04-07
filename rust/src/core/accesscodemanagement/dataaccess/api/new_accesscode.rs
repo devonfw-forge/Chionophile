@@ -7,7 +7,6 @@ use crate::core::general::database::schema::accesscode;
 #[table_name="accesscode"]
 pub struct NewAccessCode {
     pub modification_counter: i32,
-    pub ticket_number: Option<String>,
     pub creation_time: Option<NaiveDateTime>,
     pub start_time: Option<NaiveDateTime>,
     pub end_time: Option<NaiveDateTime>,
@@ -21,7 +20,6 @@ impl From<AccessCodeEto> for NewAccessCode {
     fn from(accesscode_eto: AccessCodeEto) -> Self {
         NewAccessCode {
             modification_counter: 1,
-            ticket_number: accesscode_eto.ticket_number,
             creation_time: accesscode_eto.creation_time,
             start_time: accesscode_eto.start_time,
             end_time: accesscode_eto.end_time,

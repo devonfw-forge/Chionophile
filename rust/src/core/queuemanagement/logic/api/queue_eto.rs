@@ -3,7 +3,7 @@ use serde::{Serialize, Deserialize};
 use crate::api::common::logic::api::eto::EntityETO;
 use crate::api::common::rest::api::saveable::Saveable;
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct QueueEto {
     pub id: Option<i64>,

@@ -3,8 +3,6 @@ table! {
         id -> Int8,
         #[sql_name="modificationcounter"]
         modification_counter -> Int4,
-        #[sql_name="ticketnumber"]
-        ticket_number -> Nullable<Varchar>,
         #[sql_name="creationtime"]
         creation_time -> Nullable<Timestamp>,
         #[sql_name="starttime"]

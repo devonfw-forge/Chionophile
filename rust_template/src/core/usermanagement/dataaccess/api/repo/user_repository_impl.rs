@@ -69,13 +69,42 @@ impl Repository<i64, User, NewUser, UserSearchCriteria, users::table> for UserRe
     ) -> Result<User, DbError> {
         use crate::core::general::database::schema::users::dsl::*;
 
+        let user= new_user.clone();
+
         let user_id = diesel::insert_into(users)
             .values(new_user)
             .returning(id)
             .get_result(conn)?;
 
-        Ok(User::from_insert(user_id, new_user.clone()))
+        Ok(User::from_insert(user_id, user))
     }
+
+    /*
+        In this case the update method will only update fields with non-sensitive information.
+        The management of this type of data as well as other security concerns should be managed
+        by the development team.
+    */
+    fn update(
+        user: &User,
+        conn: &DbConn
+    ) -> Result<User, DbError> {
+
+        use crate::core::general::database::schema::users::dsl::*;
+
+        let updated_user = user.clone();
+
+        let updated_user = diesel::update(users)
+            .filter(id.eq(user.id))
+            .set((
+                name.eq(updated_user.name),
+                accepted_terms.eq(updated_user.accepted_terms),
+                accepted_commercial.eq(updated_user.accepted_commercial),
+            ))
+            .get_result(conn)?;
+
+        Ok(updated_user)
+    }
+
 
     fn delete_by_id(
         user_id: i64,

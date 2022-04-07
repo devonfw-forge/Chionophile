@@ -1,5 +1,4 @@
 use actix_web::{Error, web};
-use actix_web::error::BlockingError;
 use async_trait::async_trait;
 use validator::{Validate};
 use crate::api::common::dataaccess::api::repo::repository::Repository;
@@ -20,31 +19,25 @@ impl UcManageUser for UcManageUserImpl {
         app_state: web::Data<AppState>,
         user: UserEto
     ) -> Result<UserEto, SaveError> {
-        let result: Result<User, BlockingError<SaveError>> = web::block(move || {
+        let result : Result<User, SaveError> = web::block(move || {
             let conn = app_state.pool.get()?;
             user.validate()?;
-            let mut new_user: NewUser = NewUser::from(user);
-            let hashed_password = hash_password(&new_user.password.unwrap());
-            new_user.password = Some(hashed_password);
-            let res = UserRepositoryImpl::save(&new_user, &conn)?;
+            let res= if let Some(_) = user.id {
+                let user_entity = User::from(user);
+                UserRepositoryImpl::update(&user_entity, &conn)?
+            } else {
+                let mut new_user: NewUser = NewUser::from(user);
+                let hashed_password = hash_password(&new_user.password.unwrap());
+                new_user.password = Some(hashed_password);
+                UserRepositoryImpl::save(&new_user, &conn)?
+            };
 
             Ok(res)
-        }).await;
+        }).await?;
 
-        if let Err(result) = result {
-            match result {
-                BlockingError::Error(e) => {
-                    Err(e)
-                }
-                BlockingError::Canceled => {
-                    Err(SaveError::InternalServerError)
-                }
-            }
-        } else {
-            Ok(result.unwrap().into())
-        }
+        let user = result?;
 
-
+        Ok(user.into())
     }
 
     async fn delete_user(
@@ -54,7 +47,7 @@ impl UcManageUser for UcManageUserImpl {
         web::block(move || {
             let conn = app_state.pool.get()?;
             UserRepositoryImpl::delete_by_id(user_id, &conn)
-        }).await?;
+        }).await?.map_err(actix_web::error::ErrorInternalServerError)?;
 
         Ok(())
     }

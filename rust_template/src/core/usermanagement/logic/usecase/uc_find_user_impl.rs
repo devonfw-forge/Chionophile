@@ -20,8 +20,7 @@ impl UcFindUser for UcFindUserImpl {
         let user = web::block(move || {
             let conn = app_state.pool.get()?;
             UserRepositoryImpl::find_by_id(id, &conn)
-        })
-            .await?;
+        }).await?.map_err(actix_web::error::ErrorInternalServerError)?;
 
         if let Some(user) = user {
             Ok(Some(user.into()))
@@ -44,7 +43,7 @@ impl UcFindUser for UcFindUserImpl {
                 criteria.password = Some(hashed_password);
             }
             UserRepositoryImpl::find_by_criteria(filters, &conn)
-        }).await?;
+        }).await?.map_err(actix_web::error::ErrorInternalServerError)?;
 
         let total_elements = query_results.len() as i32;
         let paged_results = criteria.pageable.from(query_results);

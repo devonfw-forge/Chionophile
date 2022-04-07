@@ -12,7 +12,7 @@ use crate::api::common::logic::api::criteria::Criteria;
 pub trait UserRepository<ID, E, NE, C, T> : Repository<ID, E, NE, C, T>
     where
         C: Criteria,
-        E: Serialize + DeserializeOwned,
+        E: Serialize + DeserializeOwned + Insertable<T>,
         T: Table,
         NE: Insertable<T> 
 {}

@@ -40,7 +40,8 @@ impl UcFindAccessCode for UcFindAccessCodeImpl {
         }).await?;
 
         let total_elements = content.len() as i32;
-        let search_results = SearchResult::new(content, pageable, total_elements);
+        let paged_results = pageable.from(content);
+        let search_results = SearchResult::new(paged_results, pageable, total_elements);
 
         Ok(search_results)
     }
@@ -57,7 +58,8 @@ impl UcFindAccessCode for UcFindAccessCodeImpl {
         }).await?;
 
         let total_elements = content.len() as i32;
-        let result_content = content.iter()
+        let paged_results = pageable.from(content);
+        let result_content = paged_results.iter()
             .map(|accesscode| accesscode.clone().into())
             .collect();
         let search_results = SearchResult::new(result_content, pageable, total_elements);

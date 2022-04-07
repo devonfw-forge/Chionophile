@@ -15,7 +15,7 @@ use crate::core::usermanagement::logic::api::user_eto::UserEto;
     An entity uses 3 type parameters, the ID type, the insertable type if it's needed
     and the ETO.
 */
-#[derive(Debug, Clone, Serialize, Deserialize, Queryable, Identifiable, QueryableByName)]
+#[derive(Debug, Clone, Serialize, Deserialize, Queryable, Identifiable, QueryableByName, Insertable, AsChangeset)]
 #[serde(rename_all="camelCase")]
 #[table_name="users"]
 pub struct User {
@@ -41,6 +41,20 @@ impl Entity<i64, NewUser, UserEto> for User {
             password: new_user.password,
             accepted_commercial: new_user.accepted_commercial,
             accepted_terms: new_user.accepted_terms,
+        }
+    }
+}
+
+impl From<UserEto> for User {
+    fn from(user_eto: UserEto) -> Self {
+        User {
+            id: user_eto.id.unwrap(),
+            username: Option::from(user_eto.username),
+            name: Option::from(user_eto.name),
+            phone_number: Option::from(user_eto.phone_number),
+            password: Option::from(user_eto.password),
+            accepted_commercial: user_eto.accepted_commercial,
+            accepted_terms: user_eto.accepted_terms,
         }
     }
 }

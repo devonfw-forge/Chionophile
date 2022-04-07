@@ -30,8 +30,7 @@ impl CRUDRestService<i64, UserEto, UserSearchCriteria, UserEto> for UserManageme
         let search_results =
             UserManagementImpl
             ::find_users(app_state, criteria.into_inner())
-                .await
-                .map_err(actix_web::error::ErrorInternalServerError)?;
+                .await?;
 
         Ok(HttpResponse::Ok().json(search_results))
     }
@@ -45,8 +44,7 @@ impl CRUDRestService<i64, UserEto, UserSearchCriteria, UserEto> for UserManageme
         let user =
             UserManagementImpl
             ::find_user(app_state, user_id)
-                .await
-                .map_err(actix_web::error::ErrorInternalServerError)?;
+                .await?;
 
         if let Some(user) = user {
             Ok(HttpResponse::Ok().json(user))
@@ -75,9 +73,7 @@ impl CRUDRestService<i64, UserEto, UserSearchCriteria, UserEto> for UserManageme
                     SaveError::ValidationErrors(validation_errors) => {
                         Ok(HttpResponse::BadRequest().json(validation_errors))
                     }
-                    SaveError::DbError(_)
-                    | SaveError::ConnectionError(_)
-                    | SaveError::InternalServerError => {
+                    SaveError::InternalServerError => {
                         Ok(HttpResponse::InternalServerError().finish())
                     }
                 }
@@ -92,8 +88,7 @@ impl CRUDRestService<i64, UserEto, UserSearchCriteria, UserEto> for UserManageme
     ) -> Result<HttpResponse, Error> {
         UserManagementImpl::
         delete_user(app_state, id.into_inner())
-            .await
-            .map_err(actix_web::error::ErrorInternalServerError)?;
+            .await?;
 
         Ok(HttpResponse::Ok().finish())
     }
