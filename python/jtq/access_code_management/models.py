@@ -8,7 +8,6 @@ class AccessCode(models.Model):
 
     id = models.AutoField(primary_key=True)
     modificationCounter = models.IntegerField(db_column="modificationcounter", default=1)
-    ticketNumber = models.TextField(db_column="ticketnumber", default="1")
     creationTime = models.DateTimeField(auto_now_add=True, db_column="creationtime")
     startTime = models.DateTimeField(db_column="starttime")
     endTime = models.DateTimeField(db_column="endtime")

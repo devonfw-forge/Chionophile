@@ -8,12 +8,12 @@ urlpatterns = [
         name="visitors_detail"
     ),
     path(
-        '<int:pk>', 
+        '<int:pk>/', 
         visitor_views.VisitorDetailView.as_view(),
         name="visitors_detail_create"
     ),
     path(
-        'search', 
+        'search/', 
         visitor_views.VisitorListView.as_view(),
         name="visitors_search"
     ),

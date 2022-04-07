@@ -7,11 +7,31 @@ class VisitorDetailView(generics.CreateAPIView, generics.RetrieveAPIView, generi
     queryset = Visitor.objects.all()
     serializer_class = VisitorSerializer
 
+    def create(self, request, *args, **kwargs):
+        response = super().create(request, *args, **kwargs)
+        return Response(response.data, status=status.HTTP_200_OK)
+
+    def retrieve(self, request, *args, **kwargs):
+        try:
+            response = super().retrieve(request, *args, **kwargs)
+            return Response(response.data, status=status.HTTP_200_OK)
+        except:
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+    def destroy(self, request, pk, *args, **kwargs):
+        try:
+            response = super().destroy(request, *args, **kwargs)
+            return Response(pk, status=status.HTTP_200_OK)
+        except:
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
 class VisitorListView(generics.ListAPIView):
     serializer_class = VisitorSerializer
 
     def post(self, request, *args, **kwargs):
         pageable = self.request.data['pageable']
+        pageable["pageNumber"] = int(pageable["pageNumber"])
+        pageable["pageSize"] = int(pageable["pageSize"])
         visitors = None
         if 'username' in self.request.data:
             user_name = self.request.data['username']

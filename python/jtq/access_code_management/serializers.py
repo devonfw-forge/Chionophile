@@ -2,6 +2,9 @@ from email.policy import default
 from rest_framework import serializers
 from access_code_management.models import AccessCode
 
+def generate_code(number):
+        return "Q{}".format(str(number).zfill(3))
+
 class AccessCodeSerializerCTO(serializers.ModelSerializer):
     class Meta:
         model = AccessCode
@@ -13,7 +16,7 @@ class AccessCodeSerializerCTO(serializers.ModelSerializer):
         accessCode = {
                         'modificationCounter': data['modificationCounter'],
                         'id': data['id'],
-                        'ticketNumber': data['ticketNumber'],
+                        'ticketNumber': generate_code(data['id']),
                         'creationTime': data['creationTime'],
                         'starTime': data['startTime'],
                         'visitorId': data['visitorId']['id'],
@@ -25,7 +28,13 @@ class AccessCodeSerializerCTO(serializers.ModelSerializer):
                 'queue': data['queueId'] 
             }
 
+
 class AccessCodeSerializerETO(serializers.ModelSerializer):
+    ticketNumber = serializers.SerializerMethodField()
+
     class Meta:
         model = AccessCode
-        fields = ["modificationCounter", "id", "ticketNumber", "creationTime", "visitorId", "queueId"]
+        fields = ["modificationCounter", "id", "creationTime", "visitorId", "queueId", "ticketNumber"]
+
+    def get_ticketNumber(self, data):
+        return generate_code(data.id)
