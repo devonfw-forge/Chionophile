@@ -1,9 +1,9 @@
-import { AccessCode } from '../model/entities/accessCode.entity';
 import { Queue } from '../../queue/model/entities/queue.entity';
-import { VisitorResponseDTO } from '../../visitor/dto/visitorResponseDto';
+import { Visitor } from 'src/app/visitor/model/entities/visitor.entity';
+import { AccessCodeResponse } from './accessCodeResponse';
 
 export class ComposedCTO {
-  accessCode: AccessCode;
+  accessCode: AccessCodeResponse;
   queue: Queue;
-  visitor: VisitorResponseDTO;
+  visitor: Visitor;
 }

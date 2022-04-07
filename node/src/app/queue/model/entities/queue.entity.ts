@@ -1,6 +1,7 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { CrudValidationGroups } from '@nestjsx/crud';
 import { IsDefined, IsOptional, MaxLength } from 'class-validator';
+import { AccessCode } from 'src/app/accesscode/model/entities/accessCode.entity';
 
 @Entity({ name: 'dailyqueue' })
 export class Queue {
@@ -45,5 +46,6 @@ export class Queue {
   @Column('bool', { nullable: true })
   active?: boolean;
 
-  accesscode: any;
+  @OneToMany(() => AccessCode, (accessCode) => accessCode.queue)
+  accessCodes: AccessCode[];
 }

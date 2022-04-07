@@ -12,7 +12,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
-import javax.validation.constraints.Size;
 
 import com.devonfw.application.jtqj.accesscodemanagement.common.api.AccessCode;
 import com.devonfw.application.jtqj.general.dataaccess.api.ApplicationPersistenceEntity;
@@ -22,9 +21,6 @@ import com.devonfw.application.jtqj.visitormanagement.dataaccess.api.VisitorEnti
 @Entity
 @Table(name = "AccessCode")
 public class AccessCodeEntity extends ApplicationPersistenceEntity implements AccessCode {
-
-  @Size(min = 2, max = 5)
-  private String ticketNumber;
 
   @Temporal(TemporalType.TIMESTAMP)
   private Timestamp creationTime;
@@ -42,32 +38,18 @@ public class AccessCodeEntity extends ApplicationPersistenceEntity implements Ac
   private static final long serialVersionUID = 1L;
 
   /**
-   * @return the ticketNumber
-   */
-  public String getTicketNumber() {
-
-    return ticketNumber;
-  }
-
-  /**
-   * @param ticketNumber the ticketNumber to set
-   */
-  public void setTicketNumber(String ticketNumber) {
-
-    this.ticketNumber = ticketNumber;
-  }
-
-  /**
    * @return the creationTime
    */
+  @Override
   public Timestamp getCreationTime() {
 
-    return creationTime;
+    return this.creationTime;
   }
 
   /**
    * @param creationTime the creationTime to set
    */
+  @Override
   public void setCreationTime(Timestamp creationTime) {
 
     this.creationTime = creationTime;
@@ -76,14 +58,16 @@ public class AccessCodeEntity extends ApplicationPersistenceEntity implements Ac
   /**
    * @return the startTime
    */
+  @Override
   public Timestamp getStartTime() {
 
-    return startTime;
+    return this.startTime;
   }
 
   /**
    * @param startTime the startTime to set
    */
+  @Override
   public void setStartTime(Timestamp startTime) {
 
     this.startTime = startTime;
@@ -92,14 +76,16 @@ public class AccessCodeEntity extends ApplicationPersistenceEntity implements Ac
   /**
    * @return the endTime
    */
+  @Override
   public Timestamp getEndTime() {
 
-    return endTime;
+    return this.endTime;
   }
 
   /**
    * @param endTime the endTime to set
    */
+  @Override
   public void setEndTime(Timestamp endTime) {
 
     this.endTime = endTime;
@@ -112,7 +98,7 @@ public class AccessCodeEntity extends ApplicationPersistenceEntity implements Ac
   @JoinColumn(name = "idVisitor")
   public VisitorEntity getVisitor() {
 
-    return visitor;
+    return this.visitor;
   }
 
   /**
@@ -130,7 +116,7 @@ public class AccessCodeEntity extends ApplicationPersistenceEntity implements Ac
   @JoinColumn(name = "idQueue")
   public QueueEntity getQueue() {
 
-    return queue;
+    return this.queue;
   }
 
   /**

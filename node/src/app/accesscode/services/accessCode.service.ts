@@ -1,37 +1,37 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { plainToClass } from 'class-transformer';
+import { Queue } from 'src/app/queue/model/entities/queue.entity';
+import { VisitorDTO } from 'src/app/visitor/dto/visitordto';
 import { Repository } from 'typeorm';
-import { Queue } from '../../queue/model/entities/queue.entity';
-import { Visitor } from '../../visitor/model/entities/visitor.entity';
+import { AccessCodeResponse } from '../dto/accessCodeResponse';
 import { AccessCodeSearchDTO } from '../dto/accessCodeSearchDto';
 import { ComposedCTO } from '../dto/composedCto';
 import { Criteria } from '../dto/criteria';
 import { AccessCode } from '../model/entities/accessCode.entity';
-import { plainToClass } from 'class-transformer';
-import { VisitorResponseDTO } from '../../visitor/dto/visitorResponseDto';
 
 @Injectable()
 export class AccessCodeService {
   constructor(
-    @InjectRepository(AccessCode) private repoCode: Repository<AccessCode>,
-    @InjectRepository(Queue) private repoQueue: Repository<Queue>,
-    @InjectRepository(Visitor) private repoVisitor: Repository<Visitor>,
+    @InjectRepository(AccessCode) private repoCode: Repository<AccessCode>
   ) {}
 
   async searchCriteria(crit: Criteria): Promise<AccessCodeSearchDTO> {
     const response: AccessCodeSearchDTO = new AccessCodeSearchDTO();
-    response.pageable = crit.pageable;
-
+    
     if (crit.hasOwnProperty('visitorId')) {
       response.content = (
         await this.repoCode.find({
           skip: crit.pageable.pageNumber * crit.pageable.pageSize,
           take: crit.pageable.pageSize,
           where: { visitorId: crit.visitorId },
+          relations: ['visitor', 'queue']
         })
       ).map(code => {
         const cto = new ComposedCTO();
-        cto.accessCode = code;
+        cto.accessCode = plainToClass(AccessCodeResponse, code);
+        cto.queue = plainToClass(Queue, code.queue);
+        cto.visitor = plainToClass(VisitorDTO, code.visitor);
         return cto;
       });
     } else {
@@ -39,25 +39,34 @@ export class AccessCodeService {
         await this.repoCode.find({
           skip: crit.pageable.pageNumber * crit.pageable.pageSize,
           take: crit.pageable.pageSize,
+          relations: ['visitor', 'queue']
         })
       ).map(code => {
         const cto = new ComposedCTO();
-        cto.accessCode = code;
+        cto.accessCode = plainToClass(AccessCodeResponse, code);
+        cto.accessCode.ticketNumber = this.generateTicketCode(cto.accessCode.id);
+        cto.queue = code.queue;
+        cto.visitor = code.visitor;
         return cto;
       });
     }
 
-    for (const item of response.content) {
-      if (item != undefined) {
-        item.queue = plainToClass(Queue, await this.repoQueue.findOne({ where: { id: item.accessCode?.queueId } }));
-        item.visitor = plainToClass(
-          VisitorResponseDTO,
-          await this.repoVisitor.findOne({ where: { id: item.accessCode?.visitorId } }),
-        );
-      }
-    }
-
+    response.pageable = crit.pageable;
     response.totalElements = response.content.length;
     return response;
+  }
+
+  private generateTicketCode(lastTicketDigit: number): string {
+    const newTicketDigit: number = lastTicketDigit + 1;
+    let newTicketCode: string = newTicketDigit.toString();
+    if (newTicketDigit == 1000) {
+      newTicketCode = 'Q000';
+    } else {
+      while (newTicketCode.length < 3) {
+        newTicketCode = '0' + newTicketCode;
+      }
+      newTicketCode = 'Q' + newTicketCode;
+    }
+    return newTicketCode;
   }
 }
