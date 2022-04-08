@@ -9,7 +9,7 @@ use crate::models::visitor_eto::VisitorEto;
 pub fn taskset() -> GooseTaskSet {
     let mut taskset = taskset!("Logic load test");
     let accesscode_path = "accesscodemanagement/v1/accesscode/";
-    let visitor_path = "visitormanagement/v1/visitor";
+    let visitor_path = "visitormanagement/v1/visitor/";
 
     let request: GooseTaskFunction = Arc::new(move |user| {
         Box::pin( async move {
@@ -29,7 +29,7 @@ pub fn taskset() -> GooseTaskSet {
             user.delete(&leave_queue_path).await?;
 
             //Delete user
-            let visitor_by_id_path = format!("{}/{}", visitor_path.clone(), visitor_eto.id.unwrap());
+            let visitor_by_id_path = format!("{}{}/", visitor_path.clone(), visitor_eto.id.unwrap());
             user.delete(&visitor_by_id_path).await?;
 
             Ok(())

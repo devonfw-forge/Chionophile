@@ -7,7 +7,7 @@ use crate::models::visitor_search_criteria::VisitorSearchCriteria;
 /// Tests basic CRUD operations in an entity, in this case Visitor
 pub fn taskset() -> GooseTaskSet {
     let mut taskset = taskset!("Visitor load tests");
-    let visitor_path = "visitormanagement/v1/visitor";
+    let visitor_path = "visitormanagement/v1/visitor/";
 
     let request: GooseTaskFunction = Arc::new(move |user| {
         Box::pin( async move {
@@ -17,12 +17,12 @@ pub fn taskset() -> GooseTaskSet {
             let post_response = user.post_json(visitor_path, &visitor_post).await?;
             let visitor_eto = post_response.response?.json::<VisitorEto>().await?;
 
-            let get_by_id_path = format!("{}/{}", visitor_path.clone(), visitor_eto.id.unwrap());
+            let get_by_id_path = format!("{}{}/", visitor_path.clone(), visitor_eto.id.unwrap());
 
             //GET BY ID TEST
             user.get(&get_by_id_path).await?;
 
-            let search_path = format!("{}/search", visitor_path);
+            let search_path = format!("{}/search/", visitor_path);
             let search_criteria = VisitorSearchCriteria
             ::generate_test_search_criteria(5, visitor_eto.username, visitor_eto.password);
 

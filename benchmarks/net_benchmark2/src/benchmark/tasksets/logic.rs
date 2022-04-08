@@ -12,8 +12,8 @@ use crate::models::visitor_search_criteria::VisitorSearchCriteria;
 pub fn taskset() -> GooseTaskSet {
     let mut taskset = taskset!("Logic load test");
     let accesscode_path = "accesscodemanagement/v1/accesscode/";
-    let visitor_path = "visitormanagement/v1/visitor";
-    let queue_path = "queuemanagement/v1/queue/search";
+    let visitor_path = "visitormanagement/v1/visitor/";
+    let queue_path = "queuemanagement/v1/queue/search/";
 
     let request: GooseTaskFunction = Arc::new(move |user| {
         Box::pin( async move {
@@ -29,11 +29,11 @@ pub fn taskset() -> GooseTaskSet {
             let accesscode_eto = join_queue_response.response?.json::<AccessCodeEto>().await?;
 
             //Search accesscodes
-            let accesscode_search_path = format!("{}search", accesscode_path);
+            let accesscode_search_path = format!("{}search/", accesscode_path);
             let _accesscode_search = user.post_json(&accesscode_search_path, &AccessCodeSearchCriteria::generate_test_struct(40)).await?;
 
             //Search visitors
-            let search_path = format!("{}/search", visitor_path);
+            let search_path = format!("{}search/", visitor_path);
             let search_criteria = VisitorSearchCriteria::generate_test_search_criteria(40, None, None);
             let _search = user.post_json(&search_path, &search_criteria).await?;
 
@@ -46,7 +46,7 @@ pub fn taskset() -> GooseTaskSet {
             user.delete(&leave_queue_path).await?;
 
             //Delete user
-            let visitor_by_id_path = format!("{}/{}", visitor_path.clone(), visitor_eto.id.unwrap());
+            let visitor_by_id_path = format!("{}{}/", visitor_path.clone(), visitor_eto.id.unwrap());
             user.delete(&visitor_by_id_path).await?;
 
             Ok(())
