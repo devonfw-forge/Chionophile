@@ -5,7 +5,7 @@ class Queue(models.Model):
         db_table = "dailyqueue"
 
     id = models.AutoField(primary_key=True, db_column="id")
-    modificationCounter = models.IntegerField(db_column="modificationcounter")
+    modificationCounter = models.IntegerField(db_column="modificationcounter", default=1)
     name = models.TextField()
     logo = models.TextField()
     currentNumber = models.TextField(db_column="currentnumber")

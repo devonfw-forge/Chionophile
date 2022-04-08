@@ -15,7 +15,7 @@ urlpatterns = [
         queue_views.QueueDetailView.as_view()
     ),
     path(
-        'search', 
+        'search/', 
         queue_views.QueueListView.as_view()
     ),
 ]

@@ -16,30 +16,34 @@ class VisitorDetailView(generics.CreateAPIView, generics.RetrieveAPIView, generi
             response = super().retrieve(request, *args, **kwargs)
             return Response(response.data, status=status.HTTP_200_OK)
         except:
-            return Response(status=status.HTTP_204_NO_CONTENT)
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
     def destroy(self, request, pk, *args, **kwargs):
         try:
             response = super().destroy(request, *args, **kwargs)
             return Response(pk, status=status.HTTP_200_OK)
         except:
-            return Response(status=status.HTTP_204_NO_CONTENT)
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
 class VisitorListView(generics.ListAPIView):
     serializer_class = VisitorSerializer
 
     def post(self, request, *args, **kwargs):
-        pageable = self.request.data['pageable']
-        pageable["pageNumber"] = int(pageable["pageNumber"])
-        pageable["pageSize"] = int(pageable["pageSize"])
-        visitors = None
-        if 'username' in self.request.data:
-            user_name = self.request.data['username']
-            visitors=Visitor.objects.filter(username=user_name)
-        if visitors == None:
+        data_query = {}
+        for key in self.request.data:
+            if key == "pageable":
+                pageable = self.request.data['pageable']
+            else:
+                data_query[key]=self.request.data[key]
+                
+        if data_query:
+            visitors=Visitor.objects.filter(**data_query)
+        else:
             visitors=Visitor.objects.all()
+
         if len(pageable['sort']):
             visitors = visitors.order_by(**pageable['sort'])
+            
         pgN = int(pageable['pageNumber'])
         pgS = int(pageable['pageSize'])
         visitors = visitors[pgN*pgS : (1+pgN)*pgS]
