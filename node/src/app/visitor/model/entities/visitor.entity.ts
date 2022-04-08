@@ -1,10 +1,13 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 import { MaxLength, IsEmail } from 'class-validator';
+import { Transform } from 'class-transformer';
+
 
 @Entity({ name: 'visitor' })
 export class Visitor {
+  @Transform(({ value }) => parseInt(value))
   @PrimaryGeneratedColumn('increment')
-  id: number;
+  id: BigInt;
 
   @Column('int', { name: 'modificationcounter' })
   modificationCounter?: number = 1;

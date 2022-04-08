@@ -1,10 +1,11 @@
-import { Exclude, Expose } from 'class-transformer';
+import { Exclude, Expose, Transform } from 'class-transformer';
 import { IsOptional } from 'class-validator';
 
 @Exclude()
 export class VisitorDTO {
+  @Transform(({ value }) => parseInt(value))
   @Expose()
-  id: number;
+  id: BigInt;
 
   @Expose()
   @IsOptional()
