@@ -22,8 +22,7 @@ impl AccessCodeManagementService for AccessCodeManagementServiceImpl {
         let id = id.into_inner();
         let accesscode_id = id.clone();
         let access_code = AccessCodeManagementImpl::find_accesscode_cto(app_state, id)
-            .await
-            .map_err(actix_web::error::ErrorInternalServerError)?;
+            .await?;
 
         if let Some(access_code) = access_code {
             Ok(HttpResponse::Ok().json(access_code))
@@ -40,8 +39,7 @@ impl AccessCodeManagementService for AccessCodeManagementServiceImpl {
     ) -> Result<HttpResponse, Error> {
         let search_results = AccessCodeManagementImpl::
         find_accesscode_ctos(app_state, criteria.into_inner())
-            .await
-            .map_err(actix_web::error::ErrorInternalServerError)?;
+            .await?;
 
         Ok(HttpResponse::Ok().json(search_results))
     }
@@ -55,8 +53,7 @@ impl CRUDRestService<i64, AccessCodeEto, AccessCodeSearchCriteria, AccessCodePos
     ) -> Result<HttpResponse, Error> {
         let search_results = AccessCodeManagementImpl::
         find_accesscode_etos(app_state, criteria.into_inner())
-            .await
-            .map_err(actix_web::error::ErrorInternalServerError)?;
+            .await?;
 
         Ok(HttpResponse::Ok().json(search_results))
     }
@@ -68,8 +65,7 @@ impl CRUDRestService<i64, AccessCodeEto, AccessCodeSearchCriteria, AccessCodePos
         let accesscode_id = id.clone();
         let accesscode = AccessCodeManagementImpl::
         find_accesscode_eto(app_state, id.into_inner())
-            .await
-            .map_err(actix_web::error::ErrorInternalServerError)?;
+            .await?;
 
         if let Some(accesscode) = accesscode {
             Ok(HttpResponse::Ok().json(accesscode))
@@ -86,8 +82,7 @@ impl CRUDRestService<i64, AccessCodeEto, AccessCodeSearchCriteria, AccessCodePos
     ) -> Result<HttpResponse, Error> {
         let accesscode_eto = AccessCodeManagementImpl::
         save_accesscode(app_state, accesscode.into_inner())
-            .await
-            .map_err(actix_web::error::ErrorInternalServerError)?;
+            .await?;
 
         Ok(HttpResponse::Ok().json(accesscode_eto))
     }
@@ -97,8 +92,7 @@ impl CRUDRestService<i64, AccessCodeEto, AccessCodeSearchCriteria, AccessCodePos
         id: Path<i64>
     ) -> Result<HttpResponse, Error> {
         AccessCodeManagementImpl::delete_accesscode(app_state, id.into_inner())
-            .await
-            .map_err(actix_web::error::ErrorInternalServerError)?;
+            .await?;
 
         Ok(HttpResponse::Ok().finish())
     }

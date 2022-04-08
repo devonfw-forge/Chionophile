@@ -23,8 +23,7 @@ impl CRUDRestService<i64, QueueEto, QueueSearchCriteria, QueueEto> for QueueMana
         let search_results =
             QueueManagementImpl
             ::find_queues(app_state, criteria.into_inner())
-                .await
-                .map_err(actix_web::error::ErrorInternalServerError)?;
+                .await?;
 
         Ok(HttpResponse::Ok().json(search_results))
     }
@@ -38,8 +37,7 @@ impl CRUDRestService<i64, QueueEto, QueueSearchCriteria, QueueEto> for QueueMana
         let queue =
             QueueManagementImpl
             ::find_queue(app_state, queue_id)
-                .await
-                .map_err(actix_web::error::ErrorInternalServerError)?;
+                .await?;
 
         if let Some(queue) = queue {
             Ok(HttpResponse::Ok().json(queue))
@@ -56,8 +54,7 @@ impl CRUDRestService<i64, QueueEto, QueueSearchCriteria, QueueEto> for QueueMana
     ) -> Result<HttpResponse, Error> {
             let queue = QueueManagementImpl::
             save_queue(app_state, queue.into_inner())
-                .await
-                .map_err(actix_web::error::ErrorInternalServerError)?;
+                .await?;
 
         Ok(HttpResponse::Ok().json(queue))
 
@@ -69,8 +66,7 @@ impl CRUDRestService<i64, QueueEto, QueueSearchCriteria, QueueEto> for QueueMana
     ) -> Result<HttpResponse, Error> {
         QueueManagementImpl::
         delete_queue(app_state, id.into_inner())
-            .await
-            .map_err(actix_web::error::ErrorInternalServerError)?;
+            .await?;
 
         Ok(HttpResponse::Ok().finish())
     }
