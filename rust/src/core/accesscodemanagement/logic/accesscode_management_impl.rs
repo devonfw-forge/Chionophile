@@ -28,7 +28,7 @@ impl UcManageAccessCode for AccessCodeManagementImpl {
     async fn delete_accesscode(
         app_state: web::Data<AppState>,
         id: i64
-    ) -> Result<bool, Error> {
+    ) -> Result<Option<i64>, Error> {
         UcManageAccessCodeImpl::delete_accesscode(app_state, id).await
     }
 }

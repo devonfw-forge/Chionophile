@@ -42,7 +42,7 @@ impl UcManageAccessCode for UcManageAccessCodeImpl {
     async fn delete_accesscode(
         app_state: Data<AppState>,
         id: i64
-    ) -> Result<bool, Error> {
+    ) -> Result<Option<i64>, Error> {
         let deleted = web::block(move || {
             let conn = app_state.pool.get()?;
             AccessCodeRepositoryImpl::delete_by_id(id, &conn)

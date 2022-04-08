@@ -13,5 +13,5 @@ pub trait UcManageQueue {
     async fn delete_queue(
         app_state: web::Data<AppState>,
         queue_id: i64
-    ) -> Result<bool, Error>;
+    ) -> Result<Option<i64>, Error>;
 }

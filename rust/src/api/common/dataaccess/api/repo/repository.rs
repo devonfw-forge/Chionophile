@@ -30,5 +30,5 @@ pub trait Repository<ID, E, NE, C, T>
     fn delete_by_id(
         id: ID,
         conn: &DbConn
-    ) -> Result<bool, DbError>;
+    ) -> Result<Option<ID>, DbError>;
 }

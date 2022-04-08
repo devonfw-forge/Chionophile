@@ -28,7 +28,7 @@ impl UcManageQueue for UcManageQueueImpl {
     async fn delete_queue(
         app_state: web::Data<AppState>,
         queue_id: i64
-    ) -> Result<bool, Error> {
+    ) -> Result<Option<i64>, Error> {
         let deleted = web::block(move || {
             let conn = app_state.pool.get()?;
             QueueRepositoryImpl::delete_by_id(queue_id, &conn)

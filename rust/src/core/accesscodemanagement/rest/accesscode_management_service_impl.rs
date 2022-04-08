@@ -91,11 +91,11 @@ impl CRUDRestService<i64, AccessCodeEto, AccessCodeSearchCriteria, AccessCodePos
         app_state: Data<AppState>,
         id: Path<i64>
     ) -> Result<HttpResponse, Error> {
-        let deleted = AccessCodeManagementImpl::delete_accesscode(app_state, id.into_inner())
+        let deleted_id = AccessCodeManagementImpl::delete_accesscode(app_state, id.into_inner())
             .await?;
 
-        if deleted {
-            Ok(HttpResponse::Ok().finish())
+        if let Some(id) = deleted_id {
+            Ok(HttpResponse::Ok().body(id.to_string()))
         } else {
             Ok(HttpResponse::NotFound().finish())
         }

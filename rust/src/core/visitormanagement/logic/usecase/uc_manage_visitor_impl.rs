@@ -35,7 +35,7 @@ impl UcManageVisitor for UcManageVisitorImpl {
     async fn delete_visitor(
         app_state: web::Data<AppState>,
         visitor_id: i64
-    ) -> Result<bool, Error> {
+    ) -> Result<Option<i64>, Error> {
         let deleted = web::block(move || {
             let conn = app_state.pool.get()?;
             VisitorRepositoryImpl::delete_by_id(visitor_id, &conn)

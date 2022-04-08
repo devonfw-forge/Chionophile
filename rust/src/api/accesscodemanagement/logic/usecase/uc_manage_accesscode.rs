@@ -14,5 +14,5 @@ pub trait UcManageAccessCode {
     async fn delete_accesscode(
         app_state: web::Data<AppState>,
         id: i64
-    ) -> Result<bool, Error>;
+    ) -> Result<Option<i64>, Error>;
 }

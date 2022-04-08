@@ -79,12 +79,12 @@ impl CRUDRestService<i64, VisitorEto, VisitorSearchCriteria, VisitorEto> for Vis
         app_state: Data<AppState>,
         id: Path<i64>
     ) -> Result<HttpResponse, Error> {
-        let deleted = VisitorManagementImpl::
+        let deleted_id = VisitorManagementImpl::
         delete_visitor(app_state, id.into_inner())
             .await?;
 
-        if deleted {
-            Ok(HttpResponse::Ok().finish())
+        if let Some(id) = deleted_id {
+            Ok(HttpResponse::Ok().body(id.to_string()))
         } else {
             Ok(HttpResponse::NotFound().finish())
         }

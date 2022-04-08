@@ -64,12 +64,12 @@ impl CRUDRestService<i64, QueueEto, QueueSearchCriteria, QueueEto> for QueueMana
         app_state: Data<AppState>,
         id: Path<i64>
     ) -> Result<HttpResponse, Error> {
-        let deleted = QueueManagementImpl::
+        let deleted_id = QueueManagementImpl::
         delete_queue(app_state, id.into_inner())
             .await?;
 
-        if deleted {
-            Ok(HttpResponse::Ok().finish())
+        if let Some(id) = deleted_id {
+            Ok(HttpResponse::Ok().body(id.to_string()))
         } else {
             Ok(HttpResponse::NotFound().finish())
         }
