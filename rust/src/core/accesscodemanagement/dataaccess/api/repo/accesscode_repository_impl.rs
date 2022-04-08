@@ -114,7 +114,6 @@ impl Repository<i64, AccessCode, NewAccessCode, AccessCodeSearchCriteria, access
 
         let query_results: Vec<AccessCode> = query.load(conn)?;
 
-
         Ok(query_results)
     }
 
@@ -135,14 +134,15 @@ impl Repository<i64, AccessCode, NewAccessCode, AccessCodeSearchCriteria, access
     fn delete_by_id(
         accesscode_id: i64,
         conn: &DbConn
-    ) -> Result<i64, DbError> {
+    ) -> Result<bool, DbError> {
         use crate::core::general::database::schema::accesscode::dsl::*;
 
-        diesel::delete(accesscode)
+        let deleted: Vec<i64> = diesel::delete(accesscode)
             .filter(id.eq(accesscode_id))
-            .execute(conn)?;
+            .returning(id)
+            .get_results(conn)?;
 
-        Ok(accesscode_id)
+        Ok(deleted.len() > 0)
     }
 }
 

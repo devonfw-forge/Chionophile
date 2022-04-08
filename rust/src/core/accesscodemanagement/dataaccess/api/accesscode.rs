@@ -41,6 +41,7 @@ impl Into<AccessCodeEto> for AccessCode {
     fn into(self) -> AccessCodeEto {
         AccessCodeEto {
             id: Some(self.id),
+            modification_counter: Option::from(self.modification_counter),
             ticket_number: Option::from(self.generate_ticket_number()),
             creation_time: self.creation_time,
             start_time: self.start_time,

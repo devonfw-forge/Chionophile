@@ -42,13 +42,13 @@ impl UcManageAccessCode for UcManageAccessCodeImpl {
     async fn delete_accesscode(
         app_state: Data<AppState>,
         id: i64
-    ) -> Result<(), Error> {
-        web::block(move || {
+    ) -> Result<bool, Error> {
+        let deleted = web::block(move || {
             let conn = app_state.pool.get()?;
             AccessCodeRepositoryImpl::delete_by_id(id, &conn)
         }).await?.map_err(actix_web::error::ErrorInternalServerError)?;
 
-        Ok(())
+        Ok(deleted)
     }
 }
 

@@ -81,14 +81,15 @@ impl Repository<i64, Visitor, NewVisitor, VisitorSearchCriteria, visitor::table>
     fn delete_by_id(
         visitor_id: i64,
         conn: &DbConn
-    ) -> Result<i64, DbError> {
+    ) -> Result<bool, DbError> {
         use crate::core::general::database::schema::visitor::dsl::*;
 
-        diesel::delete(visitor)
+        let deleted_visitors: Vec<i64> = diesel::delete(visitor)
             .filter(id.eq(visitor_id))
-            .execute(conn)?;
+            .returning(id)
+            .get_results(conn)?;
 
-        Ok(visitor_id)
+        Ok(deleted_visitors.len() > 0)
     }
 }
 

@@ -43,9 +43,7 @@ impl CRUDRestService<i64, VisitorEto, VisitorSearchCriteria, VisitorEto> for Vis
         if let Some(visitor) = visitor {
             Ok(HttpResponse::Ok().json(visitor))
         } else {
-            let res = HttpResponse::NotFound()
-                .body(format!("No visitor found with uid: {}", id));
-            Ok(res)
+            Ok(HttpResponse::NotFound().finish())
         }
     }
 
@@ -81,10 +79,14 @@ impl CRUDRestService<i64, VisitorEto, VisitorSearchCriteria, VisitorEto> for Vis
         app_state: Data<AppState>,
         id: Path<i64>
     ) -> Result<HttpResponse, Error> {
-        VisitorManagementImpl::
+        let deleted = VisitorManagementImpl::
         delete_visitor(app_state, id.into_inner())
             .await?;
 
-        Ok(HttpResponse::Ok().finish())
+        if deleted {
+            Ok(HttpResponse::Ok().finish())
+        } else {
+            Ok(HttpResponse::NotFound().finish())
+        }
     }
 }

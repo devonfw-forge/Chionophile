@@ -27,7 +27,7 @@ impl UcManageVisitor for VisitorManagementImpl {
     async fn delete_visitor(
         app_state: web::Data<AppState>,
         visitor_id: i64
-    ) -> Result<(), Error> {
+    ) -> Result<bool, Error> {
         UcManageVisitorImpl::delete_visitor(app_state, visitor_id).await
     }
 

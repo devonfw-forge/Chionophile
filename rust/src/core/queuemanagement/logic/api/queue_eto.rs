@@ -7,6 +7,7 @@ use crate::api::common::rest::api::saveable::Saveable;
 #[serde(rename_all = "camelCase")]
 pub struct QueueEto {
     pub id: Option<i64>,
+    pub modification_counter: Option<i32>,
     pub name: Option<String>,
     pub logo: Option<String>,
     pub current_number: Option<String>,

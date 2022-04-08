@@ -42,6 +42,7 @@ impl Into<VisitorEto> for Visitor {
     fn into(self) -> VisitorEto {
         VisitorEto {
             id: Some(self.id),
+            modification_counter: Option::from(self.modification_counter),
             username: Option::from(self.username.unwrap()),
             name: Option::from(self.name.unwrap()),
             phone_number: Option::from(self.phone_number.unwrap()),
