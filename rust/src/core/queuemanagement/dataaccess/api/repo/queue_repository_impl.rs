@@ -76,14 +76,16 @@ impl Repository<i64, Queue, NewQueue, QueueSearchCriteria, dailyqueue::table> fo
     fn delete_by_id(
         queue_id: i64,
         conn: &DbConn
-    ) -> Result<i64, DbError> {
+    ) -> Result<Option<i64>, DbError> {
         use crate::core::general::database::schema::dailyqueue::dsl::*;
 
-        diesel::delete(dailyqueue)
+        let deleted: Option<i64> = diesel::delete(dailyqueue)
             .filter(id.eq(queue_id))
-            .execute(conn)?;
+            .returning(id)
+            .get_result(conn)
+            .optional()?;
 
-        Ok(queue_id)
+        Ok(deleted)
     }
 }
 

@@ -1,6 +1,7 @@
 use actix_cors::Cors;
 use actix_web::{App, HttpServer, middleware, web};
 use diesel::r2d2;
+use num_cpus;
 use diesel::r2d2::ConnectionManager;
 use crate::core::general::config::app_config::read_config;
 use crate::core::general::config::dbtypes_config::DbConn;
@@ -37,6 +38,7 @@ async fn main() -> std::io::Result<()> {
             .service(service_config.accesscode_scope)
     })
         .bind(app_config.bind_url)?
+        .workers(num_cpus::get())
         .run()
         .await
 }

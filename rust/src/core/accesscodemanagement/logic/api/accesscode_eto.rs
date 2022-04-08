@@ -6,6 +6,7 @@ use crate::api::common::logic::api::eto::EntityETO;
 #[serde(rename_all="camelCase")]
 pub struct AccessCodeEto {
     pub id: Option<i64>,
+    pub modification_counter: Option<i32>,
     pub ticket_number: Option<String>,
     pub creation_time: Option<NaiveDateTime>,
     pub start_time: Option<NaiveDateTime>,

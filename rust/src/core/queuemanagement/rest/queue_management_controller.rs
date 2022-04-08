@@ -8,13 +8,13 @@ pub struct QueueRestController;
 impl RestController for QueueRestController {
     fn scope(cfg: &mut web::ServiceConfig) {
         cfg.service(
-            web::resource("/queue/search")
+            web::resource("/queue/search/")
                 .route(web::post().to(QueueManagementServiceImpl::search))
         ).service(
-            web::resource("/queue")
+            web::resource("/queue/")
                 .route(web::post().to(QueueManagementServiceImpl::save))
         ).service(
-            web::resource("/queue/{id}")
+            web::resource("/queue/{id}/")
                 .route(web::get().to(QueueManagementServiceImpl::get))
                 .route(web::delete().to(QueueManagementServiceImpl::delete))
         );

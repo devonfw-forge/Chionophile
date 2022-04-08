@@ -42,6 +42,7 @@ impl Into<QueueEto> for Queue {
     fn into(self) -> QueueEto {
         QueueEto {
             id: Option::from(self.id),
+            modification_counter: Option::from(self.modification_counter),
             name: self.name,
             logo: self.logo,
             current_number: self.current_number,

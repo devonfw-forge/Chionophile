@@ -7,6 +7,7 @@ use crate::api::common::rest::api::saveable::Saveable;
 #[serde(rename_all="camelCase")]
 pub struct VisitorEto {
     pub id: Option<i64>,
+    pub modification_counter: Option<i32>,
     #[validate(email(code="mail", message="Email format not valid"))]
     pub username: Option<String>,
     pub name: Option<String>,

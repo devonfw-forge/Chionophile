@@ -8,13 +8,13 @@ pub struct VisitorRestController;
 impl RestController for VisitorRestController {
     fn scope(cfg: &mut web::ServiceConfig) {
         cfg.service(
-            web::resource("/visitor/search")
+            web::resource("/visitor/search/")
                 .route(web::post().to(VisitorManagementServiceImpl::search))
         ).service(
-            web::resource("/visitor")
+            web::resource("/visitor/")
                 .route(web::post().to(VisitorManagementServiceImpl::save))
         ).service(
-            web::resource("/visitor/{id}")
+            web::resource("/visitor/{id}/")
                 .route(web::get().to(VisitorManagementServiceImpl::get))
                 .route(web::delete().to(VisitorManagementServiceImpl::delete))
         );
