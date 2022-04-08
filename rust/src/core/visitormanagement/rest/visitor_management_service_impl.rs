@@ -24,8 +24,7 @@ impl CRUDRestService<i64, VisitorEto, VisitorSearchCriteria, VisitorEto> for Vis
         let search_results =
             VisitorManagementImpl
             ::find_visitors(app_state, criteria.into_inner())
-                .await
-                .map_err(actix_web::error::ErrorInternalServerError)?;
+                .await?;
 
         Ok(HttpResponse::Ok().json(search_results))
     }
@@ -39,8 +38,7 @@ impl CRUDRestService<i64, VisitorEto, VisitorSearchCriteria, VisitorEto> for Vis
         let visitor =
             VisitorManagementImpl
             ::find_visitor(app_state, visitor_id)
-                .await
-                .map_err(actix_web::error::ErrorInternalServerError)?;
+                .await?;
 
         if let Some(visitor) = visitor {
             Ok(HttpResponse::Ok().json(visitor))
@@ -60,6 +58,7 @@ impl CRUDRestService<i64, VisitorEto, VisitorSearchCriteria, VisitorEto> for Vis
             VisitorManagementImpl
             ::save_visitor(app_state, visitor.into_inner())
                 .await;
+
         match save_result {
             Ok(visitor) => {
                 Ok(HttpResponse::Ok().json(visitor))
@@ -69,9 +68,7 @@ impl CRUDRestService<i64, VisitorEto, VisitorSearchCriteria, VisitorEto> for Vis
                     SaveError::ValidationErrors(validation_errors) => {
                         Ok(HttpResponse::BadRequest().json(validation_errors))
                     }
-                    SaveError::DbError(_)
-                    | SaveError::ConnectionError(_)
-                    | SaveError::InternalServerError => {
+                    SaveError::InternalServerError => {
                         Ok(HttpResponse::InternalServerError().finish())
                     }
                 }
@@ -86,8 +83,7 @@ impl CRUDRestService<i64, VisitorEto, VisitorSearchCriteria, VisitorEto> for Vis
     ) -> Result<HttpResponse, Error> {
         VisitorManagementImpl::
         delete_visitor(app_state, id.into_inner())
-            .await
-            .map_err(actix_web::error::ErrorInternalServerError)?;
+            .await?;
 
         Ok(HttpResponse::Ok().finish())
     }

@@ -19,8 +19,7 @@ impl UcManageQueue for UcManageQueueImpl {
             let conn = app_state.pool.get()?;
             let new_queue: NewQueue = NewQueue::from(queue);
             QueueRepositoryImpl::save(&new_queue, &conn)
-
-        }).await?;
+        }).await?.map_err(actix_web::error::ErrorInternalServerError)?;
 
         Ok(result.into())
 
@@ -33,7 +32,7 @@ impl UcManageQueue for UcManageQueueImpl {
         web::block(move || {
             let conn = app_state.pool.get()?;
             QueueRepositoryImpl::delete_by_id(queue_id, &conn)
-        }).await?;
+        }).await?.map_err(actix_web::error::ErrorInternalServerError)?;
 
         Ok(())
     }

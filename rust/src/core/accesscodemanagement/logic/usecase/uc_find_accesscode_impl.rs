@@ -22,8 +22,7 @@ impl UcFindAccessCode for UcFindAccessCodeImpl {
         let access_code = web::block(move || {
             let conn = app_state.pool.get()?;
             AccessCodeRepositoryImpl::find_by_id_cto(id, &conn)
-        })
-            .await?;
+        }).await?.map_err(actix_web::error::ErrorInternalServerError)?;
 
         Ok(access_code)
     }
@@ -37,7 +36,7 @@ impl UcFindAccessCode for UcFindAccessCodeImpl {
         let content = web::block(move || {
             let conn = app_state.pool.get()?;
             AccessCodeRepositoryImpl::find_ctos(criteria, &conn)
-        }).await?;
+        }).await?.map_err(actix_web::error::ErrorInternalServerError)?;
 
         let total_elements = content.len() as i32;
         let paged_results = pageable.from(content);
@@ -55,7 +54,7 @@ impl UcFindAccessCode for UcFindAccessCodeImpl {
         let content = web::block(move || {
             let conn = app_state.pool.get()?;
             AccessCodeRepositoryImpl::find_by_criteria(criteria, &conn)
-        }).await?;
+        }).await?.map_err(actix_web::error::ErrorInternalServerError)?;
 
         let total_elements = content.len() as i32;
         let paged_results = pageable.from(content);
@@ -74,8 +73,7 @@ impl UcFindAccessCode for UcFindAccessCodeImpl {
         let accesscode = web::block(move || {
             let conn = app_state.pool.get()?;
             AccessCodeRepositoryImpl::find_by_id(id, &conn)
-        })
-            .await?;
+        }).await?.map_err(actix_web::error::ErrorInternalServerError)?;
 
         if let Some(accesscode) = accesscode {
             Ok(Some(accesscode.into()))

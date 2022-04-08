@@ -5,7 +5,6 @@ use chrono::Utc;
 use crate::api::accesscodemanagement::logic::usecase::uc_manage_accesscode::UcManageAccessCode;
 use crate::api::common::dataaccess::api::repo::repository::Repository;
 use crate::AppState;
-use crate::core::accesscodemanagement::dataaccess::api::accesscode::AccessCode;
 use crate::core::accesscodemanagement::dataaccess::api::new_accesscode::NewAccessCode;
 use crate::core::accesscodemanagement::dataaccess::api::repo::accesscode_repository_impl::AccessCodeRepositoryImpl;
 use crate::core::accesscodemanagement::logic::api::accesscode_eto::AccessCodeEto;
@@ -20,7 +19,7 @@ impl UcManageAccessCode for UcManageAccessCodeImpl {
         accesscode_post_data: AccessCodePostData
     ) -> Result<AccessCodeEto, Error> {
 
-        let access_code: AccessCode = web::block(move || {
+        let access_code = web::block(move || {
             let conn = app_state.pool.get()?;
 
             let mut access_code_entity = NewAccessCode {
@@ -35,7 +34,7 @@ impl UcManageAccessCode for UcManageAccessCodeImpl {
             access_code_entity.creation_time = Some(Utc::now().naive_utc());
             AccessCodeRepositoryImpl::save(&access_code_entity, &conn)
 
-        }).await?;
+        }).await?.map_err(actix_web::error::ErrorInternalServerError)?;
 
         Ok(access_code.into())
     }
@@ -47,7 +46,7 @@ impl UcManageAccessCode for UcManageAccessCodeImpl {
         web::block(move || {
             let conn = app_state.pool.get()?;
             AccessCodeRepositoryImpl::delete_by_id(id, &conn)
-        }).await?;
+        }).await?.map_err(actix_web::error::ErrorInternalServerError)?;
 
         Ok(())
     }

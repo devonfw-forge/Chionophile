@@ -19,8 +19,7 @@ impl UcFindVisitor for UcFindVisitorImpl {
         let visitor = web::block(move || {
             let conn = app_state.pool.get()?;
             VisitorRepositoryImpl::find_by_id(id, &conn)
-        })
-            .await?;
+        }).await?.map_err(actix_web::error::ErrorInternalServerError)?;
 
         if let Some(visitor) = visitor {
             Ok(Some(visitor.into()))
@@ -39,7 +38,7 @@ impl UcFindVisitor for UcFindVisitorImpl {
         let query_results = web::block(move || {
             let conn = app_state.pool.get()?;
             VisitorRepositoryImpl::find_by_criteria(filters, &conn)
-        }).await?;
+        }).await?.map_err(actix_web::error::ErrorInternalServerError)?;
 
         let total_elements = query_results.len() as i32;
         let paged_results = criteria.pageable.from(query_results);
