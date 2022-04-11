@@ -31,7 +31,7 @@ async fn main() -> std::io::Result<()> {
         let cors = Cors::permissive();
         App::new()
             .app_data(web::Data::new(AppState::new(pool.clone())))
-            .wrap(middleware::Logger::default())
+            //.wrap(middleware::Logger::default())
             .wrap(cors)
             .service(service_config.visitor_scope)
             .service(service_config.queue_scope)

@@ -51,7 +51,6 @@ impl CRUDRestService<i64, VisitorEto, VisitorSearchCriteria, VisitorEto> for Vis
         app_state: Data<AppState>,
         visitor: web::Json<VisitorEto>
     ) -> Result<HttpResponse, Error> {
-        println!("SAVE USER");
         let save_result: Result<VisitorEto, SaveError> =
             VisitorManagementImpl
             ::save_visitor(app_state, visitor.into_inner())
