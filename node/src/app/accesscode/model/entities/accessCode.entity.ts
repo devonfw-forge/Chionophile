@@ -1,41 +1,31 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, ManyToOne } from 'typeorm';
-import { CrudValidationGroups } from '@nestjsx/crud';
-import { IsDefined, IsOptional } from 'class-validator';
 import { Visitor } from '../../../visitor/model/entities/visitor.entity';
 import { Queue } from '../../../queue/model/entities/queue.entity';
+import { Transform } from 'class-transformer';
 
 @Entity({ name: 'accesscode' })
 export class AccessCode {
+  @Transform(({ value }) => parseInt(value))
   @PrimaryGeneratedColumn()
   id: number;
 
-  @IsDefined({ groups: [CrudValidationGroups.CREATE] })
-  @IsOptional({ groups: [CrudValidationGroups.UPDATE] })
   @Column('int', { name: 'modificationcounter', nullable: true })
-  modificationCounter?: number;
+  modificationCounter?: number = 1;
 
-  @IsDefined({ groups: [CrudValidationGroups.CREATE] })
-  @IsOptional({ groups: [CrudValidationGroups.UPDATE] })
-  @Column('timestamp', {name: 'creationtime',  nullable: true })
-  creationTime?: Date;
+  @Column('timestamp', { name: 'creationtime' })
+  creationTime?: Date =  new Date();
 
-  @IsDefined({ groups: [CrudValidationGroups.CREATE] })
-  @IsOptional({ groups: [CrudValidationGroups.UPDATE] })
-  @Column('timestamp', {name: 'starttime', nullable: true })
-  startTime?: Date;
+  @Column('timestamp', { name: 'starttime' })
+  startTime?: Date =  new Date();
 
-  @IsDefined({ groups: [CrudValidationGroups.CREATE] })
-  @IsOptional({ groups: [CrudValidationGroups.UPDATE] })
-  @Column('timestamp', {name: 'endtime', nullable: true })
-  endTime?: Date;
+  @Column('timestamp', { name: 'endtime' })
+  endTime?: Date =  new Date();
 
-  @IsDefined({ groups: [CrudValidationGroups.CREATE] })
-  @IsOptional({ groups: [CrudValidationGroups.UPDATE] })
+  @Transform(({ value }) => parseInt(value))
   @Column('int', {name: 'idvisitor', nullable: true })
   visitorId?: number;
 
-  @IsDefined({ groups: [CrudValidationGroups.CREATE] })
-  @IsOptional({ groups: [CrudValidationGroups.UPDATE] })
+  @Transform(({ value }) => parseInt(value))
   @Column('int', {name: 'idqueue', nullable: true })
   queueId?: number;
 

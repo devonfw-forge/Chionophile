@@ -17,14 +17,25 @@ export class AccessCodeService {
   ) {}
 
   async searchCriteria(crit: Criteria): Promise<AccessCodeSearchDTO> {
+    let query_params: any = {}
+    let criterium: keyof Criteria
+    for (criterium in crit) {
+      if (crit.hasOwnProperty(criterium) && criterium != "pageable" && crit[criterium] != undefined) {
+        if (criterium == "ticketNumber"){
+          query_params["id"] = parseInt(crit[criterium].slice(1))
+        } else{
+          query_params[criterium] = crit[criterium];
+        }
+      }
+    }
+
     const response: AccessCodeSearchDTO = new AccessCodeSearchDTO();
-    
-    if (crit.hasOwnProperty('visitorId')) {
+    if ( Object.keys(query_params).length != 0 ) {
       response.content = (
         await this.repoCode.find({
           skip: crit.pageable.pageNumber * crit.pageable.pageSize,
           take: crit.pageable.pageSize,
-          where: { visitorId: crit.visitorId },
+          where: query_params,
           relations: ['visitor', 'queue']
         })
       ).map(code => {
