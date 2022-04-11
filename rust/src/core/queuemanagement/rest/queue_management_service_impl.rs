@@ -42,9 +42,7 @@ impl CRUDRestService<i64, QueueEto, QueueSearchCriteria, QueueEto> for QueueMana
         if let Some(queue) = queue {
             Ok(HttpResponse::Ok().json(queue))
         } else {
-            let res = HttpResponse::NotFound()
-                .body(format!("No queue found with uid: {}", id));
-            Ok(res)
+            Ok(HttpResponse::NotFound().finish())
         }
     }
 

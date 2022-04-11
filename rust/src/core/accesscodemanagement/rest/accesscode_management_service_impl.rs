@@ -62,7 +62,6 @@ impl CRUDRestService<i64, AccessCodeEto, AccessCodeSearchCriteria, AccessCodePos
         app_state: Data<AppState>,
         id: Path<i64>
     ) -> Result<HttpResponse, Error> {
-        let accesscode_id = id.clone();
         let accesscode = AccessCodeManagementImpl::
         find_accesscode_eto(app_state, id.into_inner())
             .await?;
@@ -70,9 +69,7 @@ impl CRUDRestService<i64, AccessCodeEto, AccessCodeSearchCriteria, AccessCodePos
         if let Some(accesscode) = accesscode {
             Ok(HttpResponse::Ok().json(accesscode))
         } else {
-            let res = HttpResponse::NotFound()
-                .body(format!("No access_code found with id: {}", accesscode_id));
-            Ok(res)
+            Ok(HttpResponse::NotFound().finish())
         }
     }
 
