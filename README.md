@@ -60,6 +60,6 @@ The previous execution of the automated script will generate a report in results
 |                               |  Rust      |  Java   |  NodeJS  |
 |:-----------------------------:|:----------:|:-------:|:--------:|
 | Total request B2              | **784076** | 307610  | 43790    |
-| Reques / second               | **2613**   | 1025    | 145      |
+| Request / second              | **871**    | 341     | 48       |
 | Consumption B2 (mWh)          | 2719.69    | 2604.53 | 2220.11  |
 | Performance %                 | -          | -60%    | -94%     |
