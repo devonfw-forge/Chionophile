@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  jtq_postgres:
+    container_name: jtq_postgres_intern
+    image: postgres:14.2
+    env_file:
+      - ../postgresql/config.env
+    volumes:
+      - ../postgresql/postgres/init:/docker-entrypoint-initdb.d:ro
+    restart: unless-stopped
+    networks:
+      - vnet
+  
+  jtq_python:
+    build: .
+    depends_on:
+        - postgres
+    volumes:
+      - ./jtq:/code
+    ports:
+      - "8081:8081"
+    command: "python manage.py runserver 0.0.0.0:8081"
+    restart: on-failure
+    networks:
+      - vnet
+
+networks:
+  vnet:

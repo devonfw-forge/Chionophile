@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  jtq_postgres:
+    container_name: jtq_postgres_intern
+    image: postgres:14.2
+    env_file:
+      - ../postgresql/config.env
+    volumes:
+      - ../postgresql/postgres/init:/docker-entrypoint-initdb.d:ro
+    restart: unless-stopped
+    networks:
+      - vnet
+  
+  jtq_node:
+    depends_on:
+        - postgres
+    container_name: jtq_node
+    image: node:17-alpine
+    working_dir: /home/node/app
+    volumes:
+      - ./:/home/node/app
+    ports:
+      - "8081:8081"
+    command: "npm run start:docker"
+    restart: on-failure
+    networks:
+      - vnet
+
+networks:
+  vnet:
