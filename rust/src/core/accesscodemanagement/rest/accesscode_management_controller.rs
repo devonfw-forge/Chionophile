@@ -12,12 +12,12 @@ impl RestController for AccessCodeRestController {
             web::resource("/accesscode/")
                 .route(web::post().to(AccessCodeManagementServiceImpl::save))
         ).service(
+            web::resource("/accesscode/search/")
+                .route(web::post().to(AccessCodeManagementServiceImpl::search))
+        ).service(
             web::resource("/accesscode/{id}/")
                 .route(web::delete().to(AccessCodeManagementServiceImpl::delete))
                 .route(web::get().to(AccessCodeManagementServiceImpl::get))
-        ).service(
-            web::resource("/accesscode/search/")
-                .route(web::post().to(AccessCodeManagementServiceImpl::search))
         ).service(
             web::resource("/accesscode/cto/search/")
                 .route(web::post().to(AccessCodeManagementServiceImpl::find_accesscode_ctos))
