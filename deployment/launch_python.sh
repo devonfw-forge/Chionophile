@@ -36,4 +36,4 @@ cd python
 cd jtq
 
 echo "Executing..."
-python .\manage.py runserver || ( err_msg="[ERROR] django server exited" )
+python manage.py runserver || ( err_msg="[ERROR] django server exited" )
