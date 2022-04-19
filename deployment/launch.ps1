@@ -72,6 +72,27 @@ function Start-Backend() {
     Start-Process -Wait close_postgres.sh
 }
 
+function Start-DockerBackend() {
+    Param($p_bash, $c_bash, $name)
+    Write-Host ("Launching "+$name+"...")
+    $launch = Start-Process -PassThru $p_bash
+    $port = 8081
+    # It waits until process starts listening on port 8081, exit if process terminates
+    Wait-MyProcess -proc $launch -port $port
+    Write-Host ($name+" running`r`n")
+    Write-Host ("Waiting 2 minutes before testing...`r`n")
+    Start-Sleep -s (2*60)
+    if ( $name.Contains("NET") ) {
+        Start-NETBenchmark
+    }
+    else {
+        Start-Benchmark
+    }
+    Write-Host ("`r`nStopping "+$name+" and Postgres...")
+    Start-Process -Wait $c_bash
+    Start-Process -Wait close_postgres.sh
+}
+
 function Start-Processes{
     try{
         Write-Host "`r`nChecking and building benchmarks before execution...`r`n"
@@ -88,12 +109,14 @@ function Start-Processes{
         Write-Host ("Waiting 1 minute before launching benchmark...`r`n")
         Start-Sleep -s (60);
 
-        Start-Backend -p_bash "launch_rust.sh" -name "JTQ Rust"
+        #Start-Backend -p_bash "launch_rust_docker.sh" -name "JTQ Rust"
+        Start-DockerBackend -p_bash "launch_rust_docker.sh" -c_bash "close_rust_docker.sh" -name "JTQ Rust"
 
         Write-Host ("Waiting 5 minutes...`r`n")
         Start-Sleep -s (5*60);
 
-        Start-Backend -p_bash "launch_java.sh" -name "JTQ Java"
+        #Start-Backend -p_bash "launch_java.sh" -name "JTQ Java"
+        Start-DockerBackend -p_bash "launch_java_docker.sh" -c_bash "close_java_docker.sh" -name "JTQ Java"
 
         Write-Host ("Waiting 5 minutes...`r`n")
         Start-Sleep -s (5*60);
@@ -116,6 +139,12 @@ function Start-Processes{
 }
 
 Start-Processes
+
+if (Test-Path '..\results\temp') {
+    Remove-Item '..\results\temp' -Recurse
+}
+New-Item -Path "..\results\" -Name "temp" -ItemType "directory"
+Copy-Item -Path "..\results\*.html" -Destination "..\results\temp" -Recurse
 
 py ./cleaner.py
 
