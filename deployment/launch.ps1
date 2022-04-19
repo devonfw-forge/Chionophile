@@ -100,10 +100,10 @@ function Start-Processes{
 
         Start-Backend -p_bash "launch_node.sh" -name "JTQ Node"
 
-        Write-Host ("Waiting 5 minutes...`r`n")
-        Start-Sleep -s (5*60);
+        #Write-Host ("Waiting 5 minutes...`r`n")
+        #Start-Sleep -s (5*60);
         
-        Start-Backend -p_bash "launch_net.sh" -name "JTQ .NET"
+        #Start-Backend -p_bash "launch_net.sh" -name "JTQ .NET"
         
         Write-Host ("Waiting 5 minutes...`r`n")
         Start-Sleep -s (5*60);
