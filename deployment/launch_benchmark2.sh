@@ -44,7 +44,7 @@ fi
 # Move to the second benchmark directory
 cd benchmark2
 
-echo "Executing First Beanchmark..."
+echo "Executing Second Beanchmark..."
 "C:\Program Files\Intel\Power Gadget 3.6\PowerLog3.0.exe" \
     -cmd "cargo run --release" || ( err_msg="[ERROR] Test or PowerLog went wrong"; err_display )
 
