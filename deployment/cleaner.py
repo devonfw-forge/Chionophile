@@ -30,11 +30,6 @@ def gen_cons_report(lines_l):
     return consumption_table
 
 """
-    Copy all generated files into temp directory 
-"""
-#copy_tree(os.path.join('..','results'), os.path.join('..','results','temp'))
-
-"""
     Processing power_idle.csv file
 """
 if os.path.exists(os.path.join('..','results','power_idle.csv')):

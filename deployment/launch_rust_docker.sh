@@ -35,16 +35,7 @@ fi
 # Move to the project directory
 cd rust
 
-export DATABASE_URL="postgres://jtq_user:admin@localhost/jtq_db"
-export BIND_URL="127.0.0.1:8081"
-export BASE_REST_URL="jumpthequeue/services/rest/"
-
-cargo build --release
-
-echo "Copying dlls"
-mkdir target ; mkdir target/release
-cp -r ../error_fixes/PostgresClientLibraries/* target/release/ || ( err_msg="[ERROR] Missing dlls"; err_display )
-
-echo
-echo "Executing with dlls"
-cargo run --release || ( err_msg="[ERROR] Cargo release exited" )
+echo "Executing..."
+docker-compose down
+docker build . -t jtq-rust
+docker-compose up
