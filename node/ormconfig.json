@@ -1,6 +1,6 @@
 {
     "type": "postgres",
-    "host": "localhost",
+    "host": "jtq_postgres_nginx",
     "port": 5432,
     "username": "jtq_user",
     "password": "admin",

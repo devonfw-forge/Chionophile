@@ -1,0 +1,40 @@
+version: '3.8'
+services:
+  jtq_postgres:
+    container_name: jtq_postgres_nginx
+    image: postgres:14.2
+    env_file:
+      - ../../postgresql/config.env
+    volumes:
+      - ../../postgresql/postgres/init:/docker-entrypoint-initdb.d:ro
+    restart: unless-stopped
+    networks:
+      - vnet
+  
+  jtq_node_n:
+    depends_on:
+        - postgres
+    deploy:
+      mode: replicated
+      replicas: 4
+    image: node:17-alpine
+    working_dir: /home/node/app
+    volumes:
+      - ../:/home/node/app
+    command: "npm run start"
+    restart: on-failure
+    networks:
+      - vnet
+
+  nginx-node:
+    container_name: nginx-node
+    build: .
+    ports:
+    - "8081:8081"
+    depends_on:
+      - jtq_node_n
+    networks:
+      - vnet
+
+networks:
+  vnet:

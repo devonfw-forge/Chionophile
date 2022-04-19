@@ -21,7 +21,7 @@ services:
       - ./:/home/node/app
     ports:
       - "8081:8081"
-    command: "npm run start:docker"
+    command: "npm run start"
     restart: on-failure
     networks:
       - vnet

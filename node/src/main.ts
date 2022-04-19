@@ -5,7 +5,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@devon4node/config';
 import * as helmet from 'helmet';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { AppClusterService } from './app-cluster.service';
+// import { AppClusterService } from './app-cluster.service';
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule, { logger: new WinstonLogger() });
@@ -36,4 +36,5 @@ async function bootstrap(): Promise<void> {
   }
   await app.listen(configModule.values.port);
 }
-AppClusterService.clusterize(bootstrap);
+// AppClusterService.clusterize(bootstrap);
+bootstrap();

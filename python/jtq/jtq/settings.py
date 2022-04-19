@@ -84,7 +84,7 @@ DATABASES = {
         'NAME': 'jtq_db',
         'USER': 'jtq_user',
         'PASSWORD': 'admin',
-        'HOST': 'localhost',
+        'HOST': 'jtq_postgres_nginx',
         'PORT': '5432',
     }
 }
