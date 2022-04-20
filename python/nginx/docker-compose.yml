@@ -16,6 +16,13 @@ services:
     deploy:
       mode: replicated
       replicas: 4
+    environment:
+      - DB_HOST=jtq_postgres_nginx
+      - DB_PORT=5432
+      - DB_NAME=jtq_db
+      - DB_USER=jtq_user
+      - DB_PASSWORD=admin
+      - BASE_REST_URL=jumpthequeue/services/rest
     depends_on:
         - postgres
     volumes:

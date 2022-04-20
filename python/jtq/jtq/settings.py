@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 import logging
 from pathlib import Path
+import environ
+
+env = environ.Env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -81,11 +84,11 @@ WSGI_APPLICATION = 'jtq.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'jtq_db',
-        'USER': 'jtq_user',
-        'PASSWORD': 'admin',
-        'HOST': 'jtq_postgres_nginx',
-        'PORT': '5432',
+        'NAME': env('DB_NAME', default="jtq_db"),
+        'USER': env('DB_USER', default="jtq_user"),
+        'PASSWORD': env('DB_PASSWORD', default="admin"),
+        'HOST': env('DB_HOST', default="localhost"),
+        'PORT': env('DB_PORT', default="5432"),
     }
 }
 

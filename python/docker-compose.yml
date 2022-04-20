@@ -17,6 +17,13 @@ services:
         - postgres
     volumes:
       - ./jtq:/code
+    environment:
+      - DB_HOST=jtq_postgres_intern
+      - DB_PORT=5432
+      - DB_NAME=jtq_db
+      - DB_USER=jtq_user
+      - DB_PASSWORD=admin
+      - BASE_REST_URL=jumpthequeue/services/rest
     ports:
       - "8081:8081"
     command: "python manage.py runserver 0.0.0.0:8081"
