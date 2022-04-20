@@ -5,13 +5,13 @@ Demonstrator on how to achieve energy efficiency improvements  in software devel
 - Windows OS with powershell
 - gitbash
 - Docker Desktop
+- python3
 
 ## Optional requirements
 - node
 - npm
 - java (jdk 11)
 - maven
-- python
 - pip
 - rust
 - cargo
