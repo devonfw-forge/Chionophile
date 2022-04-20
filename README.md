@@ -4,9 +4,12 @@ Demonstrator on how to achieve energy efficiency improvements  in software devel
 ## Requirements
 - Windows OS with powershell
 - gitbash
+- Docker Desktop
+
+## Optional requirements
 - node
 - npm
-- java
+- java (jdk 11)
 - maven
 - python
 - pip
@@ -28,8 +31,8 @@ Backends are completly exchangeable for all the endpoints used in benchmarks.
 
 ## Benchmarks
 Two benchmarks are executed for different purposes:
-1. **Energy consumption benchmark**: for the next 5 minuts, backends will received 14 request per second. This request rate will guarantee that all backends can send responses without raises 404 or 500 errors.
-2. **Performance benchmark**: backends will received as request as possible. This will show how many request can process each benchmark.
+1. **Energy consumption benchmark**: for the next 5 minuts, backends will received 14 request per second. This request rate will guarantee that all backends can send responses without raising 400 or 500 errors.
+2. **Performance benchmark**: backends will received as request as possible. This will show how many requests can be processed by each benchmark.
 
 
 ## Test flow
@@ -38,12 +41,11 @@ The testing flow is composed by the following statements:
 
 - Get idle energy consumption for 1 minute
 - For each backend:
-  - Start Postgres DB docker.
-  - Wait for 30s.
-  - Launch backend.
+  - Launch postgres and backend with docker-compose.
   - Wait for 2 min.
   - Start Benchmarks sequentially
   - When benchmarks are finished, the backend and Postgres container are killed.
+- Remove unnecessary data and rows from csv and html files, and wrap the relevant information in html files
 
 ## Results
 
