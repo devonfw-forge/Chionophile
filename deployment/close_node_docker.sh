@@ -1,6 +1,6 @@
 echo
 echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
-echo "Launching JTQ Node"
+echo "Closing JTQ Node"
 echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
 echo
 
@@ -19,21 +19,20 @@ err_display(){
     exit
 }
 
+
 # Check if node directory exists
 if [ ! -d "node" ] && cd .. && [ ! -d "node" ] ; then
     err_msg="[ERROR] node directory does not exists."
     err_display
 fi
 
-# Check if yarn exists
-if  ! ( yarn --version &> /dev/null ) ; then 
-    err_msg="[ERROR] Command yarn missing"
+# Check if DockerCompose exists
+if  ! ( docker-compose --version &> /dev/null ) ; then 
+    err_msg="[ERROR] Command docker-compose missing"
     err_display
 fi
 
 # Move to the project directory
 cd node
 
-echo "Executing..."
-yarn install || ( err_msg="[ERROR] yarn install exited" )
-yarn start || ( err_msg="[ERROR] yarn start exited" )
+docker-compose down 2> /dev/null || ( err_msg="[ERROR] Could not close node."; err_display )

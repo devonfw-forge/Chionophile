@@ -1,6 +1,6 @@
 echo
 echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
-echo "Launching JTQ Python"
+echo "Launching JTQ NODE (NestJS)"
 echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
 echo
 
@@ -19,21 +19,16 @@ err_display(){
     exit
 }
 
-# Check if python directory exists
-if [ ! -d "python" ] && cd .. && [ ! -d "python" ] ; then
+# Check if node directory exists
+if [ ! -d "node" ] && cd .. && [ ! -d "node" ] ; then
     err_msg="[ERROR] node directory does not exists."
     err_display
 fi
 
-# Check if python exists
-if  ! ( python --version &> /dev/null ) ; then 
-    err_msg="[ERROR] Command python missing"
-    err_display
-fi
-
 # Move to the project directory
-cd python
-cd jtq
+cd node
 
 echo "Executing..."
-python manage.py runserver || ( err_msg="[ERROR] django server exited" )
+docker-compose down
+docker build . -t jtq-node
+docker-compose up

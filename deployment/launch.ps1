@@ -109,29 +109,27 @@ function Start-Processes{
         Write-Host ("Waiting 1 minute before launching benchmark...`r`n")
         Start-Sleep -s (60);
 
-        #Start-Backend -p_bash "launch_rust_docker.sh" -name "JTQ Rust"
         Start-DockerBackend -p_bash "launch_rust_docker.sh" -c_bash "close_rust_docker.sh" -name "JTQ Rust"
 
         Write-Host ("Waiting 5 minutes...`r`n")
         Start-Sleep -s (5*60);
 
-        #Start-Backend -p_bash "launch_java.sh" -name "JTQ Java"
         Start-DockerBackend -p_bash "launch_java_docker.sh" -c_bash "close_java_docker.sh" -name "JTQ Java"
 
         Write-Host ("Waiting 5 minutes...`r`n")
         Start-Sleep -s (5*60);
 
-        Start-Backend -p_bash "launch_node.sh" -name "JTQ Node"
-
-        #Write-Host ("Waiting 5 minutes...`r`n")
-        #Start-Sleep -s (5*60);
-        
-        #Start-Backend -p_bash "launch_net.sh" -name "JTQ .NET"
+        Start-DockerBackend -p_bash "launch_node_docker.sh" -c_bash "close_node_docker.sh" -name "JTQ Node"
         
         Write-Host ("Waiting 5 minutes...`r`n")
         Start-Sleep -s (5*60);
         
-        Start-Backend -p_bash "launch_python.sh" -name "JTQ Python"
+        Start-DockerBackend -p_bash "launch_python_docker.sh" -c_bash "close_python_docker.sh" -name "JTQ Python"
+        
+        #Write-Host ("Waiting 5 minutes...`r`n")
+        #Start-Sleep -s (5*60);
+        
+        #Start-Backend -p_bash "launch_net.sh" -name "JTQ .NET"
     } 
     catch { 
         Write-Host ("`r`nProcess terminated"); Pause; Exit 
