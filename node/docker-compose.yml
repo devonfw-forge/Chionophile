@@ -28,6 +28,7 @@ services:
       - DB_USER=jtq_user
       - DB_PASSWORD=admin
       - BASE_REST_URL=jumpthequeue/services/rest
+      - EXECUTION=cluster
     ports:
       - "8081:8081"
     command: "npm run start"
