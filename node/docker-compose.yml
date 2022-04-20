@@ -19,6 +19,15 @@ services:
     working_dir: /home/node/app
     volumes:
       - ./:/home/node/app
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8081
+      - DB_HOST=jtq_postgres_intern
+      - DB_PORT=5432
+      - DB_NAME=jtq_db
+      - DB_USER=jtq_user
+      - DB_PASSWORD=admin
+      - BASE_REST_URL=jumpthequeue/services/rest
     ports:
       - "8081:8081"
     command: "npm run start"
