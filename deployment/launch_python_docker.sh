@@ -1,10 +1,8 @@
 echo
 echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
-echo "Launching JTQ RUST (Actix)"
+echo "Launching JTQ PYTHON (Django)"
 echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
 echo
-
-
 
 err_display(){
     echo $err_msg
@@ -20,16 +18,16 @@ err_display(){
 }
 
 
-# Check if rust directory exists
-if [ ! -d "rust" ] && cd .. && [ ! -d "rust" ] ; then
-    err_msg="[ERROR] rust directory does not exists."
+# Check if java directory exists
+if [ ! -d "python" ] && cd .. && [ ! -d "python" ] ; then
+    err_msg="[ERROR] python directory does not exists."
     err_display
 fi
 
 # Move to the project directory
-cd rust
+cd python
 
 echo "Executing..."
 docker-compose down
-docker build . -t jtq-rust
+docker build . -t jtq-python
 docker-compose up

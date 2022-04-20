@@ -24,12 +24,6 @@ if [ ! -d "java" ] && cd .. && [ ! -d "java" ] ; then
     err_display
 fi
 
-# Check if Maven exists
-if  ! ( mvn --version &> /dev/null ) ; then 
-    err_msg="[ERROR] Command mvn missing"
-    err_display
-fi
-
 # Move to the project directory
 cd java
 
