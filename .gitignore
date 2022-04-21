@@ -102,3 +102,9 @@ benchmarks/benchmark1/.idea/workspace.xml
 /python/jtq/queue_management/migrations
 /python/jtq/visitor_management/__pycache__
 /python/jtq/visitor_management/migrations
+
+#Edge
+push_to_the_edges/edge_server/.idea/
+push_to_the_edges/edge_server/server/.idea/
+push_to_the_edges/edge_server/cache_manager/.idea/
+

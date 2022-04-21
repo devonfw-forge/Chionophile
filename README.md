@@ -3,7 +3,8 @@ Demonstrator on how to achieve energy efficiency improvements  in software devel
 
 ## Requirements
 - Windows OS with powershell
-- gitbash
+- git bash
+- wsl
 - Docker Desktop
 - python3
 

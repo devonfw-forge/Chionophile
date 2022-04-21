@@ -29,5 +29,4 @@ cd java
 
 echo "Executing..."
 docker-compose down
-docker build . -t jtq-java
 docker-compose up

@@ -31,5 +31,4 @@ cd rust
 
 echo "Executing..."
 docker-compose down
-docker build . -t jtq-rust
 docker-compose up
