@@ -19,39 +19,27 @@ export class QueueCrudController {
   constructor(public service: QueueCrudService) {}
 
   @Override('createOneBase')
-  async create(
-     @ParsedRequest() req: CrudRequest,
-     @ParsedBody() dto: Queue,
-     @Res() res: Response)
-  {
+  async create(@ParsedRequest() req: CrudRequest, @ParsedBody() dto: Queue, @Res() res: Response) {
     const resData = plainToClass(Queue, await this.service.createOne(req, dto));
     res.status(HttpStatus.OK).send(resData);
   }
 
-  
   @Override('getOneBase')
-  async get(
-     @ParsedRequest() req: CrudRequest,
-     @Res() res: Response)
-  {
-    try{
+  async get(@ParsedRequest() req: CrudRequest, @Res() res: Response) {
+    try {
       const resData = plainToClass(Queue, await this.service.getOne(req));
       res.status(HttpStatus.OK).send(resData);
-    }catch{
+    } catch {
       res.status(HttpStatus.NOT_FOUND).send();
     }
   }
 
   @Override('deleteOneBase')
-  async delete(
-     @ParsedRequest() req: CrudRequest,
-     @Param('id') id: number,
-     @Res() res: Response)
-  {
-    try{
+  async delete(@ParsedRequest() req: CrudRequest, @Param('id') id: number, @Res() res: Response) {
+    try {
       await this.service.deleteOne(req);
       res.status(HttpStatus.OK).json(id);
-    }catch{
+    } catch {
       res.status(HttpStatus.NOT_FOUND).send();
     }
   }

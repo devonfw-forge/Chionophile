@@ -2,7 +2,7 @@ import { Config } from '../app/shared/model/config/config.model';
 const confOrm = require('../../ormconfig.json');
 
 confOrm.host = process.env.DB_HOST || confOrm.host;
-confOrm.port = process.env.DB_PORT !== undefined ? parseInt(process.env.DB_PORT) : confOrm.port,
+confOrm.port = process.env.DB_PORT !== undefined ? parseInt(process.env.DB_PORT) : confOrm.port;
 confOrm.database = process.env.DB_NAME || confOrm.database;
 confOrm.username = process.env.DB_USER || confOrm.username;
 confOrm.password = process.env.DB_PASSWORD || confOrm.password;

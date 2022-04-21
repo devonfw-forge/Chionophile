@@ -19,40 +19,30 @@ export class AccessCodeCrudController {
   constructor(public service: AccessCodeCrudService) {}
 
   @Override('createOneBase')
-  async create(
-     @ParsedBody() dto: AccessCodeDTO,
-     @Res() res: Response)
-  {
-    const resData =  await this.service.createOneMod(dto);
+  async create(@ParsedBody() dto: AccessCodeDTO, @Res() res: Response) {
+    const resData = await this.service.createOneMod(dto);
     res.status(HttpStatus.OK).send(resData);
   }
 
   @Override('getOneBase')
-  async get(
-     @Param('id') id: number,
-     @Res() res: Response)
-  {
-    try{
+  async get(@Param('id') id: number, @Res() res: Response) {
+    try {
       const resData = await this.service.getOneMod(id);
       if (resData.accessCode == undefined) {
-        throw "Inexistent AccessCode";
+        throw 'Inexistent AccessCode';
       }
       res.status(HttpStatus.OK).send(resData);
-    }catch{
+    } catch {
       res.status(HttpStatus.NOT_FOUND).send();
     }
   }
 
   @Override('deleteOneBase')
-  async delete(
-     @ParsedRequest() req: CrudRequest,
-     @Param('id') id: number,
-     @Res() res: Response)
-  {
-    try{
+  async delete(@ParsedRequest() req: CrudRequest, @Param('id') id: number, @Res() res: Response) {
+    try {
       await this.service.deleteOne(req);
       res.status(HttpStatus.OK).json(id);
-    }catch{
+    } catch {
       res.status(HttpStatus.NOT_FOUND).send();
     }
   }

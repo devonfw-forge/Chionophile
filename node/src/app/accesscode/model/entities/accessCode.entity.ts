@@ -13,27 +13,27 @@ export class AccessCode {
   modificationCounter?: number = 1;
 
   @Column('timestamp', { name: 'creationtime' })
-  creationTime?: Date =  new Date();
+  creationTime?: Date = new Date();
 
   @Column('timestamp', { name: 'starttime' })
-  startTime?: Date =  new Date();
+  startTime?: Date = new Date();
 
   @Column('timestamp', { name: 'endtime' })
-  endTime?: Date =  new Date();
+  endTime?: Date = new Date();
 
   @Transform(({ value }) => parseInt(value))
-  @Column('int', {name: 'idvisitor', nullable: true })
+  @Column('int', { name: 'idvisitor', nullable: true })
   visitorId?: number;
 
   @Transform(({ value }) => parseInt(value))
-  @Column('int', {name: 'idqueue', nullable: true })
+  @Column('int', { name: 'idqueue', nullable: true })
   queueId?: number;
 
   @OneToOne(() => Visitor)
   @JoinColumn({ name: 'id' })
   visitor: Visitor;
 
-  @ManyToOne(() => Queue, (queue) => queue.accessCodes)
+  @ManyToOne(() => Queue, queue => queue.accessCodes)
   @JoinColumn({ name: 'idqueue' })
   queue: Queue;
 }

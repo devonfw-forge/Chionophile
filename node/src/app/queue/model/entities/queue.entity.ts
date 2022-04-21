@@ -44,6 +44,6 @@ export class Queue {
   @Column('bool')
   active?: boolean;
 
-  @OneToMany(() => AccessCode, (accessCode) => accessCode.queue)
+  @OneToMany(() => AccessCode, accessCode => accessCode.queue)
   accessCodes: AccessCode[];
 }

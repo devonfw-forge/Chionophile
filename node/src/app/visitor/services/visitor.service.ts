@@ -12,22 +12,22 @@ export class VisitorService {
   constructor(@InjectRepository(Visitor) private repo: Repository<Visitor>) {}
 
   async searchCriteria(crit: Criteria): Promise<VisitorResponseDTO> {
-    let query_params: any = {}
-    let criterium: keyof Criteria
+    let query_params: any = {};
+    let criterium: keyof Criteria;
     for (criterium in crit) {
-      if (crit.hasOwnProperty(criterium) && criterium != "pageable" && crit[criterium] != undefined) {
-          query_params[criterium] = crit[criterium];
+      if (crit.hasOwnProperty(criterium) && criterium != 'pageable' && crit[criterium] != undefined) {
+        query_params[criterium] = crit[criterium];
       }
     }
 
     const response: VisitorResponseDTO = new VisitorResponseDTO();
     response.pageable = crit.pageable;
-    if ( Object.keys(query_params).length != 0 ) {
+    if (Object.keys(query_params).length != 0) {
       response.content = (
         await this.repo.find({
           skip: crit.pageable.pageNumber * crit.pageable.pageSize,
           take: crit.pageable.pageSize,
-          where: query_params ,
+          where: query_params,
         })
       ).map(visitor => plainToClass(VisitorDTO, visitor));
     } else {

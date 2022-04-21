@@ -12,23 +12,21 @@ import { VisitorDTO } from 'src/app/visitor/dto/visitordto';
 
 @Injectable()
 export class AccessCodeCrudService extends TypeOrmCrudService<AccessCode> {
-  constructor(
-    @InjectRepository(AccessCode) private repoCode: Repository<AccessCode>,
-  ) {
+  constructor(@InjectRepository(AccessCode) private repoCode: Repository<AccessCode>) {
     super(repoCode);
   }
-  
+
   async getOneMod(id: number): Promise<ComposedCTO> {
     const accessCode = await this.repoCode.findOne({
       where: { id: id },
-      relations: ['visitor', 'queue']
+      relations: ['visitor', 'queue'],
     });
-    
+
     const cto = new ComposedCTO();
     cto.accessCode = plainToClass(AccessCodeResponse, accessCode);
     cto.queue = plainToClass(Queue, accessCode?.queue);
     cto.visitor = plainToClass(VisitorDTO, accessCode?.visitor);
-    return cto;    
+    return cto;
   }
 
   async createOneMod(dto: AccessCodeDTO): Promise<AccessCodeResponse | undefined> {

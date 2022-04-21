@@ -37,14 +37,14 @@ async function bootstrap(): Promise<void> {
   await app.listen(configModule.values.port);
 }
 
-if (process.env.EXECUTION == "cluster"){
-  console.log("+++++++++++++++++++++++++++++");
-  console.log("Executed with multiple cores");
-  console.log("+++++++++++++++++++++++++++++");
+if (process.env.EXECUTION == 'cluster') {
+  console.log('+++++++++++++++++++++++++++++');
+  console.log('Executed with multiple cores');
+  console.log('+++++++++++++++++++++++++++++');
   AppClusterService.clusterize(bootstrap);
-} else{
-  console.log("+++++++++++++++++++++++++++++");
-  console.log("Executed with single core");
-  console.log("+++++++++++++++++++++++++++++");
+} else {
+  console.log('+++++++++++++++++++++++++++++');
+  console.log('Executed with single core');
+  console.log('+++++++++++++++++++++++++++++');
   bootstrap();
 }

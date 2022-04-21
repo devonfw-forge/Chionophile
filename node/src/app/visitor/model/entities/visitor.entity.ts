@@ -2,7 +2,6 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 import { MaxLength, IsEmail } from 'class-validator';
 import { Transform } from 'class-transformer';
 
-
 @Entity({ name: 'visitor' })
 export class Visitor {
   @Transform(({ value }) => parseInt(value))
