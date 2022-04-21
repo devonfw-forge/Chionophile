@@ -1,13 +1,14 @@
 import os
 import shutil
+from distutils.dir_util import copy_tree
 import pdfkit
 
 def give_name_by_number(id):
     if id == 0: return 'rust'
     elif id == 1: return 'java'
     elif id == 2: return 'node'
-    elif id == 3: return 'net'
-    elif id == 4: return 'python'
+    elif id == 3: return 'python'
+    elif id == 4: return 'net'
     else: return 'undefined'
 
 def gen_cons_report(lines_l):
@@ -27,19 +28,6 @@ def gen_cons_report(lines_l):
         consumption_table += "</tr>\n"
     consumption_table += "</table>\n"
     return consumption_table
-
-def convert_to_pdf():
-    wkhtml_path = pdfkit.configuration(wkhtmltopdf = "wkhtmltox_win.exe")
-    for file in os.listdir(os.path.join('..','results')):
-        if file.endswith('.html'):
-            pdfkit.from_file(os.path.join('..','results',file), 
-                os.path.join('..','results',file.replace('html','pdf')), 
-                configuration = wkhtml_path)
-
-"""
-    Copy all generated files into temp directory 
-"""
-shutil.copytree('.', os.path.join('..','results','temp'))
 
 """
     Processing power_idle.csv file
@@ -68,8 +56,8 @@ cons_reports = {
     'rust': {},
     'java': {},
     'node': {},
-    'net': {},
     'python': {},
+    'net': {},
     'undefined': {},
 }
 # reading csv files:
@@ -99,16 +87,16 @@ for csvf in csv_files:
             cons_reports['node']['B1'] = gen_cons_report(lines_list)
         elif '_2' in csvf and 'B2' in csvf:          
             cons_reports['node']['B2'] = gen_cons_report(lines_list)
-        # NET:
-        elif '_3' in csvf and 'B1' in csvf:          
-            cons_reports['net']['B1'] = gen_cons_report(lines_list)
-        elif '_3' in csvf and 'B2' in csvf:          
-            cons_reports['net']['B2'] = gen_cons_report(lines_list)
         # PYTHON:
-        elif '_4' in csvf and 'B1' in csvf:          
+        elif '_3' in csvf and 'B1' in csvf:          
             cons_reports['python']['B1'] = gen_cons_report(lines_list)
-        elif '_4' in csvf and 'B2' in csvf:          
+        elif '_3' in csvf and 'B2' in csvf:          
             cons_reports['python']['B2'] = gen_cons_report(lines_list)
+        # NET:
+        elif '_4' in csvf and 'B1' in csvf:          
+            cons_reports['net']['B1'] = gen_cons_report(lines_list)
+        elif '_4' in csvf and 'B2' in csvf:          
+            cons_reports['net']['B2'] = gen_cons_report(lines_list)
     os.remove(os.path.join('..','results',csvf))
 
 
@@ -145,16 +133,16 @@ for report in report_files:
                     html_list.append(cons_reports['node']['B1'])
                 elif '_2' in report and 'B2' in report:          
                     html_list.append(cons_reports['node']['B2'])
-                # NET:
-                elif '_3' in report and 'B1' in report:          
-                    html_list.append(cons_reports['net']['B1'])
-                elif '_3' in report and 'B2' in report:          
-                    html_list.append(cons_reports['net']['B2'])
                 # PYTHON:
-                elif '_4' in report and 'B1' in report:          
+                elif '_3' in report and 'B1' in report:          
                     html_list.append(cons_reports['python']['B1'])
-                elif '_4' in report and 'B2' in report:          
+                elif '_3' in report and 'B2' in report:          
                     html_list.append(cons_reports['python']['B2'])
+                # NET:
+                elif '_4' in report and 'B1' in report:          
+                    html_list.append(cons_reports['net']['B1'])
+                elif '_4' in report and 'B2' in report:          
+                    html_list.append(cons_reports['net']['B2'])
             if '<div class=\"tasks\">' in line: is_div_tasks = True
             if '<div class=\"users\">' in line: is_div_tasks = False
             if '<table>\n' in line: 
@@ -192,5 +180,3 @@ for report in report_files:
     os.remove(os.path.join('..','results',report))
     with open(os.path.join('..','results',new_report), "w", encoding='utf-8') as f:
         f.write(clean_html)
-
-convert_to_pdf()

@@ -1,0 +1,46 @@
+version: '3.8'
+services:
+  jtq_postgres:
+    container_name: jtq_postgres_nginx
+    image: postgres:14.2
+    env_file:
+      - ../../postgresql/config.env
+    volumes:
+      - ../../postgresql/postgres/init:/docker-entrypoint-initdb.d:ro
+    restart: unless-stopped
+    networks:
+      - vnet
+
+  jtq_python_n:
+    build:  ../.
+    deploy:
+      mode: replicated
+      replicas: 4
+    environment:
+      - DB_HOST=jtq_postgres_nginx
+      - DB_PORT=5432
+      - DB_NAME=jtq_db
+      - DB_USER=jtq_user
+      - DB_PASSWORD=admin
+      - BASE_REST_URL=jumpthequeue/services/rest
+    depends_on:
+        - postgres
+    volumes:
+      - ../jtq:/code
+    command: "python manage.py runserver 0.0.0.0:8081"
+    restart: on-failure
+    networks:
+      - vnet
+  
+  nginx-python:
+    container_name: nginx-python
+    build: .
+    ports:
+    - "8081:8081"
+    depends_on:
+      - jtq_python_n
+    networks:
+      - vnet
+
+networks:
+  vnet:

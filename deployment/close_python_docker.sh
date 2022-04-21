@@ -1,6 +1,6 @@
 echo
 echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
-echo "Launching JTQ Python"
+echo "Closing JTQ Python"
 echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
 echo
 
@@ -19,21 +19,21 @@ err_display(){
     exit
 }
 
+
 # Check if python directory exists
 if [ ! -d "python" ] && cd .. && [ ! -d "python" ] ; then
-    err_msg="[ERROR] node directory does not exists."
+    err_msg="[ERROR] python directory does not exists."
     err_display
 fi
 
-# Check if python exists
-if  ! ( python --version &> /dev/null ) ; then 
-    err_msg="[ERROR] Command python missing"
+# Check if DockerCompose exists
+if  ! ( docker-compose --version &> /dev/null ) ; then 
+    err_msg="[ERROR] Command docker-compose missing"
     err_display
 fi
 
 # Move to the project directory
 cd python
-cd jtq
+cd nginx
 
-echo "Executing..."
-python manage.py runserver || ( err_msg="[ERROR] django server exited" )
+docker-compose down 2> /dev/null || ( err_msg="[ERROR] Could not close python."; err_display )

@@ -2,6 +2,7 @@ use std::sync::Arc;
 use goose::goose::{GooseTask, GooseTaskFunction, GooseTaskSet};
 use goose::taskset;
 use crate::models::visitor_eto::VisitorEto;
+use crate::models::visitor_eto::VisitorPost;
 use crate::models::visitor_search_criteria::VisitorSearchCriteria;
 
 /// Tests basic CRUD operations in an entity, in this case Visitor
@@ -11,7 +12,7 @@ pub fn taskset() -> GooseTaskSet {
 
     let request: GooseTaskFunction = Arc::new(move |user| {
         Box::pin( async move {
-            let visitor_post = VisitorEto::generate_test_visitor();
+            let visitor_post = VisitorPost::generate_test_post_visitor();
 
             //POST TEST
             let post_response = user.post_json(visitor_path, &visitor_post).await?;

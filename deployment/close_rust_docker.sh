@@ -1,6 +1,6 @@
 echo
 echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
-echo "Launching JTQ RUST (Actix)"
+echo "Closing JTQ Rust"
 echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
 echo
 
@@ -26,21 +26,13 @@ if [ ! -d "rust" ] && cd .. && [ ! -d "rust" ] ; then
     err_display
 fi
 
-# Check if Cargo exists
-if  ! ( cargo --version &> /dev/null ) ; then 
-    err_msg="[ERROR] Command cargo missing"
+# Check if DockerCompose exists
+if  ! ( docker-compose --version &> /dev/null ) ; then 
+    err_msg="[ERROR] Command docker-compose missing"
     err_display
 fi
 
 # Move to the project directory
 cd rust
 
-cargo build --release
-
-echo "Copying dlls"
-mkdir target ; mkdir target/release
-cp -r ../error_fixes/PostgresClientLibraries/* target/release/ || ( err_msg="[ERROR] Missing dlls"; err_display )
-
-echo
-echo "Executing with dlls"
-cargo run --release || ( err_msg="[ERROR] Cargo release exited" )
+docker-compose down 2> /dev/null || ( err_msg="[ERROR] Could not close rust."; err_display )

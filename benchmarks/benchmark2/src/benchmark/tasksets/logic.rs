@@ -6,6 +6,7 @@ use crate::models::accesscode_post_data::AccessCodePostData;
 use crate::models::accesscode_search_criteria::AccessCodeSearchCriteria;
 use crate::models::queue_search_criteria::QueueSearchCriteria;
 use crate::models::visitor_eto::VisitorEto;
+use crate::models::visitor_eto::VisitorPost;
 use crate::models::visitor_search_criteria::VisitorSearchCriteria;
 
 /// Tests normal user interaction: Register -> Join Queue -> Leave Queue (-> Delete User)
@@ -19,7 +20,7 @@ pub fn taskset() -> GooseTaskSet {
         Box::pin( async move {
 
             //Register visitor
-            let visitor_post = VisitorEto::generate_test_visitor();
+            let visitor_post = VisitorPost::generate_test_post_visitor();
             let post_response = user.post_json(visitor_path, &visitor_post).await?;
             let visitor_eto = post_response.response?.json::<VisitorEto>().await?;
 

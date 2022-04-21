@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   jtq_postgres:
-    container_name: jtq_postgres_intern
+    container_name: jtq-postgres
     image: postgres:14.2
     env_file:
       - ../postgresql/config.env
@@ -10,26 +10,19 @@ services:
     restart: unless-stopped
     networks:
       - vnet
-  
-  jtq_python:
+  jtq_rust:
     build: .
     depends_on:
         - postgres
-    volumes:
-      - ./jtq:/code
+    container_name: jtq-java
     environment:
-      - DB_HOST=jtq_postgres_intern
-      - DB_PORT=5432
-      - DB_NAME=jtq_db
-      - DB_USER=jtq_user
-      - DB_PASSWORD=admin
-      - BASE_REST_URL=jumpthequeue/services/rest
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://jtq-postgres/jtq_db
+      - SPRING_DATASOURCE_USERNAME=jtq_user
+      - SPRING_DATASOURCE_PASSWORD=admin
     ports:
       - "8081:8081"
-    command: "python manage.py runserver 0.0.0.0:8081"
     restart: on-failure
     networks:
       - vnet
-
 networks:
   vnet:
