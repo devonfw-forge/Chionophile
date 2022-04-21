@@ -17,7 +17,7 @@ services:
     deploy:
       mode: replicated
       replicas: 4
-    image: node:17-alpine
+    image: node:17
     working_dir: /home/node/app
     volumes:
       - ../:/home/node/app

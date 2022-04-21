@@ -15,7 +15,7 @@ services:
     depends_on:
         - postgres
     container_name: jtq_node
-    image: node:17-alpine
+    image: node:17
     working_dir: /home/node/app
     volumes:
       - ./:/home/node/app
