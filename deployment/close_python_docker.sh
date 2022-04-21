@@ -34,5 +34,6 @@ fi
 
 # Move to the project directory
 cd python
+cd nginx
 
 docker-compose down 2> /dev/null || ( err_msg="[ERROR] Could not close python."; err_display )

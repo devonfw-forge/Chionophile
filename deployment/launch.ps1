@@ -20,7 +20,7 @@ function Wait-MyProcess {
 
 function Start-Benchmark {
     Write-Host ("Launching Benchmarks... ")
-    Write-Host ("This will take more than 10 minutes!")
+    Write-Host ("This will take more than 13 minutes!")
     Write-Host ("Launching First Benchmark... ")
     Start-Process -Wait launch_benchmark1.sh
     Write-Host ("First Benchmark finished")
@@ -31,7 +31,7 @@ function Start-Benchmark {
 
 function Start-NETBenchmark {
     Write-Host ("Launching .NET Benchmarks... ")
-    Write-Host ("This will take more than 10 minutes!")
+    Write-Host ("This will take more than 13 minutes!")
     Write-Host ("Launching First Benchmark... ")
     Start-Process -Wait launch_net_benchmark1.sh
     Write-Host ("First Benchmark finished")
@@ -90,7 +90,6 @@ function Start-DockerBackend() {
     }
     Write-Host ("`r`nStopping "+$name+" and Postgres...")
     Start-Process -Wait $c_bash
-    Start-Process -Wait close_postgres.sh
 }
 
 function Start-Processes{
@@ -108,22 +107,18 @@ function Start-Processes{
 
         Write-Host ("Waiting 1 minute before launching benchmark...`r`n")
         Start-Sleep -s (60);
-
         Start-DockerBackend -p_bash "launch_rust_docker.sh" -c_bash "close_rust_docker.sh" -name "JTQ Rust"
 
         Write-Host ("Waiting 5 minutes...`r`n")
         Start-Sleep -s (5*60);
-
         Start-DockerBackend -p_bash "launch_java_docker.sh" -c_bash "close_java_docker.sh" -name "JTQ Java"
 
         Write-Host ("Waiting 5 minutes...`r`n")
         Start-Sleep -s (5*60);
-
         Start-DockerBackend -p_bash "launch_node_docker.sh" -c_bash "close_node_docker.sh" -name "JTQ Node"
         
         Write-Host ("Waiting 5 minutes...`r`n")
         Start-Sleep -s (5*60);
-        
         Start-DockerBackend -p_bash "launch_python_docker.sh" -c_bash "close_python_docker.sh" -name "JTQ Python"
         
         #Write-Host ("Waiting 5 minutes...`r`n")

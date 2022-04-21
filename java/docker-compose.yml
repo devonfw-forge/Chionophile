@@ -11,10 +11,10 @@ services:
     networks:
       - vnet
   jtq_rust:
+    build: .
     depends_on:
         - postgres
     container_name: jtq-java
-    image: jtq-java
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://jtq-postgres/jtq_db
       - SPRING_DATASOURCE_USERNAME=jtq_user

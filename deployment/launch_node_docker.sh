@@ -27,6 +27,7 @@ fi
 
 # Move to the project directory
 cd node
+cd nginx
 
 echo "Executing..."
 docker-compose down

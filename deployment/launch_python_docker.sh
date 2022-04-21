@@ -26,8 +26,8 @@ fi
 
 # Move to the project directory
 cd python
+cd nginx
 
 echo "Executing..."
 docker-compose down
-docker build . -t jtq-python
 docker-compose up
