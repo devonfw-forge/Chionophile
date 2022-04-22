@@ -66,3 +66,16 @@ The previous execution of the automated script will generate a report in results
 | Request / second              | **2613**   | 1025    | 145      |
 | Consumption B2 (mWh)          | 2719.69    | 2604.53 | 2220.11  |
 | Performance %                 | -          | -60%    | -94%     |
+
+
+## Bibliography
+
+This project has taken multiple studies and articles as a basis for the tools, hypothesis and methods used.
+
+* [Ranking Programming Languages by Energy Efficiency](https://haslab.github.io/SAFER/scp21.pdf)
+* [What are Your Programming Language's Energy-Delay Implications?](https://ieeexplore.ieee.org/document/8595213)
+* [Analyzing Programming Languages’ Energy Consumption: An Empirical Study](https://stefanos1316.github.io/my_curriculum_vitae/GKS17.pdf)
+* [AWS: Sustainability with Rust](https://aws.amazon.com/blogs/opensource/sustainability-with-rust/)
+* [Why Discord is Switching from Go to Rust](https://discord.com/blog/why-discord-is-switching-from-go-to-rust)
+* [How Programming Languages and Paradigms Affect Performance and Energy in Multithreaded Applications](https://ieeexplore.ieee.org/stamp/stamp.jsptp=&arnumber=7828287)
+* [On Reducing the Energy Consumption of Software: From Hurdles to Requirements](https://hal.inria.fr/hal-02892900/document)
