@@ -5,6 +5,6 @@
   </PropertyGroup>
   <PropertyGroup>
     <ActiveDebugProfile>Devon4Net.Application.WebAPI</ActiveDebugProfile>
-    <NameOfLastUsedPublishProfile>C:\projects\jtqNET\JTQ_Benchmark\source\Templates\WebAPI\Devon4Net.Application.WebAPI\Properties\PublishProfiles\FolderProfile.pubxml</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>C:\projects\NET\JTQ_Benchmark\source\Templates\WebAPI\Devon4Net.Application.WebAPI\Properties\PublishProfiles\FolderProfile.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>

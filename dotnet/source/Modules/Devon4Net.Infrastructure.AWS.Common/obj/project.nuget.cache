@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8SXvsmkKb4odLmBdJ+TUk/tbRrwCor2A+I5KO8xKFXpQ6ugGl0yrCCDMnilZLK6sewlwWb3T/9NYvgKeMLdqDw==",
+  "dgSpecHash": "Yw8SURQCQFHytzAlZoor/97Kmz4imH0GGB9+xPxkHpDcCugbpA6xHSYrcnNuANhKR96LK4yo6iCVljuinHJ9bw==",
   "success": true,
-  "projectFilePath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.Common\\Devon4Net.Infrastructure.AWS.Common.csproj",
+  "projectFilePath": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.Common\\Devon4Net.Infrastructure.AWS.Common.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dhernan7\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.0\\microsoft.bcl.asyncinterfaces.1.1.0.nupkg.sha512",
     "C:\\Users\\dhernan7\\.nuget\\packages\\microsoft.extensions.configuration\\3.1.10\\microsoft.extensions.configuration.3.1.10.nupkg.sha512",

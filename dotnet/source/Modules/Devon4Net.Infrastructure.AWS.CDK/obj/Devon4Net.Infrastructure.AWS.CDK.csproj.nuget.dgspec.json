@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.CDK\\Devon4Net.Infrastructure.AWS.CDK.csproj": {}
+    "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.CDK\\Devon4Net.Infrastructure.AWS.CDK.csproj": {}
   },
   "projects": {
-    "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.CDK\\Devon4Net.Infrastructure.AWS.CDK.csproj": {
+    "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.CDK\\Devon4Net.Infrastructure.AWS.CDK.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.CDK\\Devon4Net.Infrastructure.AWS.CDK.csproj",
+        "projectUniqueName": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.CDK\\Devon4Net.Infrastructure.AWS.CDK.csproj",
         "projectName": "Devon4Net.Infrastructure.AWS.CDK",
-        "projectPath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.CDK\\Devon4Net.Infrastructure.AWS.CDK.csproj",
+        "projectPath": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.CDK\\Devon4Net.Infrastructure.AWS.CDK.csproj",
         "packagesPath": "C:\\Users\\dhernan7\\.nuget\\packages\\",
-        "outputPath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.CDK\\obj\\",
+        "outputPath": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.CDK\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\dhernan7\\AppData\\Roaming\\NuGet\\NuGet.Config",

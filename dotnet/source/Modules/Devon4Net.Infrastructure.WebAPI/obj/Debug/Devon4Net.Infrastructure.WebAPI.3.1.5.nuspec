@@ -50,6 +50,6 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.WebAPI\bin\Debug\netcoreapp3.1\Devon4Net.Infrastructure.WebAPI.dll" target="lib\netcoreapp3.1\Devon4Net.Infrastructure.WebAPI.dll" />
+    <file src="C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.WebAPI\bin\Debug\netcoreapp3.1\Devon4Net.Infrastructure.WebAPI.dll" target="lib\netcoreapp3.1\Devon4Net.Infrastructure.WebAPI.dll" />
   </files>
 </package>

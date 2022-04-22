@@ -6,7 +6,7 @@ using System.Text;
 namespace Devon4Net.WebAPI.Implementation.Business
 {
     [DataContract]
-    public class GenericHttpResponseError
+    public class GenericHttpResponseError : Exception
     {
         [DataMember(Name = "code")]
         public int Code { get; set; }

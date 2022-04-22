@@ -8,10 +8,10 @@ namespace Devon4Net.WebAPI.Implementation.Domain.RepositoryInterfaces
 {
     public interface IAccessCodeRepository : IRepository<Accesscode>
     {
-        Task<Accesscode> JoinQueue(string Ticketnumber, long Idvisitor, long Idqueue);
+        Task<Accesscode> JoinQueue(long Idvisitor, long Idqueue);
         Task<bool> LeaveQueue(long id);
         Task<Accesscode> GetById(long id);
         Task<IList<Accesscode>> GetAccessCodesBySearchCriteria(AccessCodeSearchCriteriaTo criteria);
-        Task<IList<Business.CTO>> GetAccessCodesBySearchCriteriaCTO(AccessCodeSearchCriteriaTo criteria);
+        Task<IList<Business.EntityCTO>> GetAccessCodesBySearchCriteriaCTO(AccessCodeSearchCriteriaTo criteria);
     }
 }

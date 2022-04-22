@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Extensions\\Devon4Net.Infrastructure.Extensions.csproj": {}
+    "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Extensions\\Devon4Net.Infrastructure.Extensions.csproj": {}
   },
   "projects": {
-    "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Extensions\\Devon4Net.Infrastructure.Extensions.csproj": {
+    "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Extensions\\Devon4Net.Infrastructure.Extensions.csproj": {
       "version": "3.1.5",
       "restore": {
-        "projectUniqueName": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Extensions\\Devon4Net.Infrastructure.Extensions.csproj",
+        "projectUniqueName": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Extensions\\Devon4Net.Infrastructure.Extensions.csproj",
         "projectName": "Devon4Net.Infrastructure.Extensions",
-        "projectPath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Extensions\\Devon4Net.Infrastructure.Extensions.csproj",
+        "projectPath": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Extensions\\Devon4Net.Infrastructure.Extensions.csproj",
         "packagesPath": "C:\\Users\\dhernan7\\.nuget\\packages\\",
-        "outputPath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Extensions\\obj\\",
+        "outputPath": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Extensions\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\dhernan7\\AppData\\Roaming\\NuGet\\NuGet.Config",

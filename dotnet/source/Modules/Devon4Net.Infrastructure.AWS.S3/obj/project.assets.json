@@ -8615,11 +8615,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.S3\\Devon4Net.Infrastructure.AWS.S3.csproj",
+      "projectUniqueName": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.S3\\Devon4Net.Infrastructure.AWS.S3.csproj",
       "projectName": "Devon4Net.Infrastructure.AWS.S3",
-      "projectPath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.S3\\Devon4Net.Infrastructure.AWS.S3.csproj",
+      "projectPath": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.S3\\Devon4Net.Infrastructure.AWS.S3.csproj",
       "packagesPath": "C:\\Users\\dhernan7\\.nuget\\packages\\",
-      "outputPath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.S3\\obj\\",
+      "outputPath": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.S3\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\dhernan7\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -8636,11 +8636,11 @@
         "netstandard2.1": {
           "targetAlias": "netstandard2.1",
           "projectReferences": {
-            "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.Common\\Devon4Net.Infrastructure.AWS.Common.csproj": {
-              "projectPath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.Common\\Devon4Net.Infrastructure.AWS.Common.csproj"
+            "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.Common\\Devon4Net.Infrastructure.AWS.Common.csproj": {
+              "projectPath": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.Common\\Devon4Net.Infrastructure.AWS.Common.csproj"
             },
-            "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Log\\Devon4Net.Infrastructure.Log.csproj": {
-              "projectPath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Log\\Devon4Net.Infrastructure.Log.csproj"
+            "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Log\\Devon4Net.Infrastructure.Log.csproj": {
+              "projectPath": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Log\\Devon4Net.Infrastructure.Log.csproj"
             }
           }
         }

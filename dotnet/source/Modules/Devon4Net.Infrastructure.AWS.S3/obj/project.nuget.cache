@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "tUZd7pVhTAr7/pd/m8JgfQiAKaUHOKeQ7BlEJI9mIbg3i2RDdmC1vTdNrZ6IHZ07gEqvQKQWS0Ck36ms5qBaNw==",
+  "dgSpecHash": "36cJqkFXIFYPP+rCmw79MrSVsYciW5IF8kMUuSz5vjJJukO/9poDhNREn9db6T8v4P9IvvzcctWXShvDR0lZ8A==",
   "success": true,
-  "projectFilePath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.S3\\Devon4Net.Infrastructure.AWS.S3.csproj",
+  "projectFilePath": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.S3\\Devon4Net.Infrastructure.AWS.S3.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dhernan7\\.nuget\\packages\\awssdk.core\\3.5.1.46\\awssdk.core.3.5.1.46.nupkg.sha512",
     "C:\\Users\\dhernan7\\.nuget\\packages\\awssdk.s3\\3.5.6.2\\awssdk.s3.3.5.6.2.nupkg.sha512",

@@ -34,6 +34,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.QueueManagement.Services
         public async Task<DailyqueueETO> GetById(long id)
         {
             var result = await _queueRepository.GetQueueById(id).ConfigureAwait(false);
+            if(result == null) { return null; }
             return QueueManagementConverter.ModelToETO(result);
         }
 
@@ -57,7 +58,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.QueueManagement.Services
 
             var result = new SearchResult
             {
-                result = queuesETO.GetRange(pageStart, pageIncrement),
+                content = queuesETO.GetRange(pageStart, pageIncrement),
                 pageable = criteria.pageable,
                 count = queuesETO.Count
             };

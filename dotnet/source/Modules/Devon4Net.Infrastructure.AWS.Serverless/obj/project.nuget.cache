@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fF9WbfQhd7VgLX/djtwZiTSOAP0IDq0Rbtx6x3Yk90O15nJCumMPZqSMNE22SaDY8jWWz/PiNFW85csHgZ8G9w==",
+  "dgSpecHash": "KJqW/93j9BnQ3lAgplFjYIdMSiPswNdZCVtOw+p2tpzdVDziQMIwlzW2LdCWC0Vi3LKRmND3uABGgpdD+LRG2w==",
   "success": true,
-  "projectFilePath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.Serverless\\Devon4Net.Infrastructure.AWS.Serverless.csproj",
+  "projectFilePath": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.Serverless\\Devon4Net.Infrastructure.AWS.Serverless.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dhernan7\\.nuget\\packages\\apache.avro\\1.9.2\\apache.avro.1.9.2.nupkg.sha512",
     "C:\\Users\\dhernan7\\.nuget\\packages\\awssdk.core\\3.5.1.46\\awssdk.core.3.5.1.46.nupkg.sha512",

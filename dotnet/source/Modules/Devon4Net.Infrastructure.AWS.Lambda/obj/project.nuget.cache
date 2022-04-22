@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "APDqjJYVTwNn5DlW5v9eXlZuORlYuExLFng3LNf8czp+LbYrWEwd0aHlPuGf/1XirnUKeA3DQ3sooxzJMBpFpA==",
+  "dgSpecHash": "eUaCImduYLeQl3KA58B4xxm0ylmtw1fOJrj/PZvp3SBw0tQsG/iQb6/K7PMVGHTHMkqLkoEUPW48Lgjx3c0Jrw==",
   "success": true,
-  "projectFilePath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.Lambda\\Devon4Net.Infrastructure.AWS.Lambda.csproj",
+  "projectFilePath": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.Lambda\\Devon4Net.Infrastructure.AWS.Lambda.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dhernan7\\.nuget\\packages\\amazon.lambda.core\\1.2.0\\amazon.lambda.core.1.2.0.nupkg.sha512",
     "C:\\Users\\dhernan7\\.nuget\\packages\\amazon.lambda.logging.aspnetcore\\3.1.0\\amazon.lambda.logging.aspnetcore.3.1.0.nupkg.sha512",

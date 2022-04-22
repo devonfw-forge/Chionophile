@@ -59,6 +59,10 @@ namespace Devon4Net.WebAPI.Implementation.Business.QueueManagement
         public async Task<ActionResult> GetQueue([FromRoute] long id)
         {
             var result = await _queueManagementService.GetById(id).ConfigureAwait(false);
+            if (result == null)
+            {
+                return NotFound(null);
+            }
             return Ok(result);
         }
 
@@ -72,7 +76,11 @@ namespace Devon4Net.WebAPI.Implementation.Business.QueueManagement
         public async Task<ActionResult> DeleteQueue([FromRoute] long id)
         {
             var result = await _queueManagementService.DeleteQueue(id).ConfigureAwait(false);
-            return Ok(result);
+            if (!result)
+            {
+                return NotFound(null);
+            }
+            return Ok(id);
         }
     }
 }

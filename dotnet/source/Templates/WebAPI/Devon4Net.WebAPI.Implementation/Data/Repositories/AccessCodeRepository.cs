@@ -15,12 +15,11 @@ namespace Devon4Net.WebAPI.Implementation.Data.Repositories
     {
         public AccessCodeRepository(jtqdbContext context) : base(context) { }
 
-        public async Task<Accesscode> JoinQueue(string Ticketnumber, long Idvisitor, long Idqueue)
+        public async Task<Accesscode> JoinQueue(long Idvisitor, long Idqueue)
         {
             return await Create(new Accesscode 
             {
                 Modificationcounter = 1, 
-                Ticketnumber = Ticketnumber,
                 Creationtime = DateTime.Now,
                 Starttime = null,
                 Endtime = null,
@@ -31,6 +30,7 @@ namespace Devon4Net.WebAPI.Implementation.Data.Repositories
 
         public async Task<bool> LeaveQueue(long id)
         {
+            if(await GetFirstOrDefault(t => t.Id == id).ConfigureAwait(false) == null) { return false; }
             return await Delete(t => t.Id == id).ConfigureAwait(false);
         }
 
@@ -41,10 +41,6 @@ namespace Devon4Net.WebAPI.Implementation.Data.Repositories
             if (criteria.Modificationcounter != null)
             {
                 pre = pre.And(x => x.Modificationcounter == criteria.Modificationcounter);
-            }
-            if (!string.IsNullOrEmpty(criteria.Ticketnumber))
-            {
-                pre = pre.And(x => x.Ticketnumber == criteria.Ticketnumber);
             }
             if (criteria.Creationtime != null)
             {
@@ -75,7 +71,7 @@ namespace Devon4Net.WebAPI.Implementation.Data.Repositories
             return await GetFirstOrDefault(x => x.Id == id).ConfigureAwait(false);
         }
 
-        public async Task<IList<Business.CTO>> GetAccessCodesBySearchCriteriaCTO(AccessCodeSearchCriteriaTo criteria)
+        public async Task<IList<Business.EntityCTO>> GetAccessCodesBySearchCriteriaCTO(AccessCodeSearchCriteriaTo criteria)
         {
             var db = new jtqdbContext();
 
@@ -84,10 +80,6 @@ namespace Devon4Net.WebAPI.Implementation.Data.Repositories
             if (criteria.Modificationcounter != null)
             {
                 pre = pre.And(x => x.Modificationcounter == criteria.Modificationcounter);
-            }
-            if (!string.IsNullOrEmpty(criteria.Ticketnumber))
-            {
-                pre = pre.And(x => x.Ticketnumber == criteria.Ticketnumber);
             }
             if (criteria.Creationtime != null)
             {
@@ -110,22 +102,20 @@ namespace Devon4Net.WebAPI.Implementation.Data.Repositories
                 pre = pre.And(x => x.Idqueue == criteria.Idqueue);
             }
 
-
-
             var search = await Get(pre).ConfigureAwait(false);
 
             var query = from ac in db.Accesscode
                         join v in db.Visitor on ac.Idvisitor equals v.Id
                         join q in db.Dailyqueue on ac.Idqueue equals q.Id
-                        select new Business.CTO
+                        select new Business.EntityCTO
                         {
-                            accessCode = ac,
+                            accescode = ac,
                             visitor = v,
                             queue = q
                         };
             //var a = query.Where();
 
-            var result = new List<Business.CTO>(query);
+            var result = new List<Business.EntityCTO>(query);
 
             return result;
         }

@@ -677,11 +677,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.Common\\Devon4Net.Infrastructure.AWS.Common.csproj",
+      "projectUniqueName": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.Common\\Devon4Net.Infrastructure.AWS.Common.csproj",
       "projectName": "Devon4Net.Infrastructure.AWS.Common",
-      "projectPath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.Common\\Devon4Net.Infrastructure.AWS.Common.csproj",
+      "projectPath": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.Common\\Devon4Net.Infrastructure.AWS.Common.csproj",
       "packagesPath": "C:\\Users\\dhernan7\\.nuget\\packages\\",
-      "outputPath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.Common\\obj\\",
+      "outputPath": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.Common\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\dhernan7\\AppData\\Roaming\\NuGet\\NuGet.Config",

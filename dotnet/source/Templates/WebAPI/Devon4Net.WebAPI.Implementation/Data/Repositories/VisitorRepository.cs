@@ -31,6 +31,7 @@ namespace Devon4Net.WebAPI.Implementation.Data.Repositories
 
         public async Task<bool> Delete(long id)
         {
+            if (await GetFirstOrDefault(t => t.Id == id) == null) { return false; }
             return await Delete(t => t.Id == id).ConfigureAwait(false);
         }
 

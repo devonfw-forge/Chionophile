@@ -9,7 +9,6 @@ namespace Devon4Net.WebAPI.Implementation.Domain.Entities
     {
         public long Id { get; set; }
         public int Modificationcounter { get; set; }
-        public string Ticketnumber { get; set; }
         public DateTime Creationtime { get; set; }
         public DateTime? Starttime { get; set; }
         public DateTime? Endtime { get; set; }

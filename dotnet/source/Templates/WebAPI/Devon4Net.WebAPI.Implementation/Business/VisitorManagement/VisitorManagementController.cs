@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Devon4Net.WebAPI.Implementation.Business.VisitorManagement
 {
-    //[EnableCors("CorsPolicy")]
+    [EnableCors("CorsPolicy")]
     [ApiController]
     [Route("jumpthequeue/services/rest/visitormanagement/v1")]
     public class VisitorManagementController : ControllerBase
@@ -48,7 +48,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.VisitorManagement
 
         [HttpDelete]
         [Route("visitor/{id}")]
-        [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(long), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(GenericHttpResponseError), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(GenericHttpResponseError), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(GenericHttpResponseError), StatusCodes.Status404NotFound)]
@@ -56,7 +56,13 @@ namespace Devon4Net.WebAPI.Implementation.Business.VisitorManagement
         public async Task<ActionResult> DeleteVisitor(long id)
         {
             var result = await _visitorManagementService.Delete(id).ConfigureAwait(false);
-            return Ok(result);
+            
+            if (!result)
+            {
+                return NotFound(null);
+            }
+
+            return Ok(id);
         }
 
         [HttpGet]
@@ -69,6 +75,12 @@ namespace Devon4Net.WebAPI.Implementation.Business.VisitorManagement
         public async Task<ActionResult> GetVisitorById(long id)
         {
             var result = await _visitorManagementService.FindById(id).ConfigureAwait(false);
+
+            if (result == null)
+            {
+                return NotFound(null);
+            }
+
             return Ok(result);
         }
 

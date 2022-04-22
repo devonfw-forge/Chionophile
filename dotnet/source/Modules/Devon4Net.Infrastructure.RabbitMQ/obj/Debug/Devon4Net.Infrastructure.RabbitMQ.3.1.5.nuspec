@@ -34,6 +34,6 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.RabbitMQ\bin\Debug\netstandard2.1\Devon4Net.Infrastructure.RabbitMQ.dll" target="lib\netstandard2.1\Devon4Net.Infrastructure.RabbitMQ.dll" />
+    <file src="C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.RabbitMQ\bin\Debug\netstandard2.1\Devon4Net.Infrastructure.RabbitMQ.dll" target="lib\netstandard2.1\Devon4Net.Infrastructure.RabbitMQ.dll" />
   </files>
 </package>

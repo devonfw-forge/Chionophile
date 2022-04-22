@@ -10537,11 +10537,11 @@
   "project": {
     "version": "3.1.5",
     "restore": {
-      "projectUniqueName": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.UnitOfWork\\Devon4Net.Infrastructure.UnitOfWork.csproj",
+      "projectUniqueName": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.UnitOfWork\\Devon4Net.Infrastructure.UnitOfWork.csproj",
       "projectName": "Devon4Net.Infrastructure.UnitOfWork",
-      "projectPath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.UnitOfWork\\Devon4Net.Infrastructure.UnitOfWork.csproj",
+      "projectPath": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.UnitOfWork\\Devon4Net.Infrastructure.UnitOfWork.csproj",
       "packagesPath": "C:\\Users\\dhernan7\\.nuget\\packages\\",
-      "outputPath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.UnitOfWork\\obj\\",
+      "outputPath": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.UnitOfWork\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\dhernan7\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -10558,8 +10558,8 @@
         "netstandard2.1": {
           "targetAlias": "netstandard2.1",
           "projectReferences": {
-            "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Log\\Devon4Net.Infrastructure.Log.csproj": {
-              "projectPath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Log\\Devon4Net.Infrastructure.Log.csproj"
+            "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Log\\Devon4Net.Infrastructure.Log.csproj": {
+              "projectPath": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Log\\Devon4Net.Infrastructure.Log.csproj"
             }
           }
         }

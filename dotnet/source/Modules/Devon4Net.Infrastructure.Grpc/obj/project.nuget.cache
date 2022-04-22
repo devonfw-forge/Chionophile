@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "sDH39uOx7ic3I41GY6QmTqPq8EuoIx2M8Vqcym+eQ3TimxC/diQQjLOgKAm1C/yEHMp9HQIsywn+IsXevHxlZQ==",
+  "dgSpecHash": "JLtGgXYTtv/4Fdytot96goXVDepDwudutO5bnDJ3W+qYJHVe7WOoItjvyiAlSw+2ysWNFhszuy1tE/XpEkgfXg==",
   "success": true,
-  "projectFilePath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Grpc\\Devon4Net.Infrastructure.Grpc.csproj",
+  "projectFilePath": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Grpc\\Devon4Net.Infrastructure.Grpc.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dhernan7\\.nuget\\packages\\google.protobuf\\3.13.0\\google.protobuf.3.13.0.nupkg.sha512",
     "C:\\Users\\dhernan7\\.nuget\\packages\\grpc.aspnetcore\\2.33.1\\grpc.aspnetcore.2.33.1.nupkg.sha512",

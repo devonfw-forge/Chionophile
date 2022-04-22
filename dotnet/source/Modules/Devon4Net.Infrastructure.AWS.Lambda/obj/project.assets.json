@@ -1280,11 +1280,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.Lambda\\Devon4Net.Infrastructure.AWS.Lambda.csproj",
+      "projectUniqueName": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.Lambda\\Devon4Net.Infrastructure.AWS.Lambda.csproj",
       "projectName": "Devon4Net.Infrastructure.AWS.Lambda",
-      "projectPath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.Lambda\\Devon4Net.Infrastructure.AWS.Lambda.csproj",
+      "projectPath": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.Lambda\\Devon4Net.Infrastructure.AWS.Lambda.csproj",
       "packagesPath": "C:\\Users\\dhernan7\\.nuget\\packages\\",
-      "outputPath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.Lambda\\obj\\",
+      "outputPath": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.Lambda\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\dhernan7\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -1301,8 +1301,8 @@
         "netstandard2.1": {
           "targetAlias": "netstandard2.1",
           "projectReferences": {
-            "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.Secrets\\Devon4Net.Infrastructure.AWS.Secrets.csproj": {
-              "projectPath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.Secrets\\Devon4Net.Infrastructure.AWS.Secrets.csproj"
+            "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.Secrets\\Devon4Net.Infrastructure.AWS.Secrets.csproj": {
+              "projectPath": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.Secrets\\Devon4Net.Infrastructure.AWS.Secrets.csproj"
             }
           }
         }

@@ -18,3 +18,13 @@ C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Extensi
 C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Extensions\obj\Debug\netstandard2.1\Devon4Net.Infrastructure.Extensions.csproj.CoreCompileInputs.cache
 C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Extensions\obj\Debug\netstandard2.1\Devon4Net.Infrastructure.Extensions.dll
 C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Extensions\obj\Debug\netstandard2.1\Devon4Net.Infrastructure.Extensions.pdb
+C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Extensions\bin\Debug\netstandard2.1\Devon4Net.Infrastructure.Extensions.deps.json
+C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Extensions\bin\Debug\netstandard2.1\Devon4Net.Infrastructure.Extensions.dll
+C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Extensions\bin\Debug\netstandard2.1\Devon4Net.Infrastructure.Extensions.pdb
+C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Extensions\obj\Debug\netstandard2.1\Devon4Net.Infrastructure.Extensions.csproj.AssemblyReference.cache
+C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Extensions\obj\Debug\netstandard2.1\Devon4Net.Infrastructure.Extensions.GeneratedMSBuildEditorConfig.editorconfig
+C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Extensions\obj\Debug\netstandard2.1\Devon4Net.Infrastructure.Extensions.AssemblyInfoInputs.cache
+C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Extensions\obj\Debug\netstandard2.1\Devon4Net.Infrastructure.Extensions.AssemblyInfo.cs
+C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Extensions\obj\Debug\netstandard2.1\Devon4Net.Infrastructure.Extensions.csproj.CoreCompileInputs.cache
+C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Extensions\obj\Debug\netstandard2.1\Devon4Net.Infrastructure.Extensions.dll
+C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Extensions\obj\Debug\netstandard2.1\Devon4Net.Infrastructure.Extensions.pdb

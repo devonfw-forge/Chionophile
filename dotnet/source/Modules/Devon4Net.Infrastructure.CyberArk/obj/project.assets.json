@@ -8652,11 +8652,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.CyberArk\\Devon4Net.Infrastructure.CyberArk.csproj",
+      "projectUniqueName": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.CyberArk\\Devon4Net.Infrastructure.CyberArk.csproj",
       "projectName": "Devon4Net.Infrastructure.CyberArk",
-      "projectPath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.CyberArk\\Devon4Net.Infrastructure.CyberArk.csproj",
+      "projectPath": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.CyberArk\\Devon4Net.Infrastructure.CyberArk.csproj",
       "packagesPath": "C:\\Users\\dhernan7\\.nuget\\packages\\",
-      "outputPath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.CyberArk\\obj\\",
+      "outputPath": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.CyberArk\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\dhernan7\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -8673,8 +8673,8 @@
         "netstandard2.1": {
           "targetAlias": "netstandard2.1",
           "projectReferences": {
-            "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.CircuitBreaker\\Devon4Net.Infrastructure.CircuitBreaker.csproj": {
-              "projectPath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.CircuitBreaker\\Devon4Net.Infrastructure.CircuitBreaker.csproj"
+            "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.CircuitBreaker\\Devon4Net.Infrastructure.CircuitBreaker.csproj": {
+              "projectPath": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.CircuitBreaker\\Devon4Net.Infrastructure.CircuitBreaker.csproj"
             }
           }
         }

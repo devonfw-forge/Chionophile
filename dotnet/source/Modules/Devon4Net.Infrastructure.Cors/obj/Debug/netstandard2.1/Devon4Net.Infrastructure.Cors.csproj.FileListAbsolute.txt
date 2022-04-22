@@ -24,3 +24,16 @@ C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Cors\ob
 C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Cors\obj\Debug\netstandard2.1\Devon4Net.Infrastructure.Cors.csproj.CopyComplete
 C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Cors\obj\Debug\netstandard2.1\Devon4Net.Infrastructure.Cors.dll
 C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Cors\obj\Debug\netstandard2.1\Devon4Net.Infrastructure.Cors.pdb
+C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Cors\bin\Debug\netstandard2.1\Devon4Net.Infrastructure.Cors.deps.json
+C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Cors\bin\Debug\netstandard2.1\Devon4Net.Infrastructure.Cors.dll
+C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Cors\bin\Debug\netstandard2.1\Devon4Net.Infrastructure.Cors.pdb
+C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Cors\bin\Debug\netstandard2.1\Devon4Net.Infrastructure.Common.dll
+C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Cors\bin\Debug\netstandard2.1\Devon4Net.Infrastructure.Common.pdb
+C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Cors\obj\Debug\netstandard2.1\Devon4Net.Infrastructure.Cors.csproj.AssemblyReference.cache
+C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Cors\obj\Debug\netstandard2.1\Devon4Net.Infrastructure.Cors.GeneratedMSBuildEditorConfig.editorconfig
+C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Cors\obj\Debug\netstandard2.1\Devon4Net.Infrastructure.Cors.AssemblyInfoInputs.cache
+C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Cors\obj\Debug\netstandard2.1\Devon4Net.Infrastructure.Cors.AssemblyInfo.cs
+C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Cors\obj\Debug\netstandard2.1\Devon4Net.Infrastructure.Cors.csproj.CoreCompileInputs.cache
+C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Cors\obj\Debug\netstandard2.1\Devon4Net.Infrastructure.Cors.csproj.CopyComplete
+C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Cors\obj\Debug\netstandard2.1\Devon4Net.Infrastructure.Cors.dll
+C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Cors\obj\Debug\netstandard2.1\Devon4Net.Infrastructure.Cors.pdb

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Kafka\\Devon4Net.Infrastructure.Kafka.csproj": {}
+    "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Kafka\\Devon4Net.Infrastructure.Kafka.csproj": {}
   },
   "projects": {
-    "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Common\\Devon4Net.Infrastructure.Common.csproj": {
+    "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Common\\Devon4Net.Infrastructure.Common.csproj": {
       "version": "3.1.5",
       "restore": {
-        "projectUniqueName": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Common\\Devon4Net.Infrastructure.Common.csproj",
+        "projectUniqueName": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Common\\Devon4Net.Infrastructure.Common.csproj",
         "projectName": "Devon4Net.Infrastructure.Common",
-        "projectPath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Common\\Devon4Net.Infrastructure.Common.csproj",
+        "projectPath": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Common\\Devon4Net.Infrastructure.Common.csproj",
         "packagesPath": "C:\\Users\\dhernan7\\.nuget\\packages\\",
-        "outputPath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Common\\obj\\",
+        "outputPath": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Common\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\dhernan7\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -92,14 +92,14 @@
         }
       }
     },
-    "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Kafka\\Devon4Net.Infrastructure.Kafka.csproj": {
+    "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Kafka\\Devon4Net.Infrastructure.Kafka.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Kafka\\Devon4Net.Infrastructure.Kafka.csproj",
+        "projectUniqueName": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Kafka\\Devon4Net.Infrastructure.Kafka.csproj",
         "projectName": "Devon4Net.Infrastructure.Kafka",
-        "projectPath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Kafka\\Devon4Net.Infrastructure.Kafka.csproj",
+        "projectPath": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Kafka\\Devon4Net.Infrastructure.Kafka.csproj",
         "packagesPath": "C:\\Users\\dhernan7\\.nuget\\packages\\",
-        "outputPath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Kafka\\obj\\",
+        "outputPath": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Kafka\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\dhernan7\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -116,11 +116,11 @@
           "netstandard2.1": {
             "targetAlias": "netstandard2.1",
             "projectReferences": {
-              "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Common\\Devon4Net.Infrastructure.Common.csproj": {
-                "projectPath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Common\\Devon4Net.Infrastructure.Common.csproj"
+              "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Common\\Devon4Net.Infrastructure.Common.csproj": {
+                "projectPath": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Common\\Devon4Net.Infrastructure.Common.csproj"
               },
-              "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Log\\Devon4Net.Infrastructure.Log.csproj": {
-                "projectPath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Log\\Devon4Net.Infrastructure.Log.csproj"
+              "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Log\\Devon4Net.Infrastructure.Log.csproj": {
+                "projectPath": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Log\\Devon4Net.Infrastructure.Log.csproj"
               }
             }
           }
@@ -175,14 +175,14 @@
         }
       }
     },
-    "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Log\\Devon4Net.Infrastructure.Log.csproj": {
+    "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Log\\Devon4Net.Infrastructure.Log.csproj": {
       "version": "3.1.5",
       "restore": {
-        "projectUniqueName": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Log\\Devon4Net.Infrastructure.Log.csproj",
+        "projectUniqueName": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Log\\Devon4Net.Infrastructure.Log.csproj",
         "projectName": "Devon4Net.Infrastructure.Log",
-        "projectPath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Log\\Devon4Net.Infrastructure.Log.csproj",
+        "projectPath": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Log\\Devon4Net.Infrastructure.Log.csproj",
         "packagesPath": "C:\\Users\\dhernan7\\.nuget\\packages\\",
-        "outputPath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Log\\obj\\",
+        "outputPath": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Log\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\dhernan7\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -199,8 +199,8 @@
           "netstandard2.1": {
             "targetAlias": "netstandard2.1",
             "projectReferences": {
-              "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Common\\Devon4Net.Infrastructure.Common.csproj": {
-                "projectPath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Common\\Devon4Net.Infrastructure.Common.csproj"
+              "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Common\\Devon4Net.Infrastructure.Common.csproj": {
+                "projectPath": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Common\\Devon4Net.Infrastructure.Common.csproj"
               }
             }
           }

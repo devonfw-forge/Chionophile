@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "thFEP/JnBj6KTzMdv3EwCl1efegpnPUuL3EC5wMvxYWag9RFn5uHM1pwTsk3LyBOhds84ZQsZFoiQGXMyy1ZHg==",
+  "dgSpecHash": "osyNTMyEyIjR3VoDZ78+efkrxDu2+4U1Dki9lTRHNHNeBX+krwQWV5BIRg6OJ7/QaiwYMNsvEI0BAju2TgsiKA==",
   "success": true,
-  "projectFilePath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.RabbitMQ\\Devon4Net.Infrastructure.RabbitMQ.csproj",
+  "projectFilePath": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.RabbitMQ\\Devon4Net.Infrastructure.RabbitMQ.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dhernan7\\.nuget\\packages\\easynetq\\6.3.1\\easynetq.6.3.1.nupkg.sha512",
     "C:\\Users\\dhernan7\\.nuget\\packages\\entityframeworkcore.firebirdsql\\2.1.2.2\\entityframeworkcore.firebirdsql.2.1.2.2.nupkg.sha512",

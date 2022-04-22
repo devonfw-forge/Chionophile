@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ADpdmCbef6EoaaVZZj+QSIWhNTeNmz8qz+e90NMVAIMHJVg6NpRJJyE6Vf6p3xmVJ/qPS6ck4RGCbDYGhtjWAw==",
+  "dgSpecHash": "4qgwtlB9qDWjTDFqpgTgwYhNbkNH+tvUuo/OdIDRljXw/W/uuXWuJSHXRq5SCloISlFloHVf8xvbXQLkpBU9DA==",
   "success": true,
-  "projectFilePath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Cors\\Devon4Net.Infrastructure.Cors.csproj",
+  "projectFilePath": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Cors\\Devon4Net.Infrastructure.Cors.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dhernan7\\.nuget\\packages\\microsoft.aspnetcore.authorization\\3.1.10\\microsoft.aspnetcore.authorization.3.1.10.nupkg.sha512",
     "C:\\Users\\dhernan7\\.nuget\\packages\\microsoft.aspnetcore.cors\\2.2.0\\microsoft.aspnetcore.cors.2.2.0.nupkg.sha512",

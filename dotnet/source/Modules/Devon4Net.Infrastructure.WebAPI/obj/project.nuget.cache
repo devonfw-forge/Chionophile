@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VDKP1+rhwE7RdyQkrSWragyKx9UWjK890UnBvxM1o4zNkXMZ+p1riFVqfn06I8E1hOXLQDn5KJbKBJ0Xzt8jVQ==",
+  "dgSpecHash": "GZpjnNC8NrHRR6qLWcxweRQt+pYbi1UwgpWZM2L0Apyrvod85jh+17Ip9Eq05Z+izL0D+XvkqrduwhyzyKr5Yg==",
   "success": true,
-  "projectFilePath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.WebAPI\\Devon4Net.Infrastructure.WebAPI.csproj",
+  "projectFilePath": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.WebAPI\\Devon4Net.Infrastructure.WebAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dhernan7\\.nuget\\packages\\apache.avro\\1.9.2\\apache.avro.1.9.2.nupkg.sha512",
     "C:\\Users\\dhernan7\\.nuget\\packages\\confluent.kafka\\1.5.2\\confluent.kafka.1.5.2.nupkg.sha512",

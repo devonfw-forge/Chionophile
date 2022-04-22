@@ -4,7 +4,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:31692",
+      "applicationUrl": "http://localhost:8081",
       "sslPort": 44347
     }
   },
@@ -19,7 +19,7 @@
     },
     "Devon4Net.Application.WebAPI": {
       "commandName": "Project",
-      "launchBrowser": false,
+      "launchBrowser": true,
       "launchUrl": "swagger/index.html",
       "applicationUrl": "http://127.0.0.1:8081",
       "environmentVariables": {

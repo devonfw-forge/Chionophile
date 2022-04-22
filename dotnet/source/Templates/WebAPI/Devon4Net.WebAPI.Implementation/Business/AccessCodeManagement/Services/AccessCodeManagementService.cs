@@ -27,9 +27,9 @@ namespace Devon4Net.WebAPI.Implementation.Business.AccessCodeManagement.Services
             var accessCodes = await _accessCodeRepository.GetAccessCodesBySearchCriteria(criteria).ConfigureAwait(false);
             var accessCodesETO = new List<AccesscodeETO>();
 
-            foreach (var accessCode in accessCodes)
+            for (int i = 0; i < accessCodes.Count; i++)
             {
-                accessCodesETO.Add(AccessCodeManagementConverter.ModelToETO(accessCode));
+                accessCodesETO.Add(AccessCodeManagementConverter.ModelToETO(accessCodes[i]));
             }
 
             var pageStart = criteria.pageable.pageNumber * criteria.pageable.pageSize;
@@ -42,7 +42,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.AccessCodeManagement.Services
 
             var result = new SearchResult
             {
-                result = accessCodesETO.GetRange(pageStart, pageIncrement),
+                content = accessCodesETO.GetRange(pageStart, pageIncrement),
                 pageable = criteria.pageable,
                 count = accessCodesETO.Count
             };
@@ -55,7 +55,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.AccessCodeManagement.Services
             var accessCodes = await _accessCodeRepository.GetAccessCodesBySearchCriteriaCTO(criteria).ConfigureAwait(false);
 
 
-            var response = new List<CTO>(accessCodes);
+            var response = new List<EntityCTO>(accessCodes);
             response.Reverse();
 
             var pageStart = criteria.pageable.pageNumber * criteria.pageable.pageSize;
@@ -65,10 +65,12 @@ namespace Devon4Net.WebAPI.Implementation.Business.AccessCodeManagement.Services
             {
                 pageIncrement = response.Count;
             }
+            var pagedResult = response.GetRange(pageStart, pageIncrement)
+                .ConvertAll(AccessCodeManagementConverter.EntityToResponseCTO);
 
             var result = new SearchResult
             {
-                result = response.GetRange(pageStart, pageIncrement),
+                content = pagedResult,
                 pageable = criteria.pageable,
                 count = response.Count
             };
@@ -79,47 +81,19 @@ namespace Devon4Net.WebAPI.Implementation.Business.AccessCodeManagement.Services
         public async Task<AccesscodeETO> GetById(long id)
         {
             var result = await _accessCodeRepository.GetById(id).ConfigureAwait(false);
+            if(result == null) { return null; }
             return AccessCodeManagementConverter.ModelToETO(result);
         }
 
         public async Task<AccesscodeETO> JoinQueueLogic(long visitorID, long queueID) 
         {
-            //_lock.WaitOne();
-            var ticket = await CalculateTicketNumber(queueID).ConfigureAwait(false);
-            
-            var result = await _accessCodeRepository.JoinQueue(ticket, visitorID, queueID).ConfigureAwait(false);
-            //_lock.ReleaseMutex();
+            var result = await _accessCodeRepository.JoinQueue(visitorID, queueID).ConfigureAwait(false);
             return AccessCodeManagementConverter.ModelToETO(result);
         }
 
         public async Task<bool> LeaveQueueLogic(long accessCodeID)
         {
             return await _accessCodeRepository.LeaveQueue(accessCodeID).ConfigureAwait(false);
-        }
-
-        private async Task<string> CalculateTicketNumber(long queueID)
-        {
-            var ticket = "Q";
-            var criteria = new AccessCodeSearchCriteriaTo
-            {
-                Idqueue = queueID
-            };
-            var result = await _accessCodeRepository.GetAccessCodesBySearchCriteria(criteria).ConfigureAwait(false);
-
-            if (result == null) { ticket += "001"; }
-            else
-            {
-                var aux = (int.Parse(result[result.Count - 1].Ticketnumber[1..]) + 1).ToString();
-                if (aux == "999") { ticket += "001"; }
-                else
-                {
-                    var res = new string('0', 3 - aux.Length);
-                    res += aux;
-                    ticket += res;
-                }
-                
-            }
-            return ticket;
         }
 
 

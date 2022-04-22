@@ -39,9 +39,9 @@ namespace Devon4Net.WebAPI.Implementation.Business.VisitorManagement.Services
             var visitors = await _visitorRepository.GetVisitorBySearchCriteria(criteria).ConfigureAwait(false);
             var visitorsETO = new List<VisitorETO>();
 
-            foreach (var visitor in visitors)
+            for (int i = 0; i < visitors.Count; i++)
             {
-                visitorsETO.Add(VisitorManagementConverter.ModelToETO(visitor));
+                visitorsETO.Add(VisitorManagementConverter.ModelToETO(visitors[i]));
             }
 
             var pageStart = criteria.pageable.pageNumber * criteria.pageable.pageSize;
@@ -54,7 +54,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.VisitorManagement.Services
 
             var result = new SearchResult
             {
-                result = visitorsETO.GetRange(pageStart, pageIncrement),
+                content = visitorsETO.GetRange(pageStart, pageIncrement),
                 pageable = criteria.pageable,
                 count = visitorsETO.Count
             };
@@ -65,6 +65,9 @@ namespace Devon4Net.WebAPI.Implementation.Business.VisitorManagement.Services
         public async Task<VisitorETO> FindById(long id)
         {
             var result = await _visitorRepository.GetVisitorById(id).ConfigureAwait(false);
+
+            if (result == null) { return null; }
+
             return VisitorManagementConverter.ModelToETO(result);
         }
 

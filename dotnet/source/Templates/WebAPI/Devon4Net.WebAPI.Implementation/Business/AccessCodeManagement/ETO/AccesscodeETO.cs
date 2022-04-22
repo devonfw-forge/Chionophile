@@ -9,7 +9,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.AccessCodeManagement.ETO
     public partial class AccesscodeETO
     {
         
-        //public int modificationCounter { get; set; }
+        public int modificationCounter { get; set; }
         public long id { get; set; }
         public string ticketNumber { get; set; }
         public DateTime creationTime { get; set; }

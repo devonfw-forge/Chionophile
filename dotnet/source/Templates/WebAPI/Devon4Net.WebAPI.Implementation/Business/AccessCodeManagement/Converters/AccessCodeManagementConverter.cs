@@ -17,15 +17,31 @@ namespace Devon4Net.WebAPI.Implementation.Business.AccessCodeManagement.Converte
             
             return new ETO.AccesscodeETO
             {
-                //modificationCounter = accesscode.Modificationcounter,
+                modificationCounter = accesscode.Modificationcounter,
                 id = accesscode.Id,
-                ticketNumber = accesscode.Ticketnumber,
+                ticketNumber = CalculateTicketNumber(accesscode.Id),
                 creationTime = accesscode.Creationtime.ToUniversalTime(),
                 startTime = accesscode.Starttime,
                 endTime = accesscode.Endtime,
                 visitorId = accesscode.Idvisitor,
                 queueId = accesscode.Idqueue
             };
+        }
+
+        public static CTOResponse EntityToResponseCTO(EntityCTO entityCTO)
+        {
+            return new CTOResponse
+            {
+                accessCode = ModelToETO(entityCTO.accescode),
+                queue = QueueManagement.Converters.QueueManagementConverter.ModelToETO(entityCTO.queue),
+                visitor = VisitorManagement.Converters.VisitorManagementConverter.ModelToETO(entityCTO.visitor)
+            };
+        }
+
+        private static string CalculateTicketNumber(long id)
+        {
+            if(id.ToString().Length > 3) { return 'Q' + id.ToString(); }
+            return 'Q' + new string('0', 3 - id.ToString().Length) + id;
         }
     }
 }

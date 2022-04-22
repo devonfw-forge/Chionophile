@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LQvCGoD8/h76IBgc0UpJCGLD900K/xAilowpuV4FfRAd3uqnB8QzlvP1bxshhBN/6pcggN+eW1n46hG0I00RqA==",
+  "dgSpecHash": "rKCr12kR83hw7056TJK3Utt/14feCYkAwHI/XoLXO5k9ghhijxb5RFo/EA9Ra8h79EPBU2oTuamsBHbRK+ypAA==",
   "success": true,
-  "projectFilePath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.Secrets\\Devon4Net.Infrastructure.AWS.Secrets.csproj",
+  "projectFilePath": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.AWS.Secrets\\Devon4Net.Infrastructure.AWS.Secrets.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dhernan7\\.nuget\\packages\\awssdk.core\\3.5.1.46\\awssdk.core.3.5.1.46.nupkg.sha512",
     "C:\\Users\\dhernan7\\.nuget\\packages\\awssdk.secretsmanager\\3.5.0.46\\awssdk.secretsmanager.3.5.0.46.nupkg.sha512",

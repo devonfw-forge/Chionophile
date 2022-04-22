@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "QKXxM2am4kzD49No9Y6rhFG034hy6NSJDBwxHPu9PiTqlV0t/msQ4Y9IX9Gw55iSqc2vKmM4XB5Cp+2zzSiUnQ==",
+  "dgSpecHash": "1TyzZGP0bEp4bUnMDcurfx1gaCplOLsNaDHVC9tKoZRRI7CHxW7y4yR2PY2ijj/8ectFkQ9m+uu8/VywMHwT1Q==",
   "success": true,
-  "projectFilePath": "C:\\projects\\jtqNET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Swagger\\Devon4Net.Infrastructure.Swagger.csproj",
+  "projectFilePath": "C:\\projects\\NET\\JTQ_Benchmark\\source\\Modules\\Devon4Net.Infrastructure.Swagger\\Devon4Net.Infrastructure.Swagger.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dhernan7\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.1.0\\microsoft.aspnetcore.authentication.abstractions.2.1.0.nupkg.sha512",
     "C:\\Users\\dhernan7\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.1.0\\microsoft.aspnetcore.authentication.core.2.1.0.nupkg.sha512",

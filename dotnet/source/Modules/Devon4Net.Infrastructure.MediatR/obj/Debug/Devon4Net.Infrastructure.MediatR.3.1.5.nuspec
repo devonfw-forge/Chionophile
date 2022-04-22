@@ -36,6 +36,6 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.MediatR\bin\Debug\netstandard2.1\Devon4Net.Infrastructure.MediatR.dll" target="lib\netstandard2.1\Devon4Net.Infrastructure.MediatR.dll" />
+    <file src="C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.MediatR\bin\Debug\netstandard2.1\Devon4Net.Infrastructure.MediatR.dll" target="lib\netstandard2.1\Devon4Net.Infrastructure.MediatR.dll" />
   </files>
 </package>

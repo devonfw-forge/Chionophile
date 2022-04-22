@@ -24,3 +24,16 @@ C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Grpc\ob
 C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Grpc\obj\Debug\netcoreapp3.1\Devon4Net.Infrastructure.Grpc.csproj.CopyComplete
 C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Grpc\obj\Debug\netcoreapp3.1\Devon4Net.Infrastructure.Grpc.dll
 C:\projects\jtqNET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Grpc\obj\Debug\netcoreapp3.1\Devon4Net.Infrastructure.Grpc.pdb
+C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Grpc\bin\Debug\netcoreapp3.1\Devon4Net.Infrastructure.Grpc.deps.json
+C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Grpc\bin\Debug\netcoreapp3.1\Devon4Net.Infrastructure.Grpc.dll
+C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Grpc\bin\Debug\netcoreapp3.1\Devon4Net.Infrastructure.Grpc.pdb
+C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Grpc\bin\Debug\netcoreapp3.1\Devon4Net.Infrastructure.Common.dll
+C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Grpc\bin\Debug\netcoreapp3.1\Devon4Net.Infrastructure.Common.pdb
+C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Grpc\obj\Debug\netcoreapp3.1\Devon4Net.Infrastructure.Grpc.csproj.AssemblyReference.cache
+C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Grpc\obj\Debug\netcoreapp3.1\Devon4Net.Infrastructure.Grpc.GeneratedMSBuildEditorConfig.editorconfig
+C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Grpc\obj\Debug\netcoreapp3.1\Devon4Net.Infrastructure.Grpc.AssemblyInfoInputs.cache
+C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Grpc\obj\Debug\netcoreapp3.1\Devon4Net.Infrastructure.Grpc.AssemblyInfo.cs
+C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Grpc\obj\Debug\netcoreapp3.1\Devon4Net.Infrastructure.Grpc.csproj.CoreCompileInputs.cache
+C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Grpc\obj\Debug\netcoreapp3.1\Devon4Net.Infrastructure.Grpc.csproj.CopyComplete
+C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Grpc\obj\Debug\netcoreapp3.1\Devon4Net.Infrastructure.Grpc.dll
+C:\projects\NET\JTQ_Benchmark\source\Modules\Devon4Net.Infrastructure.Grpc\obj\Debug\netcoreapp3.1\Devon4Net.Infrastructure.Grpc.pdb

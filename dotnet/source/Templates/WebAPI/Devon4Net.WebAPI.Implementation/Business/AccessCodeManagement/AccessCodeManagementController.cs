@@ -45,11 +45,15 @@ namespace Devon4Net.WebAPI.Implementation.Business.AccessCodeManagement
         public async Task<ActionResult> LeaveQueue(long id)
         {
             var result = await _accessCodeManagementService.LeaveQueueLogic(id).ConfigureAwait(false);
-            return Ok(result);
+            if (!result)
+            {
+                return NotFound(null);
+            }
+            return Ok(id);
         }
 
         [HttpGet]
-        [Route("accesscode/cto/{id}/")]
+        [Route("accesscode/{id}/")]
         [ProducesResponseType(typeof(AccesscodeETO), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(GenericHttpResponseError), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(GenericHttpResponseError), StatusCodes.Status401Unauthorized)]
@@ -58,6 +62,10 @@ namespace Devon4Net.WebAPI.Implementation.Business.AccessCodeManagement
         public async Task<ActionResult> GetById(long id)
         {
             var result = await _accessCodeManagementService.GetById(id).ConfigureAwait(false);
+            if (result == null)
+            {
+                return NotFound(null);
+            }
             return Ok(result);
         }
         

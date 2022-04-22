@@ -24,7 +24,7 @@ namespace Devon4Net.WebAPI.Implementation.Domain.Database
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseNpgsql("Host=localhost;Database=jtq_benchmark;Username=postgres;Password=123");
+                optionsBuilder.UseNpgsql("Host=localhost;Database=jtq_db;Username=jtq_user;Password=admin");
             }
         }
 
@@ -47,10 +47,6 @@ namespace Devon4Net.WebAPI.Implementation.Domain.Database
                 entity.Property(e => e.Modificationcounter).HasColumnName("modificationcounter");
 
                 entity.Property(e => e.Starttime).HasColumnName("starttime");
-
-                entity.Property(e => e.Ticketnumber)
-                    .HasColumnName("ticketnumber")
-                    .HasMaxLength(5);
 
                 entity.HasOne(d => d.IdqueueNavigation)
                     .WithMany(p => p.Accesscode)
