@@ -22,7 +22,7 @@ pub fn taskset() -> GooseTaskSet {
             //GET BY ID TEST
             user.get(&get_by_id_path).await?;
 
-            let search_path = format!("{}/search/", visitor_path);
+            let search_path = format!("{}search/", visitor_path);
             let search_criteria = VisitorSearchCriteria
             ::generate_test_search_criteria(5, visitor_eto.username, visitor_eto.password);
 
