@@ -18,9 +18,9 @@ Demonstrator on how to achieve energy efficiency improvements  in software devel
 - cargo
 
 ## Aim
-Compare backends development performance and energy consuption with sample application based on Jump The Queue (https://github.com/devonfw/jump-the-queue).
+Compare programming languages performance and energy consuption in real world usage, implementing a sample application called [Jump The Queue](https://github.com/devonfw/jump-the-queue).
 
-Currently, analyzed backends are:
+Currently, the analyzed languages are:
 
 - Python (Django REST)
 - NodeJS (Nest.js)
@@ -28,29 +28,29 @@ Currently, analyzed backends are:
 - C# (ASP.NET)
 - Rust (Actix4)
 
-Backends are completly exchangeable for all the endpoints used in benchmarks.
+The applications are completly interchangeable, as they share the same behaviour in all of the endpoints.
 
 ## Benchmarks
 Two benchmarks are executed for different purposes:
-1. **Energy consumption benchmark**: for the next 5 minuts, backends will received 14 request per second. This request rate will guarantee that all backends can send responses without raising 400 or 500 errors.
-2. **Performance benchmark**: backends will received as request as possible. This will show how many requests can be processed by each benchmark.
+1. **Energy consumption benchmark**: for 5 minutes the application will receive 14 requests per second. Maintaining this request rate will show how the different backends perform under the same load.
+2. **Performance benchmark**: backends will receive as many requests as possible. This will show the maximum load capacity for each language.
 
 
 ## Test flow
 
 The testing flow is composed by the following statements:
 
-- Get idle energy consumption for 1 minute
-- For each backend:
-  - Launch postgres and backend with docker-compose.
+- Get the idle energy consumption for 1 minute
+- For each language:
+  - Launch the Postgres database and the backend with docker-compose.
   - Wait for 2 min.
   - Start Benchmarks sequentially
-  - When benchmarks are finished, the backend and Postgres container are killed.
-- Remove unnecessary data and rows from csv and html files, and wrap the relevant information in html files
+  - When the benchmarks are completed, the backend and Postgres containers are killed.
+- Remove unnecessary data and rows from the generated CSV and HTML, and wrap the relevant information in HTML files
 
 ## Results
 
-The previous execution of the automated script will generate a report in results folder. Some results are currently place in this folder, both in pdf and html. We encorage you to download html as it has dynamic content and will ease results observation. Here is a taste:
+The execution of the automated test script will generate a report in the results folder. Some results are currently placed in this folder, both in PDF and HTML. We encourage you to download the HTML as it has dynamic content not visible in the PDF counterpart, and will ease the results observation. Here is a summary of the results:
 
 ### Benchmark 1
 |                               |  Rust      |  Java   |  NodeJS  |
