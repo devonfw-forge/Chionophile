@@ -50,7 +50,7 @@ The testing flow is composed by the following statements:
 
 ## Results
 
-The execution of the automated test script will generate a report in the results folder. Some results are currently placed in this folder, both in PDF and HTML. We encourage you to download the HTML as it has dynamic content not visible in the PDF counterpart, and will ease the results observation. Here is a summary of the results:
+The execution of the automated test script will generate a report in the results folder. Some results are currently placed in this folder, both in PDF and HTML. We encourage you to download the HTML as it has dynamic content not visible in the PDF counterpart, and will ease the result's observation. Here is a summary of the results:
 
 ### Benchmark 1
 |                               |  Rust      |  Java   |  NodeJS  |
