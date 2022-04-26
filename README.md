@@ -28,7 +28,7 @@ Currently, the analyzed languages are:
 - C# (ASP.NET)
 - Rust (Actix4)
 
-The applications are completly interchangeable, as they share the same behaviour in all of the endpoints.
+The applications are completely interchangeable, as they share the same behaviour in all of the endpoints.
 
 ## Benchmarks
 Two benchmarks are executed for different purposes:
