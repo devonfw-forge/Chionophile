@@ -108,7 +108,8 @@ function Start-Processes{
     }
 }
 
-Start-Processes
+#Start-Processes
+Start-Backend -p_bash "launch_net_local.sh" -name "JTQ .NET"
 
 if (Test-Path '..\results\temp') {
     Remove-Item '..\results\temp' -Recurse

@@ -10,7 +10,7 @@ services:
     restart: unless-stopped
     networks:
       - vnet
-  jtq_rust:
+  jtq_java:
     build: .
     depends_on:
         - postgres

@@ -1,10 +1,8 @@
 echo
 echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
-echo "Launching JTQ .NET"
+echo "Launching JTQ JAVA (Spring Boot)"
 echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
 echo
-
-
 
 err_display(){
     echo $err_msg
@@ -19,6 +17,7 @@ err_display(){
     exit
 }
 
+
 # Check if dotnet directory exists
 if [ ! -d "dotnet" ] && cd .. && [ ! -d "dotnet" ] ; then
     err_msg="[ERROR] dotnet directory does not exists."
@@ -27,8 +26,7 @@ fi
 
 # Move to the project directory
 cd dotnet
-cd dist
-cd release
 
 echo "Executing..."
-./Devon4Net.Application.WebAPI.exe || ( err_msg="[ERROR] Execution exited" )
+docker-compose down
+docker-compose up

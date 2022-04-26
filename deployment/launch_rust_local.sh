@@ -44,7 +44,7 @@ cargo build --release
 
 echo "Copying dlls"
 mkdir target ; mkdir target/release
-cp -r ../error_fixes/PostgresClientLibraries/* target/release/ || ( err_msg="[ERROR] Missing dlls"; err_display )
+cp -r ../error_fixes/postgres_client_libraries/* target/release/ || ( err_msg="[ERROR] Missing dlls"; err_display )
 
 echo
 echo "Executing with dlls"
