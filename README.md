@@ -50,22 +50,22 @@ The testing flow is composed by the following statements:
 
 ## Results
 
-The execution of the automated test script will generate a report in the results folder. Some results are currently placed in this folder, both in PDF and HTML. We encourage you to download the HTML as it has dynamic content not visible in the PDF counterpart, and will ease the result's observation. Here is a summary of the results:
+The execution of the automated test script will generate a report in the results folder. Some results are currently placed in this folder, both in PDF and HTML. We encourage you to download the HTML as it has dynamic content not visible in the PDF counterpart, and will ease the result's observation. Here is a summary of the results (using docker images):
 
 ### Benchmark 1
-|                               |  Rust      |  Java   |  NodeJS  |
-|:-----------------------------:|:----------:|:-------:|:--------:|
-| Consumption B1 (mWh)          | **631.5**  | 1346.36 | 835      |
-| Consumption %                 | -          | +53%    | 24%      |
-| Consumption % (idle excluded) | -          | +63%    | 32%      |
+|                               |  Rust      |  Java   |  NodeJS  |  Python |
+|:-----------------------------:|:----------:|:-------:|:--------:|:-------:|
+| Consumption B1 (mWh)          | **459.11** | 510.56  | 528.10   | 781.57  |
+| Consumption %                 | -          | +11%    | +15%     | +70%    |
+| Consumption % (idle excluded) | -          | +23%    | +30%     | +141%   |
 
 ### Benchmark 2
-|                               |  Rust      |  Java   |  NodeJS  |
-|:-----------------------------:|:----------:|:-------:|:--------:|
-| Total request B2              | **784076** | 307610  | 43790    |
-| Request / second              | **2613**   | 1025    | 145      |
-| Consumption B2 (mWh)          | 2719.69    | 2604.53 | 2220.11  |
-| Performance %                 | -          | -60%    | -94%     |
+|                               |  Rust      |  Java   |  NodeJS  |  Python  |
+|:-----------------------------:|:----------:|:-------:|:--------:|:--------:|
+| Total request B2              | **1125535**| 436546  | 260920   | 136474   |
+| Request / second              | **3751**   | 1455    | 869      | 454      |
+| Consumption B2 (mWh)          | 2620.89    | 2365.96 | 2378.47  | 2373.36  |
+| Performance %                 | -          | -61%    | -77%     | -88%     |
 
 
 ## Bibliography
