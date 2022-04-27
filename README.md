@@ -60,12 +60,12 @@ The execution of the automated test script will generate a report in the results
 | Consumption % (idle excluded) | -          | +23%    | +30%     | +141%   | +115%                    |
 
 ### Benchmark 2
-|                               |  Rust      |  Java   |  NodeJS  |  Python  |  .NET (without docker)    |
-|:-----------------------------:|:----------:|:-------:|:--------:|:--------:|:-------------------------:|
-| Total request B2              | **1125535**| 436546  | 260920   | 136474   | 653153                    |
-| Request / second              | **3751**   | 1455    | 869      | 454      | 2177                      |
-| Consumption B2 (mWh)          | 2620.89    | 2365.96 | 2378.47  | 2373.36  | 2838.57                   |
-| Performance %                 | -          | -61%    | -77%     | -88%     | -42%                      |
+|                               |  Rust      |  .NET (without docker)    |  Java   |  NodeJS  |  Python  |
+|:-----------------------------:|:----------:|:-------------------------:|:-------:|:--------:|:--------:|
+| Total request B2              | **1125535**| 653153                    | 436546  | 260920   | 136474   | 
+| Request / second              | **3751**   | 2177                      | 1455    | 869      | 454      |
+| Consumption B2 (mWh)          | 2620.89    | 2838.57                   | 2365.96 | 2378.47  | 2373.36  |
+| Performance %                 | -          | -42%                      | -61%    | -77%     | -88%     |
 
 
 ## Bibliography
