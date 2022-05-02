@@ -12,7 +12,7 @@ Edge Computing is a  distributed computing paradigm that aims to move all the da
 
 In the process of implementing this architecture, we have found that it's greatest strength is working with applications that fall in this two categories:
 * Mostly read only applications, where write operations are either infrequent or where consistency is not a priority, such as Netflix or YouTube.
-* Data processing applications, where after making the necessary operations, the information is stored and not consumed by clients all over the world. A clear example are IoT systems.
+* Data processing applications, where after making the necessary operations, the information is stored and not consumed by clients all over the world. A clear example is IoT systems.
 
 ## Differences with the monolithic implementation
 
