@@ -1,0 +1,48 @@
+host: "localhost"
+port: 8081
+use_https: false
+base_path: "/jumpthequeue/services/rest"
+users: 5
+goose_log: "goose.log"
+user_creation_rate: "1"
+run_time: "10"
+report_file: "report.html"
+request_log: "request.log"
+request_body: true
+error_log: "error.log"
+debug_log: "debug.log"
+max_request_second: 0
+no_reset_metrics: true
+
+test_groups:
+  - tests:
+      -
+        method: GET
+        path: "/visitormanagement/v1/visitor/1/"
+      -
+        method: POST
+        path: "/visitormanagement/v1/visitor/"
+        content_type: "application/json"
+        body: |
+          {
+            "username": "user@mail.com",
+            "name": "pepe",
+            "phoneNumber": "+34623456789",
+            "password": "paco",
+            "acceptedTerms": true,
+            "acceptedCommercial": false
+          }
+        should_delete: true
+        body_field_for_delete: "id"
+        delete_end_slash: true
+      -
+        method: POST
+        path: "/visitormanagement/v1/visitor/search/"
+        content_type: "application/json"
+        body: |
+          {
+            "pageable": {
+              "pageSize": 10,
+              "pageNumber": 0
+            }
+          }
