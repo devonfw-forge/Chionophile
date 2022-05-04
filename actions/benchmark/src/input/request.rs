@@ -2,7 +2,7 @@ use serde::{Serialize, Deserialize};
 use crate::input::http_methods::HttpMethod;
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
-pub struct Test {
+pub struct Request {
     pub method: HttpMethod,
     pub path: String,
     pub path_args: Option<Vec<String>>,

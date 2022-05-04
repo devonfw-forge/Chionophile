@@ -1,6 +1,7 @@
 use goose::config::GooseConfiguration;
 use serde::{Serialize, Deserialize};
-use crate::input::test_group::TestGroup;
+use crate::input::benchmark::Benchmark;
+
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct BenchmarkConfig {
@@ -24,7 +25,7 @@ pub struct BenchmarkConfig {
     debug_log: String,
     no_reset_metrics: Option<bool>,
     max_request_second: i32,
-    pub test_groups: Vec<TestGroup>,
+    pub benchmarks: Vec<Benchmark>,
 }
 
 impl BenchmarkConfig {

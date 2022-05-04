@@ -3,7 +3,7 @@ use clap::Parser;
 use log::{error};
 use crate::input::validator::Validator;
 use env_logger;
-use crate::benchmark::test::BenchmarkTest;
+use crate::benchmark::benchmark::BenchmarkTest;
 use crate::input::benchmark_config::BenchmarkConfig;
 
 mod input;
@@ -25,15 +25,15 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut benchmark_config: BenchmarkConfig = serde_yaml::from_reader(config_reader)?;
     let complete_path = benchmark_config.get_complete_path();
 
-    benchmark_config.test_groups.iter_mut().for_each(|test_group| {
-        test_group.base_path = Option::from(complete_path.clone());
+    benchmark_config.benchmarks.iter_mut().for_each(|benchmark| {
+        benchmark.request_groups.iter_mut().for_each(|test_group| {
+            test_group.base_path = Option::from(complete_path.clone());
+        });
     });
 
-    println!("YAML STRING: \n{:?}\n", benchmark_config);
-
-    println!("Creating benchmark");
-    let benchmark_test = BenchmarkTest::new(benchmark_config.test_groups.clone(), benchmark_config.get_goose_configuration());
-    println!("Launching benchmark");
+    println!("Creating benchmarks");
+    let benchmark_test = BenchmarkTest::new(benchmark_config.benchmarks.clone(), benchmark_config.get_goose_configuration());
+    println!("Launching benchmarks");
     benchmark_test.launch().await?;
 
     Ok(())

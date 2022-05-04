@@ -1,20 +1,20 @@
-use crate::input::test::Test;
+use crate::input::request::Request;
 use serde::{Serialize, Deserialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct TestGroup {
-    pub tests: Vec<Test>,
+pub struct RequestGroup {
+    pub requests: Vec<Request>,
     #[serde(skip_serializing)]
     pub base_path: Option<String>
 }
 
-impl TestGroup {
+impl RequestGroup {
     pub fn new(
-        tests: Vec<Test>,
+        requests: Vec<Request>,
         base_path: String
     ) -> Self {
-        TestGroup {
-            tests,
+        RequestGroup {
+            requests,
             base_path: Option::from(base_path)
         }
     }

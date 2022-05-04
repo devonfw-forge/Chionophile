@@ -1,24 +1,24 @@
 use std::process;
 use std::sync::Arc;
-use goose::{GooseAttack, GooseError, GooseScheduler, taskset};
+use goose::{GooseAttack, GooseError, GooseScheduler, task, taskset};
 use goose::config::GooseConfiguration;
 use goose::goose::{GooseTask, GooseTaskFunction, GooseTaskSet};
 use serde_json::Value;
+use crate::input::benchmark::Benchmark;
 use crate::input::http_methods::HttpMethod;
-use crate::input::test_group::TestGroup;
 
 pub struct BenchmarkTest {
-    test_groups: Vec<TestGroup>,
+    benchmarks: Vec<Benchmark>,
     goose_configuration: GooseConfiguration
 }
 
 impl BenchmarkTest {
     pub fn new(
-        test_groups: Vec<TestGroup>,
+        benchmarks: Vec<Benchmark>,
         goose_configuration: GooseConfiguration
     ) -> Self {
         BenchmarkTest {
-            test_groups,
+            benchmarks,
             goose_configuration
         }
     }
@@ -30,7 +30,9 @@ impl BenchmarkTest {
             println!("Goose initialized");
             let mut attack = attack_res.unwrap();
             println!("Registering tasksets");
-            attack = attack.register_taskset(self.create_taskset());
+            for benchmark in self.benchmarks.iter() {
+                attack = attack.register_taskset(self.create_taskset(benchmark));
+            }
             attack.set_scheduler(GooseScheduler::Serial).execute().await?.print();
         } else {
             println!("{:?}", attack_res.err())
@@ -39,14 +41,15 @@ impl BenchmarkTest {
         Ok(())
     }
 
-    pub fn create_taskset(self) -> GooseTaskSet {
+    pub fn create_taskset(&self, benchmark: &Benchmark) -> GooseTaskSet {
         println!("Creating taskset");
-        let mut taskset = taskset!("Example name");
+        let taskset_name = &benchmark.name;
+        let mut taskset = taskset!(taskset_name);
 
-        for test_group in self.test_groups {
+        for request_group in benchmark.request_groups.clone() {
             let requests: GooseTaskFunction = Arc::new(move |user| {
-                let tests = test_group.tests.clone();
-                let base_path = test_group.base_path.clone().unwrap_or("".to_string());
+                let tests = request_group.requests.clone();
+                let base_path = request_group.base_path.clone().unwrap_or("".to_string());
                 Box::pin (async move {
                     for test in tests {
                         match test.method {
