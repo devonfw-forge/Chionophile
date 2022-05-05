@@ -13,7 +13,7 @@ services:
   jtq_rust:
     build: .
     depends_on:
-        - postgres
+        - jtq_postgres
     container_name: jtq-rust
     environment:
       - DATABASE_URL=postgres://jtq_user:admin@jtq-postgres/jtq_db

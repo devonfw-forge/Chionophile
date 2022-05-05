@@ -13,7 +13,7 @@ services:
   jtq_java:
     build: .
     depends_on:
-        - postgres
+        - jtq_postgres
     container_name: jtq-java
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://jtq-postgres/jtq_db
