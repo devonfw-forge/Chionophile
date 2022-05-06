@@ -31,7 +31,7 @@ services:
       - EXECUTION=cluster
     ports:
       - "8081:8081"
-    command: "npm run start:prod"
+    command: bash -c "yarn install; npm run start"
     restart: on-failure
     networks:
       - vnet
