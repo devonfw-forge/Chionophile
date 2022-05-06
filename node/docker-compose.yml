@@ -18,7 +18,7 @@ services:
     image: node:17
     working_dir: /home/node/app
     volumes:
-      - ./:/home/node/app
+      - .:/home/node/app/
     environment:
       - HOST=0.0.0.0
       - PORT=8081
@@ -31,7 +31,7 @@ services:
       - EXECUTION=cluster
     ports:
       - "8081:8081"
-    command: "npm run start"
+    command: "npm run start:prod"
     restart: on-failure
     networks:
       - vnet
