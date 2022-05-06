@@ -14,7 +14,7 @@ services:
   jtq_python:
     build: .
     depends_on:
-        - postgres
+        - jtq_postgres
     volumes:
       - ./jtq:/code
     environment:

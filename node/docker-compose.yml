@@ -13,7 +13,7 @@ services:
   
   jtq_node:
     depends_on:
-        - postgres
+        - jtq_postgres
     container_name: jtq_node
     image: node:17
     working_dir: /home/node/app
