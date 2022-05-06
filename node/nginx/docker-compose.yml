@@ -30,7 +30,7 @@ services:
       - DB_USER=jtq_user
       - DB_PASSWORD=admin
       - BASE_REST_URL=jumpthequeue/services/rest
-    command: "npm run start"
+    command: bash -c "yarn install; npm run start"
     restart: on-failure
     networks:
       - vnet
