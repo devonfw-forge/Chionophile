@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  jtq_postgres:
+    container_name: edge-jtq-postgres
+    image: postgres:14.2
+    env_file:
+      - ../../postgresql/config.env
+    volumes:
+      - ../../postgresql/postgres/init/edge:/docker-entrypoint-initdb.d:ro
+    restart: unless-stopped
+    networks:
+      - vnet
+  jtq_rust:
+    build: .
+    depends_on:
+        - postgres
+    container_name: edge-server
+    environment:
+      - DATABASE_URL = "postgres://jtq_user:admin@edge-jtq-postgres/jtq_db"
+      - BIND_URL = "0.0.0.0:8081"
+      - BASE_REST_URL = "jumpthequeue/services/rest/"
+      #- CENTRAL_SERVER_URL="http://52.201.2.93:8081"
+      - CENTRAL_SERVER_URL="http://localhost:8081"
+    ports:
+      - "8081:8081"
+    restart: on-failure
+    networks:
+      - vnet
+networks:
+  vnet:
