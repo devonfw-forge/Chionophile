@@ -5,12 +5,7 @@ pub struct CacheScheduler;
 
 impl CacheScheduler {
     pub fn init(database_url: &String) {
-        let cache_program = if cfg!(windows) {
-            "cache_manager.exe"
-        } else {
-            "./cache_manager"
-        };
-        let program = Command::new(cache_program)
+        let program = Command::new("cache_manager")
             .env("DATABASE_URL", database_url)
             .spawn();
 

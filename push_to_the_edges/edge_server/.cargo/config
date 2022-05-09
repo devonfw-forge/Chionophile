@@ -1,5 +1,7 @@
 [env]
-DATABASE_URL = "postgres://jtq_user:admin@localhost/edge_jtq"
-BIND_URL = "127.0.0.1:8081"
+DATABASE_URL = "postgres://jtq_user:admin@edge-jtq-postgres/jtq_db"
+BIND_URL = "0.0.0.0:8081"
 BASE_REST_URL = "jumpthequeue/services/rest/"
-CENTRAL_SERVER_URL="http://127.0.0.1:8082"
+#CENTRAL_SERVER_URL="http://52.201.2.93:8081"
+CENTRAL_SERVER_URL="http://localhost:8081"
+ 

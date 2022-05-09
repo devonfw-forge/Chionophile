@@ -1,7 +1,7 @@
 \connect jtq_db;
 
 CREATE TABLE IF NOT EXISTS Visitor(
-  id BIGSERIAL NOT NULL,
+  id bigint NOT NULL,
   modificationCounter INTEGER NOT NULL,
   username VARCHAR(255),
   name VARCHAR(255),
@@ -24,13 +24,9 @@ CREATE TABLE IF NOT EXISTS DailyQueue (
   minattentiontime timestamp without time zone NOT NULL DEFAULT '2025-01-01 00:00:00':: timestamp without time zone,
   active boolean NOT NULL DEFAULT true,
   customers integer NOT NULL DEFAULT 0,
-  created_at timestamp without time zone NULL DEFAULT now()
+  created_at timestamp without time zone NULL DEFAULT now(),
+  CONSTRAINT pk_dailyqueue PRIMARY KEY(id)
 );
-ALTER TABLE
-  DailyQueue
-ADD
-  CONSTRAINT pk_dailyqueue PRIMARY KEY (id)
-
 
 CREATE TABLE IF NOT EXISTS AccessCode (
   id bigint NOT NULL,
@@ -40,10 +36,10 @@ CREATE TABLE IF NOT EXISTS AccessCode (
   endtime timestamp without time zone NULL,
   idvisitor bigint NOT NULL,
   idqueue bigint NOT NULL,
-  created_at timestamp without time zone NULL DEFAULT now()
-);
-ALTER TABLE
-  AccessCode
-ADD
+  created_at timestamp without time zone NULL DEFAULT now(),
   CONSTRAINT pk_accesscode PRIMARY KEY (id)
+);
 
+ALTER TABLE Visitor OWNER TO jtq_user;
+ALTER TABLE DailyQueue OWNER TO jtq_user;
+ALTER TABLE AccessCode OWNER TO jtq_user;
