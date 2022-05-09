@@ -45,7 +45,7 @@ if a "/" should be added at the end of the URL.
 For example:
 1. A POST request is made with the next URL **/visitormanagement/v1/visitor/**
 2. It returns the following response:
-``
+```
   {
     "id"¨: 123
     "username": "user@mail.com",
@@ -55,8 +55,7 @@ For example:
     "acceptedTerms": true,
     "acceptedCommercial": false
   }
-  
-``
+```
  3. should_delete is true
  4. body_field_for_delete is "id"
  5. The program looks for the "id" field in the previous response
