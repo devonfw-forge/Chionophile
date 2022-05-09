@@ -26,7 +26,7 @@ The configuration options are the following:
 - max_request_second
 - no_reset_metric
 
-All of them are explained in (this page of the Goose documentation)[https://docs.rs/goose/latest/goose/config/struct.GooseConfiguration.html]. 
+All of them are explained in [this page of the Goose documentation (https://docs.rs/goose/latest/goose/config/struct.GooseConfiguration.html)]. 
 The only changes are **user_creation_rate** and **max_request_second** that corresponds with **hatch_rate** and **throttle_requests** respectively.
 
 Under the **benchmarks** section you can define a series of request groups that will fall under that benchmark name. Define as many benchmarks as 
