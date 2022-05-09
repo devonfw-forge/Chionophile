@@ -2,6 +2,6 @@ use serde::{Serialize, Deserialize};
 
 #[derive(Serialize, Deserialize)]
 pub struct PowerTopParams {
-    pub workload: String,
+    pub time: String,
     pub csv: String
 }

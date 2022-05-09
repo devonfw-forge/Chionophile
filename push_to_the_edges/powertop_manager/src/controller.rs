@@ -13,7 +13,7 @@ async fn powertop_start(
     params: web::Json<PowerTopParams>
 ) -> Result<HttpResponse, Error>{
     let program = Command::new("powertop")
-        .args(["--workload", &params.workload, "--csv", &params.csv])
+        .args(["--time", &params.time, "--csv", &params.csv])
         .spawn();
     if program.is_err() {
         Ok(HttpResponse::InternalServerError().body("Could not start powertop"))
