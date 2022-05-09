@@ -1,0 +1,30 @@
+host: "localhost"
+port: 8081
+use_https: false
+base_path: "/jumpthequeue/services/rest"
+users: 5
+goose_log: "goose1.log"
+user_creation_rate: "1"
+run_time: "300"
+report_file: "report1.html"
+request_log: "request1.log"
+request_body: true
+error_log: "error1.log"
+debug_log: "debug1.log"
+max_request_second: 14
+no_reset_metrics: true
+
+benchmarks:
+  -
+    name: "Benchmark normal entities JTQ"
+    request_groups:
+      -
+        requests:
+          -
+            method: GET
+            path: "/visitormanagement/v1/visitor/1/"
+      -
+        requests:
+          -
+            method: GET
+            path: "/queuemanagement/v1/queue/1/"
