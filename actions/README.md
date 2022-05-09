@@ -47,7 +47,7 @@ For example:
 2. It returns the following response:
 ```
   {
-    "id"¨: 123
+    "id"¨: 123,
     "username": "user@mail.com",
     "name": "pepe",
     "phoneNumber": "+34623456789",
