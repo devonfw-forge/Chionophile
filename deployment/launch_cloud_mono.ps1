@@ -24,11 +24,11 @@ function Start-Benchmark {
     Invoke-WebRequest -Uri $url_central -Body ($body_1|ConvertTo-Json) -ContentType "application/json" -Method 'POST'
     # Launch benchmark
     Write-Host ("Launching First Benchmark... ")
-    Start-Process -Wait launch_benchmark1_edge_mono.sh
+    Start-Process -Wait launch_benchmark1_mono.sh
     Write-Host ("First Benchmark finished")
     Invoke-WebRequest -Uri $url_central -Body ($body_2|ConvertTo-Json) -ContentType "application/json" -Method 'POST'
     Write-Host ("Launching Second Benchmark... ")
-    Start-Process -Wait launch_benchmark2_edge_mono.sh
+    Start-Process -Wait launch_benchmark2_mono.sh
     Write-Host ("Second Benchmark finished")
 }
 
