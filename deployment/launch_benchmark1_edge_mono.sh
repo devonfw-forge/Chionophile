@@ -45,13 +45,13 @@ fi
 cd benchmark
 
 echo "Executing First Beanchmark..."
-cargo run --release -- -i ../config1.yaml || ( err_msg="[ERROR] Test or PowerLog went wrong"; err_display )
+cargo run --release -- -i ../config1_edge_mono.yaml || ( err_msg="[ERROR] Test or PowerLog went wrong"; err_display )
 
-cd ../../results
+cd ../../results/push_to_edges/monolitic
 
-report_file="reportB1_Cloud.html"
+report_file="reportB1_Edge_Mono.html"
 
 echo "Saving as "$report_file
 
-cp ../benchmarks/benchmark1/report.html $report_file
-rm ../benchmarks/benchmark1/report.html
+cp ../../../actions/benchmark/report1.html $report_file
+rm ../../../actions/benchmark/report1.html

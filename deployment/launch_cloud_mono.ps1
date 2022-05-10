@@ -10,13 +10,26 @@ function Start-Benchmark {
     Set-Location ../../deployment
     # Launching benchmarks
     Write-Host ("Launching Benchmarks... ")
-    Write-Host ("This will take more than 10 minutes!")
+    Write-Host ("This will take more than 5 minutes!")
+    # Launch powertop on aws central and edge server
+    $body_1 = @{
+        time = '300'
+        csv = 'test_consumption_B1_mono.csv'
+    }
+    $body_2 = @{
+        time = '300'
+        csv = 'test_consumption_B2_mono.csv'
+    }
+    $url_central = 'http://52.211.194.30:8083/powertop/start'
+    Invoke-WebRequest -Uri $url_central -Body ($body_1|ConvertTo-Json) -ContentType "application/json" -Method 'POST'
+    # Launch benchmark
     Write-Host ("Launching First Benchmark... ")
-    Start-Process -Wait launch_benchmark_cloud1.sh
+    Start-Process -Wait launch_benchmark1_edge_mono.sh
     Write-Host ("First Benchmark finished")
-    # Write-Host ("Launching Second Benchmark... ")
-    # Start-Process -Wait launch_benchmark_cloud2.sh
-    # Write-Host ("Second Benchmark finished")
+    Invoke-WebRequest -Uri $url_central -Body ($body_2|ConvertTo-Json) -ContentType "application/json" -Method 'POST'
+    Write-Host ("Launching Second Benchmark... ")
+    Start-Process -Wait launch_benchmark2_edge_mono.sh
+    Write-Host ("Second Benchmark finished")
 }
 
 Start-Benchmark

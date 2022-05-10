@@ -45,13 +45,13 @@ fi
 cd benchmark
 
 echo "Executing Second Beanchmark..."
-cargo run --release -- -i ../config2.yaml || ( err_msg="[ERROR] Test or PowerLog went wrong"; err_display )
+cargo run --release -- -i ../config2_edge_edge.yaml || ( err_msg="[ERROR] Test or PowerLog went wrong"; err_display )
 
-cd ../../results
+cd ../../results/push_to_edges/edge
 
-report_file="reportB2_Cloud.html"
+report_file="reportB2_Edge_Edge.html"
 
 echo "Saving as "$report_file
 
-cp ../benchmarks/benchmark2/report.html $report_file
-rm ../benchmarks/benchmark2/report.html
+cp ../../../actions/benchmark/report2.html $report_file
+rm ../../../actions/benchmark/report2.html
