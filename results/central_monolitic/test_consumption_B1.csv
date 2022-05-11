@@ -1,0 +1,251 @@
+____________________________________________________________________
+                        P o w e r T O P
+
+____________________________________________________________________
+ *  *  *   System Information   *  *  *
+
+PowerTOP Version;2.14 ran at Wed May 11 09:03:06 2022
+
+Kernel Version;Linux version 5.15.0-1005-aws
+System Name;4.11.amazon
+CPU Information;1 Intel(R) Xeon(R) CPU E5-2676 v3 @ 2.40GHz
+OS Information;Ubuntu 22.04 LTS
+
+Target: 1 units/s;System:  18.1 wakeup/s;CPU:  0.1% usage;GPU: 0 ops/s;GFX: 0 wakeups/s;VFS: 0 ops/s;
+
+____________________________________________________________________
+ *  *  *   Top 10 Power Consumers   *  *  *
+
+Usage;Events/s;Category;Description
+  0.0%;  4.1;Timer;tick_sched_timer
+  0.0%;  3.8;Timer;hrtimer_wakeup
+  0.0%;  3.1;Interrupt;[3] net_rx(softirq)
+  0.0%;  1.2;Interrupt;[2] net tx(softirq)
+  0.0%;  1.1;Process;[PID 3451] jtqt-rust
+  0.0%;  0.8;Process;[PID 571] /usr/bin/containerd
+  0.0%;  0.8;Process;[PID 647] /usr/bin/containerd
+  0.0%;  0.7;kWork;psi_avgs_work
+  0.0%;  0.4;Process;[PID 3608] postgres: jtq_user jtq_db 172.21.0.3(59536) idle
+  0.0%;  0.5;kWork;wb_update_bandwidth_workfn
+
+____________________________________________________________________
+ *  *  *   Processor Idle State Report   *  *  *
+
+Package;0
+C3 (pc3);  0.0%
+C6 (pc6);  0.0%
+;
+;
+;
+;
+
+;Core 0
+C3 (cc3);262054.1%
+C6 (cc6);  2.3%
+;
+
+CPU;0
+C0 active;2561699231.2%;
+POLL;  0.0%;   0.3 ms
+C1; 98.5%;   6.5 ms
+;
+;
+;;
+;;
+;;
+;;
+
+____________________________________________________________________
+ *  *  *   Processor Frequency Report   *  *  *
+
+Package;0
+Idle;   inf%
+;
+;
+;
+
+;Core 0
+Idle;   inf%
+
+CPU 0
+Average;2.4 GHz
+Idle;   inf%
+;
+
+____________________________________________________________________
+ *  *  *   Overview of Software Power Consumers   *  *  *
+
+Usage;Wakeups/s;GPU ops/s;Disk IO/s;GFX Wakeups/s;Category;Description
+ 51.6 us/s;  4.1;;;;Timer;tick_sched_timer
+ 68.4 us/s;  3.8;;;;Timer;hrtimer_wakeup
+494.1 us/s;  3.1;;;;Interrupt;[3] net_rx(softirq)
+  3.0 us/s;  1.2;;;;Interrupt;[2] net tx(softirq)
+168.1 us/s;  1.1;;;;Process;[PID 3451] jtqt-rust
+ 11.4 us/s;  0.8;;;;Process;[PID 571] /usr/bin/containerd
+ 26.4 us/s;  0.8;;;;Process;[PID 647] /usr/bin/containerd
+ 45.1 us/s;  0.7;;;;kWork;psi_avgs_work
+294.7 us/s;  0.4;;;;Process;[PID 3608] postgres: jtq_user jtq_db 172.21.0.3(59536) idle
+  7.3 us/s;  0.5;;;;kWork;wb_update_bandwidth_workfn
+ 10.6 us/s; 0.26;;;;Process;[PID 2596] ./powertop_manager/target/release/powertop_manager
+ 17.9 us/s; 0.23;;;;Interrupt;[4] block(softirq)
+  5.3 us/s; 0.21;;;;Process;[PID 3437] postgres: walwriter
+  2.7 us/s; 0.15;;;;Process;[PID 688] /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+  0.6 us/s; 0.10;;;;Timer;sched_rt_period_timer
+  1.3 us/s; 0.09;;;;Process;[PID 24] [kcompactd0]
+  2.4 us/s; 0.08;;;;kWork;vmstat_shepherd
+ 12.0 us/s; 0.07;;;;kWork;wb_workfn
+  2.0 us/s; 0.06;;;;Process;[PID 210] /sbin/multipathd -d -s
+  0.4 us/s; 0.06;;;;Process;[PID 13] [rcu_sched]
+  2.3 us/s; 0.05;;;;kWork;ext4_end_io_rsv_work
+123.6 us/s;;;;;Interrupt;[48] timer0
+114.2 us/s;;;;;Process;[PID 3635] jtqt-rust
+ 13.4 us/s; 0.03;;;;kWork;flush_memcg_stats_dwork
+  0.4 us/s; 0.03;;;;Timer;watchdog_timer_fn
+  2.2 us/s; 0.03;;;;kWork;blk_mq_run_work_fn
+  0.5 us/s; 0.03;;;;kWork;ext4_discard_work
+  0.4 us/s; 0.02;;;;kWork;blk_mq_timeout_work
+  0.4 us/s; 0.01;;;;Process;[PID 3436] postgres: background writer
+  0.3 us/s; 0.01;;;;kWork;neigh_periodic_work
+ 22.3 us/s; 0.00;;;;Interrupt;[56] eth0
+  1.5 us/s; 0.01;;;;Process;[PID 450] /usr/sbin/chronyd -F 1
+  0.2 us/s; 0.01;;;;Process;[PID 3637] powertop --time=300 --csv=test_consumption_B1_mono.csv
+  0.1 us/s; 0.01;;;;Process;[PID 12] [ksoftirqd/0]
+  0.1 us/s; 0.01;;;;kWork;flush_to_ldisc
+ 20.2 us/s;;;;;Timer;delayed_work_timer_fn
+ 10.6 us/s; 0.00;;;;Process;[PID 3643] postgres
+ 18.9 us/s;;;;;Interrupt;[1] timer(softirq)
+  0.7 us/s; 0.01;;;;Process;[PID 3438] postgres: autovacuum launcher
+  0.2 us/s; 0.01;;;;Process;[PID 2237] /usr/libexec/packagekitd
+  0.1 us/s; 0.01;;;;Process;[PID 3265] /usr/bin/containerd-shim-runc-v2 -namespace moby -id b5af3950b603b3862b74fdd84ae84571f9e618ca14cced345e64b8fe1155c78
+  0.1 us/s; 0.01;;;;Process;[PID 3206] /usr/bin/containerd-shim-runc-v2 -namespace moby -id 658d6d33b42cad8919a21e5dd282a31f8b95fc00acbb135eca087a376a9c7a5
+  0.1 us/s; 0.01;;;;Process;[PID 3225] /usr/bin/docker-proxy -proto tcp -host-ip 0.0.0.0 -host-port 8081 -container-ip 172.21.0.3 -container-port 8081
+  0.1 us/s; 0.01;;;;Process;[PID 3232] /usr/bin/docker-proxy -proto tcp -host-ip :: -host-port 8081 -container-ip 172.21.0.3 -container-port 8081
+ 16.3 us/s;;;;;Timer;tcp_delack_timer
+  3.6 us/s; 0.00;;;;Process;[PID 2844] /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+ 10.6 us/s;;;;;Process;[PID 3214] /usr/bin/containerd-shim-runc-v2 -namespace moby -id 658d6d33b42cad8919a21e5dd282a31f8b95fc00acbb135eca087a376a9c7a5
+  1.8 us/s; 0.00;;;;Interrupt;[9] RCU(softirq)
+  1.4 us/s; 0.00;;;;Process;[PID 122] [jbd2/xvda1-8]
+  8.7 us/s;;;;;Timer;blk_stat_timer_fn
+  0.2 us/s; 0.00;;;;Process;[PID 3452] jtqt-rust
+  0.1 us/s; 0.00;;;;Process;[PID 3269] /usr/bin/containerd-shim-runc-v2 -namespace moby -id b5af3950b603b3862b74fdd84ae84571f9e618ca14cced345e64b8fe1155c78
+  0.1 us/s; 0.00;;;;Process;[PID 3397] jtqt-rust
+  0.1 us/s; 0.00;;;;Process;[PID 3534] /usr/bin/containerd-shim-runc-v2 -namespace moby -id 658d6d33b42cad8919a21e5dd282a31f8b95fc00acbb135eca087a376a9c7a5
+  0.1 us/s; 0.00;;;;Process;[PID 21] [khungtaskd]
+  0.1 us/s; 0.00;;;;Process;[PID 3271] /usr/bin/containerd-shim-runc-v2 -namespace moby -id b5af3950b603b3862b74fdd84ae84571f9e618ca14cced345e64b8fe1155c78
+  0.1 us/s; 0.00;;;;Timer;timerfd_tmrproc
+  0.1 us/s; 0.00;;;;Process;[PID 3212] /usr/bin/containerd-shim-runc-v2 -namespace moby -id 658d6d33b42cad8919a21e5dd282a31f8b95fc00acbb135eca087a376a9c7a5
+  0.0 us/s; 0.00;;;;kWork;addrconf_verify_work
+  0.0 us/s; 0.00;;;;kWork;process_srcu
+  8.2 us/s;;;;;Process;[PID 3360] /usr/bin/containerd-shim-runc-v2 -namespace moby -id b5af3950b603b3862b74fdd84ae84571f9e618ca14cced345e64b8fe1155c78
+  6.1 us/s;;;;;Interrupt;[55] blkif
+  5.5 us/s;;;;;Process;[PID 3439] postgres: stats collector
+  3.5 us/s;;;;;Timer;tcp_write_timer
+  3.4 us/s;;;;;Timer;tcp_orphan_update
+  3.3 us/s;;;;;Timer;process_timeout
+  3.2 us/s;;;;;Process;[PID 3016] [kworker/0:1]
+  2.9 us/s;;;;;Process;[PID 3039] [kworker/u30:5]
+  2.4 us/s;;;;;kWork;vmstat_update
+  2.1 us/s;;;;;Process;[PID 3537] /usr/bin/containerd-shim-runc-v2 -namespace moby -id b5af3950b603b3862b74fdd84ae84571f9e618ca14cced345e64b8fe1155c78
+  2.1 us/s;;;;;Process;[PID 3247] postgres
+  2.0 us/s;;;;;Process;[PID 3535] /usr/bin/containerd-shim-runc-v2 -namespace moby -id 658d6d33b42cad8919a21e5dd282a31f8b95fc00acbb135eca087a376a9c7a5
+  1.4 us/s;;;;;Timer;clocksource_watchdog
+  1.0 us/s;;;;;kWork;gc_worker
+  0.8 us/s;;;;;Process;[PID 202] /sbin/multipathd -d -s
+  0.5 us/s;;;;;Timer;neigh_timer_handler
+  0.3 us/s;;;;;Process;[PID 396] /lib/systemd/systemd-networkd
+  0.2 us/s;;;;;Timer;blk_rq_timed_out_timer
+  0.2 us/s;;;;;Timer;writeout_period
+  0.1 us/s;;;;;Process;[PID 14] [migration/0]
+  0.1 us/s;;;;;Process;[PID 84] [kworker/0:1H]
+  0.0 us/s;;;;;Process;[PID 3399] jtqt-rust
+  0.0 us/s;;;;;Interrupt;[6] tasklet(softirq)
+  0.0 us/s;;;;;kWork;check_lifetime
+  0.0 us/s;;;;;Timer;commit_timeout
+  0.0 us/s;;;;;Process;[PID 3398] jtqt-rust
+  0.0 us/s;;;;;kWork;inode_switch_wbs_work_fn
+  0.0 us/s;;;;;Timer;prandom_reseed
+  0.0 us/s;;;;;kWork;br_fdb_cleanup
+  0.0 us/s;;;;;Timer;tw_timer_handler
+  0.0 us/s;;;;;kWork;srcu_invoke_callbacks
+  0.0 us/s;;;;;Timer;srcu_delay_timer
+;;;;;;
+;;;;;;
+;;;;;;
+;;;;;;
+;;;;;;
+;;;;;;
+;;;;;;
+;;;;;;
+
+____________________________________________________________________
+ *  *  *   Device Power Report   *  *  *
+
+Usage;Device Name
+  0.2%;CPU misc
+  0.2%;CPU core
+  0.2%;DRAM
+169.1 pkts/s;nic:veth1720b92
+129.6 pkts/s;nic:veth95cacfe
+100.0%;PCI Device: Intel Corporation 82371SB PIIX3 IDE [Natoma/Triton II]
+100.0%;PCI Device: Cirrus Logic GD 5446
+100.0%;PCI Device: XenSource, Inc. Xen Platform Device
+100.0%;PCI Device: Intel Corporation 82371AB/EB/MB PIIX4 ACPI
+100.0%;PCI Device: Intel Corporation 440FX - 82441FX PMC [Natoma]
+100.0%;PCI Device: Intel Corporation 82371SB PIIX3 ISA [Natoma/Triton II]
+ 39.7 pkts/s;Network interface: eth0 (vif)
+ 39.5 pkts/s;nic:br-f27117683027
+  0.0 pkts/s;nic:docker0
+  0.0%;runtime-alarmtimer.0.auto
+  0.0%;runtime-reg-dummy
+  0.0%;runtime-kgdboc
+  0.0%;runtime-platform-framebuffer.0
+  0.0%;runtime-eisa.0
+  0.0%;runtime-Fixed MDIO bus.0
+  0.0%;runtime-PNP0800:00
+  0.0%;runtime-PNP0103:00
+  0.0%;runtime-serial8250
+  0.0%;runtime-i8042
+  0.0%;runtime-pcspkr
+____________________________________________________________________
+ *  *  *   Process Device Activity   *  *  *
+
+Process;Device
+systemd;/dev/autofs
+;/dev/kmsg
+;/dev/rfkill
+systemd-journal;/dev/kmsg
+;/dev/kmsg
+multipathd;/dev/mapper/control
+;/dev/mapper/control
+acpid;/dev/input/event0
+;/dev/input/event1
+;/dev/input/event2
+systemd-logind;/dev/input/event0
+;/dev/input/event1
+;/dev/input/event2
+
+____________________________________________________________________
+ *  *  *   AHCI ALPM Residency Statistics - Not supported on this macine   *  *  *
+
+____________________________________________________________________
+ *  *  *   Software Settings in Need of Tuning   *  *  *
+
+Description;Script
+VM writeback timeout;echo '1500' > '/proc/sys/vm/dirty_writeback_centisecs';
+Runtime PM for PCI Device Intel Corporation 82371SB PIIX3 ISA [Natoma/Triton II];echo 'auto' > '/sys/bus/pci/devices/0000:00:01.0/power/control';
+Runtime PM for PCI Device Intel Corporation 440FX - 82441FX PMC [Natoma];echo 'auto' > '/sys/bus/pci/devices/0000:00:00.0/power/control';
+Runtime PM for PCI Device Intel Corporation 82371AB/EB/MB PIIX4 ACPI;echo 'auto' > '/sys/bus/pci/devices/0000:00:01.3/power/control';
+Runtime PM for PCI Device XenSource, Inc. Xen Platform Device;echo 'auto' > '/sys/bus/pci/devices/0000:00:03.0/power/control';
+Runtime PM for PCI Device Intel Corporation 82371SB PIIX3 IDE [Natoma/Triton II];echo 'auto' > '/sys/bus/pci/devices/0000:00:01.1/power/control';
+Runtime PM for port ata1 of PCI device: Intel Corporation 82371SB PIIX3 IDE [Natoma/Triton II];echo 'auto' > '/sys/bus/pci/devices/0000:00:01.1/ata1/power/control';
+Runtime PM for port ata2 of PCI device: Intel Corporation 82371SB PIIX3 IDE [Natoma/Triton II];echo 'auto' > '/sys/bus/pci/devices/0000:00:01.1/ata2/power/control';
+Runtime PM for PCI Device Cirrus Logic GD 5446;echo 'auto' > '/sys/bus/pci/devices/0000:00:02.0/power/control';
+____________________________________________________________________
+ *  *  *   Untunable Software Issues   *  *  *
+
+Description
+____________________________________________________________________
+ *  *  *   Optimal Tuned Software Settings   *  *  *
+
+Description
+NMI watchdog should be turned off
