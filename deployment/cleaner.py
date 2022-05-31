@@ -1,7 +1,4 @@
 import os
-import shutil
-from distutils.dir_util import copy_tree
-import pdfkit
 
 def give_name_by_number(id):
     if id == 0: return 'rust'
