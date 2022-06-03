@@ -1,0 +1,15 @@
+spin_version = "1"
+authors = ["a"]
+description = "A hello world application that serves content from a Rust program"
+name = "spin-wagi-hello"
+trigger = { type = "http", base = "/" }
+version = "1.0.0"
+
+[[component]]
+id = "hello"
+source = "rust/target/wasm32-wasi/release/rust.wasm"
+[component.trigger]
+route = "/hello"
+executor =  { type = "spin" }
+[component.build]
+command = "cargo build --target wasm32-wasi --release --manifest-path rust/Cargo.toml"
