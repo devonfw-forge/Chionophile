@@ -2,14 +2,14 @@ spin_version = "1"
 authors = ["a"]
 description = "A hello world application that serves content from a Rust program"
 name = "spin-wagi-hello"
-trigger = { type = "http", base = "/" }
+trigger = { type = "http", base = "/jumpthequeue/services/rest/" }
 version = "1.0.0"
 
 [[component]]
 id = "hello"
 source = "target/wasm32-wasi/release/rust.wasm"
 [component.trigger]
-route = "/hello"
+route = "/visitormanagement/v1/visitor/..."
 executor =  { type = "spin" }
 [component.build]
 command = "cargo build --target wasm32-wasi --release --manifest-path Cargo.toml"
