@@ -6,7 +6,7 @@ trigger = { type = "http", base = "/jumpthequeue/services/rest/" }
 version = "1.0.0"
 
 [[component]]
-id = "hello"
+id = "visitor"
 source = "target/wasm32-wasi/release/rust.wasm"
 [component.trigger]
 route = "/visitormanagement/v1/visitor/..."

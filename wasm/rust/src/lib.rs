@@ -4,34 +4,39 @@ use spin_sdk::{
     http::{Request, Response},
     http_component,
 };
+use std::fs::File;
+use std::io::prelude::*;
+
 
 #[http_component]
-fn hello(req: Request) -> Result<Response> {
-    println!("{:?}", req.headers());
+fn visitor(req: Request) -> Result<Response> {
     match req.method() {
         &Method::POST => {
-            Ok(http::Response::builder()
+            if req.uri() == "/jumpthequeue/services/rest/visitormanagement/v1/visitor/search/"{
+                return Ok(http::Response::builder()
                 .status(200)
-                //.header("foo", "bar")
-                .body(Some("POST!\n".into()))?)
+                .body(Some("Searching POST".into()))?)
+            }
+            return Ok(http::Response::builder()
+                .status(200)
+                .body(Some(format!("POST Visitor at {}",req.uri()).into()))?)
         }
         &Method::GET => {
-            Ok(http::Response::builder()
+            let id: Vec<&str> = req.uri().path().split('/').collect();
+            return Ok(http::Response::builder()
                 .status(200)
-                //.header("foo", "bar")
-                .body(Some("GET!\n".into()))?)
+                .body(Some(format!("Getting {} Id",id[id.len()-2]).into()))?)
         }
         &Method::DELETE => {
-            Ok(http::Response::builder()
+            let id: Vec<&str> = req.uri().path().split('/').collect();
+            return Ok(http::Response::builder()
                 .status(200)
-                //.header("foo", "bar")
-                .body(Some("DELETE!\n".into()))?)
+                .body(Some(format!("Deleting {} Id",id[id.len()-2]).into()))?)
+        }
+        _ => {
+            return Ok(http::Response::builder()
+                .status(500)
+                .body(Some("".into()))?)
         }
     }
-
-    Ok(bad_request())
-}
-
-fn bad_request() -> Response {
-    http::Response::builder().status(400).into()
 }
