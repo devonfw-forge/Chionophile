@@ -27,7 +27,7 @@ fn router(req: Request) -> Result<Response> {
 
         _=>{
             return Ok(http::Response::builder()
-                        .status(500)
+                        .status(404)
                         .body(Some("".into()))?)
         }
 
