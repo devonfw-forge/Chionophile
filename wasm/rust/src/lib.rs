@@ -3,10 +3,15 @@ use spin_sdk::{
     http::{Request, Response},
     http_component,
 };
+use crate::accesscode::router::AccessCodeRouter;
+use crate::queue::router::QueueRouter;
+use crate::util::router::Router;
+use crate::visitor::router::VisitorRouter;
 
 mod visitor;
 mod queue;
 mod accesscode;
+mod util;
 
 
 #[http_component]
@@ -14,15 +19,15 @@ fn router(req: Request) -> Result<Response> {
     let parsed_url: Vec<&str> = req.uri().path().split('/').collect();
     match parsed_url[4] {
         "visitormanagement" => {
-            return visitor::router::route(&req, parsed_url)
+            return VisitorRouter::route(&req, parsed_url)
         }
 
         "queuemanagement" => {
-            return queue::router::route(&req, parsed_url)
+            return QueueRouter::route(&req, parsed_url)
         }
 
         "accesscodemanagement" => {
-            return accesscode::router::route(&req, parsed_url)
+            return AccessCodeRouter::route(&req, parsed_url)
         }
 
         _=>{
