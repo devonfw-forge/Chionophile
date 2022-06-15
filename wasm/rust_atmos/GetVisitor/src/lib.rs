@@ -1,7 +1,7 @@
 use serde::Serialize;
 use suborbital::req;
 use suborbital::runnable::*;
-use common::entities::visitor::VisitorEntity;
+use jtq::visitor::logic::api::visitor_eto::VisitorEto;
 
 struct GetVisitor{}
 
@@ -10,13 +10,13 @@ impl Runnable for GetVisitor {
         let in_string = String::from_utf8(input).unwrap();
 
         let id = req::url_param("id");
-        let visitor: VisitorEntity = VisitorEntity {
-            id: 0,
-            modification_counter: 0,
+        let visitor: VisitorEto = VisitorEto {
+            id: None,
+            modification_counter: None,
             username: None,
             name: None,
-            password: None,
             phone_number: None,
+            password: None,
             accepted_commercial: None,
             accepted_terms: false,
             user_type: None
