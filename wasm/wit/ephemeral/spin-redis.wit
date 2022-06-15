@@ -1,4 +1,0 @@
-use * from redis-types
-
-// The entrypoint for a Redis handler.
-handle-redis-message: function(message: payload) -> expected<_, error>
