@@ -6,6 +6,10 @@ identifier: com.suborbital.rust_atmos
 appVersion: v0.1.0
 atmoVersion: v0.4.7
 
+connections:
+  database:
+    type: postgresql
+    connectionString: postgresql://jtq_user:admin@jtq_postgres_intern:5432/jtq_db
 
 handlers:
   - type: request
