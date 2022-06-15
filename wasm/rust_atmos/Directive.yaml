@@ -11,6 +11,12 @@ connections:
     type: postgresql
     connectionString: postgresql://jtq_user:admin@jtq_postgres_intern:5432/jtq_db
 
+queries:
+  - name: "SelectVisitor"
+    query: |-
+      SELECT * FROM visitor
+      WHERE id = $1
+
 handlers:
   - type: request
     resource: /jumpthequeue/services/rest/visitor/:id/
