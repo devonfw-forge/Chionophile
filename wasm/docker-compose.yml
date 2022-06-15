@@ -5,9 +5,9 @@ services:
     container_name: atmo_server
     entrypoint: atmo
     environment:
-      - ATMO_HTTP_PORT=8080
+      - ATMO_HTTP_PORT=8081
     ports:
-      - 8080:8080
+      - 8081:8081
     depends_on:
       - jtq_postgres
     volumes:
