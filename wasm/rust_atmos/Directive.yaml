@@ -2,7 +2,7 @@
 # appVersion should be updated for each new deployment of your app.
 # atmoVersion declares which version of Atmo is used for the `subo dev` command.
 
-identifier: com.suborbital.rust_atmos
+identifier: com.suborbital.rust_wasm
 appVersion: v0.1.0
 atmoVersion: v0.4.7
 
@@ -13,7 +13,7 @@ connections:
 
 handlers:
   - type: request
-    resource: /hello
-    method: POST
+    resource: /jumpthequeue/services/rest/visitor/:id/
+    method: GET
     steps:
-      - fn: helloworld
+      - fn: GetVisitor

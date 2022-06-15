@@ -1,8 +1,8 @@
 use suborbital::runnable::*;
 
-struct HelloWorld{}
+struct PostVisitor{}
 
-impl Runnable for HelloWorld {
+impl Runnable for PostVisitor {
     fn run(&self, input: Vec<u8>) -> Result<Vec<u8>, RunErr> {
         let in_string = String::from_utf8(input).unwrap();
     
@@ -12,9 +12,9 @@ impl Runnable for HelloWorld {
 
 
 // initialize the runner, do not edit below //
-static RUNNABLE: &HelloWorld = &HelloWorld{};
+static RUNNABLE: &PostVisitor = &PostVisitor{};
 
 #[no_mangle]
-pub extern fn init() {
+pub extern fn _start() {
     use_runnable(RUNNABLE);
 }
