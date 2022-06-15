@@ -1,0 +1,15 @@
+version: '3'
+services:
+  atmo-server:
+    image: suborbital/atmo:latest
+    container_name: atmo-server
+    entrypoint: atmo
+    environment:
+      - ATMO_HTTP_PORT=8080
+    ports:
+      - 8080:8080
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./rust_atmos:/home/atmo
