@@ -1,4 +1,4 @@
-name: PostVisitor
+name: DeleteVisitor
 namespace: default
 lang: rust
 version: ""

@@ -16,6 +16,20 @@ queries:
     query: |-
       SELECT * FROM visitor
       WHERE id = $1
+  - name: "DeleteVisitor"
+    query: |-
+      DELETE FROM visitor
+      WHERE id = $1
+  - name: "DeleteAccessCodeByIdVisitor"
+    query: |-
+      DELETE FROM accesscode
+      WHERE idVisitor = $1
+  - name: "CreateVisitor"
+    query: |-
+      INSERT INTO visitor(acceptedcommercial, acceptedterms, modificationcounter, name, 
+          password, phonenumber, username, usertype)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+      RETURNING *
 
 handlers:
   - type: request
@@ -23,6 +37,16 @@ handlers:
     method: GET
     steps:
       - fn: GetVisitor
+  - type: request
+    resource: /jumpthequeue/services/rest/visitormanagement/v1/visitor/:id/
+    method: DELETE
+    steps:
+      - fn: DeleteVisitor
+  - type: request
+    resource: /jumpthequeue/services/rest/visitormanagement/v1/visitor/
+    method: POST
+    steps:
+      - fn: CreateVisitor
 
   - type: request
     resource: /jumpthequeue/services/rest/queuemanagement/v1/queue/:id/
