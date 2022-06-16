@@ -22,6 +22,15 @@ queries:
       SELECT * FROM accesscode
       WHERE id = $1
 
+  - name: "InsertAccessCode"
+    query: |-
+      INSERT INTO 
+      AccessCode (modificationCounter, creationTime, startTime, endTime, idVisitor, idQueue) 
+      VALUES 
+      ( 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, NULL, $1, $2) 
+      ON CONFLICT
+      DO NOTHING;
+
 
 handlers:
   - type: request
