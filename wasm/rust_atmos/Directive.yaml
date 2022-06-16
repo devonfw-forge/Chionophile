@@ -27,9 +27,8 @@ queries:
       INSERT INTO 
       AccessCode (modificationCounter, creationTime, startTime, endTime, idVisitor, idQueue) 
       VALUES 
-      ( 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, NULL, $1, $2) 
-      ON CONFLICT
-      DO NOTHING;
+      ( 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, NULL, $1, $2)
+      RETURNING *
 
 
 handlers:

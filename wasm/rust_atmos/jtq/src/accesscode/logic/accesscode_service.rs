@@ -29,21 +29,19 @@ impl Service<Vec<u8>, AccessCodeSearchCriteria, i64> for AccessCodeService {
         }
     }
 
-    fn create(accesscode_insert: AccessCodeInsert) -> Result<Option<Vec<u8>>> {
+    fn create(input: Vec<u8>) -> Result<Vec<u8>> {
+        let in_string = String::from_utf8(input).unwrap();
+        let accesscode_insert: AccessCodeInsert = serde_json::from_str(&in_string)?;
 
         let mut query_args: Vec<query::QueryArg> = Vec::new();
 
-        query_args.push(query::QueryArg::new("idvisitor", accesscode_insert.visitor_id.as_str()));
-        query_args.push(query::QueryArg::new("idqueue", accesscode_insert.queue_id.as_str()));
+        query_args.push(query::QueryArg::new("idvisitor", &accesscode_insert.visitor_id.to_string()));
+        query_args.push(query::QueryArg::new("idqueue", &accesscode_insert.queue_id.to_string()));
 
         let accesscode_query_result = db::insert("InsertAccessCode", query_args);
         return match accesscode_query_result {
             Ok(query_res) => {
-                if query_res.len() > 2 {
-                    Ok(Some(query_res[1..query_res.len() - 1].to_vec()))
-                } else {
-                    Ok(None)
-                }
+                Ok(query_res[1..query_res.len() - 1].to_vec())
             }
             Err(e) => Err(anyhow::Error::msg(e.message))
         }
