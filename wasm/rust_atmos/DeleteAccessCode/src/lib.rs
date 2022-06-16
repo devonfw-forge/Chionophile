@@ -15,13 +15,11 @@ impl Runnable for DeleteAccessCode {
         suborbital::resp::content_type("application/json; charset=utf-8");
         let id = req::url_param("id");
 
-        let accesscode_eto: Result<Option<Vec<u8>>> = AccessCodeService::delete(id.parse().unwrap_or(-1));
+        let accesscode_eto: Result<i64> = AccessCodeService::delete(id.parse().unwrap_or(-1));
         return match accesscode_eto {
-            Ok(accesscode_option) =>
-                match accesscode_option {
-                    Some(accesscode) => Ok(accesscode),
-                    _ =>  Err(RunErr::new(404, format!("No accesscode with id {}", id).as_str()))
-                }
+            Ok(accesscode) => {
+                Ok(format!("{}", accesscode).as_bytes().to_vec())
+            },
             Err(e) => Err(RunErr::new(500, "Internal Server Error"))
         }
     }

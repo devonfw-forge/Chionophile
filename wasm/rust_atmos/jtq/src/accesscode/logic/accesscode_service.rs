@@ -63,7 +63,7 @@ impl Service<Vec<u8>, AccessCodeSearchCriteria, i64> for AccessCodeService {
         let mut query_args: Vec<query::QueryArg> = Vec::new();
         query_args.push(query::QueryArg::new("id", &id.to_string()));
 
-        let accesscode_query_result = db::select("SelectAccessCode", query_args);
+        let accesscode_query_result = db::delete("DeleteAccessCode", query_args);
         return match accesscode_query_result {
             Ok(_) => {
                 Ok(id)
