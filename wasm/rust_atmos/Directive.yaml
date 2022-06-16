@@ -30,6 +30,10 @@ queries:
       ( 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, NULL, $1, $2)
       RETURNING *
 
+  - name: "DeleteAccessCode"
+    query: |-
+      DELETE FROM accesscode WHERE id=$1
+
 
 handlers:
   - type: request
@@ -49,3 +53,9 @@ handlers:
     method: GET
     steps:
       - fn: GetAccessCode
+
+  - type: request
+    resource: /jumpthequeue/services/rest/accesscodemanagement/v1/accesscode/:id/
+    method: DELETE
+    steps:
+      - fn: DeleteAccessCode
