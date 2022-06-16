@@ -1,23 +1,23 @@
 use crate::common::logic::service::Service;
 use crate::common::search::pageable::Pageable;
 use crate::common::search::search_result::SearchResult;
-// use crate::visitor::logic::api::visitor_eto::VisitorEto;
-use crate::visitor::logic::api::visitor_search_criteria::VisitorSearchCriteria;
+// use crate::accesscode::logic::api::accesscode_eto::AccessCodeEto;
+use crate::accesscode::logic::api::accesscode_search_criteria::AccessCodeSearchCriteria;
 use suborbital::db;
 use suborbital::db::query;
 use anyhow::{Result};
 // use suborbital::runnable::HostErr;
 
-pub struct VisitorService;
+pub struct AccessCodeService;
 
-impl Service<Vec<u8>, VisitorSearchCriteria, i64> for VisitorService {
+impl Service<Vec<u8>, AccessCodeSearchCriteria, i64> for AccessCodeService {
     fn get_by_id(id: i64) -> Result<Option<Vec<u8>>> {
 
         let mut query_args: Vec<query::QueryArg> = Vec::new();
         query_args.push(query::QueryArg::new("id", &id.to_string()));
 
-        let visitor_query_result = db::select("SelectVisitor", query_args);
-        return match visitor_query_result {
+        let accesscode_query_result = db::select("SelectAccessCode", query_args);
+        return match accesscode_query_result {
             Ok(query_res) => {
                 if query_res.len() > 2 {
                     Ok(Some(query_res[1..query_res.len() - 1].to_vec()))
@@ -47,7 +47,7 @@ impl Service<Vec<u8>, VisitorSearchCriteria, i64> for VisitorService {
         };
 */    }
 
-    fn search(search_criteria: VisitorSearchCriteria) -> Result<SearchResult<Vec<u8>>> {
+    fn search(search_criteria: AccessCodeSearchCriteria) -> Result<SearchResult<Vec<u8>>> {
         Ok(SearchResult {
             content: vec![],
             pageable: Pageable {

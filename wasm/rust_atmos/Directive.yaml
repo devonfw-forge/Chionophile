@@ -17,9 +17,27 @@ queries:
       SELECT * FROM visitor
       WHERE id = $1
 
+  - name: "SelectAccessCode"
+    query: |-
+      SELECT * FROM accesscode
+      WHERE id = $1
+
+
 handlers:
   - type: request
     resource: /jumpthequeue/services/rest/visitor/:id/
     method: GET
     steps:
       - fn: GetVisitor
+
+  - type: request
+    resource: /jumpthequeue/services/rest/accesscodemanagement/v1/accesscode/
+    method: POST
+    steps:
+      - fn: AssociateAccessCode
+
+  - type: request
+    resource: /jumpthequeue/services/rest/accesscodemanagement/v1/accesscode/:id/
+    method: GET
+    steps:
+      - fn: GetAccessCode
