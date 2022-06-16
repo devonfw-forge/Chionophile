@@ -2,7 +2,7 @@ use serde::{Serialize, Deserialize};
 use validator::Validate;
 use crate::common::logic::entity_eto::EntityETO;
 
-#[derive(Deserialize, Serialize, Validate, Clone)]
+#[derive(Deserialize, Serialize, Validate, Clone, Debug)]
 #[serde(rename_all="camelCase")]
 pub struct VisitorEto {
     pub id: Option<i64>,

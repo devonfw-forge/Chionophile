@@ -5,7 +5,6 @@ use anyhow::Result;
 
 pub trait Service<ETO, SC, ID>
     where
-        ETO: EntityETO,
         SC: Criteria
 {
     fn get_by_id(id: ID) -> Result<Option<ETO>>;

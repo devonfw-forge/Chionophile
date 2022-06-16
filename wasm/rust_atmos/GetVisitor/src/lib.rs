@@ -15,11 +15,11 @@ impl Runnable for GetVisitor {
         suborbital::resp::content_type("application/json; charset=utf-8");
         let id = req::url_param("id");
 
-        let visitor_eto: Result<Option<VisitorEto>> = VisitorService::get_by_id(id.parse().unwrap_or(-1));
+        let visitor_eto: Result<Option<Vec<u8>>> = VisitorService::get_by_id(id.parse().unwrap_or(-1));
         return match visitor_eto {
             Ok(visitor_option) =>
                 match visitor_option {
-                    Some(visitor) => Ok(bincode::serialize(&visitor).unwrap_or(vec![])),
+                    Some(visitor) => Ok(visitor),
                     _ =>  Err(RunErr::new(404, format!("No visitor with id {}", id).as_str()))
                 }
             Err(e) => Err(RunErr::new(500, "Internal Server Error"))
