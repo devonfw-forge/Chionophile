@@ -4,6 +4,9 @@ use suborbital::runnable::*;
 use jtq::visitor::logic::api::visitor_eto::VisitorEto;
 use suborbital::db;
 use suborbital::db::query;
+use jtq::common::logic::service::Service;
+use jtq::visitor::logic::visitor_service::VisitorService;
+use anyhow::Result;
 
 struct GetVisitor{}
 
@@ -11,14 +14,15 @@ impl Runnable for GetVisitor {
     fn run(&self, input: Vec<u8>) -> Result<Vec<u8>, RunErr> {
         suborbital::resp::content_type("application/json; charset=utf-8");
         let id = req::url_param("id");
-        let mut query_args: Vec<query::QueryArg> = Vec::new();
-        query_args.push(query::QueryArg::new("id", id.as_str()));
 
-        match db::select("SelectVisitor", query_args) {
-            Ok(result) => Ok(result),
-            Err(e) => {
-                Err(RunErr::new(500, e.message.as_str()))
-            }
+        let visitor_eto: Result<Option<VisitorEto>> = VisitorService::get_by_id(id.parse().unwrap_or(-1));
+        return match visitor_eto {
+            Ok(visitor_option) =>
+                match visitor_option {
+                    Some(visitor) => Ok(bincode::serialize(&visitor).unwrap_or(vec![])),
+                    _ =>  Err(RunErr::new(404, format!("No visitor with id {}", id).as_str()))
+                }
+            Err(e) => Err(RunErr::new(500, "Internal Server Error"))
         }
     }
 }

@@ -12,7 +12,7 @@ services:
       - jtq_postgres
     volumes:
       - ./rust_atmos:/home/atmo
-    networks:
+    networks: 
       - vnet
 
   jtq_postgres:
@@ -23,8 +23,11 @@ services:
     volumes:
       - ../postgresql/postgres/init:/docker-entrypoint-initdb.d:ro
     restart: unless-stopped
-    networks:
+    ports:
+      - 5432:5432
+    networks: 
       - vnet
 
-networks:
+networks: 
   vnet:
+
