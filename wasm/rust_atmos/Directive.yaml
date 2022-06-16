@@ -19,7 +19,13 @@ queries:
 
 handlers:
   - type: request
-    resource: /jumpthequeue/services/rest/visitor/:id/
+    resource: /jumpthequeue/services/rest/visitormanagement/v1/visitor/:id/
     method: GET
     steps:
       - fn: GetVisitor
+
+  - type: request
+    resource: /jumpthequeue/services/rest/queuemanagement/v1/queue/:id/
+    method: GET
+    steps:
+      - fn: GetQueue
