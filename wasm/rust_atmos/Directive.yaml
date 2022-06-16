@@ -16,6 +16,20 @@ queries:
     query: |-
       SELECT * FROM visitor
       WHERE id = $1
+  #################################33
+  # QUEUE:
+  - name: "SelectQueue"
+    query: |-
+      SELECT * FROM dailyqueue
+      WHERE id = $1
+
+  - name: "DeleteQueue"
+    query: |-
+      DELETE FROM dailyqueue WHERE id = $1
+      
+  - name: "DeleteACQueue"
+    query: |-
+      DELETE FROM accesscode WHERE idqueue = $1
 
 handlers:
   - type: request
@@ -24,8 +38,22 @@ handlers:
     steps:
       - fn: GetVisitor
 
+  #################################33
+  # QUEUE:
   - type: request
     resource: /jumpthequeue/services/rest/queuemanagement/v1/queue/:id/
     method: GET
     steps:
       - fn: GetQueue
+
+  - type: request
+    resource: /jumpthequeue/services/rest/queuemanagement/v1/queue/
+    method: POST
+    steps:
+      - fn: PostQueue
+
+  - type: request
+    resource: /jumpthequeue/services/rest/queuemanagement/v1/queue/:id/
+    method: DELETE
+    steps:
+      - fn: DeleteQueue
