@@ -18,7 +18,7 @@ impl Runnable for DeleteQueue {
         return match queue_id {
             Ok(queue_option) =>
                 match queue_option {
-                    queue => Ok(Vec::new()),
+                    queue => Ok(format!("{}", queue).as_bytes().to_vec()),
                     _ =>  Err(RunErr::new(404, format!("No queue with id {}", id).as_str()))
                 }
             Err(e) => Err(RunErr::new(500, "Internal Server Error"))

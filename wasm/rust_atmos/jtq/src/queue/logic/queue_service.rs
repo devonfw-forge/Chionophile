@@ -47,20 +47,17 @@ impl Service<Vec<u8>, QueueSearchCriteria, i64> for QueueService {
 
         let queue_query_1_result = db::delete("DeleteACQueue", query_args1);
         let queue_query_2_result = db::delete("DeleteQueue", query_args2);
-        return match queue_query_1_result {
+        return match queue_query_2_result {
             Ok(query_res) => {
-                return match queue_query_2_result {
-                    Ok(query_res) => {
-                        Ok(id)
-                    }
-                    Err(e) => Err(anyhow::Error::msg(e.message))
-                }
+                Ok(id)
             }
             Err(e) => Err(anyhow::Error::msg(e.message))
         }
     }
 
     fn create(eto: Vec<u8>) -> Result<Vec<u8>> {
+        //let queue = str::from_utf8(&sparkle_heart).unwrap();
+        //print!("{}", queue);
         Ok(eto)
     }
 }
