@@ -1,16 +1,17 @@
 use crate::common::logic::service::Service;
 use crate::common::search::pageable::Pageable;
 use crate::common::search::search_result::SearchResult;
-// use crate::accesscode::logic::api::accesscode_eto::AccessCodeEto;
+use crate::accesscode::logic::api::accesscode_eto::AccessCodeEto;
+use crate::accesscode::dataaccess::api::accesscode::AccessCodeEntity;
 use crate::accesscode::logic::api::accesscode_insert::AccessCodeInsert;
 use crate::accesscode::logic::api::accesscode_search_criteria::AccessCodeSearchCriteria;
 use suborbital::db;
 use suborbital::db::query;
-use anyhow::{Result};
+use anyhow::{anyhow, Result};
 
 pub struct AccessCodeService;
 
-impl Service<Vec<u8>, AccessCodeSearchCriteria, i64> for AccessCodeService {
+impl Service<AccessCodeSearchCriteria, i64> for AccessCodeService {
     fn get_by_id(id: i64) -> Result<Option<Vec<u8>>> {
 
         let mut query_args: Vec<query::QueryArg> = Vec::new();
@@ -47,27 +48,30 @@ impl Service<Vec<u8>, AccessCodeSearchCriteria, i64> for AccessCodeService {
         }
     }
 
-    fn search(search_criteria: AccessCodeSearchCriteria) -> Result<Vec<u8>> {
-        Ok(Vec::new())
+    fn search(criteria: AccessCodeSearchCriteria) -> Result<Vec<u8>> {
+        let mut query_args: Vec<query::QueryArg> = Vec::new();
 
-        let accesscode_query_result = db::select("SearchAccessCode");
-        return match accesscode_query_result {
-            Ok(query_res) => {
-                Ok(Vec::new())
-            }
-            Err(e) => Err(anyhow::Error::msg(e.message))
+
+        let results = db::select("SearchAccessCode", query_args);
+
+        if let Err(e) = results {
+            println!("{}", e.message);
+            return Err(anyhow!("Error searching for visitors"));
         }
 
+        let entities_as_string = String::from_utf8(results.unwrap_or_default())?;
+        let entities: Vec<AccessCodeEntity> = serde_json::from_str(&entities_as_string)?;
+        let total_elements = entities.len();
 
-        // Ok(SearchResult {
-        //     content: vec![],
-        //     pageable: Pageable {
-        //         page_size: 0,
-        //         page_number: 0,
-        //         sort: None
-        //     },
-        //     total_elements: 0
-        // })
+        let paged_entities = Pageable::from(&criteria.pageable, entities);
+        let content: Vec<AccessCodeEto> = paged_entities.iter()
+            .map(|entity| entity.clone().into())
+            .collect();
+
+        let search_res = SearchResult::new(content, criteria.pageable.clone(), total_elements as i32);
+        let res = serde_json::to_string(&search_res)?;
+
+        Ok(res.as_bytes().to_vec())
     }
 
     fn delete(id: i64) -> Result<i64> {

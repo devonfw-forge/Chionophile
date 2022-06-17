@@ -1,9 +1,6 @@
 use serde::Serialize;
 use suborbital::req;
 use suborbital::runnable::*;
-use jtq::visitor::logic::api::visitor_eto::VisitorEto;
-use suborbital::db;
-use suborbital::db::query;
 use jtq::common::logic::service::Service;
 use jtq::visitor::logic::visitor_service::VisitorService;
 use anyhow::Result;
@@ -11,7 +8,7 @@ use anyhow::Result;
 struct GetVisitor{}
 
 impl Runnable for GetVisitor {
-    fn run(&self, input: Vec<u8>) -> Result<Vec<u8>, RunErr> {
+    fn run(&self, _: Vec<u8>) -> Result<Vec<u8>, RunErr> {
         suborbital::resp::content_type("application/json; charset=utf-8");
         let id = req::url_param("id");
 

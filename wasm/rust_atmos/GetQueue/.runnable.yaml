@@ -1,4 +1,4 @@
-name: PostVisitor
+name: GetQueue
 namespace: default
 lang: rust
 version: ""

@@ -7,11 +7,17 @@ use chrono::NaiveDateTime;
 #[serde(rename_all = "camelCase")]
 pub struct AccessCodeEntity {
     pub id: i64,
+    #[serde(rename = "modificationcounter")]
     pub modification_counter: i32,
+    #[serde(rename = "creationtime")]
     pub creation_time: Option<NaiveDateTime>,
+    #[serde(rename = "starttime")]
     pub start_time: Option<NaiveDateTime>,
+    #[serde(rename = "endtime")]
     pub end_time: Option<NaiveDateTime>,
+    #[serde(rename = "visitorid")]
     pub visitor_id: i64,
+    #[serde(rename = "queueid")]
     pub queue_id: i64,
 }
 
