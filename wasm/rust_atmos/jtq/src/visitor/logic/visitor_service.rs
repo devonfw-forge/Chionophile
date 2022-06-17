@@ -12,7 +12,7 @@ use crate::visitor::dataaccess::api::visitor::VisitorEntity;
 
 pub struct VisitorService;
 
-impl Service<Vec<u8>, VisitorSearchCriteria, i64> for VisitorService {
+impl Service<VisitorSearchCriteria, i64> for VisitorService {
     fn get_by_id(id: i64) -> Result<Option<Vec<u8>>> {
         let mut query_args: Vec<query::QueryArg> = Vec::new();
         query_args.push(query::QueryArg::new("id", &id.to_string()));
@@ -33,16 +33,45 @@ impl Service<Vec<u8>, VisitorSearchCriteria, i64> for VisitorService {
         }
     }
 
-    fn search(search_criteria: VisitorSearchCriteria) -> Result<SearchResult<Vec<u8>>> {
-        Ok(SearchResult {
-            content: vec![],
-            pageable: Pageable {
-                page_size: 0,
-                page_number: 0,
-                sort: None
-            },
-            total_elements: 0
-        })
+    fn search(criteria: VisitorSearchCriteria) -> Result<Vec<u8>> {
+        let mut query_args: Vec<query::QueryArg> = Vec::new();
+
+        let results = if criteria.username.is_some() {
+            query_args.push(
+                query::QueryArg::new(
+                    "username",
+                    &criteria.username.unwrap_or_default()
+                )
+            );
+            query_args.push(
+                query::QueryArg::new(
+                    "password",
+                    &criteria.password.unwrap_or_default()
+                )
+            );
+
+            db::select("SearchVisitorWithParams", query_args)
+        } else {
+            db::select("SearchVisitor", query_args)
+        };
+
+        if let Err(e) = results {
+            println!("{}", e.message);
+            return Err(anyhow!("Error searching for visitors"));
+        }
+        let entities_as_string = String::from_utf8(results.unwrap_or_default())?;
+        let entities: Vec<VisitorEntity> = serde_json::from_str(&entities_as_string)?;
+        let total_elements = entities.len();
+
+        let paged_entities = Pageable::from(&criteria.pageable, entities);
+        let content: Vec<VisitorEto> = paged_entities.iter()
+            .map(|entity| entity.clone().into())
+            .collect();
+
+        let search_res = SearchResult::new(content, criteria.pageable.clone(), total_elements as i32);
+        let res = serde_json::to_string(&search_res)?;
+
+        Ok(res.as_bytes().to_vec())
     }
 
     fn delete(id: i64) -> Result<i64> {

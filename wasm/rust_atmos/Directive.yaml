@@ -33,6 +33,15 @@ queries:
   - name: "SelectLastIdVisitor"
     query: |-
       SELECT currval('visitor_id_seq');
+  - name: "SearchVisitor"
+    query: |- 
+        SELECT * FROM visitor
+  - name: "SearchVisitorWithParams"
+    query: |- 
+      SELECT * FROM VISITOR
+      WHERE visitor.username = $1
+      AND visitor.password = $2
+
 handlers:
   - type: request
     resource: /jumpthequeue/services/rest/visitormanagement/v1/visitor/:id/
@@ -49,6 +58,11 @@ handlers:
     method: POST
     steps:
       - fn: CreateVisitor
+  - type: request
+    resource: /jumpthequeue/services/rest/visitormanagement/v1/visitor/search/
+    method: POST
+    steps:
+      - fn: SearchVisitor
 
   - type: request
     resource: /jumpthequeue/services/rest/queuemanagement/v1/queue/:id/
