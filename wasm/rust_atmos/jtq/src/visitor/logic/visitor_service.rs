@@ -7,25 +7,29 @@ use suborbital::db;
 use suborbital::db::query;
 use validator::Validate;
 use anyhow::{anyhow, Result};
+use serde_json::Value;
+use crate::visitor::dataaccess::api::visitor::VisitorEntity;
 
 pub struct VisitorService;
 
 impl Service<Vec<u8>, VisitorSearchCriteria, i64> for VisitorService {
     fn get_by_id(id: i64) -> Result<Option<Vec<u8>>> {
-
         let mut query_args: Vec<query::QueryArg> = Vec::new();
         query_args.push(query::QueryArg::new("id", &id.to_string()));
+        let visitor_query_result: Result<Vec<u8>, _> = db::select("SelectVisitor", query_args);
 
-        let visitor_query_result = db::select("SelectVisitor", query_args);
-        return match visitor_query_result {
-            Ok(query_res) => {
-                if query_res.len() > 2 {
-                    Ok(Some(query_res[1..query_res.len() - 1].to_vec()))
-                } else {
-                    Ok(None)
-                }
-            }
-            Err(e) => Err(anyhow::Error::msg(e.message))
+        if let Err(query_error) = visitor_query_result {
+           return Err(anyhow::Error::msg(query_error.message));
+        }
+        let query_as_string = String::from_utf8(visitor_query_result.unwrap_or_default())?;
+        let entities : Vec<VisitorEntity> = serde_json::from_str(query_as_string.as_str())?;
+
+        if entities.len() > 0 {
+            let eto: VisitorEto = entities.get(0).unwrap().clone().into();
+            let res = serde_json::to_string(&eto)?;
+            Ok(Some(res.as_bytes().to_vec()))
+        } else {
+            Ok(None)
         }
     }
 
@@ -60,17 +64,12 @@ impl Service<Vec<u8>, VisitorSearchCriteria, i64> for VisitorService {
 
     fn create(eto: Vec<u8>) -> Result<Vec<u8>> {
         println!("Create visitor");
-        let visitor_string: Result<String, _> = String::from_utf8(eto);
-        if let Err(e) = visitor_string {
-            println!("{}", e);
-            return Err(anyhow!("Not a valid string apparently"));
-        }
-        println!("Visitor serialize");
+        let visitor_string = String::from_utf8(eto);
         let visitor: VisitorEto = serde_json::from_str(&visitor_string.unwrap())?;
         if let Err(errors) = visitor.validate() {
-        println!("Validation errors");
             return Err(anyhow::Error::from(errors));
         }
+        let mut eto_res = visitor.clone();
         println!("Insertig queryargs");
         let mut query_args: Vec<query::QueryArg> = Vec::new();
         query_args.push(
@@ -123,8 +122,15 @@ impl Service<Vec<u8>, VisitorSearchCriteria, i64> for VisitorService {
         );
 
         let visitor_query_result = db::insert("CreateVisitor", query_args);
-        if let Ok(visitor_bytes) = visitor_query_result {
-            Ok(visitor_bytes)
+
+        if let Ok(_) = visitor_query_result {
+            let visitor_id = db::select("SelectLastIdVisitor", vec![]).unwrap_or_default();
+            let id_vec_string = String::from_utf8(visitor_id)?;
+            let id_json: Value = serde_json::from_str(&id_vec_string)?;
+            let id: i64 = id_json[0]["currval"].to_string().parse().unwrap();
+            eto_res.id = Option::from(id);
+            let res = serde_json::to_string(&eto_res)?;
+            Ok(res.as_bytes().to_vec())
         } else {
             Err(anyhow!("Could not insert Visitor"))
         }

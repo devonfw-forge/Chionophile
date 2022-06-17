@@ -6,6 +6,7 @@ struct CreateVisitor{}
 
 impl Runnable for CreateVisitor {
     fn run(&self, input: Vec<u8>) -> Result<Vec<u8>, RunErr> {
+        suborbital::resp::content_type("application/json; charset=utf-8");
         let created_visitor = VisitorService::create(input);
         if let Ok(created_visitor) = created_visitor {
             Ok(created_visitor)
