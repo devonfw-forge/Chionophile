@@ -47,16 +47,27 @@ impl Service<Vec<u8>, AccessCodeSearchCriteria, i64> for AccessCodeService {
         }
     }
 
-    fn search(search_criteria: AccessCodeSearchCriteria) -> Result<SearchResult<Vec<u8>>> {
-        Ok(SearchResult {
-            content: vec![],
-            pageable: Pageable {
-                page_size: 0,
-                page_number: 0,
-                sort: None
-            },
-            total_elements: 0
-        })
+    fn search(search_criteria: AccessCodeSearchCriteria) -> Result<Vec<u8>> {
+        Ok(Vec::new())
+
+        let accesscode_query_result = db::select("SearchAccessCode");
+        return match accesscode_query_result {
+            Ok(query_res) => {
+                Ok(Vec::new())
+            }
+            Err(e) => Err(anyhow::Error::msg(e.message))
+        }
+
+
+        // Ok(SearchResult {
+        //     content: vec![],
+        //     pageable: Pageable {
+        //         page_size: 0,
+        //         page_number: 0,
+        //         sort: None
+        //     },
+        //     total_elements: 0
+        // })
     }
 
     fn delete(id: i64) -> Result<i64> {

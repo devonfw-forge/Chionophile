@@ -8,7 +8,7 @@ pub trait Service<ETO, SC, ID>
         SC: Criteria
 {
     fn get_by_id(id: ID) -> Result<Option<ETO>>;
-    fn search(search_criteria: SC) -> Result<SearchResult<ETO>>;
+    fn search(search_criteria: SC) -> Result<ETO>;
     fn delete(id: ID) -> Result<ID>;
     fn create(eto: ETO) -> Result<ETO>;
 }

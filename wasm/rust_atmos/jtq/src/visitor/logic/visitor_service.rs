@@ -47,16 +47,8 @@ impl Service<Vec<u8>, VisitorSearchCriteria, i64> for VisitorService {
         };
 */    }
 
-    fn search(search_criteria: VisitorSearchCriteria) -> Result<SearchResult<Vec<u8>>> {
-        Ok(SearchResult {
-            content: vec![],
-            pageable: Pageable {
-                page_size: 0,
-                page_number: 0,
-                sort: None
-            },
-            total_elements: 0
-        })
+    fn search(search_criteria: VisitorSearchCriteria) -> Result<Vec<u8>> {
+        Ok(Vec::new())
     }
 
     fn delete(id: i64) -> Result<i64> {
