@@ -12,7 +12,7 @@ impl Runnable for DeleteVisitor {
         let id_num: i64 = id.parse().unwrap_or(-1);
         let delete_result = VisitorService::delete(id_num);
         if let Ok(delete_result) = delete_result {
-            Ok(Vec::from(delete_result.to_be_bytes()))
+            Ok(delete_result.to_string().as_bytes().to_vec())
         } else {
             Err(RunErr::new(404, format!("No visitor with id {}", id).as_str()))
         }

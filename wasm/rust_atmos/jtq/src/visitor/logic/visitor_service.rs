@@ -82,7 +82,11 @@ impl Service<VisitorSearchCriteria, i64> for VisitorService {
             db::delete("DeleteAccessCodeByIdVisitor", query_args.clone());
         let visitor_query_result =
             db::delete("DeleteVisitor", query_args);
-        if let Ok(_) = visitor_query_result {
+        if let Ok(query_res) = visitor_query_result {
+            let query_res_json: Value = serde_json::from_str(&String::from_utf8(query_res).unwrap())?;
+            if query_res_json["rowsAffected"].as_i64().unwrap() < 1 {
+                return Err(anyhow!("Not found"));
+            }
             Ok(id)
         } else {
             println!("Error deleting from db {} ", visitor_query_result.err().unwrap().message);
