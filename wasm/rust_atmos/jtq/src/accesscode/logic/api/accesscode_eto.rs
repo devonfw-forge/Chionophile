@@ -9,11 +9,11 @@ pub struct AccessCodeEto {
     pub id: Option<i64>,
     pub modification_counter: Option<i32>,
     pub ticket_number: Option<String>,
-    pub creation_time: Option<NaiveDateTime>,
-    pub start_time: Option<NaiveDateTime>,
-    pub end_time: Option<NaiveDateTime>,
-    pub visitor_id: i64,
-    pub queue_id: i64,
+    pub creation_time: Option<String>,
+    pub start_time: Option<String>,
+    pub end_time: Option<String>,
+    pub id_visitor: i64,
+    pub id_queue: i64,
 }
 
 impl EntityETO for AccessCodeEto {}

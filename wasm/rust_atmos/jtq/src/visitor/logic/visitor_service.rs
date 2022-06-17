@@ -60,6 +60,7 @@ impl Service<VisitorSearchCriteria, i64> for VisitorService {
             return Err(anyhow!("Error searching for visitors"));
         }
         let entities_as_string = String::from_utf8(results.unwrap_or_default())?;
+        println!("{}", entities_as_string);
         let entities: Vec<VisitorEntity> = serde_json::from_str(&entities_as_string)?;
         let total_elements = entities.len();
 

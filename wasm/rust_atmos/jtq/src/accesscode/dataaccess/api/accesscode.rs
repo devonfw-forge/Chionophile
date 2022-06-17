@@ -4,21 +4,20 @@ use crate::accesscode::logic::api::accesscode_eto::AccessCodeEto;
 use chrono::NaiveDateTime;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
 pub struct AccessCodeEntity {
     pub id: i64,
     #[serde(rename = "modificationcounter")]
     pub modification_counter: i32,
     #[serde(rename = "creationtime")]
-    pub creation_time: Option<NaiveDateTime>,
+    pub creation_time: Option<String>,
     #[serde(rename = "starttime")]
-    pub start_time: Option<NaiveDateTime>,
+    pub start_time: Option<String>,
     #[serde(rename = "endtime")]
-    pub end_time: Option<NaiveDateTime>,
-    #[serde(rename = "visitorid")]
-    pub visitor_id: i64,
-    #[serde(rename = "queueid")]
-    pub queue_id: i64,
+    pub end_time: Option<String>,
+    #[serde(rename = "idvisitor")]
+    pub id_visitor: i64,
+    #[serde(rename = "idqueue")]
+    pub id_queue: i64,
 }
 
 impl Into<AccessCodeEto> for AccessCodeEntity {
@@ -27,11 +26,11 @@ impl Into<AccessCodeEto> for AccessCodeEntity {
             id: Some(self.id),
             modification_counter: Option::from(self.modification_counter),
             ticket_number: Option::from(self.generate_ticket_number()),
-            creation_time: self.creation_time,
-            start_time: self.start_time,
-            end_time: self.end_time,
-            queue_id: self.queue_id,
-            visitor_id: self.visitor_id
+            creation_time: Option::from(self.creation_time),
+            start_time: Option::from(self.start_time),
+            end_time: Option::from(self.end_time),
+            id_queue: self.id_queue,
+            id_visitor: self.id_visitor
         }
     }
 }

@@ -51,19 +51,31 @@ impl Service<AccessCodeSearchCriteria, i64> for AccessCodeService {
     fn search(criteria: AccessCodeSearchCriteria) -> Result<Vec<u8>> {
         let mut query_args: Vec<query::QueryArg> = Vec::new();
 
-
         let results = db::select("SearchAccessCode", query_args);
-
+        
         if let Err(e) = results {
             println!("{}", e.message);
             return Err(anyhow!("Error searching for visitors"));
         }
 
         let entities_as_string = String::from_utf8(results.unwrap_or_default())?;
-        let entities: Vec<AccessCodeEntity> = serde_json::from_str(&entities_as_string)?;
+        println!("Despues de to string {}", entities_as_string);
+        let entities: Vec<AccessCodeEntity> = match serde_json::from_str(&entities_as_string) {
+            Ok(result) => result,
+            Err(e) => {
+                println!("{}", e);
+                Vec::new()
+            }
+        };
+
+        println!("Despues de Vec entity");
+
+
+        println!("Despues de vector");
         let total_elements = entities.len();
 
         let paged_entities = Pageable::from(&criteria.pageable, entities);
+        println!("Despues de pageable");
         let content: Vec<AccessCodeEto> = paged_entities.iter()
             .map(|entity| entity.clone().into())
             .collect();
