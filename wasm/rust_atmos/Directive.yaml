@@ -16,33 +16,31 @@ queries:
     query: |-
       SELECT * FROM visitor
       WHERE id = $1
-  #################################33
-  # QUEUE:
-  - name: "SelectQueue"
+  - name: "DeleteVisitor"
     query: |-
-      SELECT * FROM dailyqueue
+      DELETE FROM visitor
       WHERE id = $1
-
-  - name: "DeleteQueue"
+  - name: "DeleteAccessCodeByIdVisitor"
     query: |-
-      DELETE FROM dailyqueue WHERE id = $1
-      
-  - name: "DeleteACQueue"
+      DELETE FROM accesscode
+      WHERE idVisitor = $1
+  - name: "CreateVisitor"
     query: |-
-      DELETE FROM accesscode WHERE idqueue = $1
-
-  - name: "CreateQueue"
-    query: |-
-      INSERT INTO queue(modificationcounter, name, logo, currentnumber, 
-        attentiontime, minattetiontime, active)
-      VALUES ($1, $2, $3, $4, $5, $6, $7)
+      INSERT INTO visitor(acceptedcommercial, acceptedterms, modificationcounter, name, 
+          password, phonenumber, username, usertype)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
       RETURNING id
-  - name: "SelectLastIdQueue"
+  - name: "SelectLastIdVisitor"
     query: |-
-      SELECT currval('queue_id_seq');
-  - name: "SearchQueue"
+      SELECT currval('visitor_id_seq');
+  - name: "SearchVisitor"
     query: |- 
-        SELECT * FROM queue
+        SELECT * FROM visitor
+  - name: "SearchVisitorWithParams"
+    query: |- 
+      SELECT * FROM VISITOR
+      WHERE visitor.username = $1
+      AND visitor.password = $2
 
 handlers:
   - type: request
@@ -50,23 +48,24 @@ handlers:
     method: GET
     steps:
       - fn: GetVisitor
+  - type: request
+    resource: /jumpthequeue/services/rest/visitormanagement/v1/visitor/:id/
+    method: DELETE
+    steps:
+      - fn: DeleteVisitor
+  - type: request
+    resource: /jumpthequeue/services/rest/visitormanagement/v1/visitor/
+    method: POST
+    steps:
+      - fn: CreateVisitor
+  - type: request
+    resource: /jumpthequeue/services/rest/visitormanagement/v1/visitor/search/
+    method: POST
+    steps:
+      - fn: SearchVisitor
 
-  #################################33
-  # QUEUE:
   - type: request
     resource: /jumpthequeue/services/rest/queuemanagement/v1/queue/:id/
     method: GET
     steps:
       - fn: GetQueue
-
-  - type: request
-    resource: /jumpthequeue/services/rest/queuemanagement/v1/queue/
-    method: POST
-    steps:
-      - fn: CreateQueue
-
-  - type: request
-    resource: /jumpthequeue/services/rest/queuemanagement/v1/queue/:id/
-    method: DELETE
-    steps:
-      - fn: DeleteQueue

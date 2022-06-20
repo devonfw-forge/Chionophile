@@ -6,6 +6,7 @@ use crate::common::logic::entity_eto::EntityETO;
 #[serde(rename_all="camelCase")]
 pub struct VisitorEto {
     pub id: Option<i64>,
+    #[serde(default = "default_modification_counter")]
     pub modification_counter: Option<i32>,
     #[validate(email(code="mail", message="Email format not valid"))]
     pub username: Option<String>,
@@ -18,3 +19,7 @@ pub struct VisitorEto {
 }
 
 impl EntityETO for VisitorEto {}
+
+fn default_modification_counter() -> Option<i32> {
+    Option::from(1)
+}

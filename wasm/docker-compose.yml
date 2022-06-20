@@ -1,4 +1,4 @@
-version: '2'
+version: '2.1'
 services:
   atmo-server:
     image: suborbital/atmo:latest
