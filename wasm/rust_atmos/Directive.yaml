@@ -31,6 +31,19 @@ queries:
     query: |-
       DELETE FROM accesscode WHERE idqueue = $1
 
+  - name: "CreateQueue"
+    query: |-
+      INSERT INTO queue(modificationcounter, name, logo, currentnumber, 
+        attentiontime, minattetiontime, active)
+      VALUES ($1, $2, $3, $4, $5, $6, $7)
+      RETURNING id
+  - name: "SelectLastIdQueue"
+    query: |-
+      SELECT currval('queue_id_seq');
+  - name: "SearchQueue"
+    query: |- 
+        SELECT * FROM queue
+
 handlers:
   - type: request
     resource: /jumpthequeue/services/rest/visitormanagement/v1/visitor/:id/
@@ -50,7 +63,7 @@ handlers:
     resource: /jumpthequeue/services/rest/queuemanagement/v1/queue/
     method: POST
     steps:
-      - fn: PostQueue
+      - fn: CreateQueue
 
   - type: request
     resource: /jumpthequeue/services/rest/queuemanagement/v1/queue/:id/

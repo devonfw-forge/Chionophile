@@ -15,13 +15,12 @@ impl Runnable for DeleteQueue {
         let id = req::url_param("id");
 
         let queue_id: Result<i64> = QueueService::delete(id.parse().unwrap_or(-1));
-        return match queue_id {
-            Ok(queue_option) =>
-                match queue_option {
-                    queue => Ok(format!("{}", queue).as_bytes().to_vec()),
-                    _ =>  Err(RunErr::new(404, format!("No queue with id {}", id).as_str()))
-                }
-            Err(e) => Err(RunErr::new(500, "Internal Server Error"))
+        
+        if let Ok(q_id) = queue_id {
+            return Ok(q_id.to_string().as_bytes().to_vec())
+        }
+        else {
+            return Err(RunErr::new(404, "No queue"))
         }
     }
 }

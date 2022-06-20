@@ -1,4 +1,4 @@
-name: PostQueue
+name: CreateQueue
 namespace: default
 lang: rust
 version: ""

@@ -4,14 +4,17 @@ use crate::common::dataaccess::entity::Entity;
 use crate::queue::logic::api::queue_eto::QueueEto;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
 pub struct QueueEntity {
     pub id: i64,
+    #[serde(rename = "modificationcounter")]
     pub modification_counter: i32,
     pub name: Option<String>,
     pub logo: Option<String>,
+    #[serde(rename = "currentnumber")]
     pub current_number: Option<String>,
+    #[serde(rename = "attentiontime")]
     pub attention_time: Option<NaiveDateTime>,
+    #[serde(rename = "minattentiontime")]
     pub min_attention_time: NaiveDateTime,
     pub active: bool,
 }
