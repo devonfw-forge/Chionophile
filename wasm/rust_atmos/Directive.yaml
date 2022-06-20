@@ -72,6 +72,11 @@ queries:
     query: |- 
         SELECT * FROM dailyqueue
 
+  - name: "SearchQueueActive"
+    query: |- 
+        SELECT * FROM dailyqueue
+        WHERE active=$1
+
 handlers:
   - type: request
     resource: /jumpthequeue/services/rest/visitormanagement/v1/visitor/:id/

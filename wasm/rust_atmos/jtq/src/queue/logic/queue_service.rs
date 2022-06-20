@@ -42,14 +42,31 @@ impl Service<QueueSearchCriteria, i64> for QueueService {
     fn search(criteria: QueueSearchCriteria) -> Result<Vec<u8>> {
         let mut query_args: Vec<query::QueryArg> = Vec::new();
 
-        let results = db::select("SearchQueue", query_args);
+        let results = if criteria.active.is_some() {
+            query_args.push(
+                query::QueryArg::new(
+                    "active",
+                    &criteria.active.unwrap_or_default().to_string()
+                )
+            );
+            db::select("SearchQueueActive", query_args)
+        } else {
+            db::select("SearchQueue", query_args)
+        };
 
         if let Err(e) = results {
             println!("{}", e.message);
             return Err(anyhow!("Error searching for queues"));
         }
         let entities_as_string = String::from_utf8(results.unwrap_or_default())?;
-        let entities: Vec<QueueEntity> = serde_json::from_str(&entities_as_string)?;
+        let entities: Vec<QueueEntity> = match serde_json::from_str(&entities_as_string) {
+            Ok(result) => result,
+            Err(e) => {
+                println!("{}", e);
+                Vec::new()
+            }
+        };
+
         let total_elements = entities.len();
 
         let paged_entities = Pageable::from(&criteria.pageable, entities);
