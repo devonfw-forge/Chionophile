@@ -26,8 +26,8 @@ impl Into<QueueEto> for QueueEntity {
             modification_counter: Option::from(self.modification_counter),
             name: Option::from(self.name.unwrap()),
             logo: Option::from(self.logo.unwrap()),
-            current_number: Option::from(self.current_number.unwrap()),
-            attention_time: Option::from(self.attention_time.unwrap()),
+            current_number: Option::from(self.current_number),
+            attention_time: Option::from(self.attention_time),
             min_attention_time: self.min_attention_time,
             active: self.active
         }
