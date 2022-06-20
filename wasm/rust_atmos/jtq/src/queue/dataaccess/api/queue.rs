@@ -11,8 +11,8 @@ pub struct QueueEntity {
     pub name: Option<String>,
     pub logo: Option<String>,
     pub current_number: Option<String>,
-    pub attention_time: Option<NaiveDateTime>,
-    pub min_attention_time: NaiveDateTime,
+    pub attention_time: Option<String>,
+    pub min_attention_time: Option<String>,
     pub active: bool,
 }
 
@@ -23,8 +23,8 @@ impl Into<QueueEto> for QueueEntity {
             modification_counter: Option::from(self.modification_counter),
             name: Option::from(self.name.unwrap()),
             logo: Option::from(self.logo.unwrap()),
-            current_number: Option::from(self.current_number.unwrap()),
-            attention_time: Option::from(self.attention_time.unwrap()),
+            current_number: Option::from(self.current_number),
+            attention_time: Option::from(self.attention_time),
             min_attention_time: self.min_attention_time,
             active: self.active
         }

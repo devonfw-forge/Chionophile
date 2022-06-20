@@ -1,7 +1,6 @@
 use serde::{Serialize, Deserialize};
 use validator::Validate;
 use crate::common::logic::entity_eto::EntityETO;
-use chrono::NaiveDateTime;
 
 #[derive(Deserialize, Serialize, Validate, Clone, Debug)]
 #[serde(rename_all="camelCase")]

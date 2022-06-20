@@ -61,8 +61,24 @@ queries:
 
   - name: "SearchAccessCode"
     query: |-
-      SELECT * FROM accesscode
-
+      SELECT 
+        a.id, a.modificationcounter,
+        a.creationtime, a.starttime, a.endtime,
+        a.idvisitor, a.idqueue,
+        q.id AS queueid,
+        q.modificationcounter AS queuemodificationcounter,
+        q.name, q.logo, q.currentnumber,
+        q.attentiontime, q.minattentiontime, q.active,
+        v.id AS visitorid,
+        v.modificationcounter AS visitormodificationcounter,
+        v.username, v.name AS visitorname,
+        v.phonenumber, v.password, 
+        v.acceptedcommercial, v.acceptedterms, v.usertype
+      FROM accesscode AS a
+      JOIN visitor AS v
+      ON a.idvisitor = v.id
+      JOIN dailyqueue AS q
+      ON a.idqueue = q.id
 
 handlers:
   - type: request

@@ -1,8 +1,9 @@
 use crate::common::logic::service::Service;
 use crate::common::search::pageable::Pageable;
 use crate::common::search::search_result::SearchResult;
-use crate::accesscode::logic::api::accesscode_eto::AccessCodeEto;
-use crate::accesscode::dataaccess::api::accesscode::AccessCodeEntity;
+// use crate::accesscode::dataaccess::api::accesscode::AccessCodeEntity;
+// use crate::accesscode::logic::api::accesscode_eto::AccessCodeEto;
+use crate::accesscode::logic::api::accesscode_cto::{AccessCodeCto, AccessCodeQueryResult};
 use crate::accesscode::logic::api::accesscode_insert::AccessCodeInsert;
 use crate::accesscode::logic::api::accesscode_search_criteria::AccessCodeSearchCriteria;
 use suborbital::db;
@@ -60,23 +61,18 @@ impl Service<AccessCodeSearchCriteria, i64> for AccessCodeService {
 
         let entities_as_string = String::from_utf8(results.unwrap_or_default())?;
         println!("Despues de to string {}", entities_as_string);
-        let entities: Vec<AccessCodeEntity> = match serde_json::from_str(&entities_as_string) {
+        let entities: Vec<AccessCodeQueryResult> = match serde_json::from_str(&entities_as_string) {
             Ok(result) => result,
             Err(e) => {
                 println!("{}", e);
                 Vec::new()
             }
         };
-
-        println!("Despues de Vec entity");
-
-
-        println!("Despues de vector");
+        println!("Despues de to string {:?}", entities_as_string);
         let total_elements = entities.len();
 
         let paged_entities = Pageable::from(&criteria.pageable, entities);
-        println!("Despues de pageable");
-        let content: Vec<AccessCodeEto> = paged_entities.iter()
+        let content: Vec<AccessCodeCto> = paged_entities.iter()
             .map(|entity| entity.clone().into())
             .collect();
 

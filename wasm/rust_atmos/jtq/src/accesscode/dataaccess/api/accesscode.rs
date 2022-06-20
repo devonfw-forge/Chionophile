@@ -1,7 +1,6 @@
 use serde::{Deserialize, Serialize};
 use crate::common::dataaccess::entity::Entity;
 use crate::accesscode::logic::api::accesscode_eto::AccessCodeEto;
-use chrono::NaiveDateTime;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AccessCodeEntity {

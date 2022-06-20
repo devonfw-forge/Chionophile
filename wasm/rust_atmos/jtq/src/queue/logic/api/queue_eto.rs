@@ -1,9 +1,9 @@
-use chrono::NaiveDateTime;
+//use chrono::NaiveDateTime;
 use serde::{Serialize, Deserialize};
 use validator::Validate;
 use crate::common::logic::entity_eto::EntityETO;
 
-#[derive(Deserialize, Serialize, Validate, Clone)]
+#[derive(Deserialize, Serialize, Validate, Clone, Debug)]
 #[serde(rename_all="camelCase")]
 pub struct QueueEto {
     pub id: Option<i64>,
@@ -11,8 +11,8 @@ pub struct QueueEto {
     pub name: Option<String>,
     pub logo: Option<String>,
     pub current_number: Option<String>,
-    pub attention_time: Option<NaiveDateTime>,
-    pub min_attention_time: NaiveDateTime,
+    pub attention_time: Option<String>,
+    pub min_attention_time: Option<String>,
     pub active: bool,
 }
 
