@@ -11,8 +11,8 @@ pub struct AccessCodeEto {
     pub creation_time: Option<String>,
     pub start_time: Option<String>,
     pub end_time: Option<String>,
-    pub id_visitor: i64,
-    pub id_queue: i64,
+    pub visitor_id: i64,
+    pub queue_id: i64,
 }
 
 impl EntityETO for AccessCodeEto {}

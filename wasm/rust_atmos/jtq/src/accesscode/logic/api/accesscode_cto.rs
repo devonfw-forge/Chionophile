@@ -74,8 +74,8 @@ impl Into<AccessCodeCto> for AccessCodeQueryResult {
                 creation_time: Option::from(self.creation_time),
                 start_time: Option::from(self.start_time),
                 end_time: Option::from(self.end_time),
-                id_visitor: self.id_visitor,
-                id_queue: self.id_queue
+                visitor_id: self.id_visitor,
+                queue_id: self.id_queue
             },
             visitor: VisitorEto{
                 id: Some(self.visitor_id),
