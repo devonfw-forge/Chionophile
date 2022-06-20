@@ -41,6 +41,36 @@ queries:
       SELECT * FROM VISITOR
       WHERE visitor.username = $1
       AND visitor.password = $2
+  
+  #################################33
+  # QUEUE:
+  - name: "SelectQueue"
+    query: |-
+      SELECT * FROM dailyqueue
+      WHERE id = $1
+
+  - name: "DeleteQueue"
+    query: |-
+      DELETE FROM dailyqueue WHERE id = $1
+      
+  - name: "DeleteACQueue"
+    query: |-
+      DELETE FROM accesscode WHERE idqueue = $1
+
+  - name: "CreateQueue"
+    query: |-
+      INSERT INTO queue(modificationcounter, name, logo, currentnumber, 
+        attentiontime, minattetiontime, active)
+      VALUES ($1, $2, $3, $4, $5, $6, $7)
+      RETURNING id
+  
+  - name: "SelectLastIdQueue"
+    query: |-
+      SELECT currval('queue_id_seq');
+
+  - name: "SearchQueue"
+    query: |- 
+        SELECT * FROM queue
 
 handlers:
   - type: request
@@ -63,9 +93,30 @@ handlers:
     method: POST
     steps:
       - fn: SearchVisitor
-
+      
+  #################################33
+  # QUEUE:
   - type: request
     resource: /jumpthequeue/services/rest/queuemanagement/v1/queue/:id/
     method: GET
     steps:
       - fn: GetQueue
+
+  - type: request
+    resource: /jumpthequeue/services/rest/queuemanagement/v1/queue/
+    method: POST
+    steps:
+      - fn: CreateQueue
+
+  - type: request
+    resource: /jumpthequeue/services/rest/queuemanagement/v1/queue/:id/
+    method: DELETE
+    steps:
+      - fn: DeleteQueue
+      
+  - type: request
+    resource: /jumpthequeue/services/rest/queuemanagement/v1/queue/search/
+    method: POST
+    steps:
+      - fn: SearchQueue
+

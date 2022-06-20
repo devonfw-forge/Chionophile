@@ -14,7 +14,7 @@ use validator::Validate;
 
 pub struct QueueService;
 
-impl Service<Vec<u8>, QueueSearchCriteria, i64> for QueueService {
+impl Service<QueueSearchCriteria, i64> for QueueService {
     fn get_by_id(id: i64) -> Result<Option<Vec<u8>>> {
 
         let mut query_args: Vec<query::QueryArg> = Vec::new();
