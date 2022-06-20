@@ -5,6 +5,7 @@ use crate::queue::dataaccess::api::queue::QueueEntity;
 use crate::queue::logic::api::queue_search_criteria::QueueSearchCriteria;
 use crate::queue::logic::api::queue_eto::QueueEto;
 
+use chrono::Utc;
 use serde_json::Value;
 use suborbital::db;
 use suborbital::db::query;
@@ -86,10 +87,9 @@ impl Service<QueueSearchCriteria, i64> for QueueService {
     fn create(eto: Vec<u8>) -> Result<Vec<u8>> {
         println!("Create visitor");
         let queue_string = String::from_utf8(eto);
-        let queue: QueueEto = serde_json::from_str(&queue_string.unwrap())?;
-        if let Err(errors) = queue.validate() {
-            return Err(anyhow::Error::from(errors));
-        }
+
+        let queue: QueueEto = serde_json::from_str(&queue_string.unwrap()).unwrap();
+        
         let mut eto_res = queue.clone();
         println!("Insertig queryargs");
         let mut query_args: Vec<query::QueryArg> = Vec::new();
@@ -120,7 +120,7 @@ impl Service<QueueSearchCriteria, i64> for QueueService {
         query_args.push(
             query::QueryArg::new(
                 "attentiontime",
-                &queue.attention_time.unwrap().to_string()
+                &queue.attention_time.unwrap_or(Utc::now().naive_utc().to_string()).to_string()
             )
         );
         query_args.push(

@@ -59,18 +59,18 @@ queries:
 
   - name: "CreateQueue"
     query: |-
-      INSERT INTO queue(modificationcounter, name, logo, currentnumber, 
-        attentiontime, minattetiontime, active)
+      INSERT INTO dailyqueue(modificationcounter, name, logo, currentnumber, 
+        attentiontime, minattentiontime, active)
       VALUES ($1, $2, $3, $4, $5, $6, $7)
       RETURNING id
   
   - name: "SelectLastIdQueue"
     query: |-
-      SELECT currval('queue_id_seq');
+      SELECT currval('dailyqueue_id_seq');
 
   - name: "SearchQueue"
     query: |- 
-        SELECT * FROM queue
+        SELECT * FROM dailyqueue
 
 handlers:
   - type: request

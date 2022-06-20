@@ -13,9 +13,9 @@ pub struct QueueEntity {
     #[serde(rename = "currentnumber")]
     pub current_number: Option<String>,
     #[serde(rename = "attentiontime")]
-    pub attention_time: Option<NaiveDateTime>,
+    pub attention_time: Option<String>,
     #[serde(rename = "minattentiontime")]
-    pub min_attention_time: NaiveDateTime,
+    pub min_attention_time: String,
     pub active: bool,
 }
 
