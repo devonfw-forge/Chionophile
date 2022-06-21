@@ -15,7 +15,7 @@ impl Runnable for DeleteAccessCode {
         if let Ok(delete_result) = delete_result {
             Ok(delete_result.to_string().as_bytes().to_vec())
         } else {
-            Err(RunErr::new(404, format!("No visitor with id {}", id).as_str()))
+            Err(RunErr::new(404, format!("No accesscode with id {}", id).as_str()))
         }
     }
 }

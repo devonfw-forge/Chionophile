@@ -93,12 +93,7 @@ impl Service<AccessCodeSearchCriteria, i64> for AccessCodeService {
         query_args.push(query::QueryArg::new("id", &id.to_string()));
 
         let accesscode_query_result = db::delete("DeleteAccessCode", query_args);
-        // return match accesscode_query_result {
-        //     Ok(_) => {
-        //         Ok(id)
-        //     }
-        //     Err(e) => Err(anyhow::Error::msg(e.message))
-        // }
+        
         if let Ok(query_res) = accesscode_query_result {
             let query_res_json: Value = serde_json::from_str(&String::from_utf8(query_res).unwrap())?;
             if query_res_json["rowsAffected"].as_i64().unwrap() < 1 {
