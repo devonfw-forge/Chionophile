@@ -50,7 +50,7 @@ impl Service<AccessCodeSearchCriteria, i64> for AccessCodeService {
     }
 
     fn search(criteria: AccessCodeSearchCriteria) -> Result<Vec<u8>> {
-        let mut query_args: Vec<query::QueryArg> = Vec::new();
+        let query_args: Vec<query::QueryArg> = Vec::new();
 
         let results = db::select("SearchAccessCode", query_args);
         

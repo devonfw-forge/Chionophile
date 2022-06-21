@@ -1,9 +1,5 @@
-use serde::Serialize;
 use suborbital::req;
 use suborbital::runnable::*;
-use jtq::accesscode::logic::api::accesscode_eto::AccessCodeEto;
-use suborbital::db;
-use suborbital::db::query;
 use jtq::common::logic::service::Service;
 use jtq::accesscode::logic::accesscode_service::AccessCodeService;
 use anyhow::Result;
@@ -11,7 +7,7 @@ use anyhow::Result;
 struct DeleteAccessCode{}
 
 impl Runnable for DeleteAccessCode {
-    fn run(&self, input: Vec<u8>) -> Result<Vec<u8>, RunErr> {
+    fn run(&self, _input: Vec<u8>) -> Result<Vec<u8>, RunErr> {
         suborbital::resp::content_type("application/json; charset=utf-8");
         let id = req::url_param("id");
 
@@ -20,7 +16,7 @@ impl Runnable for DeleteAccessCode {
             Ok(accesscode) => {
                 Ok(format!("{}", accesscode).as_bytes().to_vec())
             },
-            Err(e) => Err(RunErr::new(500, "Internal Server Error"))
+            Err(_) => Err(RunErr::new(500, "Internal Server Error"))
         }
     }
 }

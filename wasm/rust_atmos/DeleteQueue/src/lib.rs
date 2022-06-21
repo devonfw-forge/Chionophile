@@ -1,8 +1,5 @@
 use suborbital::runnable::*;
 use suborbital::req;
-use jtq::queue::logic::api::queue_eto::QueueEto;
-use suborbital::db;
-use suborbital::db::query;
 use jtq::common::logic::service::Service;
 use jtq::queue::logic::queue_service::QueueService;
 use anyhow::Result;
@@ -10,7 +7,7 @@ use anyhow::Result;
 struct DeleteQueue{}
 
 impl Runnable for DeleteQueue {
-    fn run(&self, input: Vec<u8>) -> Result<Vec<u8>, RunErr> {
+    fn run(&self, _input: Vec<u8>) -> Result<Vec<u8>, RunErr> {
         suborbital::resp::content_type("application/json; charset=utf-8");
         let id = req::url_param("id");
 

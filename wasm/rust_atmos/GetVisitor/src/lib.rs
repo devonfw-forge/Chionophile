@@ -1,4 +1,3 @@
-use serde::Serialize;
 use suborbital::req;
 use suborbital::runnable::*;
 use jtq::common::logic::service::Service;
@@ -19,7 +18,7 @@ impl Runnable for GetVisitor {
                     Some(visitor) => Ok(visitor),
                     _ =>  Err(RunErr::new(404, format!("No visitor with id {}", id).as_str()))
                 }
-            Err(e) => Err(RunErr::new(500, "Internal Server Error"))
+            Err(_) => Err(RunErr::new(500, "Internal Server Error"))
         }
     }
 }
