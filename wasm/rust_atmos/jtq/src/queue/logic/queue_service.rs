@@ -48,8 +48,7 @@ impl Service<QueueSearchCriteria, i64> for QueueService {
             db::select("SearchQueue", query_args)
         };
 
-        if let Err(e) = results {
-            println!("{}", e.message);
+        if let Err(_) = results {
             return Err(anyhow!("Error searching for queues"));
         }
         
@@ -57,8 +56,7 @@ impl Service<QueueSearchCriteria, i64> for QueueService {
         
         let entities: Vec<QueueEntity> = match serde_json::from_str(&entities_as_string) {
             Ok(result) => result,
-            Err(e) => {
-                println!("{}", e);
+            Err(_) => {
                 Vec::new()
             }
         };
@@ -91,19 +89,17 @@ impl Service<QueueSearchCriteria, i64> for QueueService {
             }
             Ok(id)
         } else {
-            println!("Error deleting from db {} ", queue_query_result.err().unwrap().message);
             Err(anyhow!("Error deleting from database"))
         }
     }
 
     fn create(eto: Vec<u8>) -> Result<Vec<u8>> {
-        println!("Create visitor");
         let queue_string = String::from_utf8(eto);
 
         let queue: QueueEto = serde_json::from_str(&queue_string.unwrap()).unwrap();
         
         let mut eto_res = queue.clone();
-        println!("Insertig queryargs");
+
         let mut query_args: Vec<query::QueryArg> = Vec::new();
         query_args.push(
             query::QueryArg::new(

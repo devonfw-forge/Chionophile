@@ -55,12 +55,10 @@ impl Service<VisitorSearchCriteria, i64> for VisitorService {
             db::select("SearchVisitor", query_args)
         };
 
-        if let Err(e) = results {
-            println!("{}", e.message);
+        if let Err(_) = results {
             return Err(anyhow!("Error searching for visitors"));
         }
         let entities_as_string = String::from_utf8(results.unwrap_or_default())?;
-        println!("{}", entities_as_string);
         let entities: Vec<VisitorEntity> = serde_json::from_str(&entities_as_string)?;
         let total_elements = entities.len();
 
@@ -90,21 +88,18 @@ impl Service<VisitorSearchCriteria, i64> for VisitorService {
             }
             Ok(id)
         } else {
-            println!("Error deleting from db {} ", visitor_query_result.err().unwrap().message);
             Err(anyhow!("Error deleting from database"))
         }
 
     }
 
     fn create(eto: Vec<u8>) -> Result<Vec<u8>> {
-        println!("Create visitor");
         let visitor_string = String::from_utf8(eto);
         let visitor: VisitorEto = serde_json::from_str(&visitor_string.unwrap())?;
         if let Err(errors) = visitor.validate() {
             return Err(anyhow::Error::from(errors));
         }
         let mut eto_res = visitor.clone();
-        println!("Insertig queryargs");
         let mut query_args: Vec<query::QueryArg> = Vec::new();
         query_args.push(
             query::QueryArg::new(

@@ -63,15 +63,13 @@ impl Service<AccessCodeSearchCriteria, i64> for AccessCodeService {
         let results = db::select("SearchAccessCode", query_args);
         
         if let Err(e) = results {
-            println!("{}", e.message);
             return Err(anyhow!("Error searching for visitors"));
         }
 
         let entities_as_string = String::from_utf8(results.unwrap_or_default())?;
         let entities: Vec<AccessCodeQueryResult> = match serde_json::from_str(&entities_as_string) {
             Ok(result) => result,
-            Err(e) => {
-                println!("{}", e);
+            Err(_) => {
                 Vec::new()
             }
         };
@@ -101,7 +99,6 @@ impl Service<AccessCodeSearchCriteria, i64> for AccessCodeService {
             }
             Ok(id)
         } else {
-            println!("Error deleting from db {} ", accesscode_query_result.err().unwrap().message);
             Err(anyhow!("Error deleting from database"))
         }
     }

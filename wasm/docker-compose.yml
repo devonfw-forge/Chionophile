@@ -1,13 +1,53 @@
 version: '2.1'
 services:
-  atmo-server:
+  atmo-server-1:
     image: suborbital/atmo:latest
-    container_name: atmo_server
+    container_name: atmo_server-1
     entrypoint: atmo
     environment:
       - ATMO_HTTP_PORT=8081
-    ports:
-      - 8081:8081
+    depends_on:
+      jtq_postgres:
+        condition: service_healthy
+    volumes:
+      - ./rust_atmos:/home/atmo
+    networks: 
+      - vnet
+
+  atmo-server-2:
+    image: suborbital/atmo:latest
+    container_name: atmo_server-2
+    entrypoint: atmo
+    environment:
+      - ATMO_HTTP_PORT=8081
+    depends_on:
+      jtq_postgres:
+        condition: service_healthy
+    volumes:
+      - ./rust_atmos:/home/atmo
+    networks: 
+      - vnet
+
+  atmo-server-3:
+    image: suborbital/atmo:latest
+    container_name: atmo_server-3
+    entrypoint: atmo
+    environment:
+      - ATMO_HTTP_PORT=8081
+    depends_on:
+      jtq_postgres:
+        condition: service_healthy
+    volumes:
+      - ./rust_atmos:/home/atmo
+    networks: 
+      - vnet
+
+  atmo-server-4:
+    image: suborbital/atmo:latest
+    container_name: atmo_server-4
+    entrypoint: atmo
+    environment:
+      - ATMO_HTTP_PORT=8081
     depends_on:
       jtq_postgres:
         condition: service_healthy
@@ -33,6 +73,19 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+
+  nginx-wasm:
+    container_name: nginx-wasm
+    build: .
+    ports:
+    - "8081:8081"
+    depends_on:
+      - atmo-server-1
+      - atmo-server-2
+      - atmo-server-3
+      - atmo-server-4
+    networks:
+      - vnet
 
 networks: 
   vnet:
