@@ -1,13 +1,12 @@
 use crate::common::logic::service::Service;
 use crate::common::search::pageable::Pageable;
 use crate::common::search::search_result::SearchResult;
-// use crate::accesscode::dataaccess::api::accesscode::AccessCodeEntity;
-// use crate::accesscode::logic::api::accesscode_eto::AccessCodeEto;
 use crate::accesscode::logic::api::accesscode_cto::{AccessCodeCto, AccessCodeQueryResult};
 use crate::accesscode::logic::api::accesscode_insert::AccessCodeInsert;
 use crate::accesscode::logic::api::accesscode_search_criteria::AccessCodeSearchCriteria;
 use suborbital::db;
 use suborbital::db::query;
+use serde_json::Value;
 use anyhow::{anyhow, Result};
 
 pub struct AccessCodeService;
@@ -35,15 +34,24 @@ impl Service<AccessCodeSearchCriteria, i64> for AccessCodeService {
         let in_string = String::from_utf8(input).unwrap();
         let accesscode_insert: AccessCodeInsert = serde_json::from_str(&in_string)?;
 
+        let mut eto_res = accesscode_insert.clone();
+
         let mut query_args: Vec<query::QueryArg> = Vec::new();
 
         query_args.push(query::QueryArg::new("idvisitor", &accesscode_insert.visitor_id.to_string()));
         query_args.push(query::QueryArg::new("idqueue", &accesscode_insert.queue_id.to_string()));
 
-        let accesscode_query_result = db::insert("InsertAccessCode", query_args);
+
+        let accesscode_query_result = db::insert("InsertAccessCode", query_args.clone());
         return match accesscode_query_result {
             Ok(query_res) => {
-                Ok(query_res[1..query_res.len() - 1].to_vec())
+                let accesscode_query_result = db::select("SelectAccessCodeVisitorQueue", query_args);
+                return match accesscode_query_result {
+                    Ok(query_res) => {
+                        Ok(query_res[1..query_res.len() - 1].to_vec())
+                    }
+                    Err(e) => Err(anyhow::Error::msg(e.message))
+                }
             }
             Err(e) => Err(anyhow::Error::msg(e.message))
         }
@@ -60,7 +68,6 @@ impl Service<AccessCodeSearchCriteria, i64> for AccessCodeService {
         }
 
         let entities_as_string = String::from_utf8(results.unwrap_or_default())?;
-        println!("Despues de to string {}", entities_as_string);
         let entities: Vec<AccessCodeQueryResult> = match serde_json::from_str(&entities_as_string) {
             Ok(result) => result,
             Err(e) => {
@@ -68,7 +75,6 @@ impl Service<AccessCodeSearchCriteria, i64> for AccessCodeService {
                 Vec::new()
             }
         };
-        println!("Despues de to string {:?}", entities_as_string);
         let total_elements = entities.len();
 
         let paged_entities = Pageable::from(&criteria.pageable, entities);
@@ -87,11 +93,21 @@ impl Service<AccessCodeSearchCriteria, i64> for AccessCodeService {
         query_args.push(query::QueryArg::new("id", &id.to_string()));
 
         let accesscode_query_result = db::delete("DeleteAccessCode", query_args);
-        return match accesscode_query_result {
-            Ok(_) => {
-                Ok(id)
+        // return match accesscode_query_result {
+        //     Ok(_) => {
+        //         Ok(id)
+        //     }
+        //     Err(e) => Err(anyhow::Error::msg(e.message))
+        // }
+        if let Ok(query_res) = accesscode_query_result {
+            let query_res_json: Value = serde_json::from_str(&String::from_utf8(query_res).unwrap())?;
+            if query_res_json["rowsAffected"].as_i64().unwrap() < 1 {
+                return Err(anyhow!("Not found"));
             }
-            Err(e) => Err(anyhow::Error::msg(e.message))
+            Ok(id)
+        } else {
+            println!("Error deleting from db {} ", accesscode_query_result.err().unwrap().message);
+            Err(anyhow!("Error deleting from database"))
         }
     }
 }

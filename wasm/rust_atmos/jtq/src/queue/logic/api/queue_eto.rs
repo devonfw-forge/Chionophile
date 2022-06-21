@@ -13,7 +13,7 @@ pub struct QueueEto {
     pub logo: Option<String>,
     pub current_number: Option<String>,
     pub attention_time: Option<String>,
-    pub min_attention_time: String,
+    pub min_attention_time: Option<String>,
     #[serde(default = "default_active")]
     pub active: bool,
 }

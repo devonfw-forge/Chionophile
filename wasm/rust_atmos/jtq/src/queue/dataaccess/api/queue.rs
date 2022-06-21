@@ -11,7 +11,9 @@ pub struct QueueEntity {
     pub logo: Option<String>,
     #[serde(rename = "currentnumber")]
     pub current_number: Option<String>,
+    #[serde(rename = "attentiontime")]
     pub attention_time: Option<String>,
+    #[serde(rename = "minattentiontime")]
     pub min_attention_time: Option<String>,
     pub active: bool,
 }
@@ -25,7 +27,7 @@ impl Into<QueueEto> for QueueEntity {
             logo: Option::from(self.logo.unwrap()),
             current_number: Option::from(self.current_number),
             attention_time: Option::from(self.attention_time),
-            min_attention_time: self.min_attention_time.unwrap(),
+            min_attention_time: Option::from(self.min_attention_time),
             active: self.active
         }
     }

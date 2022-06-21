@@ -21,19 +21,15 @@ impl Service<QueueSearchCriteria, i64> for QueueService {
 
         let queue_query_result = db::select("SelectQueue", query_args);
 
-        if let Err(query_error) = queue_query_result {
-            return Err(anyhow::Error::msg(query_error.message))
-        }
-
-        let query_str = String::from_utf8(queue_query_result.unwrap_or_default())?;
-        let entities:Vec<QueueEntity> = serde_json::from_str(query_str.as_str())?;
-        
-        if entities.len() > 0 {
-            let eto: QueueEto = entities.get(0).unwrap().clone().into();
-            let res = serde_json::to_string(&eto)?;
-            Ok(Some(res.as_bytes().to_vec()))
-        } else {
-            Ok(None)
+        return match queue_query_result {
+            Ok(query_res) => {
+                if query_res.len() > 2 {
+                    Ok(Some(query_res[1..query_res.len() - 1].to_vec()))
+                } else {
+                    Ok(None)
+                }
+            }
+            Err(e) => Err(anyhow::Error::msg(e.message))
         }
     }
 
@@ -56,7 +52,9 @@ impl Service<QueueSearchCriteria, i64> for QueueService {
             println!("{}", e.message);
             return Err(anyhow!("Error searching for queues"));
         }
+        
         let entities_as_string = String::from_utf8(results.unwrap_or_default())?;
+        
         let entities: Vec<QueueEntity> = match serde_json::from_str(&entities_as_string) {
             Ok(result) => result,
             Err(e) => {
@@ -66,7 +64,6 @@ impl Service<QueueSearchCriteria, i64> for QueueService {
         };
 
         let total_elements = entities.len();
-
         let paged_entities = Pageable::from(&criteria.pageable, entities);
         let content: Vec<QueueEto> = paged_entities.iter()
             .map(|entity| entity.clone().into())
@@ -141,7 +138,7 @@ impl Service<QueueSearchCriteria, i64> for QueueService {
         query_args.push(
             query::QueryArg::new(
                 "minattentiontime",
-                &queue.min_attention_time.to_string()
+                &queue.min_attention_time.unwrap_or("".to_string())
             )
         );
         query_args.push(
