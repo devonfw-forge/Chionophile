@@ -7,13 +7,23 @@ use crate::common::logic::entity_eto::EntityETO;
 #[serde(rename_all="camelCase")]
 pub struct QueueEto {
     pub id: Option<i64>,
+    #[serde(default = "default_modification_counter")]
     pub modification_counter: Option<i32>,
     pub name: Option<String>,
     pub logo: Option<String>,
     pub current_number: Option<String>,
     pub attention_time: Option<String>,
-    pub min_attention_time: Option<String>,
+    pub min_attention_time: String,
+    #[serde(default = "default_active")]
     pub active: bool,
 }
 
 impl EntityETO for QueueEto {}
+
+fn default_modification_counter() -> Option<i32> {
+    Option::from(1)
+}
+
+fn default_active() -> bool {
+    true
+}

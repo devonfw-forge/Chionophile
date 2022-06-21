@@ -1,15 +1,15 @@
-use chrono::NaiveDateTime;
 use serde::{Deserialize, Serialize};
 use crate::common::dataaccess::entity::Entity;
 use crate::queue::logic::api::queue_eto::QueueEto;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
 pub struct QueueEntity {
     pub id: i64,
+    #[serde(rename = "modificationcounter")]
     pub modification_counter: i32,
     pub name: Option<String>,
     pub logo: Option<String>,
+    #[serde(rename = "currentnumber")]
     pub current_number: Option<String>,
     pub attention_time: Option<String>,
     pub min_attention_time: Option<String>,
@@ -25,7 +25,7 @@ impl Into<QueueEto> for QueueEntity {
             logo: Option::from(self.logo.unwrap()),
             current_number: Option::from(self.current_number),
             attention_time: Option::from(self.attention_time),
-            min_attention_time: self.min_attention_time,
+            min_attention_time: self.min_attention_time.unwrap(),
             active: self.active
         }
     }
