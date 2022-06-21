@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.devonfw</groupId>
-  <artifactId>java-quarkus</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <groupId>com.devonfw.application.jtqq</groupId>
+  <artifactId>jtqq</artifactId>
+  <version>4.0.0</version>
+  <packaging>pom</packaging>
   <properties>
     <compiler-plugin.version>3.8.1</compiler-plugin.version>
     <failsafe.useModulePath>false</failsafe.useModulePath>
@@ -16,6 +16,13 @@
     <quarkus.platform.version>2.8.2.Final</quarkus.platform.version>
     <surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
   </properties>
+
+  <modules>
+    <module>core</module> 
+    <module>api</module>
+    <module>server</module>
+  </modules>
+
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -168,9 +175,8 @@
         </executions>
       </plugin>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.1</version>
+        <version>${compiler-plugin.version}</version>
         <configuration>
           <excludes>
             <exclude>**/test/**</exclude>
@@ -184,15 +190,6 @@
               <version>1.4.2.Final</version>
             </path>
           </annotationProcessorPaths>
-        </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>${compiler-plugin.version}</version>
-        <configuration>
-          <excludes>
-            <exclude>**/test/**</exclude>
-          </excludes>
           <compilerArgs>
             <arg>-parameters</arg>
           </compilerArgs>
