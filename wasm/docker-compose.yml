@@ -6,6 +6,7 @@ services:
     entrypoint: atmo
     environment:
       - ATMO_HTTP_PORT=8081
+      - ATMO_LOG_LEVEL=null
     depends_on:
       jtq_postgres:
         condition: service_healthy
@@ -20,6 +21,7 @@ services:
     entrypoint: atmo
     environment:
       - ATMO_HTTP_PORT=8081
+      - ATMO_LOG_LEVEL=null
     depends_on:
       jtq_postgres:
         condition: service_healthy
@@ -34,6 +36,7 @@ services:
     entrypoint: atmo
     environment:
       - ATMO_HTTP_PORT=8081
+      - ATMO_LOG_LEVEL=null
     depends_on:
       jtq_postgres:
         condition: service_healthy
@@ -48,6 +51,7 @@ services:
     entrypoint: atmo
     environment:
       - ATMO_HTTP_PORT=8081
+      - ATMO_LOG_LEVEL=null
     depends_on:
       jtq_postgres:
         condition: service_healthy
