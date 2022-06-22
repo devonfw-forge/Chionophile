@@ -72,6 +72,6 @@ if (Test-Path '..\results\temp') {
 New-Item -Path "..\results\" -Name "temp" -ItemType "directory"
 Copy-Item -Path "..\results\*.html" -Destination "..\results\temp" -Recurse
 
-#py ./cleaner.py
+py ./cleaner.py
 
 Pause
