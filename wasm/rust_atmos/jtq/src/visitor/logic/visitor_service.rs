@@ -100,6 +100,7 @@ impl Service<VisitorSearchCriteria, i64> for VisitorService {
             return Err(anyhow::Error::from(errors));
         }
         let mut eto_res = visitor.clone();
+        let visitor_to_insert = visitor.clone();
         let mut query_args: Vec<query::QueryArg> = Vec::new();
         query_args.push(
             query::QueryArg::new(
@@ -153,11 +154,17 @@ impl Service<VisitorSearchCriteria, i64> for VisitorService {
         let visitor_query_result = db::insert("CreateVisitor", query_args);
 
         if let Ok(_) = visitor_query_result {
-            let visitor_id = db::select("SelectLastIdVisitor", vec![]).unwrap_or_default();
+            let mut query_args_select: Vec<query::QueryArg> = Vec::new();
+            query_args_select.push(
+                query::QueryArg::new(
+                    "username",
+                    &visitor_to_insert.username.unwrap_or("".to_string())
+                )
+            );
+            let visitor_id = db::select("SelectLastIdVisitor", query_args_select).unwrap_or_default();
             let id_vec_string = String::from_utf8(visitor_id)?;
-            let id_json: Value = serde_json::from_str(&id_vec_string)?;
-            let id: i64 = id_json[0]["currval"].to_string().parse().unwrap();
-            eto_res.id = Option::from(id);
+            let insert_entity: Vec<VisitorEntity> = serde_json::from_str(&id_vec_string)?;
+            eto_res.id = Option::from(insert_entity[0].id);
             let res = serde_json::to_string(&eto_res)?;
             Ok(res.as_bytes().to_vec())
         } else {

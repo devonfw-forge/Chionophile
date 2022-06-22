@@ -12,6 +12,8 @@ connections:
     connectionString: postgresql://jtq_user:admin@jtq_postgres_intern:5432/jtq_db
 
 queries:
+  #################################
+  # VISITOR:
   - name: "SelectVisitor"
     query: |-
       SELECT * FROM visitor
@@ -32,7 +34,8 @@ queries:
       RETURNING id
   - name: "SelectLastIdVisitor"
     query: |-
-      SELECT currval('visitor_id_seq');
+      SELECT * FROM visitor
+      WHERE username = $1
   - name: "SearchVisitor"
     query: |- 
         SELECT * FROM visitor
@@ -42,7 +45,7 @@ queries:
       WHERE visitor.username = $1
       AND visitor.password = $2
   
-  #################################33
+  #################################
   # QUEUE:
   - name: "SelectQueue"
     query: |-
@@ -66,7 +69,8 @@ queries:
   
   - name: "SelectLastIdQueue"
     query: |-
-      SELECT currval('dailyqueue_id_seq');
+      SELECT * FROM dailyqueue
+      WHERE name = $1
 
   - name: "SearchQueue"
     query: |- 
@@ -77,6 +81,8 @@ queries:
         SELECT * FROM dailyqueue
         WHERE active=$1
 
+  #################################
+  # ACCESSCODE:
   - name: "SelectAccessCode"
     query: |-
       SELECT * FROM accesscode
@@ -120,10 +126,6 @@ queries:
       ON a.idvisitor = v.id
       JOIN dailyqueue AS q
       ON a.idqueue = q.id
-
-  - name: "SelectLastIdAccesscode"
-    query: |-
-      SELECT currval('accesscode_id_seq');
 
 handlers:
   - type: request

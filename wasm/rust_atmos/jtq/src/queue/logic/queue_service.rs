@@ -99,6 +99,7 @@ impl Service<QueueSearchCriteria, i64> for QueueService {
         let queue: QueueEto = serde_json::from_str(&queue_string.unwrap()).unwrap();
         
         let mut eto_res = queue.clone();
+        let queue_to_insert = queue.clone();
 
         let mut query_args: Vec<query::QueryArg> = Vec::new();
         query_args.push(
@@ -147,11 +148,17 @@ impl Service<QueueSearchCriteria, i64> for QueueService {
         let queue_query_result = db::insert("CreateQueue", query_args);
 
         if let Ok(_) = queue_query_result {
-            let queue_id = db::select("SelectLastIdQueue", vec![]).unwrap_or_default();
+            let mut query_args_select: Vec<query::QueryArg> = Vec::new();
+            query_args_select.push(
+                query::QueryArg::new(
+                    "name",
+                    &queue_to_insert.name.unwrap_or("".to_string())
+                )
+            );
+            let queue_id = db::select("SelectLastIdQueue", query_args_select).unwrap_or_default();
             let id_vec_string = String::from_utf8(queue_id)?;
-            let id_json: Value = serde_json::from_str(&id_vec_string)?;
-            let id: i64 = id_json[0]["currval"].to_string().parse().unwrap();
-            eto_res.id = Option::from(id);
+            let insert_entity: Vec<QueueEntity> = serde_json::from_str(&id_vec_string)?;
+            eto_res.id = Option::from(insert_entity[0].id);
             let res = serde_json::to_string(&eto_res)?;
             Ok(res.as_bytes().to_vec())
         } else {
