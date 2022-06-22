@@ -52,8 +52,8 @@ function Start-Processes{
         Set-Location ../benchmark2; cargo build --release
         Set-Location ../../deployment
 
-        #Write-Host "`r`nChecking idle"
-        #Start-Process -Wait test_idle.sh
+        Write-Host "`r`nChecking idle"
+        Start-Process -Wait test_idle.sh
 
         Write-Host ("Waiting 1 minute before launching benchmark...`r`n")
         Start-Sleep -s (60);
