@@ -16,6 +16,7 @@ Demonstrator on how to achieve energy efficiency improvements  in software devel
 - pip
 - rust
 - cargo
+- subo (wsl)
 
 ## Aim
 Compare programming languages performance and energy consuption in real world usage, implementing a sample application called [Jump The Queue](https://github.com/devonfw/jump-the-queue).
@@ -29,6 +30,8 @@ Currently, the analyzed languages are:
 - Rust (Actix4)
 
 The applications are completely interchangeable, as they share the same behaviour in all of the endpoints.
+
+Additionally, a *wasm* compiled rust version was implemented with the *subo* tool.
 
 ## Benchmarks
 Two benchmarks are executed for different purposes:
@@ -52,20 +55,19 @@ The testing flow is composed by the following statements:
 
 The execution of the automated test script will generate a report in the results folder. Some results are currently placed in this folder, both in PDF and HTML. We encourage you to download the HTML as it has dynamic content not visible in the PDF counterpart, and will ease the result's observation. Here is a summary of the results (using docker images):
 
-### Benchmark 1
-|                               |  Rust      |  Java   |  NodeJS  |  Python |  .NET (without docker)   |  WASM (Rust Atmo)  |
-|:-----------------------------:|:----------:|:-------:|:--------:|:-------:|:------------------------:|:------------------:|
-| Consumption B1 (mWh)          | **459.11** | 510.56  | 528.10   | 781.57  | 721.55                   | 7.547619           |
-| Consumption %                 | -          | +11%    | +15%     | +70%    | +57%                     ||
-| Consumption % (idle excluded) | -          | +23%    | +30%     | +141%   | +115%                    ||
+### Benchmark 1 
+|                                         |  Rust      |  Java   |  Wasm    |  NodeJS   |  Python  |  .NET (without docker)   |
+|:---------------------------------------:|:----------:|:-------:|:--------:|:---------:|:--------:|:------------------------:|
+| Consumption B1 (W) (idle excluded)      | **1.55**   | 2.00    | 2.03     | 2.17      | 4.56     |   4.57                   | 
+| Consumption % (idle excluded)           | -          | +29%    | +31%     | +40%      | +194%    |   195%                   |
 
 ### Benchmark 2
-|                               |  Rust      |  .NET (without docker)    |  Java   |  NodeJS  | WASM (Rust Atmo) | Python  |
-|:-----------------------------:|:----------:|:-------------------------:|:-------:|:--------:|:----------------:|:-------:|
-| Total request B2              | **1125535**| 653153                    | 436546  | 260920   | 158236           | 136474  |
-| Request / second              | **3751**   | 2177                      | 1455    | 869      | 527              | 454     |
-| Consumption B2 (mWh)          | 2620.89    | 2838.57                   | 2365.96 | 2378.47  |                  | 2373.36 |
-| Performance %                 | -          | -42%                      | -61%    | -77%     |                  | -88%    |
+|                                     |  Rust      |  .NET (without docker)    |  Java   |  NodeJS  |  Wasm    | Python |
+|:-----------------------------------:|:----------:|:-------------------------:|:-------:|:--------:|:--------:|:------:|
+| Total request B2                    | **1125535**| 653153                    | 436546  | 260920   |  158236  | 136474 |
+| Request / second                    | **3751**   | 2177                      | 1455    | 869      |  527     | 454    |
+| Consumption B2 (W) (idle excluded)  | 15.22      | 16.67                     | 14.78   | 14.86    |  10.08   | 14.88  |
+| Performance %  (Total request)      | -          | -72%                      | -158%   | -331%    | -611%    | -625%  |
 
 
 ## Bibliography
