@@ -58,8 +58,8 @@ The execution of the automated test script will generate a report in the results
 ### Benchmark 1 
 |                                         |  Rust      |  Java   |  Wasm    |  NodeJS   |  Python  |  .NET (without docker)   |
 |:---------------------------------------:|:----------:|:-------:|:--------:|:---------:|:--------:|:------------------------:|
-| Consumption B1 (W) (idle excluded)      | **1.55**   | 2.00    | 2.03     | 2.17      | 4.56     |   4.57                   | 
-| Consumption % (idle excluded)           | -          | +29%    | +31%     | +40%      | +194%    |   195%                   |
+| Consumption B1 (W) (idle excluded)      | **1.55**   | 2.00    | 2.03     | 2.17      | 3.68     |   4.57                   | 
+| Consumption % (idle excluded)           | -          | +29%    | +31%     | +40%      | +137%    |   195%                   |
 
 ### Benchmark 2
 |                                     |  Rust      |  .NET (without docker)    |  Java   |  NodeJS  |  Wasm    | Python |
