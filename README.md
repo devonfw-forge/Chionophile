@@ -53,19 +53,19 @@ The testing flow is composed by the following statements:
 The execution of the automated test script will generate a report in the results folder. Some results are currently placed in this folder, both in PDF and HTML. We encourage you to download the HTML as it has dynamic content not visible in the PDF counterpart, and will ease the result's observation. Here is a summary of the results (using docker images):
 
 ### Benchmark 1
-|                               |  Rust      |  Java   |  NodeJS  |  Python |  .NET (without docker)   |
-|:-----------------------------:|:----------:|:-------:|:--------:|:-------:|:------------------------:|
-| Consumption B1 (mWh)          | **459.11** | 510.56  | 528.10   | 781.57  | 721.55                   | 
-| Consumption %                 | -          | +11%    | +15%     | +70%    | +57%                     |
-| Consumption % (idle excluded) | -          | +23%    | +30%     | +141%   | +115%                    |
+|                               |  Rust      |  Java   |  NodeJS  |  Python |  .NET (without docker)   |  WASM (Rust Atmo)  |
+|:-----------------------------:|:----------:|:-------:|:--------:|:-------:|:------------------------:|:------------------:|
+| Consumption B1 (mWh)          | **459.11** | 510.56  | 528.10   | 781.57  | 721.55                   | 7.547619           |
+| Consumption %                 | -          | +11%    | +15%     | +70%    | +57%                     ||
+| Consumption % (idle excluded) | -          | +23%    | +30%     | +141%   | +115%                    ||
 
 ### Benchmark 2
-|                               |  Rust      |  .NET (without docker)    |  Java   |  NodeJS  |  Python  |
-|:-----------------------------:|:----------:|:-------------------------:|:-------:|:--------:|:--------:|
-| Total request B2              | **1125535**| 653153                    | 436546  | 260920   | 136474   | 
-| Request / second              | **3751**   | 2177                      | 1455    | 869      | 454      |
-| Consumption B2 (mWh)          | 2620.89    | 2838.57                   | 2365.96 | 2378.47  | 2373.36  |
-| Performance %                 | -          | -42%                      | -61%    | -77%     | -88%     |
+|                               |  Rust      |  .NET (without docker)    |  Java   |  NodeJS  | WASM (Rust Atmo) | Python  |
+|:-----------------------------:|:----------:|:-------------------------:|:-------:|:--------:|:----------------:|:-------:|
+| Total request B2              | **1125535**| 653153                    | 436546  | 260920   | 158236           | 136474  |
+| Request / second              | **3751**   | 2177                      | 1455    | 869      | 527              | 454     |
+| Consumption B2 (mWh)          | 2620.89    | 2838.57                   | 2365.96 | 2378.47  |                  | 2373.36 |
+| Performance %                 | -          | -42%                      | -61%    | -77%     |                  | -88%    |
 
 
 ## Bibliography
