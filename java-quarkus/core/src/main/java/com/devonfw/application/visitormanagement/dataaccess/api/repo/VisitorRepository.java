@@ -9,10 +9,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
 
+import com.devonfw.application.visitormanagement.dataaccess.api.QVisitorEntity;
 import com.devonfw.application.visitormanagement.dataaccess.api.VisitorEntity;
 import com.devonfw.application.visitormanagement.logic.api.to.VisitorSearchCriteriaTo;
-import com.devonfw.module.jpa.dataaccess.api.QueryUtil;
-import com.devonfw.application.general.common.base.api.DefaultRepository;
+import com.devonfw.application.general.dataaccess.api.QueryUtil;
+import com.devonfw.application.general.dataaccess.api.DefaultRepository;
 import com.querydsl.jpa.impl.JPAQuery;
 
 /**
@@ -30,8 +31,8 @@ public interface VisitorRepository extends DefaultRepository<VisitorEntity> {
    */
   default Page<VisitorEntity> findByCriteria(VisitorSearchCriteriaTo criteria) {
 
-    VisitorEntity alias = newDslAlias();
-    JPAQuery<VisitorEntity> query = newDslQuery(alias);
+    QVisitorEntity alias = QVisitorEntity.visitorEentity;
+    JPAQuery<VisitorEntity> query = new JPAQuery<VisitorEntity>(getEntityManager());
 
     String username = criteria.getUsername();
     if (username != null && !username.isEmpty()) {

@@ -12,8 +12,8 @@ import org.springframework.data.domain.Sort.Order;
 
 import com.devonfw.application.queuemanagement.dataaccess.api.QueueEntity;
 import com.devonfw.application.queuemanagement.logic.api.to.QueueSearchCriteriaTo;
-import com.devonfw.module.jpa.dataaccess.api.QueryUtil;
-import com.devonfw.application.general.common.base.api.DefaultRepository;
+import com.devonfw.application.general.dataaccess.api.QueryUtil;
+import com.devonfw.application.general.dataaccess.api.DefaultRepository;
 import com.querydsl.jpa.impl.JPAQuery;
 
 /**
@@ -30,8 +30,8 @@ public interface QueueRepository extends DefaultRepository<QueueEntity> {
    */
   default Page<QueueEntity> findByCriteria(QueueSearchCriteriaTo criteria) {
 
-    QueueEntity alias = newDslAlias();
-    JPAQuery<QueueEntity> query = newDslQuery(alias);
+    QQueueEntity alias = QQueueEntity.queueEntity;
+    JPAQuery<QueueEntity> query = new JPAQuery<QueueEntity>(getEntityManager());
 
     String name = criteria.getName();
     if (name != null && !name.isEmpty()) {

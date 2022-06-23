@@ -14,8 +14,8 @@ import org.springframework.data.domain.Sort.Order;
 
 import com.devonfw.application.accesscodemanagement.dataaccess.api.AccessCodeEntity;
 import com.devonfw.application.accesscodemanagement.logic.api.to.AccessCodeSearchCriteriaTo;
-import com.devonfw.module.jpa.dataaccess.api.QueryUtil;
-import com.devonfw.application.general.common.base.api.DefaultRepository;
+import com.devonfw.application.general.dataaccess.api.QueryUtil;
+import com.devonfw.application.general.dataaccess.api.DefaultRepository;
 import com.querydsl.jpa.impl.JPAQuery;
 
 /**
@@ -33,8 +33,8 @@ public interface AccessCodeRepository extends DefaultRepository<AccessCodeEntity
    */
   default Page<AccessCodeEntity> findByCriteria(AccessCodeSearchCriteriaTo criteria) {
 
-    AccessCodeEntity alias = newDslAlias();
-    JPAQuery<AccessCodeEntity> query = newDslQuery(alias);
+    QAccessCodeEntity alias = QAccessCodeEntity.accessCodeEntity;
+    JPAQuery<AccessCodeEntity> query = new JPAQuery<AccessCodeEntity>(getEntityManager());
 
     Timestamp creationTime = criteria.getCreationTime();
     if (creationTime != null) {

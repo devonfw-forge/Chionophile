@@ -13,7 +13,6 @@ import com.devonfw.application.queuemanagement.common.api.Queue;
 @Entity
 @Table(name = "DailyQueue")
 public class QueueEntity extends ApplicationPersistenceEntity implements Queue {
-
   private String name;
 
   private String logo;

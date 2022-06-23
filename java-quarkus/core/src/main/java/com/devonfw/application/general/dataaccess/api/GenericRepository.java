@@ -9,8 +9,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 
-import com.devonfw.module.jpa.dataaccess.api.QueryUtil;
-import com.devonfw.application.general.common.api.feature.FeatureForceIncrementModificationCounter;
+import com.devonfw.application.general.dataaccess.api.QueryUtil;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.EntityPathBase;
 import com.querydsl.core.types.dsl.Expressions;
@@ -33,7 +32,7 @@ import com.querydsl.jpa.impl.JPADeleteClause;
  * @since 3.0.0
  */
 public interface GenericRepository<E, ID extends Serializable>
-    extends JpaRepository<E, ID>, QueryDslSupport<E>, FeatureForceIncrementModificationCounter<E> {
+    extends JpaRepository<E, ID> {
 
   /**
    * @return the {@link Class} of the managed entity.
