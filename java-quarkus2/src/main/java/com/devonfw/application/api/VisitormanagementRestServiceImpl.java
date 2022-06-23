@@ -45,9 +45,9 @@ public class VisitormanagementRestServiceImpl implements VisitormanagementRestSe
     return id;
   }
 
-  @Override
-  public Page<VisitorEto> findVisitors(VisitorSearchCriteriaTo searchCriteriaTo) {
+  // @Override
+  // public Page<VisitorEto> findVisitors(VisitorSearchCriteriaTo searchCriteriaTo) {
 
-    return mapper.map(this.visitorrepo.findByCriteria(searchCriteriaTo));
-  }
+  //   return mapper.map(this.visitorrepo.findByCriteria(searchCriteriaTo));
+  // }
 }
