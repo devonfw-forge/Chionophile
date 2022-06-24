@@ -6,6 +6,7 @@ import java.util.Iterator;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
+import com.devonfw.application.domain.models.QQueueEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -17,7 +18,7 @@ import com.devonfw.application.domain.tos.AccessCodeSearchCriteriaTo;
 import com.devonfw.application.domain.utils.QueryUtil;
 import com.querydsl.jpa.impl.JPAQuery;
 
-public abstract class AccessCodeRepositoryImpl implements AccessCodeRepository {
+public class AccessCodeRepositoryImpl implements AccessCodeRepositoryFragment {
 
   @Inject
   EntityManager em;
@@ -26,6 +27,7 @@ public abstract class AccessCodeRepositoryImpl implements AccessCodeRepository {
 
     QAccessCodeEntity alias = QAccessCodeEntity.accessCodeEntity;
     JPAQuery<AccessCodeEntity> query = new JPAQuery<AccessCodeEntity>(em);
+    query.from(QAccessCodeEntity.accessCodeEntity);
 
     Timestamp creationTime = criteria.getCreationTime();
     if (creationTime != null) {

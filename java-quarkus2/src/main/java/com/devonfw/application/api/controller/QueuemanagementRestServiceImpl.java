@@ -1,14 +1,14 @@
-package com.devonfw.application.api;
+package com.devonfw.application.api.controller;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.springframework.data.domain.Page;
-
-import com.devonfw.application.api.model.JTQMapper;
+import com.devonfw.application.api.mapper.JTQMapper;
 import com.devonfw.application.api.model.QueueEto;
 import com.devonfw.application.domain.models.QueueEntity;
 import com.devonfw.application.domain.repositories.QueueRepository;
+import com.devonfw.application.domain.tos.QueueSearchCriteriaTo;
+import org.springframework.data.domain.Page;
 
 /**
  * The service implementation for REST calls in order to execute the logic of component {@link Queuemanagement}.
@@ -43,9 +43,9 @@ public class QueuemanagementRestServiceImpl implements QueuemanagementRestServic
     return id;
   }
 
-  // @Override
-  // public Page<QueueEto> findQueues(QueueSearchCriteriaTo searchCriteriaTo) {
+   @Override
+   public Page<QueueEto> findQueues(QueueSearchCriteriaTo searchCriteriaTo) {
 
-  //   return this.repository.findQueues(searchCriteriaTo);
-  // }
+     return this.repository.findByCriteria(searchCriteriaTo).map(mapper::map);
+   }
 }

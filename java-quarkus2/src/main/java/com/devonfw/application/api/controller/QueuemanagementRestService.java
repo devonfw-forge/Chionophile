@@ -1,4 +1,4 @@
-package com.devonfw.application.api;
+package com.devonfw.application.api.controller;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -9,6 +9,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.devonfw.application.domain.tos.QueueSearchCriteriaTo;
 import org.springframework.data.domain.Page;
 
 import com.devonfw.application.api.model.QueueEto;
@@ -59,8 +60,8 @@ public interface QueuemanagementRestService {
    *                         finding queues.
    * @return the {@link Page list} of matching {@link QueueEto}s.
    */
-  // @Path("/queue/search")
-  // @POST
-  // public Page<QueueEto> findQueues(QueueSearchCriteriaTo searchCriteriaTo);
+   @Path("/queue/search")
+   @POST
+   public Page<QueueEto> findQueues(QueueSearchCriteriaTo searchCriteriaTo);
 
 }

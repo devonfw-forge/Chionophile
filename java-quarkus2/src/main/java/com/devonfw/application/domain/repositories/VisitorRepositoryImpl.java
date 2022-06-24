@@ -16,7 +16,7 @@ import com.devonfw.application.domain.utils.QueryUtil;
 import com.querydsl.jpa.impl.JPAQuery;
 import org.springframework.data.domain.Sort.Order;
 
-public abstract class VisitorRepositoryImpl implements VisitorRepository {
+public class VisitorRepositoryImpl implements VisitorRepositoryFragment {
 
   @Inject
   EntityManager em;
@@ -25,7 +25,7 @@ public abstract class VisitorRepositoryImpl implements VisitorRepository {
 
     QVisitorEntity alias = QVisitorEntity.visitorEntity;
     JPAQuery<VisitorEntity> query = new JPAQuery<VisitorEntity>(em);
-
+    query.from(QVisitorEntity.visitorEntity);
     String username = criteria.getUsername();
     if (username != null && !username.isEmpty()) {
       QueryUtil.get().whereString(query, alias.username, username,

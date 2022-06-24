@@ -1,4 +1,4 @@
-package com.devonfw.application.api;
+package com.devonfw.application.api.controller;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -7,7 +7,7 @@ import org.springframework.data.domain.Page;
 
 import com.devonfw.application.api.model.AccessCodeCto;
 import com.devonfw.application.api.model.AccessCodeEto;
-import com.devonfw.application.api.model.JTQMapper;
+import com.devonfw.application.api.mapper.JTQMapper;
 import com.devonfw.application.domain.models.AccessCodeEntity;
 import com.devonfw.application.domain.repositories.AccessCodeRepository;
 import com.devonfw.application.domain.tos.AccessCodeSearchCriteriaTo;
@@ -53,9 +53,9 @@ public class AccesscodemanagementRestServiceImpl implements Accesscodemanagement
     return id;
   }
 
-  // @Override
-  // public Page<AccessCodeEto> findAccessCodeEtos(AccessCodeSearchCriteriaTo searchCriteriaTo) {
+   @Override
+   public Page<AccessCodeEto> findAccessCodeEtos(AccessCodeSearchCriteriaTo searchCriteriaTo) {
 
-  //   return this.accessCodeRepository.findAccessCodeEtos(searchCriteriaTo);
-  // }
+     return this.accessCodeRepository.findByCriteria(searchCriteriaTo).map(mapper::map);
+   }
 }

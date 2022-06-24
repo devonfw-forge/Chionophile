@@ -1,4 +1,4 @@
-package com.devonfw.application.api;
+package com.devonfw.application.api.controller;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -52,9 +52,9 @@ public interface AccesscodemanagementRestService {
    *                         finding accesscodes.
    * @return the {@link Page list} of matching {@link AccessCodeEto}s.
    */
-  // @POST
-  // @Path("/accesscode/search")
-  // public Page<AccessCodeEto> findAccessCodeEtos(AccessCodeSearchCriteriaTo searchCriteriaTo);
+   @POST
+   @Path("/accesscode/search")
+   public Page<AccessCodeEto> findAccessCodeEtos(AccessCodeSearchCriteriaTo searchCriteriaTo);
 
   /**
    * Delegates to {@link Accesscodemanagement#saveAccessCode}.

@@ -22,13 +22,10 @@ import lombok.Setter;
 @Setter
 public class AccessCodeEntity extends ApplicationPersistenceEntity {
 
-  @Temporal(TemporalType.TIMESTAMP)
   private Timestamp creationTime;
 
-  @Temporal(TemporalType.TIMESTAMP)
   private Timestamp startTime;
 
-  @Temporal(TemporalType.TIMESTAMP)
   private Timestamp endTime;
 
   @OneToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
