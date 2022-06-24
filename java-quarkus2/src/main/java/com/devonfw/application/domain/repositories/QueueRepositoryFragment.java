@@ -3,7 +3,6 @@ package com.devonfw.application.domain.repositories;
 import com.devonfw.application.domain.models.QueueEntity;
 import com.devonfw.application.domain.tos.QueueSearchCriteriaTo;
 import org.springframework.data.domain.Page;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface QueueRepositoryFragment {
 
@@ -23,6 +22,7 @@ public interface QueueRepositoryFragment {
    * @param alias to retrieve columns from for sorting
    * @param sort  specification of sorting
    */
-  // public default void addOrderBy(JPAQuery<QueueEntity> query, QueueEntity alias, Sort sort);
+  // public default void addOrderBy(JPAQuery<QueueEntity> query, QueueEntity
+  // alias, Sort sort);
 
 }

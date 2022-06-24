@@ -9,7 +9,6 @@ import com.devonfw.application.api.model.VisitorEto;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.springframework.data.domain.Page;
 
 import com.devonfw.application.domain.models.AccessCodeEntity;
 import com.devonfw.application.domain.models.QueueEntity;
@@ -17,9 +16,9 @@ import com.devonfw.application.domain.models.VisitorEntity;
 import com.devonfw.application.domain.repositories.QueueRepository;
 import com.devonfw.application.domain.repositories.VisitorRepository;
 
-@Mapper(componentModel = "cdi", injectionStrategy = InjectionStrategy.CONSTRUCTOR ,uses = { QueueRepository.class, VisitorRepository.class } )
+@Mapper(componentModel = "cdi", injectionStrategy = InjectionStrategy.CONSTRUCTOR, uses = { QueueRepository.class,
+    VisitorRepository.class })
 public interface JTQMapper {
-
 
   @Mapping(target = "visitor", source = "visitorId")
   @Mapping(target = "queue", source = "queueId")
@@ -33,8 +32,7 @@ public interface JTQMapper {
 
   @Mapping(source = "visitor.id", target = "visitorId")
   @Mapping(source = "queue.id", target = "queueId")
-  List<AccessCodeEto> mapAccessCodeEntityList(List<AccessCodeEntity>
-  entityList);
+  List<AccessCodeEto> mapAccessCodeEntityList(List<AccessCodeEntity> entityList);
 
   VisitorEntity map(VisitorEto eto);
 
