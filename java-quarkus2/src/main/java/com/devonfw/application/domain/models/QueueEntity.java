@@ -23,10 +23,8 @@ public class QueueEntity extends ApplicationPersistenceEntity {
 
   private String currentNumber;
 
-  @Temporal(TemporalType.TIMESTAMP)
   private Timestamp attentionTime;
 
-  @Temporal(TemporalType.TIMESTAMP)
   private Timestamp minAttentionTime;
 
   private Boolean active;

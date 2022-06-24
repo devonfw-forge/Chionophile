@@ -1,15 +1,11 @@
 package com.devonfw.application.domain.repositories;
 
+import com.devonfw.application.domain.models.QueueEntity;
+import com.devonfw.application.domain.tos.QueueSearchCriteriaTo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.devonfw.application.domain.models.QueueEntity;
-import com.devonfw.application.domain.tos.QueueSearchCriteriaTo;
-
-/**
- * {@link DefaultRepository} for {@link QueueEntity}
- */
-public interface QueueRepository extends JpaRepository<QueueEntity, Long>, QueueRepositoryFragment {
+public interface QueueRepositoryFragment {
 
   /**
    * @param criteria the {@link QueueSearchCriteriaTo} with the criteria to
@@ -18,7 +14,7 @@ public interface QueueRepository extends JpaRepository<QueueEntity, Long>, Queue
    *         search. If no pageable is set, it will
    *         return a unique page with all the objects that matched the search.
    */
-  public Page<QueueEntity> findByCriteria(QueueSearchCriteriaTo criteria);
+  Page<QueueEntity> findByCriteria(QueueSearchCriteriaTo criteria);
 
   /**
    * Add sorting to the given query on the given alias

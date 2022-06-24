@@ -17,7 +17,7 @@ import com.devonfw.application.domain.tos.QueueSearchCriteriaTo;
 import com.devonfw.application.domain.utils.QueryUtil;
 import com.querydsl.jpa.impl.JPAQuery;
 
-public abstract class QueueRepositoryImpl implements QueueRepository {
+public class QueueRepositoryImpl implements QueueRepositoryFragment {
   
   @Inject
   EntityManager em;
@@ -26,7 +26,7 @@ public abstract class QueueRepositoryImpl implements QueueRepository {
 
     QQueueEntity alias = QQueueEntity.queueEntity;
     JPAQuery<QueueEntity> query = new JPAQuery<QueueEntity>(em);
-
+    query.from(QQueueEntity.queueEntity);
     String name = criteria.getName();
     if (name != null && !name.isEmpty()) {
       QueryUtil.get().whereString(query, alias.name, name, criteria.getNameOption());

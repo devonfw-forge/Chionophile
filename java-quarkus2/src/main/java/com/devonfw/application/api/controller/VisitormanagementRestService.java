@@ -1,4 +1,4 @@
-package com.devonfw.application.api;
+package com.devonfw.application.api.controller;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -60,8 +60,8 @@ public interface VisitormanagementRestService {
    *                         finding visitors.
    * @return the {@link Page list} of matching {@link VisitorEto}s.
    */
-  // @Path("/visitor/search")
-  // @POST
-  // public Page<VisitorEto> findVisitors(VisitorSearchCriteriaTo searchCriteriaTo);
+   @Path("/visitor/search")
+   @POST
+   public Page<VisitorEto> findVisitors(VisitorSearchCriteriaTo searchCriteriaTo);
 
 }

@@ -1,11 +1,11 @@
-package com.devonfw.application.api;
+package com.devonfw.application.api.controller;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.springframework.data.domain.Page;
 
-import com.devonfw.application.api.model.JTQMapper;
+import com.devonfw.application.api.mapper.JTQMapper;
 import com.devonfw.application.api.model.VisitorEto;
 import com.devonfw.application.domain.models.VisitorEntity;
 import com.devonfw.application.domain.repositories.VisitorRepository;
@@ -22,7 +22,7 @@ public class VisitormanagementRestServiceImpl implements VisitormanagementRestSe
   JTQMapper mapper;
 
   @Inject
-  private VisitorRepository visitorrepo;
+  VisitorRepository visitorrepo;
 
   @Override
   public VisitorEto getVisitor(long id) {
@@ -45,9 +45,8 @@ public class VisitormanagementRestServiceImpl implements VisitormanagementRestSe
     return id;
   }
 
-  // @Override
-  // public Page<VisitorEto> findVisitors(VisitorSearchCriteriaTo searchCriteriaTo) {
-
-  //   return mapper.map(this.visitorrepo.findByCriteria(searchCriteriaTo));
-  // }
+   @Override
+   public Page<VisitorEto> findVisitors(VisitorSearchCriteriaTo searchCriteriaTo) {
+     return this.visitorrepo.findByCriteria(searchCriteriaTo).map(mapper::map);
+   }
 }

@@ -1,7 +1,12 @@
-package com.devonfw.application.api.model;
+package com.devonfw.application.api.mapper;
 
 import java.util.List;
 
+import com.devonfw.application.api.model.AccessCodeCto;
+import com.devonfw.application.api.model.AccessCodeEto;
+import com.devonfw.application.api.model.QueueEto;
+import com.devonfw.application.api.model.VisitorEto;
+import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.springframework.data.domain.Page;
@@ -12,13 +17,12 @@ import com.devonfw.application.domain.models.VisitorEntity;
 import com.devonfw.application.domain.repositories.QueueRepository;
 import com.devonfw.application.domain.repositories.VisitorRepository;
 
-@Mapper(componentModel = "cdi", uses = { QueueRepository.class, VisitorRepository.class } )
+@Mapper(componentModel = "cdi", injectionStrategy = InjectionStrategy.CONSTRUCTOR ,uses = { QueueRepository.class, VisitorRepository.class } )
 public interface JTQMapper {
 
-  @Mapping(target = "visitor", expression =
-  "java(visitorRepository.find(eto.getVisitorId()))")
-  @Mapping(target = "queue", expression =
-  "java(queueRepository.find(eto.getQueueId()))")
+
+  @Mapping(target = "visitor", source = "visitorId")
+  @Mapping(target = "queue", source = "queueId")
   AccessCodeEntity map(AccessCodeEto eto);
 
   @Mapping(source = "visitor.id", target = "visitorId")
