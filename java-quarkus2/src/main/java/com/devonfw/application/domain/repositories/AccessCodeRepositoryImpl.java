@@ -6,7 +6,6 @@ import java.util.Iterator;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
-import com.devonfw.application.domain.models.QQueueEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -57,7 +56,7 @@ public class AccessCodeRepositoryImpl implements AccessCodeRepositoryFragment {
 
     return QueryUtil.get().findPaginatedGeneric(criteria.getPageable(), query, true);
   }
-  
+
   /**
    * Add sorting to the given query on the given alias
    *
