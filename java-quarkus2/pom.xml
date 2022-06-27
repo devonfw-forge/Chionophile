@@ -110,6 +110,41 @@
   </dependencies>
   <build>
     <plugins>
+    
+      <plugin>
+        <groupId>com.github.kongchen</groupId>
+        <artifactId>swagger-maven-plugin</artifactId>
+        <version>3.1.8</version>
+        <configuration>
+          <apiSources>
+            <apiSource>
+              <springmvc>false</springmvc>
+              <locations>
+                <location>com.devonfw.application.api.controller</location>
+              </locations>
+              <outputFormats>yaml</outputFormats>
+              <swaggerDirectory>generated/swagger-ui</swaggerDirectory>
+              <swaggerFileName>quarkus_swagger.yaml</swaggerFileName>
+              <schemes>
+                <scheme>https</scheme>
+              </schemes>
+              <info>
+                <title>JTQ in Quarkus</title>
+                <description>jump the queue implementation in Java Quarkus</description>
+                <version>v4</version>
+              </info>
+            </apiSource>
+          </apiSources>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>compile</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
       <groupId>com.mysema.maven</groupId>
       <artifactId>apt-maven-plugin</artifactId>
