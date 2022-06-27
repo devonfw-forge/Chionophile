@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   jtq_postgres:
-    container_name: jtq-postgres
+    container_name: jtq-postgres-rust
     image: postgres:14.2
     env_file:
       - ../postgresql/config.env
@@ -16,7 +16,7 @@ services:
         - jtq_postgres
     container_name: jtq-rust
     environment:
-      - DATABASE_URL=postgres://jtq_user:admin@jtq-postgres/jtq_db
+      - DATABASE_URL=postgres://jtq_user:admin@jtq-postgres-rust/jtq_db
       - BIND_URL=0.0.0.0:8081
       - BASE_REST_URL=jumpthequeue/services/rest/
     ports:

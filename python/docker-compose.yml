@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   jtq_postgres:
-    container_name: jtq_postgres_intern
+    container_name: jtq_postgres_python
     image: postgres:14.2
     env_file:
       - ../postgresql/config.env
@@ -18,7 +18,7 @@ services:
     volumes:
       - ./jtq:/code
     environment:
-      - DB_HOST=jtq_postgres_intern
+      - DB_HOST=jtq_postgres_python
       - DB_PORT=5432
       - DB_NAME=jtq_db
       - DB_USER=jtq_user
