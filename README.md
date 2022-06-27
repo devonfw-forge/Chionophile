@@ -5,7 +5,7 @@ Demonstrator on how to achieve energy efficiency improvements  in software devel
 - Windows OS with powershell
 - git bash
 - wsl
-- Docker Desktop
+- Rancher Desktop
 - python3
 
 ## Optional requirements
