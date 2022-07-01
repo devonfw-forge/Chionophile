@@ -2,8 +2,8 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>org.acme</groupId>
-  <artifactId>code-with-quarkus</artifactId>
+  <groupId>com.devonfw</groupId>
+  <artifactId>jtqq</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <properties>
     <compiler-plugin.version>3.8.1</compiler-plugin.version>
@@ -124,7 +124,7 @@
               </locations>
               <outputFormats>yaml</outputFormats>
               <swaggerDirectory>generated/swagger-ui</swaggerDirectory>
-              <swaggerFileName>quarkus_swagger.yaml</swaggerFileName>
+              <swaggerFileName>quarkus_swagger</swaggerFileName>
               <schemes>
                 <scheme>https</scheme>
               </schemes>
