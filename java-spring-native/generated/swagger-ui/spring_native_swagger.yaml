@@ -1,9 +1,9 @@
 ---
 swagger: "2.0"
 info:
-  description: "jump the queue implementation in Java Quarkus"
+  description: "jump the queue implementation with Spring native"
   version: "v4"
-  title: "JTQ in Quarkus"
+  title: "JTQ in Spring Native"
 schemes:
 - "https"
 paths:
@@ -233,12 +233,12 @@ definitions:
   Page:
     type: "object"
     properties:
-      totalPages:
-        type: "integer"
-        format: "int32"
       totalElements:
         type: "integer"
         format: "int64"
+      totalPages:
+        type: "integer"
+        format: "int32"
       size:
         type: "integer"
         format: "int32"
@@ -253,24 +253,24 @@ definitions:
         $ref: "#/definitions/Sort"
       first:
         type: "boolean"
+      numberOfElements:
+        type: "integer"
+        format: "int32"
       pageable:
         $ref: "#/definitions/Pageable"
       last:
         type: "boolean"
-      numberOfElements:
-        type: "integer"
-        format: "int32"
       empty:
         type: "boolean"
   PageAccessCodeEto:
     type: "object"
     properties:
-      totalPages:
-        type: "integer"
-        format: "int32"
       totalElements:
         type: "integer"
         format: "int64"
+      totalPages:
+        type: "integer"
+        format: "int32"
       size:
         type: "integer"
         format: "int32"
@@ -285,24 +285,24 @@ definitions:
         $ref: "#/definitions/Sort"
       first:
         type: "boolean"
+      numberOfElements:
+        type: "integer"
+        format: "int32"
       pageable:
         $ref: "#/definitions/Pageable"
       last:
         type: "boolean"
-      numberOfElements:
-        type: "integer"
-        format: "int32"
       empty:
         type: "boolean"
   PageQueueEto:
     type: "object"
     properties:
-      totalPages:
-        type: "integer"
-        format: "int32"
       totalElements:
         type: "integer"
         format: "int64"
+      totalPages:
+        type: "integer"
+        format: "int32"
       size:
         type: "integer"
         format: "int32"
@@ -317,24 +317,24 @@ definitions:
         $ref: "#/definitions/Sort"
       first:
         type: "boolean"
+      numberOfElements:
+        type: "integer"
+        format: "int32"
       pageable:
         $ref: "#/definitions/Pageable"
       last:
         type: "boolean"
-      numberOfElements:
-        type: "integer"
-        format: "int32"
       empty:
         type: "boolean"
   PageVisitorEto:
     type: "object"
     properties:
-      totalPages:
-        type: "integer"
-        format: "int32"
       totalElements:
         type: "integer"
         format: "int64"
+      totalPages:
+        type: "integer"
+        format: "int32"
       size:
         type: "integer"
         format: "int32"
@@ -349,13 +349,13 @@ definitions:
         $ref: "#/definitions/Sort"
       first:
         type: "boolean"
+      numberOfElements:
+        type: "integer"
+        format: "int32"
       pageable:
         $ref: "#/definitions/Pageable"
       last:
         type: "boolean"
-      numberOfElements:
-        type: "integer"
-        format: "int32"
       empty:
         type: "boolean"
   Pageable:
@@ -366,14 +366,14 @@ definitions:
         format: "int64"
       sort:
         $ref: "#/definitions/Sort"
-      paged:
-        type: "boolean"
       unpaged:
         type: "boolean"
-      pageSize:
+      paged:
+        type: "boolean"
+      pageNumber:
         type: "integer"
         format: "int32"
-      pageNumber:
+      pageSize:
         type: "integer"
         format: "int32"
   QueueEto:
@@ -402,11 +402,11 @@ definitions:
   Sort:
     type: "object"
     properties:
+      empty:
+        type: "boolean"
       sorted:
         type: "boolean"
       unsorted:
-        type: "boolean"
-      empty:
         type: "boolean"
   VisitorEto:
     type: "object"
