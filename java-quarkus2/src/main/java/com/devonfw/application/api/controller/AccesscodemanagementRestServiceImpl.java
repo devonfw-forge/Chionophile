@@ -34,11 +34,11 @@ public class AccesscodemanagementRestServiceImpl implements Accesscodemanagement
     return mapper.mapCto(result);
   }
 
-  // @Override
-  // public Page<AccessCodeCto> findAccessCodeCtos(AccessCodeSearchCriteriaTo searchCriteriaTo) {
+  @Override
+  public Page<AccessCodeCto> findAccessCodeCtos(AccessCodeSearchCriteriaTo searchCriteriaTo) {
 
-  //   return this.accessCodeRepository.findByCriteria(searchCriteriaTo);
-  // }
+    return this.accessCodeRepository.findByCriteria(searchCriteriaTo).map(mapper::mapCto);
+  }
 
   @Override
   public AccessCodeEto saveAccessCode(AccessCodeEto accessCodeEto) {
@@ -53,9 +53,9 @@ public class AccesscodemanagementRestServiceImpl implements Accesscodemanagement
     return id;
   }
 
-   @Override
-   public Page<AccessCodeEto> findAccessCodeEtos(AccessCodeSearchCriteriaTo searchCriteriaTo) {
+  @Override
+  public Page<AccessCodeEto> findAccessCodeEtos(AccessCodeSearchCriteriaTo searchCriteriaTo) {
 
-     return this.accessCodeRepository.findByCriteria(searchCriteriaTo).map(mapper::map);
-   }
+    return this.accessCodeRepository.findByCriteria(searchCriteriaTo).map(mapper::map);
+  }
 }

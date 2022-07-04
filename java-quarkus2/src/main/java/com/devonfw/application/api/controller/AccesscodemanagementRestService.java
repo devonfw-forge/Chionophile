@@ -41,9 +41,9 @@ public interface AccesscodemanagementRestService {
    *                         finding accesscodes.
    * @return the {@link Page list} of matching {@link AccessCodeCto}s.
    */
-  // @Path("/accesscode/cto/search")
-  // @POST
-  // public Page<AccessCodeCto> findAccessCodeCtos(AccessCodeSearchCriteriaTo searchCriteriaTo);
+  @Path("/accesscode/cto/search")
+  @POST
+  public Page<AccessCodeCto> findAccessCodeCtos(AccessCodeSearchCriteriaTo searchCriteriaTo);
 
   /**
    * Delegates to {@link Accesscodemanagement#findAccessCodeEtos}.
@@ -52,9 +52,9 @@ public interface AccesscodemanagementRestService {
    *                         finding accesscodes.
    * @return the {@link Page list} of matching {@link AccessCodeEto}s.
    */
-   @POST
-   @Path("/accesscode/search")
-   public Page<AccessCodeEto> findAccessCodeEtos(AccessCodeSearchCriteriaTo searchCriteriaTo);
+  @POST
+  @Path("/accesscode/search")
+  public Page<AccessCodeEto> findAccessCodeEtos(AccessCodeSearchCriteriaTo searchCriteriaTo);
 
   /**
    * Delegates to {@link Accesscodemanagement#saveAccessCode}.

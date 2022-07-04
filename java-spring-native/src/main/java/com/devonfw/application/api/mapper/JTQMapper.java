@@ -27,7 +27,8 @@ public interface JTQMapper {
   @Mapping(source = "visitor.id", target = "visitorId")
   @Mapping(source = "queue.id", target = "queueId")
   AccessCodeEto map(AccessCodeEntity entity);
-
+  
+  @Mapping(source = ".", target = "accessCode")
   AccessCodeCto mapCto(AccessCodeEntity entity);
 
   @Mapping(source = "visitor.id", target = "visitorId")
