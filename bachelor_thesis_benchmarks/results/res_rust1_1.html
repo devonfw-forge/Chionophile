@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RUST 1</title>
+    <style>
+        .container {
+            width: 1000px;
+            margin: 0 auto;
+            padding: 10px;
+            background: #173529;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .info span{
+            color: #b3c3bc;
+        }
+
+        table {
+            border-collapse: collapse;
+            text-align: center;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #cad9ea;
+            color: #666;
+            height: 30px;
+        }
+
+        thead th {
+            background-color: #cce8eb;
+            width: 100px;
+        }
+
+        tr:nth-child(odd) {
+            background: #fff;
+        }
+
+        tr:nth-child(even) {
+            background: #f5fafa;
+        }
+
+        .charts-container .chart {
+            width: 100%;
+            height: 350px;
+            margin-bottom: 30px;
+        }
+
+        .download {
+            float: right;
+        }
+
+        .download a {
+            color: #00ca5a;
+        }
+
+        .graph {
+            margin-bottom: 1em;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>RUST 1</h1>
+
+        <div class="info">
+            <p>Users: <span>10</span> </p>
+            <p>Target Host: <span>http://localhost:8082/jumpthequeue/services/rest/</span></p>
+            <p>Starting: <span>2022-07-06 20:25:41 - 2022-07-06 20:25:50 (Duration: 00:00:09)</span></p><p>Running: <span>2022-07-06 20:25:50 - 2022-07-06 20:26:20 (Duration: 00:00:30)</span></p><p>Stopping: <span>2022-07-06 20:26:20 - 2022-07-06 20:26:20 (Duration: 00:00:00)</span></p>
+            <p><span><small><em>goose v0.15.2</em></small></span></pr>
+        </div>
+
+        <div class="requests">
+            <h2>Request Metrics</h2>
+
+            <div class="graph">
+                <div id="graph-rps" style="width: 1000px; height:500px; background: white;"></div>
+
+                <script type="text/javascript">
+                    var chartDom = document.getElementById('graph-rps');
+                    var myChart = echarts.init(chartDom);
+
+                    myChart.setOption({
+                        color: ['#2c664f'],
+                        tooltip: { trigger: 'axis' },
+                        toolbox: {
+                            feature: {
+                                dataZoom: { yAxisIndex: 'none' },
+                                restore: {},
+                                saveAsImage: {}
+                            }
+                        },
+                        dataZoom: [
+                            {
+                                type: 'inside',
+                                start: 0,
+                                end: 100,
+                                fillerColor: 'rgba(34, 80, 61, 0.25)',
+                                selectedDataBackground: {
+                                    lineStyle: { color: '#2c664f' },
+                                    areaStyle: { color: '#378063' }
+                                }
+                            },
+                            {
+                                start: 0,
+                                end: 100,
+                                fillerColor: 'rgba(34, 80, 61, 0.25)',
+                                selectedDataBackground: {
+                                    lineStyle: { color: '#2c664f' },
+                                    areaStyle: { color: '#378063' }
+                                }
+                            },
+                        ],
+                        xAxis: { type: 'time' },
+                        yAxis: {
+                            name: 'Requests #',
+                            nameLocation: 'center',
+                            nameRotate: 90,
+                            nameGap: 45,
+                            type: 'value'
+                        },
+                        series: [
+                            {
+                                type: 'line',
+                                symbol: 'none',
+                                sampling: 'lttb',
+                                lineStyle: { color: '#2c664f' },
+                                areaStyle: { color: '#378063' },
+                                markArea: {
+                                    itemStyle: { color: 'rgba(6, 6, 6, 0.10)' },
+                                    data: [
+                                        [
+                    {
+                        name: 'Starting',
+                        xAxis: '2022-07-06 20:25:41'
+                    },
+                    {
+                        xAxis: '2022-07-06 20:25:50'
+                    }
+                ],
+                                        
+                                    ]
+                                },
+                                data: [["2022-07-06 20:25:41",407],["2022-07-06 20:25:42",850],["2022-07-06 20:25:43",1324],["2022-07-06 20:25:44",1496],["2022-07-06 20:25:45",1779],["2022-07-06 20:25:46",2198],["2022-07-06 20:25:47",2206],["2022-07-06 20:25:48",2525],["2022-07-06 20:25:49",2778],["2022-07-06 20:25:50",3021],["2022-07-06 20:25:51",3246],["2022-07-06 20:25:52",2687],["2022-07-06 20:25:53",2832],["2022-07-06 20:25:54",2784],["2022-07-06 20:25:55",2869],["2022-07-06 20:25:56",2822],["2022-07-06 20:25:57",2911],["2022-07-06 20:25:58",2678],["2022-07-06 20:25:59",2618],["2022-07-06 20:26:00",2685],["2022-07-06 20:26:01",2680],["2022-07-06 20:26:02",2702],["2022-07-06 20:26:03",2622],["2022-07-06 20:26:04",2618],["2022-07-06 20:26:05",2713],["2022-07-06 20:26:06",2792],["2022-07-06 20:26:07",2848],["2022-07-06 20:26:08",2782],["2022-07-06 20:26:09",2836],["2022-07-06 20:26:10",2793],["2022-07-06 20:26:11",2839],["2022-07-06 20:26:12",2769],["2022-07-06 20:26:13",2702],["2022-07-06 20:26:14",2745],["2022-07-06 20:26:15",2684],["2022-07-06 20:26:16",2762],["2022-07-06 20:26:17",2678],["2022-07-06 20:26:18",2861],["2022-07-06 20:26:19",2699],["2022-07-06 20:26:20",567]],
+                            }
+                        ]
+                    });
+                </script>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Name</th>
+                        <th># Requests</th>
+                        <th># Fails</th>
+                        <th>Average (ms)</th>
+                        <th>Min (ms)</th>
+                        <th>Max (ms)</th>
+                        <th>RPS</th>
+                        <th>Failures/s</th>
+                    </tr>
+                </thead>
+<tbody>
+<tr>
+        <td>Aggregated</td>
+        <td>Aggregated</td>
+        <td>99408</td>
+        <td>0</td>
+        <td>3.00</td>
+        <td>1</td>
+        <td>46</td>
+        <td>3313.60</td>
+        <td>0.00</td>
+    </tr>
+</tbody>
+            </table>
+        </div>
+
+        
+
+        <div class="responses">
+            <h2>Response Time Metrics</h2>
+
+            <div class="graph">
+                <div id="graph-avg-response-time" style="width: 1000px; height:500px; background: white;"></div>
+
+                <script type="text/javascript">
+                    var chartDom = document.getElementById('graph-avg-response-time');
+                    var myChart = echarts.init(chartDom);
+
+                    myChart.setOption({
+                        color: ['#2c664f'],
+                        tooltip: { trigger: 'axis' },
+                        toolbox: {
+                            feature: {
+                                dataZoom: { yAxisIndex: 'none' },
+                                restore: {},
+                                saveAsImage: {}
+                            }
+                        },
+                        dataZoom: [
+                            {
+                                type: 'inside',
+                                start: 0,
+                                end: 100,
+                                fillerColor: 'rgba(34, 80, 61, 0.25)',
+                                selectedDataBackground: {
+                                    lineStyle: { color: '#2c664f' },
+                                    areaStyle: { color: '#378063' }
+                                }
+                            },
+                            {
+                                start: 0,
+                                end: 100,
+                                fillerColor: 'rgba(34, 80, 61, 0.25)',
+                                selectedDataBackground: {
+                                    lineStyle: { color: '#2c664f' },
+                                    areaStyle: { color: '#378063' }
+                                }
+                            },
+                        ],
+                        xAxis: { type: 'time' },
+                        yAxis: {
+                            name: 'Response time [ms]',
+                            nameLocation: 'center',
+                            nameRotate: 90,
+                            nameGap: 45,
+                            type: 'value'
+                        },
+                        series: [
+                            {
+                                type: 'line',
+                                symbol: 'none',
+                                sampling: 'lttb',
+                                lineStyle: { color: '#2c664f' },
+                                areaStyle: { color: '#378063' },
+                                markArea: {
+                                    itemStyle: { color: 'rgba(6, 6, 6, 0.10)' },
+                                    data: [
+                                        [
+                    {
+                        name: 'Starting',
+                        xAxis: '2022-07-06 20:25:41'
+                    },
+                    {
+                        xAxis: '2022-07-06 20:25:50'
+                    }
+                ],
+                                        
+                                    ]
+                                },
+                                data: [["2022-07-06 20:25:41",0],["2022-07-06 20:25:42",0],["2022-07-06 20:25:43",0],["2022-07-06 20:25:44",0],["2022-07-06 20:25:45",0],["2022-07-06 20:25:46",0],["2022-07-06 20:25:47",0],["2022-07-06 20:25:48",0],["2022-07-06 20:25:49",0],["2022-07-06 20:25:50",0],["2022-07-06 20:25:51",0],["2022-07-06 20:25:52",0],["2022-07-06 20:25:53",0],["2022-07-06 20:25:54",0],["2022-07-06 20:25:55",0],["2022-07-06 20:25:56",0],["2022-07-06 20:25:57",0],["2022-07-06 20:25:58",0],["2022-07-06 20:25:59",0],["2022-07-06 20:26:00",0],["2022-07-06 20:26:01",0],["2022-07-06 20:26:02",0],["2022-07-06 20:26:03",0],["2022-07-06 20:26:04",0],["2022-07-06 20:26:05",0],["2022-07-06 20:26:06",0],["2022-07-06 20:26:07",0],["2022-07-06 20:26:08",0],["2022-07-06 20:26:09",0],["2022-07-06 20:26:10",0],["2022-07-06 20:26:11",0],["2022-07-06 20:26:12",0],["2022-07-06 20:26:13",0],["2022-07-06 20:26:14",0],["2022-07-06 20:26:15",0],["2022-07-06 20:26:16",0],["2022-07-06 20:26:17",1],["2022-07-06 20:26:18",1],["2022-07-06 20:26:19",2],["2022-07-06 20:26:20",3]],
+                            }
+                        ]
+                    });
+                </script>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Name</th>
+                        <th>50%ile (ms)</th>
+                        <th>60%ile (ms)</th>
+                        <th>70%ile (ms)</th>
+                        <th>80%ile (ms)</th>
+                        <th>90%ile (ms)</th>
+                        <th>95%ile (ms)</th>
+                        <th>99%ile (ms)</th>
+                        <th>100%ile (ms)</th>
+                    </tr>
+                </thead>
+<tbody>
+<tr>
+            <td>Aggregated</td>
+            <td>Aggregated</td>
+            <td>3</td>
+            <td>3</td>
+            <td>4</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>13</td>
+            <td>46</td>
+        </tr>
+</tbody>
+            </table>
+        </div>
+
+        
+
+        <div class="status_codes">
+        <h2>Status Code Metrics</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Method</th>
+                    <th >Name</th>
+                    <th >Status Codes</th>
+                </tr>
+            </thead>
+<tbody>
+<tr>
+        <td >Aggregated</td>
+        <td >Aggregated</td>
+        <td >99,408 [200]</td>
+    </tr>
+</tbody>
+        </table>
+    </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2">Task</th>
+                    <th># Times Run</th>
+                    <th># Fails</th>
+                    <th>Average (ms)</th>
+                    <th>Min (ms)</th>
+                    <th>Max (ms)</th>
+                    <th>RPS</th>
+                    <th>Failures/s</th>
+                </tr>
+            </thead>
+<tbody>
+<tr>
+            <td > Aggregated</strong></td>
+            <td > Aggregated</strong></td>
+            <td>21,288</td>
+            <td>0</td>
+            <td>14.02</td>
+            <td>5</td>
+            <td>64</td>
+            <td>709.60</td>
+            <td>0.00</td>
+        </tr>
+</tbody>
+        </table>
+        <div class="users">
+        <h2>User Metrics</h2>
+            <div class="graph">
+                <div id="graph-active-users" style="width: 1000px; height:500px; background: white;"></div>
+
+                <script type="text/javascript">
+                    var chartDom = document.getElementById('graph-active-users');
+                    var myChart = echarts.init(chartDom);
+
+                    myChart.setOption({
+                        color: ['#2c664f'],
+                        tooltip: { trigger: 'axis' },
+                        toolbox: {
+                            feature: {
+                                dataZoom: { yAxisIndex: 'none' },
+                                restore: {},
+                                saveAsImage: {}
+                            }
+                        },
+                        dataZoom: [
+                            {
+                                type: 'inside',
+                                start: 0,
+                                end: 100,
+                                fillerColor: 'rgba(34, 80, 61, 0.25)',
+                                selectedDataBackground: {
+                                    lineStyle: { color: '#2c664f' },
+                                    areaStyle: { color: '#378063' }
+                                }
+                            },
+                            {
+                                start: 0,
+                                end: 100,
+                                fillerColor: 'rgba(34, 80, 61, 0.25)',
+                                selectedDataBackground: {
+                                    lineStyle: { color: '#2c664f' },
+                                    areaStyle: { color: '#378063' }
+                                }
+                            },
+                        ],
+                        xAxis: { type: 'time' },
+                        yAxis: {
+                            name: 'Active users #',
+                            nameLocation: 'center',
+                            nameRotate: 90,
+                            nameGap: 45,
+                            type: 'value'
+                        },
+                        series: [
+                            {
+                                type: 'line',
+                                symbol: 'none',
+                                sampling: 'lttb',
+                                lineStyle: { color: '#2c664f' },
+                                areaStyle: { color: '#378063' },
+                                markArea: {
+                                    itemStyle: { color: 'rgba(6, 6, 6, 0.10)' },
+                                    data: [
+                                        [
+                    {
+                        name: 'Starting',
+                        xAxis: '2022-07-06 20:25:41'
+                    },
+                    {
+                        xAxis: '2022-07-06 20:25:50'
+                    }
+                ],
+                                        
+                                    ]
+                                },
+                                data: [["2022-07-06 20:25:41",1],["2022-07-06 20:25:42",2],["2022-07-06 20:25:43",3],["2022-07-06 20:25:44",4],["2022-07-06 20:25:45",5],["2022-07-06 20:25:46",6],["2022-07-06 20:25:47",7],["2022-07-06 20:25:48",8],["2022-07-06 20:25:49",9],["2022-07-06 20:25:50",10],["2022-07-06 20:25:51",10],["2022-07-06 20:25:52",10],["2022-07-06 20:25:53",10],["2022-07-06 20:25:54",10],["2022-07-06 20:25:55",10],["2022-07-06 20:25:56",10],["2022-07-06 20:25:57",10],["2022-07-06 20:25:58",10],["2022-07-06 20:25:59",10],["2022-07-06 20:26:00",10],["2022-07-06 20:26:01",10],["2022-07-06 20:26:02",10],["2022-07-06 20:26:03",10],["2022-07-06 20:26:04",10],["2022-07-06 20:26:05",10],["2022-07-06 20:26:06",10],["2022-07-06 20:26:07",10],["2022-07-06 20:26:08",10],["2022-07-06 20:26:09",10],["2022-07-06 20:26:10",10],["2022-07-06 20:26:11",10],["2022-07-06 20:26:12",10],["2022-07-06 20:26:13",10],["2022-07-06 20:26:14",10],["2022-07-06 20:26:15",10],["2022-07-06 20:26:16",10],["2022-07-06 20:26:17",10],["2022-07-06 20:26:18",10],["2022-07-06 20:26:19",10],["2022-07-06 20:26:20",10]],
+                            }
+                        ]
+                    });
+                </script>
+            </div>
+        </div>
+
+        
+
+    </div>
+</body>
+</html>
