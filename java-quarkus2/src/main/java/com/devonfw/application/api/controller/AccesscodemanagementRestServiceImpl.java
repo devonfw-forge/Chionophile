@@ -1,5 +1,8 @@
 package com.devonfw.application.api.controller;
 
+import java.sql.Timestamp;
+import java.time.Instant;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -42,8 +45,10 @@ public class AccesscodemanagementRestServiceImpl implements Accesscodemanagement
 
   @Override
   public AccessCodeEto saveAccessCode(AccessCodeEto accessCodeEto) {
+    AccessCodeEntity entity = mapper.map(accessCodeEto);
 
-    return mapper.map(this.accessCodeRepository.save(mapper.map(accessCodeEto)));
+    entity.setCreationTime(Timestamp.from(Instant.now()));
+    return mapper.map(this.accessCodeRepository.save(entity));
   }
 
   @Override

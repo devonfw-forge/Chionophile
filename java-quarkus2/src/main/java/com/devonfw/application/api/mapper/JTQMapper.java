@@ -13,26 +13,23 @@ import org.mapstruct.Mapping;
 import com.devonfw.application.domain.models.AccessCodeEntity;
 import com.devonfw.application.domain.models.QueueEntity;
 import com.devonfw.application.domain.models.VisitorEntity;
-import com.devonfw.application.domain.repositories.QueueRepository;
-import com.devonfw.application.domain.repositories.VisitorRepository;
 
-@Mapper(componentModel = "cdi", injectionStrategy = InjectionStrategy.CONSTRUCTOR, uses = { QueueRepository.class,
-    VisitorRepository.class })
+@Mapper(componentModel = "cdi", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface JTQMapper {
 
-  @Mapping(target = "visitor", source = "visitorId")
-  @Mapping(target = "queue", source = "queueId")
+  @Mapping(target = "visitor", ignore = true)
+  @Mapping(target = "queue", ignore = true)
   AccessCodeEntity map(AccessCodeEto eto);
 
-  @Mapping(source = "visitor.id", target = "visitorId")
-  @Mapping(source = "queue.id", target = "queueId")
+  // @Mapping(source = "visitor.id", target = "visitorId")
+  // @Mapping(source = "queue.id", target = "queueId")
   AccessCodeEto map(AccessCodeEntity entity);
 
   @Mapping(source = ".", target = "accessCode")
   AccessCodeCto mapCto(AccessCodeEntity entity);
 
-  @Mapping(source = "visitor.id", target = "visitorId")
-  @Mapping(source = "queue.id", target = "queueId")
+  // @Mapping(source = "visitor.id", target = "visitorId")
+  // @Mapping(source = "queue.id", target = "queueId")
   List<AccessCodeEto> mapAccessCodeEntityList(List<AccessCodeEntity> entityList);
 
   VisitorEntity map(VisitorEto eto);

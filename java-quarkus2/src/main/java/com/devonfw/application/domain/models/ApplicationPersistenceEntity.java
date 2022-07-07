@@ -1,6 +1,7 @@
 package com.devonfw.application.domain.models;
 
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Transient;
@@ -29,8 +30,8 @@ import lombok.ToString;
 public abstract class ApplicationPersistenceEntity {
 
   @Id
-  @GeneratedValue
-  private Long id;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  Long id;
 
   @Version
   private Integer modificationCounter;
