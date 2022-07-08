@@ -125,14 +125,6 @@
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-swagger-ui</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-smallrye-openapi</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>io.quarkus</groupId>
       <artifactId>quarkus-hibernate-validator</artifactId>
     </dependency>
   </dependencies>
@@ -185,7 +177,7 @@
           </goals>
           <configuration>
             <outputDirectory>target/generated-sources/annotations</outputDirectory>
-            <processor>com.querydsl.apt.jpa.JPAAnnotationProcessor</processor>
+            <processor>com.querydsl.apt.jpa.JPAAnnotationProcessor,lombok.launch.AnnotationProcessorHider$AnnotationProcessor</processor>
           </configuration>
           <!-- ,lombok.launch.AnnotationProcessorHider$AnnotationProcessor,org.mapstruct.ap.MappingProcessor -->
         </execution>
@@ -213,23 +205,23 @@
           <compilerArgs>
             <arg>-parameters</arg>
           </compilerArgs>
-          <annotationProcessorPaths>
-            <path>
-              <groupId>com.querydsl</groupId>
-              <artifactId>querydsl-apt</artifactId>
-              <version>${querydsl.version}</version>
-            </path>
-            <path>
-              <groupId>org.projectlombok</groupId>
-              <artifactId>lombok</artifactId>
-              <version>${lombok.version}</version>
-            </path>
-            <path>
-              <groupId>org.mapstruct</groupId>
-              <artifactId>mapstruct-processor</artifactId>
-              <version>${org.mapstruct.version}</version>
-            </path>
-          </annotationProcessorPaths>
+<!--          <annotationProcessorPaths>-->
+<!--            <path>-->
+<!--              <groupId>com.querydsl</groupId>-->
+<!--              <artifactId>querydsl-apt</artifactId>-->
+<!--              <version>${querydsl.version}</version>-->
+<!--            </path>-->
+<!--            <path>-->
+<!--              <groupId>org.projectlombok</groupId>-->
+<!--              <artifactId>lombok</artifactId>-->
+<!--              <version>${lombok.version}</version>-->
+<!--            </path>-->
+<!--            <path>-->
+<!--              <groupId>org.mapstruct</groupId>-->
+<!--              <artifactId>mapstruct-processor</artifactId>-->
+<!--              <version>${org.mapstruct.version}</version>-->
+<!--            </path>-->
+<!--          </annotationProcessorPaths>-->
         </configuration>
       </plugin>
       <plugin>

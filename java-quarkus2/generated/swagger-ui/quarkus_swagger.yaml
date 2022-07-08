@@ -264,15 +264,15 @@ definitions:
         format: "int32"
       sort:
         $ref: "#/definitions/Sort"
-      pageable:
-        $ref: "#/definitions/Pageable"
-      last:
+      first:
         type: "boolean"
       numberOfElements:
         type: "integer"
         format: "int32"
-      first:
+      last:
         type: "boolean"
+      pageable:
+        $ref: "#/definitions/Pageable"
       empty:
         type: "boolean"
   PageAccessCodeCto:
@@ -296,15 +296,15 @@ definitions:
         format: "int32"
       sort:
         $ref: "#/definitions/Sort"
-      pageable:
-        $ref: "#/definitions/Pageable"
-      last:
+      first:
         type: "boolean"
       numberOfElements:
         type: "integer"
         format: "int32"
-      first:
+      last:
         type: "boolean"
+      pageable:
+        $ref: "#/definitions/Pageable"
       empty:
         type: "boolean"
   PageAccessCodeEto:
@@ -328,15 +328,15 @@ definitions:
         format: "int32"
       sort:
         $ref: "#/definitions/Sort"
-      pageable:
-        $ref: "#/definitions/Pageable"
-      last:
+      first:
         type: "boolean"
       numberOfElements:
         type: "integer"
         format: "int32"
-      first:
+      last:
         type: "boolean"
+      pageable:
+        $ref: "#/definitions/Pageable"
       empty:
         type: "boolean"
   PageQueueEto:
@@ -360,15 +360,15 @@ definitions:
         format: "int32"
       sort:
         $ref: "#/definitions/Sort"
-      pageable:
-        $ref: "#/definitions/Pageable"
-      last:
+      first:
         type: "boolean"
       numberOfElements:
         type: "integer"
         format: "int32"
-      first:
+      last:
         type: "boolean"
+      pageable:
+        $ref: "#/definitions/Pageable"
       empty:
         type: "boolean"
   PageVisitorEto:
@@ -392,15 +392,15 @@ definitions:
         format: "int32"
       sort:
         $ref: "#/definitions/Sort"
-      pageable:
-        $ref: "#/definitions/Pageable"
-      last:
+      first:
         type: "boolean"
       numberOfElements:
         type: "integer"
         format: "int32"
-      first:
+      last:
         type: "boolean"
+      pageable:
+        $ref: "#/definitions/Pageable"
       empty:
         type: "boolean"
   Pageable:
@@ -413,14 +413,14 @@ definitions:
         $ref: "#/definitions/Sort"
       paged:
         type: "boolean"
-      pageSize:
-        type: "integer"
-        format: "int32"
+      unpaged:
+        type: "boolean"
       pageNumber:
         type: "integer"
         format: "int32"
-      unpaged:
-        type: "boolean"
+      pageSize:
+        type: "integer"
+        format: "int32"
   QueueEto:
     type: "object"
     properties:
@@ -447,9 +447,9 @@ definitions:
   Sort:
     type: "object"
     properties:
-      sorted:
-        type: "boolean"
       unsorted:
+        type: "boolean"
+      sorted:
         type: "boolean"
       empty:
         type: "boolean"
