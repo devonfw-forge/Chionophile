@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import com.devonfw.application.api.mapper.JTQMapper;
 import com.devonfw.application.api.model.AccessCodeCto;
 import com.devonfw.application.api.model.AccessCodeEto;
+
 import com.devonfw.application.domain.models.AccessCodeEntity;
 import com.devonfw.application.domain.repositories.AccessCodeRepository;
 import com.devonfw.application.domain.tos.AccessCodeSearchCriteriaTo;
@@ -36,6 +37,7 @@ public class AccesscodemanagementRestServiceImpl implements Accesscodemanagement
 
     return mapper.mapCto(result);
   }
+
   @Override
   public Page<AccessCodeCto> findAccessCodeCtos(AccessCodeSearchCriteriaTo searchCriteriaTo) {
 
@@ -49,7 +51,6 @@ public class AccesscodemanagementRestServiceImpl implements Accesscodemanagement
 
   @Override
   public AccessCodeEto saveAccessCode(AccessCodeEto accessCodeEto) {
-    log.info("here");
     return mapper.map(this.accessCodeRepository.save(mapper.map(accessCodeEto)));
   }
 
@@ -59,6 +60,5 @@ public class AccesscodemanagementRestServiceImpl implements Accesscodemanagement
     this.accessCodeRepository.deleteById(id);
     return id;
   }
-
 
 }

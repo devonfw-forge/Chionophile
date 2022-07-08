@@ -9,6 +9,7 @@ import com.devonfw.application.domain.tos.AccessCodeSearchCriteriaTo;
 /**
  * {@link DefaultRepository} for {@link AccessCodeEntity}
  */
+
 public interface AccessCodeRepositoryFragment {
 
   /**

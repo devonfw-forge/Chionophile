@@ -18,7 +18,6 @@ import com.devonfw.application.domain.utils.QueryUtil;
 import com.querydsl.jpa.impl.JPAQuery;
 
 public class QueueRepositoryImpl implements QueueRepositoryFragment {
-
   @Inject
   EntityManager em;
 

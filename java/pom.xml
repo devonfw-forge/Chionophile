@@ -84,6 +84,42 @@
 
   <build>
     <plugins>
+      <plugin>
+        <groupId>com.github.kongchen</groupId>
+        <artifactId>swagger-maven-plugin</artifactId>
+        <version>3.1.8</version>
+        <configuration>
+          <apiSources>
+            <apiSource>
+              <springmvc>false</springmvc>
+              <locations>
+                <location>com.devonfw.application.jtqj.accesscodemanagement.service.api.rest</location>
+                <location>com.devonfw.application.jtqj.queuemanagement.service.api.rest</location>
+                <location>com.devonfw.application.jtqj.visitormanagement.service.api.rest</location>
+              </locations>
+              <outputFormats>yaml</outputFormats>
+              <swaggerDirectory>generated/swagger-ui</swaggerDirectory>
+              <swaggerFileName>spring_swagger.yaml</swaggerFileName>
+              <schemes>
+                <scheme>https</scheme>
+              </schemes>
+              <info>
+                <title>original JTQ in Spring</title>
+                <description>Original jump the queue implementation</description>
+                <version>v4</version>
+              </info>
+            </apiSource>
+          </apiSources>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>compile</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       <!-- configure java compiler -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

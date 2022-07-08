@@ -9,6 +9,7 @@ import com.devonfw.application.domain.tos.QueueSearchCriteriaTo;
 /**
  * {@link DefaultRepository} for {@link QueueEntity}
  */
+
 public interface QueueRepositoryFragment {
 
   /**

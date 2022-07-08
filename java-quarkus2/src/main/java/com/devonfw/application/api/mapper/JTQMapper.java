@@ -56,4 +56,5 @@ public abstract class JTQMapper {
   public abstract QueueEto map(QueueEntity entity);
 
   public abstract List<QueueEto> mapQueueEntityList(List<QueueEntity> entityList);
+
 }

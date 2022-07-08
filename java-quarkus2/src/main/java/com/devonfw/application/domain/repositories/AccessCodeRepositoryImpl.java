@@ -30,7 +30,6 @@ public class AccessCodeRepositoryImpl implements AccessCodeRepositoryFragment {
     JPAQuery<AccessCodeEntity> query = new JPAQuery<AccessCodeEntity>(em);
     //important! to avoid n+1 issue, we want to return accesscode  + visitor + queue = so we need to join those tables
     //as we only want a single query to be executed(or 2 because of the count for pagination...
-
     query.from(QAccessCodeEntity.accessCodeEntity)
       .innerJoin(alias.visitor, visitorJoin)
       .innerJoin(alias.queue, queueJoin)

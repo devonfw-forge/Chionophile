@@ -45,8 +45,7 @@ public interface AccesscodemanagementRestService {
    */
   @Path("/accesscode/cto/search")
   @POST
-  public Page<AccessCodeCto> findAccessCodeCtos(AccessCodeSearchCriteriaTo
-  searchCriteriaTo);
+  public Page<AccessCodeCto> findAccessCodeCtos(AccessCodeSearchCriteriaTo searchCriteriaTo);
 
   /**
    * Delegates to {@link Accesscodemanagement#findAccessCodeEtos}.
@@ -78,6 +77,5 @@ public interface AccesscodemanagementRestService {
   @DELETE
   @Path("/accesscode/{id}/")
   public long deleteAccessCode(@PathParam("id") long id);
-
 
 }

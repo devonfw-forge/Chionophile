@@ -1,0 +1,433 @@
+---
+swagger: "2.0"
+info:
+  description: "jump the queue implementation in Java Quarkus"
+  version: "v4"
+  title: "JTQ in Quarkus"
+schemes:
+- "https"
+paths:
+  /accesscodemanagement/v1/accesscode:
+    post:
+      operationId: "saveAccessCode"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/AccessCodeEto"
+  /accesscodemanagement/v1/accesscode/cto/{id}:
+    get:
+      operationId: "getAccessCodeCto"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/AccessCodeCto"
+  /accesscodemanagement/v1/accesscode/search:
+    post:
+      operationId: "findAccessCodeEtos"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/PageAccessCodeEto"
+  /accesscodemanagement/v1/accesscode/{id}:
+    delete:
+      operationId: "deleteAccessCode"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "integer"
+            format: "int64"
+  /queuemanagement/v1/queue:
+    post:
+      operationId: "saveQueue"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/QueueEto"
+  /queuemanagement/v1/queue/search:
+    post:
+      operationId: "findQueues"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/PageQueueEto"
+  /queuemanagement/v1/queue/{id}:
+    get:
+      operationId: "getQueue"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/QueueEto"
+    delete:
+      operationId: "deleteQueue"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "integer"
+            format: "int64"
+  /visitormanagement/v1/visitor:
+    post:
+      operationId: "saveVisitor"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/VisitorEto"
+  /visitormanagement/v1/visitor/search:
+    post:
+      operationId: "findVisitors"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/PageVisitorEto"
+  /visitormanagement/v1/visitor/{id}:
+    get:
+      operationId: "getVisitor"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/VisitorEto"
+    delete:
+      operationId: "deleteVisitor"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "integer"
+            format: "int64"
+definitions:
+  AccessCodeCto:
+    type: "object"
+    properties:
+      accessCode:
+        $ref: "#/definitions/AccessCodeEto"
+      visitor:
+        $ref: "#/definitions/VisitorEto"
+      queue:
+        $ref: "#/definitions/QueueEto"
+  AccessCodeEto:
+    type: "object"
+    properties:
+      modificationCounter:
+        type: "integer"
+        format: "int32"
+      id:
+        type: "integer"
+        format: "int64"
+      ticketNumber:
+        type: "string"
+      creationTime:
+        type: "string"
+        format: "date-time"
+      startTime:
+        type: "string"
+        format: "date-time"
+      endTime:
+        type: "string"
+        format: "date-time"
+      visitorId:
+        type: "integer"
+        format: "int64"
+      queueId:
+        type: "integer"
+        format: "int64"
+  Page:
+    type: "object"
+    properties:
+      totalPages:
+        type: "integer"
+        format: "int32"
+      totalElements:
+        type: "integer"
+        format: "int64"
+      size:
+        type: "integer"
+        format: "int32"
+      content:
+        type: "array"
+        items:
+          type: "object"
+      number:
+        type: "integer"
+        format: "int32"
+      sort:
+        $ref: "#/definitions/Sort"
+      first:
+        type: "boolean"
+      pageable:
+        $ref: "#/definitions/Pageable"
+      last:
+        type: "boolean"
+      numberOfElements:
+        type: "integer"
+        format: "int32"
+      empty:
+        type: "boolean"
+  PageAccessCodeEto:
+    type: "object"
+    properties:
+      totalPages:
+        type: "integer"
+        format: "int32"
+      totalElements:
+        type: "integer"
+        format: "int64"
+      size:
+        type: "integer"
+        format: "int32"
+      content:
+        type: "array"
+        items:
+          $ref: "#/definitions/AccessCodeEto"
+      number:
+        type: "integer"
+        format: "int32"
+      sort:
+        $ref: "#/definitions/Sort"
+      first:
+        type: "boolean"
+      pageable:
+        $ref: "#/definitions/Pageable"
+      last:
+        type: "boolean"
+      numberOfElements:
+        type: "integer"
+        format: "int32"
+      empty:
+        type: "boolean"
+  PageQueueEto:
+    type: "object"
+    properties:
+      totalPages:
+        type: "integer"
+        format: "int32"
+      totalElements:
+        type: "integer"
+        format: "int64"
+      size:
+        type: "integer"
+        format: "int32"
+      content:
+        type: "array"
+        items:
+          $ref: "#/definitions/QueueEto"
+      number:
+        type: "integer"
+        format: "int32"
+      sort:
+        $ref: "#/definitions/Sort"
+      first:
+        type: "boolean"
+      pageable:
+        $ref: "#/definitions/Pageable"
+      last:
+        type: "boolean"
+      numberOfElements:
+        type: "integer"
+        format: "int32"
+      empty:
+        type: "boolean"
+  PageVisitorEto:
+    type: "object"
+    properties:
+      totalPages:
+        type: "integer"
+        format: "int32"
+      totalElements:
+        type: "integer"
+        format: "int64"
+      size:
+        type: "integer"
+        format: "int32"
+      content:
+        type: "array"
+        items:
+          $ref: "#/definitions/VisitorEto"
+      number:
+        type: "integer"
+        format: "int32"
+      sort:
+        $ref: "#/definitions/Sort"
+      first:
+        type: "boolean"
+      pageable:
+        $ref: "#/definitions/Pageable"
+      last:
+        type: "boolean"
+      numberOfElements:
+        type: "integer"
+        format: "int32"
+      empty:
+        type: "boolean"
+  Pageable:
+    type: "object"
+    properties:
+      offset:
+        type: "integer"
+        format: "int64"
+      sort:
+        $ref: "#/definitions/Sort"
+      paged:
+        type: "boolean"
+      unpaged:
+        type: "boolean"
+      pageSize:
+        type: "integer"
+        format: "int32"
+      pageNumber:
+        type: "integer"
+        format: "int32"
+  QueueEto:
+    type: "object"
+    properties:
+      modificationCounter:
+        type: "integer"
+        format: "int32"
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+      logo:
+        type: "string"
+      currentNumber:
+        type: "string"
+      attentionTime:
+        type: "string"
+        format: "date-time"
+      minAttentionTime:
+        type: "string"
+        format: "date-time"
+      active:
+        type: "boolean"
+  Sort:
+    type: "object"
+    properties:
+      sorted:
+        type: "boolean"
+      unsorted:
+        type: "boolean"
+      empty:
+        type: "boolean"
+  VisitorEto:
+    type: "object"
+    properties:
+      modificationCounter:
+        type: "integer"
+        format: "int32"
+      id:
+        type: "integer"
+        format: "int64"
+      username:
+        type: "string"
+      name:
+        type: "string"
+      phoneNumber:
+        type: "string"
+      password:
+        type: "string"
+      acceptedCommercial:
+        type: "boolean"
+      acceptedTerms:
+        type: "boolean"
+      userType:
+        type: "boolean"

@@ -10,6 +10,7 @@ import com.devonfw.application.domain.tos.VisitorSearchCriteriaTo;
 /**
  * {@link DefaultRepository} for {@link VisitorEntity}
  */
+
 public interface VisitorRepositoryFragment {
 
   /**

@@ -11,8 +11,6 @@ import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 import lombok.Getter;
@@ -32,6 +30,7 @@ public class AccessCodeEntity extends ApplicationPersistenceEntity {
 
   @Temporal(TemporalType.TIMESTAMP)
   private Date endTime;
+
 
   // , fetch = FetchType.EAGER = eager is evil and you should almost never use it (perf issues, google Hibernate N+1)
   @OneToOne(cascade = CascadeType.DETACH)

@@ -31,7 +31,6 @@ public class QueuemanagementRestServiceImpl implements QueuemanagementRestServic
   public QueueEto getQueue(long id) {
     QueueEntity result = this.repository.findById(id).orElseThrow(() -> new IllegalArgumentException(
         "Entity with ID '" + id + "' was not found!"));
-
     return mapper.map(result);
   }
 
@@ -52,4 +51,4 @@ public class QueuemanagementRestServiceImpl implements QueuemanagementRestServic
    public Page<QueueEto> findQueues(QueueSearchCriteriaTo searchCriteriaTo) {
      return this.repository.findByCriteria(searchCriteriaTo).map(mapper::map);
    }
-  }
+}

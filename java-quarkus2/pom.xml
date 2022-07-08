@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>org.acme</groupId>
-  <artifactId>code-with-quarkus</artifactId>
+  <groupId>com.devonfw</groupId>
+  <artifactId>jtqq</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <properties>
     <compiler-plugin.version>3.8.1</compiler-plugin.version>
@@ -32,6 +32,11 @@
   <dependencies>
     <dependency>
       <groupId>com.devonfw.java.modules</groupId>
+      <artifactId>devon4j-json</artifactId>
+      <version>2020.12.002</version>
+    </dependency>
+    <dependency>
+      <groupId>com.devonfw.java.modules</groupId>
       <artifactId>devon4j-basic</artifactId>
       <version>2020.12.002</version>
     </dependency>
@@ -50,6 +55,14 @@
       <artifactId>querydsl-apt</artifactId>
       <scope>provided</scope>
       <version>${querydsl.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-swagger-ui</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-smallrye-openapi</artifactId>
     </dependency>
     <dependency>
       <groupId>org.projectlombok</groupId>
@@ -125,6 +138,41 @@
   </dependencies>
   <build>
     <plugins>
+    
+      <plugin>
+        <groupId>com.github.kongchen</groupId>
+        <artifactId>swagger-maven-plugin</artifactId>
+        <version>3.1.8</version>
+        <configuration>
+          <apiSources>
+            <apiSource>
+              <springmvc>false</springmvc>
+              <locations>
+                <location>com.devonfw.application.api.controller</location>
+              </locations>
+              <outputFormats>yaml</outputFormats>
+              <swaggerDirectory>generated/swagger-ui</swaggerDirectory>
+              <swaggerFileName>quarkus_swagger</swaggerFileName>
+              <schemes>
+                <scheme>https</scheme>
+              </schemes>
+              <info>
+                <title>JTQ in Quarkus</title>
+                <description>jump the queue implementation in Java Quarkus</description>
+                <version>v4</version>
+              </info>
+            </apiSource>
+          </apiSources>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>compile</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
       <groupId>com.mysema.maven</groupId>
       <artifactId>apt-maven-plugin</artifactId>
