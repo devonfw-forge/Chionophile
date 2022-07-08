@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.Iterator;
 
 import javax.inject.Inject;
-import javax.persistence.EntityGraph;
 import javax.persistence.EntityManager;
 
 import com.devonfw.application.domain.models.*;

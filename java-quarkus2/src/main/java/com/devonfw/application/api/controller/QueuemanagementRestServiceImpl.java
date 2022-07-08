@@ -2,17 +2,14 @@ package com.devonfw.application.api.controller;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import org.springframework.data.domain.Page;
 
 import com.devonfw.application.api.mapper.JTQMapper;
 import com.devonfw.application.api.model.QueueEto;
-import com.devonfw.application.api.model.VisitorEto;
 import com.devonfw.application.domain.models.QueueEntity;
 import com.devonfw.application.domain.repositories.QueueRepository;
 import com.devonfw.application.domain.tos.QueueSearchCriteriaTo;
-import com.devonfw.application.domain.tos.VisitorSearchCriteriaTo;
 
 /**
  * The service implementation for REST calls in order to execute the logic of

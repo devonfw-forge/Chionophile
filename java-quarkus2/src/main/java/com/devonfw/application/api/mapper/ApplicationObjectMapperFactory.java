@@ -11,8 +11,6 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 import io.quarkus.jackson.ObjectMapperCustomizer;
 
-import com.devonfw.module.json.common.base.ObjectMapperFactory;
-
 /**
  * The MappingFactory class to resolve polymorphic conflicts within the .0.1
  * application.

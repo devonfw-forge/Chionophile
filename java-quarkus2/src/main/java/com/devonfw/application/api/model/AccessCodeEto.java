@@ -1,6 +1,5 @@
 package com.devonfw.application.api.model;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 import com.devonfw.module.basic.common.api.to.AbstractEto;

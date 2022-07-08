@@ -5,7 +5,6 @@ import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
-import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -16,6 +15,8 @@ import com.devonfw.application.api.model.VisitorEto;
 import com.devonfw.application.domain.models.AccessCodeEntity;
 import com.devonfw.application.domain.models.QueueEntity;
 import com.devonfw.application.domain.models.VisitorEntity;
+import com.devonfw.application.domain.repositories.QueueRepository;
+import com.devonfw.application.domain.repositories.VisitorRepository;
 
 
 @Mapper(componentModel = "cdi")

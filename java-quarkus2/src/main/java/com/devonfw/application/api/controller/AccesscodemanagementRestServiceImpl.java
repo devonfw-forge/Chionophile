@@ -1,11 +1,8 @@
 package com.devonfw.application.api.controller;
 
 import javax.enterprise.context.RequestScoped;
-import java.sql.Timestamp;
-import java.time.Instant;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import org.springframework.data.domain.Page;
 
@@ -17,13 +14,13 @@ import com.devonfw.application.domain.models.AccessCodeEntity;
 import com.devonfw.application.domain.repositories.AccessCodeRepository;
 import com.devonfw.application.domain.tos.AccessCodeSearchCriteriaTo;
 
-import lombok.extern.slf4j.Slf4j;
+// import lombok.extern.slf4j.Slf4j;
 
 /**
  * The service implementation for REST calls in order to execute the logic of
  * component {@link Accesscodemanagement}.
  */
-@Slf4j
+// @Slf4j
 @RequestScoped
 public class AccesscodemanagementRestServiceImpl implements AccesscodemanagementRestService {
 
