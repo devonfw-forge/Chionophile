@@ -1,6 +1,5 @@
 package com.devonfw.application.api.controller;
 
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -16,7 +15,7 @@ import com.devonfw.application.domain.tos.VisitorSearchCriteriaTo;
  * The service implementation for REST calls in order to execute the logic of
  * component {@link Visitormanagement}.
  */
-@RequestScoped
+@Named("VisitormanagementRestService")
 public class VisitormanagementRestServiceImpl implements VisitormanagementRestService {
 
   @Inject
@@ -46,8 +45,8 @@ public class VisitormanagementRestServiceImpl implements VisitormanagementRestSe
     return id;
   }
 
-  @Override
-  public Page<VisitorEto> findVisitors(VisitorSearchCriteriaTo searchCriteriaTo) {
-    return this.visitorrepo.findByCriteria(searchCriteriaTo).map(mapper::map);
-  }
+   @Override
+   public Page<VisitorEto> findVisitors(VisitorSearchCriteriaTo searchCriteriaTo) {
+     return this.visitorrepo.findByCriteria(searchCriteriaTo).map(mapper::map);
+   }
 }
