@@ -1,9 +1,11 @@
 package com.devonfw.application.domain.models;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -21,9 +23,12 @@ public class QueueEntity extends ApplicationPersistenceEntity {
 
   private String currentNumber;
 
-  private Timestamp attentionTime;
+  @Temporal(TemporalType.TIMESTAMP)
+  private Date attentionTime;
 
-  private Timestamp minAttentionTime;
+  @Temporal(TemporalType.TIMESTAMP)
+  private Date minAttentionTime;
+
 
   private Boolean active;
 }
