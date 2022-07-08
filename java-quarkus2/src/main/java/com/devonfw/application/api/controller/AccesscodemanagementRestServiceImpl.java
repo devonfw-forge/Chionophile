@@ -1,6 +1,9 @@
 package com.devonfw.application.api.controller;
 
 import javax.enterprise.context.RequestScoped;
+import java.sql.Timestamp;
+import java.time.Instant;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 

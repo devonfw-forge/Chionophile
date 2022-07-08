@@ -6,11 +6,13 @@ import javax.persistence.*;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "AccessCode")
 @Getter
 @Setter
+@ToString
 public class AccessCodeEntity extends ApplicationPersistenceEntity {
 
   @Temporal(TemporalType.TIMESTAMP)
@@ -22,7 +24,6 @@ public class AccessCodeEntity extends ApplicationPersistenceEntity {
   @Temporal(TemporalType.TIMESTAMP)
   private Date endTime;
 
-
   // , fetch = FetchType.EAGER = eager is evil and you should almost never use it (perf issues, google Hibernate N+1)
   @OneToOne(cascade = CascadeType.DETACH)
   @JoinColumn(name = "idVisitor")
@@ -31,5 +32,4 @@ public class AccessCodeEntity extends ApplicationPersistenceEntity {
   @ManyToOne(cascade = CascadeType.DETACH)
   @JoinColumn(name = "idQueue")
   private QueueEntity queue;
-
 }

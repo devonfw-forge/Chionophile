@@ -16,8 +16,7 @@ import com.devonfw.application.api.model.VisitorEto;
 import com.devonfw.application.domain.models.AccessCodeEntity;
 import com.devonfw.application.domain.models.QueueEntity;
 import com.devonfw.application.domain.models.VisitorEntity;
-import com.devonfw.application.domain.repositories.QueueRepository;
-import com.devonfw.application.domain.repositories.VisitorRepository;
+
 
 @Mapper(componentModel = "cdi")
 @ApplicationScoped
@@ -37,11 +36,14 @@ public abstract class JTQMapper {
   @Mapping(source = "queue.id", target = "queueId")
   public abstract AccessCodeEto map(AccessCodeEntity entity);
 
+
   public abstract AccessCodeCto mapCto(AccessCodeEntity entity);
+
 
   @Mapping(source = "visitor.id", target = "visitorId")
   @Mapping(source = "queue.id", target = "queueId")
   public abstract List<AccessCodeEto> mapAccessCodeEntityList(List<AccessCodeEntity> entityList);
+
 
   public abstract VisitorEntity map(VisitorEto eto);
 
