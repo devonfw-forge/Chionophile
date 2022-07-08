@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -31,11 +33,12 @@ public class AccessCodeEntity extends ApplicationPersistenceEntity {
   @Temporal(TemporalType.TIMESTAMP)
   private Date endTime;
 
-  @OneToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
+  // , fetch = FetchType.EAGER = eager is evil and you should almost never use it (perf issues, google Hibernate N+1)
+  @OneToOne(cascade = CascadeType.DETACH)
   @JoinColumn(name = "idVisitor")
   private VisitorEntity visitor;
 
-  @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
+  @ManyToOne(cascade = CascadeType.DETACH)
   @JoinColumn(name = "idQueue")
   private QueueEntity queue;
 

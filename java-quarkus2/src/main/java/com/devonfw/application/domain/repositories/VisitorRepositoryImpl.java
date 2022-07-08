@@ -25,7 +25,7 @@ public class VisitorRepositoryImpl implements VisitorRepositoryFragment {
 
     QVisitorEntity alias = QVisitorEntity.visitorEntity;
     JPAQuery<VisitorEntity> query = new JPAQuery<VisitorEntity>(em);
-
+    query.from(alias);
     String username = criteria.getUsername();
     if (username != null && !username.isEmpty()) {
       QueryUtil.get().whereString(query, alias.username, username,

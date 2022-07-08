@@ -26,6 +26,7 @@ public class QueueRepositoryImpl implements QueueRepositoryFragment {
 
     QQueueEntity alias = QQueueEntity.queueEntity;
     JPAQuery<QueueEntity> query = new JPAQuery<QueueEntity>(em);
+    query.from(alias);
 
     String name = criteria.getName();
     if (name != null && !name.isEmpty()) {
