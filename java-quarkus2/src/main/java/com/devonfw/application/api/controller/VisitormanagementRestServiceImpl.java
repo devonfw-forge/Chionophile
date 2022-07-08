@@ -1,7 +1,7 @@
 package com.devonfw.application.api.controller;
 
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import org.springframework.data.domain.Page;
 
@@ -15,7 +15,7 @@ import com.devonfw.application.domain.tos.VisitorSearchCriteriaTo;
  * The service implementation for REST calls in order to execute the logic of
  * component {@link Visitormanagement}.
  */
-@RequestScoped
+@Named("VisitormanagementRestService")
 public class VisitormanagementRestServiceImpl implements VisitormanagementRestService {
 
   @Inject

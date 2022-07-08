@@ -9,5 +9,4 @@ import com.devonfw.application.domain.models.VisitorEntity;
  */
 public interface VisitorRepository extends JpaRepository<VisitorEntity, Long>, VisitorRepositoryFragment {
 
-
 }

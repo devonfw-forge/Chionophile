@@ -1,13 +1,8 @@
 package com.devonfw.application.domain.repositories;
 
-import org.springframework.data.domain.Page;
-
 import com.devonfw.application.domain.models.VisitorEntity;
 import com.devonfw.application.domain.tos.VisitorSearchCriteriaTo;
-
-/**
- * {@link DefaultRepository} for {@link VisitorEntity}
- */
+import org.springframework.data.domain.Page;
 
 public interface VisitorRepositoryFragment {
 
@@ -19,7 +14,7 @@ public interface VisitorRepositoryFragment {
    *         will return a unique page with all the objects that matched the
    *         search.
    */
-  public Page<VisitorEntity> findByCriteria(VisitorSearchCriteriaTo criteria);
+  Page<VisitorEntity> findByCriteria(VisitorSearchCriteriaTo criteria);
 
   /**
    * Add sorting to the given query on the given alias

@@ -1,13 +1,8 @@
 package com.devonfw.application.domain.repositories;
 
-import org.springframework.data.domain.Page;
-
 import com.devonfw.application.domain.models.AccessCodeEntity;
 import com.devonfw.application.domain.tos.AccessCodeSearchCriteriaTo;
-
-/**
- * {@link DefaultRepository} for {@link AccessCodeEntity}
- */
+import org.springframework.data.domain.Page;
 
 public interface AccessCodeRepositoryFragment {
 
@@ -19,7 +14,7 @@ public interface AccessCodeRepositoryFragment {
    *         will return a unique page with all the objects that matched the
    *         search.
    */
-  public Page<AccessCodeEntity> findByCriteria(AccessCodeSearchCriteriaTo criteria);
+  Page<AccessCodeEntity> findByCriteria(AccessCodeSearchCriteriaTo criteria);
 
   /**
    * Add sorting to the given query on the given alias

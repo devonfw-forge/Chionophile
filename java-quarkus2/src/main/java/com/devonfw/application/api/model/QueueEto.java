@@ -1,6 +1,6 @@
 package com.devonfw.application.api.model;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 import com.devonfw.module.basic.common.api.to.AbstractEto;
 
@@ -22,9 +22,9 @@ public class QueueEto extends AbstractEto {
 
   private String currentNumber;
 
-  private Date attentionTime;
+  private Timestamp attentionTime;
 
-  private Date minAttentionTime;
+  private Timestamp minAttentionTime;
 
   private Boolean active;
 
