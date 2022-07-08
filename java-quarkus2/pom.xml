@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.devonfw</groupId>
   <artifactId>jtqq</artifactId>
@@ -14,9 +15,6 @@
     <quarkus.platform.version>2.10.0.Final</quarkus.platform.version>
     <skipITs>true</skipITs>
     <surefire-plugin.version>3.0.0-M7</surefire-plugin.version>
-    <org.mapstruct.version>1.5.2.Final</org.mapstruct.version>
-    <lombok.version>1.18.24</lombok.version>
-    <querydsl.version>5.0.0</querydsl.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -41,20 +39,15 @@
       <version>2020.12.002</version>
     </dependency>
     <dependency>
-      <groupId>com.devonfw.java.modules</groupId>
-      <artifactId>devon4j-json</artifactId>
-      <version>2020.12.002</version>
-    </dependency>
-    <dependency>
       <groupId>com.querydsl</groupId>
       <artifactId>querydsl-jpa</artifactId>
-      <version>${querydsl.version}</version>
+      <version>4.3.1</version>
     </dependency>
     <dependency>
       <groupId>com.querydsl</groupId>
       <artifactId>querydsl-apt</artifactId>
+      <version>4.3.1</version>
       <scope>provided</scope>
-      <version>${querydsl.version}</version>
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
@@ -67,10 +60,17 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>${lombok.version}</version>
+      <version>1.18.24</version>
       <scope>provided</scope>
     </dependency>
-
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-spring-data-rest</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-spring-web</artifactId>
+    </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-spring-data-jpa</artifactId>
@@ -85,7 +85,7 @@
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-resteasy-jackson</artifactId>
+      <artifactId>quarkus-resteasy-reactive-jackson</artifactId>
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
@@ -101,35 +101,15 @@
       <artifactId>rest-assured</artifactId>
       <scope>test</scope>
     </dependency>
-<!--    Normally we would enable this in order to get better logs for the app(important for devops, prod use)-->
-<!--    But as any logging/io op this comes with a performance penalty, and it would skew the resutls of yoru tests, disabled for now-->
-
-<!--    <dependency>-->
-<!--      <groupId>org.tkit.quarkus</groupId>-->
-<!--      <artifactId>tkit-quarkus-log-cdi</artifactId>-->
-<!--      <version>1.4.5</version>-->
-<!--    </dependency>-->
-<!--    <dependency>-->
-<!--      <groupId>org.tkit.quarkus</groupId>-->
-<!--      <artifactId>tkit-quarkus-log-rs</artifactId>-->
-<!--      <version>1.4.5</version>-->
-<!--    </dependency>-->
-
     <dependency>
       <groupId>org.mapstruct</groupId>
       <artifactId>mapstruct-processor</artifactId>
-      <version>${org.mapstruct.version}</version>
-      <scope>provided</scope>
+      <version>1.4.2.Final</version>
     </dependency>
     <dependency>
       <groupId>org.mapstruct</groupId>
       <artifactId>mapstruct</artifactId>
-      <version>${org.mapstruct.version}</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-hibernate-validator</artifactId>
+      <version>1.4.2.Final</version>
     </dependency>
   </dependencies>
   <build>
@@ -186,24 +166,6 @@
         </executions>
       </plugin>
       <plugin>
-      <groupId>com.mysema.maven</groupId>
-      <artifactId>apt-maven-plugin</artifactId>
-      <version>1.1.3</version>
-      <executions>
-        <execution>
-          <phase>generate-sources</phase>
-          <goals>
-            <goal>process</goal>
-          </goals>
-          <configuration>
-            <outputDirectory>target/generated-sources/annotations</outputDirectory>
-            <processor>com.querydsl.apt.jpa.JPAAnnotationProcessor,lombok.launch.AnnotationProcessorHider$AnnotationProcessor</processor>
-          </configuration>
-          <!-- ,lombok.launch.AnnotationProcessorHider$AnnotationProcessor,org.mapstruct.ap.MappingProcessor -->
-        </execution>
-      </executions>
-    </plugin>
-      <plugin>
         <groupId>${quarkus.platform.group-id}</groupId>
         <artifactId>quarkus-maven-plugin</artifactId>
         <version>${quarkus.platform.version}</version>
@@ -225,23 +187,6 @@
           <compilerArgs>
             <arg>-parameters</arg>
           </compilerArgs>
-<!--          <annotationProcessorPaths>-->
-<!--            <path>-->
-<!--              <groupId>com.querydsl</groupId>-->
-<!--              <artifactId>querydsl-apt</artifactId>-->
-<!--              <version>${querydsl.version}</version>-->
-<!--            </path>-->
-<!--            <path>-->
-<!--              <groupId>org.projectlombok</groupId>-->
-<!--              <artifactId>lombok</artifactId>-->
-<!--              <version>${lombok.version}</version>-->
-<!--            </path>-->
-<!--            <path>-->
-<!--              <groupId>org.mapstruct</groupId>-->
-<!--              <artifactId>mapstruct-processor</artifactId>-->
-<!--              <version>${org.mapstruct.version}</version>-->
-<!--            </path>-->
-<!--          </annotationProcessorPaths>-->
         </configuration>
       </plugin>
       <plugin>

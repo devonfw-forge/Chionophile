@@ -1,7 +1,6 @@
 package com.devonfw.application.domain.tos;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 import com.devonfw.module.basic.common.api.query.StringSearchConfigTo;
 
@@ -20,11 +19,11 @@ public class AccessCodeSearchCriteriaTo extends AbstractSearchCriteriaTo {
 
   private String ticketNumber;
 
-  private Date creationTime;
+  private Timestamp creationTime;
 
-  private Date startTime;
+  private Timestamp startTime;
 
-  private Date endTime;
+  private Timestamp endTime;
 
   private Long visitorId;
 
