@@ -34,6 +34,11 @@
       <version>2020.12.002</version>
     </dependency>
     <dependency>
+      <groupId>com.devonfw.java.modules</groupId>
+      <artifactId>devon4j-json</artifactId>
+      <version>2020.12.002</version>
+    </dependency>
+    <dependency>
       <groupId>com.querydsl</groupId>
       <artifactId>querydsl-jpa</artifactId>
       <version>4.3.1</version>
@@ -50,14 +55,7 @@
       <version>1.18.24</version>
       <scope>provided</scope>
     </dependency>
-    <dependency>
-      <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-spring-data-rest</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-spring-web</artifactId>
-    </dependency>
+  
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-spring-data-jpa</artifactId>
@@ -72,7 +70,7 @@
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-resteasy-reactive-jackson</artifactId>
+      <artifactId>quarkus-resteasy-jackson</artifactId>
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
@@ -85,6 +83,17 @@
       <scope>test</scope>
     </dependency>
     <dependency>
+      <groupId>org.tkit.quarkus</groupId>
+      <artifactId>tkit-quarkus-log-cdi</artifactId>
+      <version>1.4.5</version>
+    </dependency>
+    <dependency>
+			<groupId>org.tkit.quarkus</groupId>
+			<artifactId>tkit-quarkus-log-rs</artifactId>
+			<version>1.4.5</version>
+		</dependency>
+
+    <dependency>
       <groupId>org.mapstruct</groupId>
       <artifactId>mapstruct-processor</artifactId>
       <version>1.4.2.Final</version>
@@ -94,6 +103,18 @@
       <artifactId>mapstruct</artifactId>
       <version>1.4.2.Final</version>
     </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-swagger-ui</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-smallrye-openapi</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-hibernate-validator</artifactId>
+  </dependency>
   </dependencies>
   <build>
     <plugins>

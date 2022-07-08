@@ -1,6 +1,6 @@
 package com.devonfw.application.domain.models;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -24,10 +24,10 @@ public class QueueEntity extends ApplicationPersistenceEntity {
   private String currentNumber;
 
   @Temporal(TemporalType.TIMESTAMP)
-  private Timestamp attentionTime;
+  private Date attentionTime;
 
   @Temporal(TemporalType.TIMESTAMP)
-  private Timestamp minAttentionTime;
+  private Date minAttentionTime;
 
   private Boolean active;
 }

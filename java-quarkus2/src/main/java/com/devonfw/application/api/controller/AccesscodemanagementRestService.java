@@ -1,4 +1,4 @@
-package com.devonfw.application.api;
+package com.devonfw.application.api.controller;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -9,6 +9,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
 
 import com.devonfw.application.api.model.AccessCodeCto;
@@ -22,6 +23,7 @@ import com.devonfw.application.domain.tos.AccessCodeSearchCriteriaTo;
 @Path("/accesscodemanagement/v1")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+@Tag(name = "accesscode")
 public interface AccesscodemanagementRestService {
 
   /**
@@ -41,9 +43,10 @@ public interface AccesscodemanagementRestService {
    *                         finding accesscodes.
    * @return the {@link Page list} of matching {@link AccessCodeCto}s.
    */
-  // @Path("/accesscode/cto/search")
-  // @POST
-  // public Page<AccessCodeCto> findAccessCodeCtos(AccessCodeSearchCriteriaTo searchCriteriaTo);
+  @Path("/accesscode/cto/search")
+  @POST
+  public Page<AccessCodeCto> findAccessCodeCtos(AccessCodeSearchCriteriaTo
+  searchCriteriaTo);
 
   /**
    * Delegates to {@link Accesscodemanagement#findAccessCodeEtos}.
@@ -52,9 +55,9 @@ public interface AccesscodemanagementRestService {
    *                         finding accesscodes.
    * @return the {@link Page list} of matching {@link AccessCodeEto}s.
    */
-  // @POST
-  // @Path("/accesscode/search")
-  // public Page<AccessCodeEto> findAccessCodeEtos(AccessCodeSearchCriteriaTo searchCriteriaTo);
+  @POST
+  @Path("/accesscode/search")
+  public Page<AccessCodeEto> findAccessCodeEtos(AccessCodeSearchCriteriaTo searchCriteriaTo);
 
   /**
    * Delegates to {@link Accesscodemanagement#saveAccessCode}.
@@ -75,5 +78,6 @@ public interface AccesscodemanagementRestService {
   @DELETE
   @Path("/accesscode/{id}/")
   public long deleteAccessCode(@PathParam("id") long id);
+
 
 }

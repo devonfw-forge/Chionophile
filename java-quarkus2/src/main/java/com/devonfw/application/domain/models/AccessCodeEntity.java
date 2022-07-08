@@ -1,6 +1,6 @@
 package com.devonfw.application.domain.models;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -23,13 +23,13 @@ import lombok.Setter;
 public class AccessCodeEntity extends ApplicationPersistenceEntity {
 
   @Temporal(TemporalType.TIMESTAMP)
-  private Timestamp creationTime;
+  private Date creationTime;
 
   @Temporal(TemporalType.TIMESTAMP)
-  private Timestamp startTime;
+  private Date startTime;
 
   @Temporal(TemporalType.TIMESTAMP)
-  private Timestamp endTime;
+  private Date endTime;
 
   @OneToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
   @JoinColumn(name = "idVisitor")
@@ -38,45 +38,5 @@ public class AccessCodeEntity extends ApplicationPersistenceEntity {
   @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
   @JoinColumn(name = "idQueue")
   private QueueEntity queue;
-
-  @Transient
-  public Long getVisitorId() {
-
-    if (this.visitor == null) {
-      return null;
-    }
-    return this.visitor.getId();
-  }
-
-  public void setVisitorId(Long visitorId) {
-
-    if (visitorId == null) {
-      this.visitor = null;
-    } else {
-      VisitorEntity visitorEntity = new VisitorEntity();
-      visitorEntity.setId(visitorId);
-      this.visitor = visitorEntity;
-    }
-  }
-
-  @Transient
-  public Long getQueueId() {
-
-    if (this.queue == null) {
-      return null;
-    }
-    return this.queue.getId();
-  }
-
-  public void setQueueId(Long queueId) {
-
-    if (queueId == null) {
-      this.queue = null;
-    } else {
-      QueueEntity queueEntity = new QueueEntity();
-      queueEntity.setId(queueId);
-      this.queue = queueEntity;
-    }
-  }
 
 }

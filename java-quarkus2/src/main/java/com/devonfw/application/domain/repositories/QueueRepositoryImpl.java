@@ -1,6 +1,6 @@
 package com.devonfw.application.domain.repositories;
 
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Iterator;
 
 import javax.inject.Inject;
@@ -17,11 +17,11 @@ import com.devonfw.application.domain.tos.QueueSearchCriteriaTo;
 import com.devonfw.application.domain.utils.QueryUtil;
 import com.querydsl.jpa.impl.JPAQuery;
 
-public abstract class QueueRepositoryImpl implements QueueRepository {
-  
+public class QueueRepositoryImpl implements QueueRepositoryFragment {
+
   @Inject
   EntityManager em;
-  
+
   public Page<QueueEntity> findByCriteria(QueueSearchCriteriaTo criteria) {
 
     QQueueEntity alias = QQueueEntity.queueEntity;
@@ -39,11 +39,11 @@ public abstract class QueueRepositoryImpl implements QueueRepository {
     if (currentNumber != null && !currentNumber.isEmpty()) {
       QueryUtil.get().whereString(query, alias.currentNumber, currentNumber, criteria.getCurrentNumberOption());
     }
-    Timestamp attentionTime = criteria.getAttentionTime();
+    Date attentionTime = criteria.getAttentionTime();
     if (attentionTime != null) {
       query.where(alias.attentionTime.eq(attentionTime));
     }
-    Timestamp minAttentionTime = criteria.getMinAttentionTime();
+    Date minAttentionTime = criteria.getMinAttentionTime();
     if (minAttentionTime != null) {
       query.where(alias.minAttentionTime.eq(minAttentionTime));
     }
@@ -60,7 +60,6 @@ public abstract class QueueRepositoryImpl implements QueueRepository {
     return QueryUtil.get().findPaginatedGeneric(criteria.getPageable(), query, true);
   }
 
-  
   public void addOrderBy(JPAQuery<QueueEntity> query, QQueueEntity alias, Sort sort) {
 
     if (sort != null && sort.isSorted()) {

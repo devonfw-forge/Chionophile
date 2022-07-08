@@ -1,48 +1,55 @@
-package com.devonfw.application.api;
+package com.devonfw.application.api.controller;
 
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.springframework.data.domain.Page;
 
+import com.devonfw.application.api.mapper.JTQMapper;
 import com.devonfw.application.api.model.AccessCodeCto;
 import com.devonfw.application.api.model.AccessCodeEto;
-import com.devonfw.application.api.model.JTQMapper;
 import com.devonfw.application.domain.models.AccessCodeEntity;
 import com.devonfw.application.domain.repositories.AccessCodeRepository;
 import com.devonfw.application.domain.tos.AccessCodeSearchCriteriaTo;
 
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The service implementation for REST calls in order to execute the logic of
  * component {@link Accesscodemanagement}.
  */
-@Named("AccesscodemanagementRestService")
+@Slf4j
+@RequestScoped
 public class AccesscodemanagementRestServiceImpl implements AccesscodemanagementRestService {
 
   @Inject
   JTQMapper mapper;
 
   @Inject
-  private AccessCodeRepository accessCodeRepository;
+  AccessCodeRepository accessCodeRepository;
 
   @Override
   public AccessCodeCto getAccessCodeCto(long id) {
     AccessCodeEntity result = this.accessCodeRepository.findById(id).orElseThrow(() -> new IllegalArgumentException(
-      "Entity with ID '" + id + "' was not found!"));
+        "Entity with ID '" + id + "' was not found!"));
 
     return mapper.mapCto(result);
   }
+  @Override
+  public Page<AccessCodeCto> findAccessCodeCtos(AccessCodeSearchCriteriaTo searchCriteriaTo) {
 
-  // @Override
-  // public Page<AccessCodeCto> findAccessCodeCtos(AccessCodeSearchCriteriaTo searchCriteriaTo) {
+    return this.accessCodeRepository.findByCriteria(searchCriteriaTo).map(mapper::mapCto);
+  }
 
-  //   return this.accessCodeRepository.findByCriteria(searchCriteriaTo);
-  // }
+  @Override
+  public Page<AccessCodeEto> findAccessCodeEtos(AccessCodeSearchCriteriaTo searchCriteriaTo) {
+    return this.accessCodeRepository.findByCriteria(searchCriteriaTo).map(e -> mapper.map(e));
+  }
 
   @Override
   public AccessCodeEto saveAccessCode(AccessCodeEto accessCodeEto) {
-
+    log.info("here");
     return mapper.map(this.accessCodeRepository.save(mapper.map(accessCodeEto)));
   }
 
@@ -53,9 +60,5 @@ public class AccesscodemanagementRestServiceImpl implements Accesscodemanagement
     return id;
   }
 
-  // @Override
-  // public Page<AccessCodeEto> findAccessCodeEtos(AccessCodeSearchCriteriaTo searchCriteriaTo) {
 
-  //   return this.accessCodeRepository.findAccessCodeEtos(searchCriteriaTo);
-  // }
 }

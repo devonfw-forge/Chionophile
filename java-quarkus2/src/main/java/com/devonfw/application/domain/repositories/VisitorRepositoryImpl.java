@@ -16,7 +16,7 @@ import com.devonfw.application.domain.utils.QueryUtil;
 import com.querydsl.jpa.impl.JPAQuery;
 import org.springframework.data.domain.Sort.Order;
 
-public abstract class VisitorRepositoryImpl implements VisitorRepository {
+public class VisitorRepositoryImpl implements VisitorRepositoryFragment {
 
   @Inject
   EntityManager em;

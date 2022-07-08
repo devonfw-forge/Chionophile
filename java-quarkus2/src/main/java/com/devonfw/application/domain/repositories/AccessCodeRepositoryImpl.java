@@ -1,6 +1,6 @@
 package com.devonfw.application.domain.repositories;
 
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Iterator;
 
 import javax.inject.Inject;
@@ -17,7 +17,7 @@ import com.devonfw.application.domain.tos.AccessCodeSearchCriteriaTo;
 import com.devonfw.application.domain.utils.QueryUtil;
 import com.querydsl.jpa.impl.JPAQuery;
 
-public abstract class AccessCodeRepositoryImpl implements AccessCodeRepository {
+public class AccessCodeRepositoryImpl implements AccessCodeRepositoryFragment {
 
   @Inject
   EntityManager em;
@@ -26,16 +26,19 @@ public abstract class AccessCodeRepositoryImpl implements AccessCodeRepository {
 
     QAccessCodeEntity alias = QAccessCodeEntity.accessCodeEntity;
     JPAQuery<AccessCodeEntity> query = new JPAQuery<AccessCodeEntity>(em);
-
-    Timestamp creationTime = criteria.getCreationTime();
+    query.from(QAccessCodeEntity.accessCodeEntity)
+    // .leftJoin(QAccessCodeEntity.accessCodeEntity.visitor)
+    // .leftJoin(alias.queue);
+    ;
+    Date creationTime = criteria.getCreationTime();
     if (creationTime != null) {
       query.where(alias.creationTime.eq(creationTime));
     }
-    Timestamp startTime = criteria.getStartTime();
+    Date startTime = criteria.getStartTime();
     if (startTime != null) {
       query.where(alias.startTime.eq(startTime));
     }
-    Timestamp endTime = criteria.getEndTime();
+    Date endTime = criteria.getEndTime();
     if (endTime != null) {
       query.where(alias.endTime.eq(endTime));
     }
@@ -55,7 +58,7 @@ public abstract class AccessCodeRepositoryImpl implements AccessCodeRepository {
 
     return QueryUtil.get().findPaginatedGeneric(criteria.getPageable(), query, true);
   }
-  
+
   /**
    * Add sorting to the given query on the given alias
    *
