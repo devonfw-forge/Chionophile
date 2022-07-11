@@ -269,10 +269,10 @@ definitions:
       numberOfElements:
         type: "integer"
         format: "int32"
-      last:
-        type: "boolean"
       pageable:
         $ref: "#/definitions/Pageable"
+      last:
+        type: "boolean"
       empty:
         type: "boolean"
   PageAccessCodeCto:
@@ -305,8 +305,6 @@ definitions:
         $ref: "#/definitions/Pageable"
       last:
         type: "boolean"
-      pageable:
-        $ref: "#/definitions/Pageable"
       empty:
         type: "boolean"
   PageAccessCodeEto:
@@ -339,8 +337,6 @@ definitions:
         $ref: "#/definitions/Pageable"
       last:
         type: "boolean"
-      pageable:
-        $ref: "#/definitions/Pageable"
       empty:
         type: "boolean"
   PageQueueEto:
@@ -369,10 +365,10 @@ definitions:
       numberOfElements:
         type: "integer"
         format: "int32"
-      last:
-        type: "boolean"
       pageable:
         $ref: "#/definitions/Pageable"
+      last:
+        type: "boolean"
       empty:
         type: "boolean"
   PageVisitorEto:
@@ -401,10 +397,10 @@ definitions:
       numberOfElements:
         type: "integer"
         format: "int32"
-      last:
-        type: "boolean"
       pageable:
         $ref: "#/definitions/Pageable"
+      last:
+        type: "boolean"
       empty:
         type: "boolean"
   Pageable:
@@ -415,6 +411,16 @@ definitions:
         format: "int64"
       sort:
         $ref: "#/definitions/Sort"
+      pageNumber:
+        type: "integer"
+        format: "int32"
+      unpaged:
+        type: "boolean"
+      pageSize:
+        type: "integer"
+        format: "int32"
+      paged:
+        type: "boolean"
   QueueEto:
     type: "object"
     properties:
@@ -441,9 +447,9 @@ definitions:
   Sort:
     type: "object"
     properties:
-      unsorted:
-        type: "boolean"
       sorted:
+        type: "boolean"
+      unsorted:
         type: "boolean"
       empty:
         type: "boolean"

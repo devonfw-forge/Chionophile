@@ -1,7 +1,6 @@
 package com.devonfw.application.api.model;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 import com.devonfw.module.basic.common.api.to.AbstractEto;
 
@@ -19,11 +18,11 @@ public class AccessCodeEto extends AbstractEto {
 
   private String ticketNumber;
 
-  private Date creationTime;
+  private Timestamp creationTime;
 
-  private Date startTime;
+  private Timestamp startTime;
 
-  private Date endTime;
+  private Timestamp endTime;
 
   private Long visitorId;
 
