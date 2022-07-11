@@ -1,6 +1,7 @@
 package com.devonfw.application.domain.tos;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 import com.devonfw.module.basic.common.api.query.StringSearchConfigTo;
 
@@ -23,9 +24,9 @@ public class QueueSearchCriteriaTo extends AbstractSearchCriteriaTo {
 
   private String currentNumber;
 
-  private Timestamp attentionTime;
+  private Date attentionTime;
 
-  private Timestamp minAttentionTime;
+  private Date minAttentionTime;
 
   private Boolean active;
 

@@ -9,6 +9,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
 
 import com.devonfw.application.api.model.VisitorEto;
@@ -21,6 +22,7 @@ import com.devonfw.application.domain.tos.VisitorSearchCriteriaTo;
 @Path("/visitormanagement/v1")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+@Tag(name = "visitors")
 public interface VisitormanagementRestService {
 
   /**
@@ -60,8 +62,8 @@ public interface VisitormanagementRestService {
    *                         finding visitors.
    * @return the {@link Page list} of matching {@link VisitorEto}s.
    */
-   @Path("/visitor/search")
-   @POST
-   public Page<VisitorEto> findVisitors(VisitorSearchCriteriaTo searchCriteriaTo);
+  @Path("/visitor/search")
+  @POST
+  public Page<VisitorEto> findVisitors(VisitorSearchCriteriaTo searchCriteriaTo);
 
 }
