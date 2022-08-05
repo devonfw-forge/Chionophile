@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>java-quarkus - 1.0.0-SNAPSHOT</title>
+        <title>code-with-quarkus - 1.0.0-SNAPSHOT</title>
         <style>
             body {
                 margin: 0;
@@ -141,6 +141,7 @@
             }
             .provided-code b {
                 font-weight: 400;
+                margin-bottom: 15px;
             }
             @media screen and (max-width: 1023px) {
                 .header-wrapper {
@@ -234,10 +235,10 @@
                         <div class="app-details">
                             <h5>Application</h5>
                             <ul>
-                                <li>GroupId: <code>com.devonfw</code></li>
-                                <li>ArtifactId: <code>java-quarkus</code></li>
+                                <li>GroupId: <code>org.acme</code></li>
+                                <li>ArtifactId: <code>code-with-quarkus</code></li>
                                 <li>Version: <code>1.0.0-SNAPSHOT</code></li>
-                                <li>Quarkus Version: <code>2.8.2.Final</code></li>
+                                <li>Quarkus Version: <code>2.10.0.Final</code></li>
                             </ul>
                         </div>
                     </div>
@@ -257,9 +258,9 @@
                     <p>Generated starter code:</p>
                     <ul class="provided-code">
                                 <li class="provided-code">
-            <b>RESTEasy Reactive</b>&nbsp;Easily start your Reactive RESTful Web Services
-            <br />&rsaquo; <code>@Path: <a href="/hello" class="path-link" target="_blank">/hello</a></code>
-            <br />&rsaquo; <a href="https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources" class="guide-link" target="_blank">Related guide</a>
+            <b>Spring Web</b>&nbsp;Spring, the Quarkus way! Start your RESTful Web Services with a Spring Controller.
+            <br />&rsaquo; <code>@Path: <a href="/greeting" class="path-link" target="_blank">/greeting</a></code>
+            <br />&rsaquo; <a href="https://quarkus.io/guides/spring-web#greetingcontroller" class="guide-link" target="_blank">Related guide</a>
         </li>
 
                     </ul>
@@ -267,8 +268,8 @@
                 <div class="right-column">
                     <h3>Selected extensions</h3>
                     <ul>
-                        <li title="Jackson serialization support for RESTEasy Reactive. This extension is not compatible with the quarkus-resteasy extension, or any of the extensions that depend on it">RESTEasy Reactive Jackson</li>
-                        <li title="A JAX-RS implementation utilizing build time processing and Vert.x. This extension is not compatible with the quarkus-resteasy extension, or any of the extensions that depend on it.">RESTEasy Reactive (<a href="https://quarkus.io/guides/resteasy-reactive" target="_blank">guide</a>)</li>
+                        <li title="Generate JAX-RS resources for a Spring Data application">Quarkus Extension for Spring Data REST (<a href="https://quarkus.io/guides/spring-data-rest" target="_blank">guide</a>)</li>
+                        <li title="Use Spring Web annotations to create your REST services">Quarkus Extension for Spring Web API (<a href="https://quarkus.io/guides/spring-web" target="_blank">guide</a>)</li>
                         <li title="Use Spring Data JPA annotations to create your data access layer">Quarkus Extension for Spring Data JPA API (<a href="https://quarkus.io/guides/spring-data-jpa" target="_blank">guide</a>)</li>
                         <li title="Connect to the PostgreSQL database via JDBC">JDBC Driver - PostgreSQL</li>
                     </ul>

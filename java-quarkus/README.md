@@ -1,4 +1,4 @@
-# java-quarkus Project
+# code-with-quarkus Project
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
@@ -43,19 +43,20 @@ Or, if you don't have GraalVM installed, you can run the native executable build
 ./mvnw package -Pnative -Dquarkus.native.container-build=true
 ```
 
-You can then execute your native executable with: `./target/java-quarkus-1.0.0-SNAPSHOT-runner`
+You can then execute your native executable with: `./target/code-with-quarkus-1.0.0-SNAPSHOT-runner`
 
 If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.
 
 ## Related Guides
 
-- RESTEasy Reactive ([guide](https://quarkus.io/guides/resteasy-reactive)): A JAX-RS implementation utilizing build time processing and Vert.x. This extension is not compatible with the quarkus-resteasy extension, or any of the extensions that depend on it.
+- Quarkus Extension for Spring Data REST ([guide](https://quarkus.io/guides/spring-data-rest)): Generate JAX-RS resources for a Spring Data application
+- Quarkus Extension for Spring Web API ([guide](https://quarkus.io/guides/spring-web)): Use Spring Web annotations to create your REST services
 - Quarkus Extension for Spring Data JPA API ([guide](https://quarkus.io/guides/spring-data-jpa)): Use Spring Data JPA annotations to create your data access layer
 
 ## Provided Code
 
-### RESTEasy Reactive
+### Spring Web
 
-Easily start your Reactive RESTful Web Services
+Spring, the Quarkus way! Start your RESTful Web Services with a Spring Controller.
 
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+[Related guide section...](https://quarkus.io/guides/spring-web#greetingcontroller)
