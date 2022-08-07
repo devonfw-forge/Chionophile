@@ -5,10 +5,8 @@ import pdfkit
 
 def give_name_by_number(id):
     if id == 0: return 'rust'
-    elif id == 1: return 'java'
-    elif id == 2: return 'node'
-    elif id == 3: return 'python'
-    elif id == 4: return 'net'
+    elif id == 1: return 'quarkus'
+    elif id == 2: return 'spring_native'
     else: return 'undefined'
 
 def gen_cons_report(lines_l):
@@ -30,84 +28,13 @@ def gen_cons_report(lines_l):
     return consumption_table
 
 """
-    Processing power_idle.csv file
-"""
-# if os.path.exists(os.path.join('..','results','power_idle.csv')):
-#     with open(os.path.join('..','results','power_idle.csv'), "r", encoding='utf-8') as f:
-#         is_metrics = False
-#         lines_list = []
-#         for line in f:
-#             if 'Total Elapsed Time' in line: 
-#                 is_metrics = True
-#             if is_metrics and len(line.split(' = ')) > 1\
-#                 and ('Time' in line or 'Frequency' in line\
-#                 or 'Processor' in line): 
-#                 lines_list.append( (line.split(' = ')[0], line.split(' = ')[1]) )
-#         try: os.remove(os.path.join('..','results','power_idle.csv'))
-#         except: print("Error removing idle file")
-#         with open(os.path.join('..','results','power_idle.html'), "w", encoding='utf-8') as f:
-#             f.write(gen_cons_report(lines_list))
-
-"""
-    Processing power consumption files
-"""
-# csv_files = [f for f in os.listdir(os.path.join('..','results')) if '.csv' in f and 'PowerLog' in f]
-# cons_reports = {
-#     'rust': {},
-#     'java': {},
-#     'node': {},
-#     'python': {},
-#     'net': {},
-#     'undefined': {},
-# }
-# reading csv files:
-# for csvf in csv_files:
-#     with open(os.path.join('..','results',csvf), "r", encoding='utf-8') as f:
-#         is_metrics = False
-#         lines_list = []
-#         for line in f:
-#             if 'Total Elapsed Time' in line: 
-#                 is_metrics = True
-#             if is_metrics and len(line.split(' = ')) > 1\
-#                 and ('Time' in line or 'Frequency' in line\
-#                 or 'Processor' in line): 
-#                 lines_list.append( (line.split(' = ')[0], line.split(' = ')[1]) )
-#         # RUST
-#         if '_0' in csvf and 'B1' in csvf:          
-#             cons_reports['rust']['B1'] = gen_cons_report(lines_list)
-#         elif '_0' in csvf and 'B2' in csvf:          
-#             cons_reports['rust']['B2'] = gen_cons_report(lines_list)
-#         # JAVA:
-#         elif '_1' in csvf and 'B1' in csvf:          
-#             cons_reports['java']['B1'] = gen_cons_report(lines_list)
-#         elif '_1' in csvf and 'B2' in csvf:          
-#             cons_reports['java']['B2'] = gen_cons_report(lines_list)
-#         # NODE:
-#         elif '_2' in csvf and 'B1' in csvf:          
-#             cons_reports['node']['B1'] = gen_cons_report(lines_list)
-#         elif '_2' in csvf and 'B2' in csvf:          
-#             cons_reports['node']['B2'] = gen_cons_report(lines_list)
-#         # PYTHON:
-#         elif '_3' in csvf and 'B1' in csvf:          
-#             cons_reports['python']['B1'] = gen_cons_report(lines_list)
-#         elif '_3' in csvf and 'B2' in csvf:          
-#             cons_reports['python']['B2'] = gen_cons_report(lines_list)
-#         # NET:
-#         elif '_4' in csvf and 'B1' in csvf:          
-#             cons_reports['net']['B1'] = gen_cons_report(lines_list)
-#         elif '_4' in csvf and 'B2' in csvf:          
-#             cons_reports['net']['B2'] = gen_cons_report(lines_list)
-#     os.remove(os.path.join('..','results',csvf))
-
-
-"""
     Processing report html files
 """
 report_files = [f for f in os.listdir(os.path.join('.','results')) if '.html' in f and 'report' in f]
 
 # Cleaning html report files:
 for report in report_files:
-    num = 0
+    num = 1
     version = "1"
 
     with open(os.path.join('.','results',report), "r", encoding='utf-8') as f:

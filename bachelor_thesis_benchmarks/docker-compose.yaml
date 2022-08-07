@@ -12,7 +12,8 @@ services:
     networks:
       - vnet
   # jtq_rust:
-  #   build: ../rust
+  #   # build: ../rust
+  #   image: max/jtq-rust-simple
   #   depends_on:
   #       - jtq_postgres
   #   container_name: jtq-rust
@@ -25,22 +26,8 @@ services:
   #   restart: on-failure
   #   networks:
   #     - vnet
-  # jtqq:
-  #   image: max/jtqq
-  #   depends_on:
-  #       - jtq_postgres
-  #   ports:
-  #     - "8082:8081"
-  #   environment:
-  #     - DB_HOST=jtq-postgres
-  #     - DB_NAME=jtq_db
-  #     - DB_USER=jtq_user
-  #     - DB_PASS=admin
-  #   restart: on-failure
-  #   networks:
-  #     - vnet
-  jtqj_native:
-    image: max/jtqj-native
+  jtqq:
+    image: max/jtqq
     depends_on:
         - jtq_postgres
     ports:
@@ -53,6 +40,20 @@ services:
     restart: on-failure
     networks:
       - vnet
+  # jtqj_native:
+  #   image: docker.io/library/jtqj-native:1.0.0-SNAPSHOT
+  #   depends_on:
+  #       - jtq_postgres
+  #   ports:
+  #     - "8082:8081"
+  #   environment:
+  #     - DB_HOST=jtq-postgres
+  #     - DB_NAME=jtq_db
+  #     - DB_USER=jtq_user
+  #     - DB_PASS=admin
+  #   restart: on-failure
+  #   networks:
+  #     - vnet
 
 networks:
   vnet:

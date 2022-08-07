@@ -22,15 +22,15 @@ pub fn taskset() -> GooseTaskSet {
             //Register visitor
             let visitor_post = VisitorPost::generate_test_post_visitor();
             let post_response = user.post_json(visitor_path, &visitor_post).await.expect("json parse not worky");
-            println!("{:#?}", post_response.response?.text().await);
-            // let visitor_eto = post_response.response.expect("visitor_eto_response").json::<VisitorEto>().await.expect("VisitorEto");
+            // println!("{:#?}", post_response.response?.text().await);
+            let visitor_eto = post_response.response.expect("visitor_eto_response").json::<VisitorEto>().await.expect("VisitorEto");
 
 
             //Generate accesscode to join the queue
-            // let accesscode = AccessCodePostData::new(visitor_eto.id.unwrap(), 1);
-            // let join_queue_response = user.post_json(accesscode_path, &accesscode).await.expect("join_queue_response");
+            let accesscode = AccessCodePostData::new(visitor_eto.id.unwrap(), 1);
+            let join_queue_response = user.post_json(accesscode_path, &accesscode).await.expect("join_queue_response");
             // println!("{:#.expect("json parse not worky")}", join_queue_response.response.expect("json parse not worky").text().await);
-            // let accesscode_eto = join_queue_response.response.expect("join_queue_response").json::<AccessCodeEto>().await.expect("AccessCodeEto");
+            let accesscode_eto = join_queue_response.response.expect("join_queue_response").json::<AccessCodeEto>().await.expect("AccessCodeEto");
 
             //Search accesscodess
             let accesscode_search_path = format!("{}search/", accesscode_path);
@@ -46,12 +46,12 @@ pub fn taskset() -> GooseTaskSet {
             let _search_queue = user.post_json(&queue_path, &queue_criteria).await.expect("_search_queue");
 
             //Leave the queue
-            // let leave_queue_path = format!("{}{}/", accesscode_path.clone(), accesscode_eto.id.unwrap());
-            // user.delete(&leave_queue_path).await.expect("user.delete");
+            let leave_queue_path = format!("{}{}/", accesscode_path.clone(), accesscode_eto.id.unwrap());
+            user.delete(&leave_queue_path).await.expect("user.delete");
 
             //Delete user
-            // let visitor_by_id_path = format!("{}{}/", visitor_path.clone(), visitor_eto.id.unwrap());
-            // user.delete(&visitor_by_id_path).await.expect("visitor_by_id_path");
+            let visitor_by_id_path = format!("{}{}/", visitor_path.clone(), visitor_eto.id.unwrap());
+            user.delete(&visitor_by_id_path).await.expect("visitor_by_id_path");
 
             Ok(())
         })

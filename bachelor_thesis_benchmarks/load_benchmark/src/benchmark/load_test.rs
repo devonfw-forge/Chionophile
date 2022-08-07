@@ -1,8 +1,8 @@
-use goose::{GooseAttack, GooseError, GooseScheduler};
+use crate::benchmark::tasksets::{critical, logic, visitor};
 use goose::config::{GooseDefault, GooseDefaultType};
-use crate::benchmark::tasksets::{logic, visitor, critical};
+use goose::{GooseAttack, GooseError, GooseScheduler};
 
-pub async fn launch()  -> Result<(), GooseError> {
+pub async fn launch() -> Result<(), GooseError> {
     let mut attack = GooseAttack::initialize()?;
     attack = set_defaults(attack)?;
     attack = register_tasksets(attack);
@@ -11,25 +11,28 @@ pub async fn launch()  -> Result<(), GooseError> {
         .execute()
         .await?
         .print();
-    
+
     Ok(())
 }
 
 fn set_defaults(attack: GooseAttack) -> Result<GooseAttack, GooseError> {
     let attack_with_defaults = attack
-        .set_default(GooseDefault::Host, "http://localhost:8082/jumpthequeue/services/rest/")?
+        .set_default(
+            GooseDefault::Host,
+            "http://localhost:8082/jumpthequeue/services/rest/",
+        )?
         .set_default(GooseDefault::RequestLog, "goose-requests.log")?
         .set_default(GooseDefault::ErrorLog, "goose-error.log")?
         .set_default(GooseDefault::Users, 10)?
-        .set_default(GooseDefault::HatchRate, "1")?
-        // .set_default(GooseDefault::ThrottleRequests, 10)?
+        .set_default(GooseDefault::HatchRate, "10")?
+        // .set_default(GooseDefault::ThrottleRequests, 1)?
         .set_default(GooseDefault::RequestBody, true)?
-        .set_default(GooseDefault::RunTime, 30)?
+        .set_default(GooseDefault::RunTime, 600)?
         .set_default(GooseDefault::NoResetMetrics, true)?
         .set_default(GooseDefault::StatusCodes, true)?
         .set_default(GooseDefault::ReportFile, "report.html")?;
 
-        Ok(*attack_with_defaults)
+    Ok(*attack_with_defaults)
 }
 
 fn register_tasksets(attack: GooseAttack) -> GooseAttack {
