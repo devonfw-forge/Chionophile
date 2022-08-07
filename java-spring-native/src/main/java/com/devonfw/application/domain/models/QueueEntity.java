@@ -13,7 +13,7 @@ import lombok.ToString;
 @Table(name = "DailyQueue")
 @Getter
 @Setter
-@ToString
+@ToString(callSuper = true)
 public class QueueEntity extends ApplicationPersistenceEntity {
   private String name;
 

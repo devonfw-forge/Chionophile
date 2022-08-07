@@ -60,8 +60,8 @@ public interface QueuemanagementRestService {
    *                         finding queues.
    * @return the {@link Page list} of matching {@link QueueEto}s.
    */
-   @Path("/queue/search")
-   @POST
-   public Page<QueueEto> findQueues(QueueSearchCriteriaTo searchCriteriaTo);
+  @Path("/queue/search")
+  @POST
+  public Page<QueueEto> findQueues(QueueSearchCriteriaTo searchCriteriaTo);
 
 }

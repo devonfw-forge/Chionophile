@@ -21,6 +21,16 @@
 
   <dependencies>
     <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <version>5.6.9.Final</version>
+    </dependency>
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>42.4.0</version>
+    </dependency>
+    <dependency>
       <groupId>com.devonfw.java.modules</groupId>
       <artifactId>devon4j-rest</artifactId>
       <version>${devon4j.version}</version>
@@ -30,11 +40,11 @@
       <artifactId>spring-data-commons</artifactId>
       <version>${spring.boot.version}</version>
     </dependency>
-    <dependency>
+    <!-- <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-entitymanager</artifactId>
       <version>5.6.9.Final</version>
-    </dependency>
+    </dependency> -->ß0 
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-jdbc</artifactId>

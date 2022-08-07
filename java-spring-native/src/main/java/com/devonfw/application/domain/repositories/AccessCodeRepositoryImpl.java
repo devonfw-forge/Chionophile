@@ -13,6 +13,8 @@ import org.springframework.data.domain.Sort.Order;
 
 import com.devonfw.application.domain.models.AccessCodeEntity;
 import com.devonfw.application.domain.models.QAccessCodeEntity;
+import com.devonfw.application.domain.models.QQueueEntity;
+import com.devonfw.application.domain.models.QVisitorEntity;
 import com.devonfw.application.domain.tos.AccessCodeSearchCriteriaTo;
 import com.devonfw.application.domain.utils.QueryUtil;
 import com.querydsl.jpa.impl.JPAQuery;
@@ -25,9 +27,15 @@ public class AccessCodeRepositoryImpl implements AccessCodeRepositoryFragment {
   public Page<AccessCodeEntity> findByCriteria(AccessCodeSearchCriteriaTo criteria) {
 
     QAccessCodeEntity alias = QAccessCodeEntity.accessCodeEntity;
+    QVisitorEntity visitorJoin = new QVisitorEntity("visitor");
+    QQueueEntity queueJoin = new QQueueEntity("queue");
     JPAQuery<AccessCodeEntity> query = new JPAQuery<AccessCodeEntity>(em);
-    query.from(QAccessCodeEntity.accessCodeEntity);
-
+    //important! to avoid n+1 issue, we want to return accesscode  + visitor + queue = so we need to join those tables
+    //as we only want a single query to be executed(or 2 because of the count for pagination...
+    // query.from(QAccessCodeEntity.accessCodeEntity)
+    //   .innerJoin(alias.visitor, visitorJoin)
+    //   .innerJoin(alias.queue, queueJoin);
+      
     Timestamp creationTime = criteria.getCreationTime();
     if (creationTime != null) {
       query.where(alias.creationTime.eq(creationTime));

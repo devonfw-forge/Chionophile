@@ -1,0 +1,30 @@
+[
+  {
+    "name":"com.zaxxer.hikari.HikariDataSource",
+    "methods":[{"name":"<init>","parameterTypes":[] }]
+  },
+  {
+    "name":"org.hibernate.dialect.PostgreSQLDialect",
+    "allDeclaredMethods" : true,
+    "allDeclaredFields" : true,
+    "allDeclaredConstructors" : true
+  },
+  {
+    "name": "org.postgresql.Driver",
+    "allDeclaredMethods" : true,
+    "allDeclaredFields" : true,
+    "allDeclaredConstructors" : true
+  },
+  {
+    "name": "org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl",
+    "allDeclaredMethods" : true,
+    "allDeclaredFields" : true,
+    "allDeclaredConstructors" : true
+  },
+  {
+    "name": "org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl",
+    "allDeclaredMethods" : true,
+    "allDeclaredFields" : true,
+    "allDeclaredConstructors" : true
+  }
+]
