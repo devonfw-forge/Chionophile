@@ -9,6 +9,7 @@ use num_cpus;
 #[macro_use]
 extern crate custom_derive;
 
+extern crate openssl;
 #[macro_use]
 extern crate diesel;
 
@@ -17,14 +18,13 @@ mod domain;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+    openssl_probe::init_ssl_cert_env_vars();
     dotenv::dotenv().ok();
     let app_config = read_config();
     env_logger::init_from_env(env_logger::Env::new().default_filter_or("info"));
 
     let manager = ConnectionManager::<DbConn>::new(app_config.database_url);
-    let pool = r2d2::Pool::builder()
-        .build(manager)
-        .expect("Failed to create pool");
+    let pool = r2d2::Pool::builder().build(manager).expect("Failed to create pool");
 
     HttpServer::new(move || {
         let service_config = ServiceConfig::new(&app_config.base_rest_url);

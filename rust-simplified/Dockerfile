@@ -1,9 +1,15 @@
-FROM rust:latest
+FROM ekidd/rust-musl-builder:latest as build
+WORKDIR /build
 
-RUN mkdir /jtq
-WORKDIR /jtq
-COPY . .
+ADD --chown=rust:rust . ./
 
-RUN cargo install --path .
+RUN cargo build --release
 
-CMD ["jtqt-rust"]
+FROM alpine:latest
+RUN apk --no-cache add ca-certificates
+
+WORKDIR /app
+
+COPY --from=build /build/target/x86_64-unknown-linux-musl/release .
+
+CMD [ "/app/jtq-rust" ]
