@@ -246,12 +246,12 @@ definitions:
   Page:
     type: "object"
     properties:
-      totalPages:
-        type: "integer"
-        format: "int32"
       totalElements:
         type: "integer"
         format: "int64"
+      totalPages:
+        type: "integer"
+        format: "int32"
       size:
         type: "integer"
         format: "int32"
@@ -264,8 +264,6 @@ definitions:
         format: "int32"
       sort:
         $ref: "#/definitions/Sort"
-      first:
-        type: "boolean"
       numberOfElements:
         type: "integer"
         format: "int32"
@@ -273,17 +271,19 @@ definitions:
         $ref: "#/definitions/Pageable"
       last:
         type: "boolean"
+      first:
+        type: "boolean"
       empty:
         type: "boolean"
   PageAccessCodeCto:
     type: "object"
     properties:
-      totalPages:
-        type: "integer"
-        format: "int32"
       totalElements:
         type: "integer"
         format: "int64"
+      totalPages:
+        type: "integer"
+        format: "int32"
       size:
         type: "integer"
         format: "int32"
@@ -296,8 +296,6 @@ definitions:
         format: "int32"
       sort:
         $ref: "#/definitions/Sort"
-      first:
-        type: "boolean"
       numberOfElements:
         type: "integer"
         format: "int32"
@@ -305,17 +303,19 @@ definitions:
         $ref: "#/definitions/Pageable"
       last:
         type: "boolean"
+      first:
+        type: "boolean"
       empty:
         type: "boolean"
   PageAccessCodeEto:
     type: "object"
     properties:
-      totalPages:
-        type: "integer"
-        format: "int32"
       totalElements:
         type: "integer"
         format: "int64"
+      totalPages:
+        type: "integer"
+        format: "int32"
       size:
         type: "integer"
         format: "int32"
@@ -328,8 +328,6 @@ definitions:
         format: "int32"
       sort:
         $ref: "#/definitions/Sort"
-      first:
-        type: "boolean"
       numberOfElements:
         type: "integer"
         format: "int32"
@@ -337,17 +335,19 @@ definitions:
         $ref: "#/definitions/Pageable"
       last:
         type: "boolean"
+      first:
+        type: "boolean"
       empty:
         type: "boolean"
   PageQueueEto:
     type: "object"
     properties:
-      totalPages:
-        type: "integer"
-        format: "int32"
       totalElements:
         type: "integer"
         format: "int64"
+      totalPages:
+        type: "integer"
+        format: "int32"
       size:
         type: "integer"
         format: "int32"
@@ -360,8 +360,6 @@ definitions:
         format: "int32"
       sort:
         $ref: "#/definitions/Sort"
-      first:
-        type: "boolean"
       numberOfElements:
         type: "integer"
         format: "int32"
@@ -369,17 +367,19 @@ definitions:
         $ref: "#/definitions/Pageable"
       last:
         type: "boolean"
+      first:
+        type: "boolean"
       empty:
         type: "boolean"
   PageVisitorEto:
     type: "object"
     properties:
-      totalPages:
-        type: "integer"
-        format: "int32"
       totalElements:
         type: "integer"
         format: "int64"
+      totalPages:
+        type: "integer"
+        format: "int32"
       size:
         type: "integer"
         format: "int32"
@@ -392,14 +392,14 @@ definitions:
         format: "int32"
       sort:
         $ref: "#/definitions/Sort"
-      first:
-        type: "boolean"
       numberOfElements:
         type: "integer"
         format: "int32"
       pageable:
         $ref: "#/definitions/Pageable"
       last:
+        type: "boolean"
+      first:
         type: "boolean"
       empty:
         type: "boolean"
@@ -411,16 +411,16 @@ definitions:
         format: "int64"
       sort:
         $ref: "#/definitions/Sort"
-      paged:
-        type: "boolean"
-      unpaged:
-        type: "boolean"
       pageNumber:
         type: "integer"
         format: "int32"
+      paged:
+        type: "boolean"
       pageSize:
         type: "integer"
         format: "int32"
+      unpaged:
+        type: "boolean"
   QueueEto:
     type: "object"
     properties:
@@ -447,9 +447,9 @@ definitions:
   Sort:
     type: "object"
     properties:
-      sorted:
-        type: "boolean"
       unsorted:
+        type: "boolean"
+      sorted:
         type: "boolean"
       empty:
         type: "boolean"
