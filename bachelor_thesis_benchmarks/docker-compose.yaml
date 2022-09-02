@@ -8,7 +8,8 @@ services:
       - ../postgresql/config.env
     volumes:
       - ../postgresql/postgres/init:/docker-entrypoint-initdb.d:ro
-    restart: unless-stopped
+    ports:
+      - "5432:5432"
     networks:
       - vnet
   # jtq_rust:

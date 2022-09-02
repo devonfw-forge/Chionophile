@@ -1,7 +1,7 @@
-use serde::{Serialize, Deserialize};
 use chrono::{NaiveDateTime, Utc};
+use serde::{Deserialize, Serialize};
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct QueueEto {
     pub id: Option<i64>,

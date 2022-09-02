@@ -1,8 +1,8 @@
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
 #[derive(Deserialize, Serialize)]
-#[serde(rename_all="camelCase")]
+#[serde(rename_all = "camelCase")]
 pub struct VisitorEto {
     pub id: Option<i64>,
     pub username: Option<String>,
@@ -15,7 +15,7 @@ pub struct VisitorEto {
 }
 
 #[derive(Deserialize, Serialize)]
-#[serde(rename_all="camelCase")]
+#[serde(rename_all = "camelCase")]
 pub struct VisitorPost {
     pub username: Option<String>,
     pub name: Option<String>,
@@ -37,7 +37,7 @@ impl VisitorEto {
             password: Some("1234".to_string()),
             accepted_commercial: Some(true),
             accepted_terms: true,
-            user_type: Some(true)
+            user_type: Some(true),
         }
     }
 }
@@ -52,7 +52,7 @@ impl VisitorPost {
             password: Some("1234".to_string()),
             accepted_commercial: Some(true),
             accepted_terms: true,
-            user_type: Some(true)
+            user_type: Some(true),
         }
     }
 }

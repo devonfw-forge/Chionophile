@@ -1,13 +1,19 @@
 import os
-import shutil
-from distutils.dir_util import copy_tree
-import pdfkit
+# import shutil
+# from distutils.dir_util import copy_tree
+# import pdfkit
+
 
 def give_name_by_number(id):
-    if id == 0: return 'rust'
-    elif id == 1: return 'quarkus'
-    elif id == 2: return 'spring_native'
-    else: return 'undefined'
+    if id == 0:
+        return 'rust'
+    elif id == 1:
+        return 'quarkus'
+    elif id == 2:
+        return 'spring_native'
+    else:
+        return 'undefined'
+
 
 def gen_cons_report(lines_l):
     consumption_table = "<style>\n.container2 {\nwidth: 1000px;\nmargin: 0 auto;\npadding: 10px;\nbackground: #173529;\n"
@@ -27,18 +33,23 @@ def gen_cons_report(lines_l):
     consumption_table += "</table>\n"
     return consumption_table
 
+
 """
     Processing report html files
 """
-report_files = [f for f in os.listdir(os.path.join('.','results')) if '.html' in f and 'report' in f]
+report_files = [f for f in os.listdir(os.path.join(
+    '.', 'results')) if '.html' in f and 'report' in f]
 
 # Cleaning html report files:
 for report in report_files:
     num = 1
     version = "1"
 
-    with open(os.path.join('.','results',report), "r", encoding='utf-8') as f:
-        is_table = False; is_head_table = False; is_end_table = False; is_div_tasks = False
+    with open(os.path.join('.', 'results', report), "r", encoding='utf-8') as f:
+        is_table = False
+        is_head_table = False
+        is_end_table = False
+        is_div_tasks = False
         html_list = []
         for line in f:
             if 'Goose Attack Report' in line:
@@ -46,64 +57,72 @@ for report in report_files:
                 line = line.replace('Goose Attack Report', new_tittle)
             # if '</body>' in line :
             #     # RUST
-            #     if '_0' in report and 'B1' in report:          
+            #     if '_0' in report and 'B1' in report:
             #         html_list.append(cons_reports['rust']['B1'])
-            #     elif '_0' in report and 'B2' in report:          
+            #     elif '_0' in report and 'B2' in report:
             #         html_list.append(cons_reports['rust']['B2'])
             #     # JAVA:
-            #     elif '_1' in report and 'B1' in report:          
+            #     elif '_1' in report and 'B1' in report:
             #         html_list.append(cons_reports['java']['B1'])
-            #     elif '_1' in report and 'B2' in report:          
+            #     elif '_1' in report and 'B2' in report:
             #         html_list.append(cons_reports['java']['B2'])
             #     # NODE:
-            #     elif '_2' in report and 'B1' in report:          
+            #     elif '_2' in report and 'B1' in report:
             #         html_list.append(cons_reports['node']['B1'])
-            #     elif '_2' in report and 'B2' in report:          
+            #     elif '_2' in report and 'B2' in report:
             #         html_list.append(cons_reports['node']['B2'])
             #     # PYTHON:
-            #     elif '_3' in report and 'B1' in report:          
+            #     elif '_3' in report and 'B1' in report:
             #         html_list.append(cons_reports['python']['B1'])
-            #     elif '_3' in report and 'B2' in report:          
+            #     elif '_3' in report and 'B2' in report:
             #         html_list.append(cons_reports['python']['B2'])
             #     # NET:
-            #     elif '_4' in report and 'B1' in report:          
+            #     elif '_4' in report and 'B1' in report:
             #         html_list.append(cons_reports['net']['B1'])
-            #     elif '_4' in report and 'B2' in report:          
+            #     elif '_4' in report and 'B2' in report:
             #         html_list.append(cons_reports['net']['B2'])
-            if '<div class=\"tasks\">' in line: is_div_tasks = True
-            if '<div class=\"users\">' in line: is_div_tasks = False
-            if '<table>\n' in line: 
-                is_table = True; html_list.append(line)
-            if not is_table and not is_div_tasks: html_list.append(line)
-            if is_table and '<thead>' in line: is_head_table = True
-            if is_table and is_head_table and 'Task' not in line: 
+            if '<div class=\"tasks\">' in line:
+                is_div_tasks = True
+            if '<div class=\"users\">' in line:
+                is_div_tasks = False
+            if '<table>\n' in line:
+                is_table = True
+                html_list.append(line)
+            if not is_table and not is_div_tasks:
+                html_list.append(line)
+            if is_table and '<thead>' in line:
+                is_head_table = True
+            if is_table and is_head_table and 'Task' not in line:
                 html_list.append(
-                    line.replace('colspan="2"','').replace('colspan="3"',''))
-            elif is_table and is_head_table and 'Task' in line:  
+                    line.replace('colspan="2"', '').replace('colspan="3"', ''))
+            elif is_table and is_head_table and 'Task' in line:
                 html_list.append(line)
             if is_table and is_head_table and '</thead>' in line:
                 is_head_table = False
             if is_table and 'Aggregated' in line:
-                html_list.append('<tbody>\n'); html_list.append('<tr>\n')
+                html_list.append('<tbody>\n')
+                html_list.append('<tr>\n')
                 html_list.append(
-                    line.replace('colspan="2"','').replace('colspan="3"',''))
+                    line.replace('colspan="2"', '').replace('colspan="3"', ''))
                 is_end_table = True
-            if is_table and is_end_table: 
+            if is_table and is_end_table:
                 html_list.append(
-                    line.replace('colspan="2"','').replace('colspan="3"',''))
+                    line.replace('colspan="2"', '').replace('colspan="3"', ''))
             if is_table and is_end_table and '</tr>' in line:
-                is_end_table = False; html_list.append('</tbody>\n')
-            if '</table>' in line: 
-                is_table = False; html_list.append(line)
-            
-        clean_html = ''.join(html_list) 
+                is_end_table = False
+                html_list.append('</tbody>\n')
+            if '</table>' in line:
+                is_table = False
+                html_list.append(line)
+
+        clean_html = ''.join(html_list)
 
     new_report = 'res_' + give_name_by_number(num)
     count = 0
-    while os.path.exists(os.path.join('.','results',new_report+version+'_'+str(count)+'.html')):
+    while os.path.exists(os.path.join('.', 'results', new_report+version+'_'+str(count)+'.html')):
         count += 1
     new_report += version+'_'+str(count)+'.html'
-    
-    os.remove(os.path.join('.','results',report))
-    with open(os.path.join('.','results',new_report), "w", encoding='utf-8') as f:
+
+    os.remove(os.path.join('.', 'results', report))
+    with open(os.path.join('.', 'results', new_report), "w", encoding='utf-8') as f:
         f.write(clean_html)
